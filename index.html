@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    ReviewFlow | Minimal & Serverless Review Systems for Local Businesses
+  </title>
+  <meta name="description"
+    content="High-performance, zero-maintenance custom review collection widgets for local businesses. Powered by Cloudflare, Google Sheets, and Vercel. Done fully free of hosting overheads." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ReviewFlow | Minimal & Serverless Review Systems" />
+  <meta property="og:description"
+    content="Zero-cost hosting, direct-to-Google Sheets database pipeline, and tailor-made templates for local shops." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="shortcut icon" href="assets/favicon-96x96.png" />
+  <link rel="manifest" href="assets/site.webmanifest" />
+</head>
+
+<body>
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo" id="nav-logo">
+        <img src="assets/favicon-96x96.png" alt="ReviewFlow Logo" class="logo-icon" />
+        <span class="logo-text">Review<span>Flow</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#demo" class="nav-link">Live Demo</a></li>
+        <li><a href="#workflow" class="nav-link">How it Works</a></li>
+        <li><a href="#templates" class="nav-link">Templates</a></li>
+        <li><a href="#customers" class="nav-link">Customers</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions" style="display: flex; align-items: center; gap: 16px">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <a href="contact.html" class="cta-nav">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero container" id="hero">
+      <div class="hero-tag"><span></span> Modern Review Solutions</div>
+      <h1>Capture Authentic Reviews.<br />Without Database Overhead.</h1>
+      <p>
+        I build elegant, super-fast review collection systems custom-tailored
+        for local businesses. Completely hosted on serverless pipelines with
+        zero ongoing server costs.
+      </p>
+      <div class="hero-ctas">
+        <a href="#demo" class="btn btn-primary">Try Live Demo</a>
+        <a href="#templates" class="btn btn-secondary">Explore Templates</a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container" id="features">
+      <div style="text-align: center; margin-bottom: 60px">
+        <h2 style="font-size: 2.25rem; margin-bottom: 16px">
+          Supercharged Performance
+        </h2>
+        <p style="
+              color: var(--text-secondary);
+              max-width: 600px;
+              margin: 0 auto;
+            ">
+          Everything your shop needs to capture feedback, log it securely, and
+          look incredibly premium.
+        </p>
+      </div>
+      <div class="grid features-grid">
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3>Zero Hosting Cost</h3>
+          <p>
+            Utilizes serverless Cloudflare Workers and static CDN delivery.
+            You never pay a single dime in monthly hosting fees.
+          </p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <h3>Google Sheets DB</h3>
+          <p>
+            No complex database setups. All client submissions log directly to
+            your private Google Sheet automatically in real-time.
+          </p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+              <line x1="15" y1="3" x2="15" y2="21"></line>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="3" y1="15" x2="21" y2="15"></line>
+            </svg>
+          </div>
+          <h3>Custom Branding</h3>
+          <p>
+            Every review system is custom stylized to match the brand logo,
+            colors, and styling of the physical storefront.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Live Demo -->
+    <section class="container" id="demo">
+      <div class="demo-layout">
+        <div class="demo-title-area">
+          <div class="hero-tag" style="margin-bottom: 16px">
+            <span style="
+                  background-color: var(--accent);
+                  box-shadow: 0 0 8px var(--accent);
+                "></span>
+            Interactive Simulation
+          </div>
+          <h2>See It In Real-Time</h2>
+          <p>
+            Submit a test review inside the mobile-optimized widget mockup.
+            Watch it update instantly inside the simulated Google Sheet
+            representation on the right.
+          </p>
+          <div style="
+                background-color: rgba(255, 255, 255, 0.02);
+                border: 1px solid var(--border-subtle);
+                padding: 18px;
+                border-radius: 8px;
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+              ">
+            <strong>Real-World Usage:</strong> At your shop, customers scan a
+            customized QR code at checkout, instantly loading this review form
+            on their phones.
+          </div>
+        </div>
+
+        <div class="grid" style="gap: 24px">
+          <!-- Widget UI -->
+          <div class="widget-mockup">
+            <div class="widget-header">
+              <h4>Artisanal Coffee Co.</h4>
+              <p>Let us know how we did today</p>
+            </div>
+            <form id="demo-review-form">
+              <div class="rating-select">
+                <button type="button" class="star-btn" data-val="1">★</button>
+                <button type="button" class="star-btn" data-val="2">★</button>
+                <button type="button" class="star-btn" data-val="3">★</button>
+                <button type="button" class="star-btn" data-val="4">★</button>
+                <button type="button" class="star-btn" data-val="5">★</button>
+              </div>
+              <input type="hidden" id="demo-rating" value="0" />
+
+              <div class="form-group">
+                <label for="demo-name">Your Name</label>
+                <input type="text" id="demo-name" class="form-input" placeholder="e.g. Jane Doe" required />
+              </div>
+
+              <div class="form-group">
+                <label for="demo-comment">Your Feedback</label>
+                <textarea id="demo-comment" rows="3" class="form-textarea"
+                  placeholder="What did you love about your visit?" required></textarea>
+              </div>
+
+              <button type="submit">Submit Feedback</button>
+            </form>
+          </div>
+
+          <!-- Google Sheets Table -->
+          <div class="sheets-mockup">
+            <div class="sheets-bar">
+              <div class="sheets-indicator">
+                <span class="indicator-dot red"></span>
+                <span class="indicator-dot yellow"></span>
+                <span class="indicator-dot green"></span>
+              </div>
+              <div class="sheets-title">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Artisanal_Coffee_Reviews.xlsx
+              </div>
+            </div>
+            <div class="sheets-table-wrapper">
+              <table class="sheets-table" id="demo-sheets-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Customer Name</th>
+                    <th>Rating</th>
+                    <th>Comments</th>
+                    <th>Action Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2026-06-18 10:14:22</td>
+                    <td>Alexander K.</td>
+                    <td class="star-rating">★★★★★ (5)</td>
+                    <td>
+                      Absolutely loved the cold brew and the sourdough toast.
+                      Fast Wi-Fi!
+                    </td>
+                    <td style="color: var(--success); font-weight: 500">
+                      ✓ Logged
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2026-06-18 11:32:05</td>
+                    <td>Sarah Miller</td>
+                    <td class="star-rating">★★★★☆ (4)</td>
+                    <td>
+                      Excellent cappuccino. The pastries were a bit sold out
+                      though.
+                    </td>
+                    <td style="color: var(--success); font-weight: 500">
+                      ✓ Logged
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2026-06-18 14:05:40</td>
+                    <td>David Chen</td>
+                    <td class="star-rating">★★★★★ (5)</td>
+                    <td>
+                      Friendly barista and wonderful minimal interior design.
+                      Recommended.
+                    </td>
+                    <td style="color: var(--success); font-weight: 500">
+                      ✓ Logged
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack / Workflow -->
+    <section class="container" id="workflow">
+      <div style="text-align: center; margin-bottom: 50px">
+        <h2 style="font-size: 2.25rem; margin-bottom: 16px; margin-top: 30px">
+          The Serverless Ecosystem
+        </h2>
+        <p style="
+              color: var(--text-secondary);
+              max-width: 650px;
+              margin: 0 auto;
+            ">
+          How the system operates seamlessly with high reliability and zero
+          maintenance overhead.
+        </p>
+      </div>
+
+      <div class="workflow-timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>
+              1. Domain Ownership <span class="badge-tech">GoDaddy</span>
+            </h4>
+            <p>
+              We lock in a custom storefront domain name for your shop,
+              mapping directly to your brand profile (e.g.
+              www.coffeeshopreviews.com).
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>
+              2. Nameservers & Routing
+              <span class="badge-tech">Cloudflare</span>
+            </h4>
+            <p>
+              Cloudflare manages name resolution and speed optimization. We
+              deploy a Cloudflare Worker proxy layer to guarantee 99.99%
+              uptime with zero database setup.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>
+              3. Logic Serverless Pipeline
+              <span class="badge-tech">Vercel & Github</span>
+            </h4>
+            <p>
+              Your responsive customer review interface files are
+              version-controlled in private GitHub repos and built instantly
+              using Vercel's global edge network.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>
+              4. Real-time Storage Log
+              <span class="badge-tech">Google Sheets API</span>
+            </h4>
+            <p>
+              An Apps Script secure webhook captures incoming JSON payloads
+              and appends them instantly into your secure, exportable
+              spreadsheet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Templates Portfolio -->
+    <section class="container" id="templates">
+      <div style="text-align: center; margin-bottom: 60px">
+        <h2 style="font-size: 2.25rem; margin-bottom: 16px; margin-top: 30px">
+          Pre-built Custom Templates
+        </h2>
+        <p style="
+              color: var(--text-secondary);
+              max-width: 600px;
+              margin: 0 auto;
+            ">
+          Select from a curated collection of minimalist, fully customizable
+          templates matching your storefront's industry.
+        </p>
+      </div>
+
+      <div class="grid templates-grid">
+        <!-- Cafe -->
+        <div class="template-card temp-cafe reveal" data-category="Food & Beverage">
+          <div class="template-preview-area">
+            <span class="template-badge">F&B</span>
+            <div class="template-inner-demo">
+              <h5>Artisanal Cafe</h5>
+              <p class="star-rating">★★★★★</p>
+            </div>
+          </div>
+          <div class="template-card-body">
+            <h4>The Cafe Layout</h4>
+            <p>
+              Perfect for coffee shops, bakeries, and brunch spots. Clean
+              aesthetics with warmth accent shades.
+            </p>
+            <div class="template-actions">
+              <button class="btn-preview" data-template="cafe">
+                Preview Layout
+              </button>
+              <a href="contact.html" class="btn-use">Use This</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hair Salon -->
+        <div class="template-card temp-salon reveal" data-category="Beauty">
+          <div class="template-preview-area">
+            <span class="template-badge">Beauty</span>
+            <div class="template-inner-demo">
+              <h5>Luxe Salon</h5>
+              <p class="star-rating">★★★★★</p>
+            </div>
+          </div>
+          <div class="template-card-body">
+            <h4>The Salon Layout</h4>
+            <p>
+              Tailored for hair salons, nail clinics, and spas. Soft, elegant
+              typography and high-contrast forms.
+            </p>
+            <div class="template-actions">
+              <button class="btn-preview" data-template="salon">
+                Preview Layout
+              </button>
+              <a href="contact.html" class="btn-use">Use This</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medical/Dental -->
+        <div class="template-card temp-clinic reveal" data-category="Healthcare">
+          <div class="template-preview-area">
+            <span class="template-badge">Medical</span>
+            <div class="template-inner-demo">
+              <h5>Apex Dental</h5>
+              <p class="star-rating">★★★★★</p>
+            </div>
+          </div>
+          <div class="template-card-body">
+            <h4>The Clinic Layout</h4>
+            <p>
+              Designed for doctor offices, therapists, and dental clinics.
+              Focuses on clinical cleanliness and credibility.
+            </p>
+            <div class="template-actions">
+              <button class="btn-preview" data-template="clinic">
+                Preview Layout
+              </button>
+              <a href="contact.html" class="btn-use">Use This</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Restaurant -->
+        <div class="template-card temp-restaurant reveal" data-category="Food & Beverage">
+          <div class="template-preview-area">
+            <span class="template-badge">Dining</span>
+            <div class="template-inner-demo">
+              <h5>Bistro 108</h5>
+              <p class="star-rating">★★★★★</p>
+            </div>
+          </div>
+          <div class="template-card-body">
+            <h4>The Bistro Layout</h4>
+            <p>
+              Ideal for restaurants, pubs, and fine dining. Bold layout
+              highlighting signature menus alongside review inputs.
+            </p>
+            <div class="template-actions">
+              <button class="btn-preview" data-template="restaurant">
+                Preview Layout
+              </button>
+              <a href="contact.html" class="btn-use">Use This</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gym/Fitness -->
+        <div class="template-card temp-fitness reveal" data-category="Fitness">
+          <div class="template-preview-area">
+            <span class="template-badge">Fitness</span>
+            <div class="template-inner-demo">
+              <h5>Iron Core Gym</h5>
+              <p class="star-rating">★★★★★</p>
+            </div>
+          </div>
+          <div class="template-card-body">
+            <h4>The Gym Layout</h4>
+            <p>
+              High-energy, modern dark interface designed for fitness centers,
+              yoga studios, and training boxes.
+            </p>
+            <div class="template-actions">
+              <button class="btn-preview" data-template="fitness">
+                Preview Layout
+              </button>
+              <a href="contact.html" class="btn-use">Use This</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Boutique Retail -->
+        <div class="template-card temp-boutique reveal" data-category="Retail">
+          <div class="template-preview-area">
+            <span class="template-badge">Retail</span>
+            <div class="template-inner-demo">
+              <h5>Velvet & Vine</h5>
+              <p class="star-rating">★★★★★</p>
+            </div>
+          </div>
+          <div class="template-card-body">
+            <h4>The Retail Layout</h4>
+            <p>
+              Elegantly simple interfaces for local clothing boutiques,
+              bookshops, and gift stores.
+            </p>
+            <div class="template-actions">
+              <button class="btn-preview" data-template="boutique">
+                Preview Layout
+              </button>
+              <a href="contact.html" class="btn-use">Use This</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lucky Customers Section -->
+    <section class="container" id="customers">
+      <div style="text-align: center; margin-bottom: 40px">
+        <div class="hero-tag"><span></span> Customer Success</div>
+        <h2 style="font-size: 2.25rem; margin-bottom: 16px; margin-top: 30px">
+          Our Lucky Customers
+        </h2>
+        <p style="
+              color: var(--text-secondary);
+              max-width: 600px;
+              margin: 0 auto;
+            ">
+          We've empowered storefronts to capture thousands of verified reviews
+          with zero maintenance hosting.
+        </p>
+      </div>
+
+      <!-- Filter & Sort Controls -->
+      <div class="controls-panel">
+        <div class="filter-group">
+          <span class="control-label">Filter Category:</span>
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Food & Beverage">
+              F&B
+            </button>
+            <button class="filter-btn" data-filter="Beauty">Beauty</button>
+            <button class="filter-btn" data-filter="Healthcare">
+              Healthcare
+            </button>
+            <button class="filter-btn" data-filter="Fitness">Fitness</button>
+            <button class="filter-btn" data-filter="Retail">Retail</button>
+          </div>
+        </div>
+        <div class="sort-group">
+          <span class="control-label">Sort By:</span>
+          <select id="customer-sort" class="sort-select">
+            <option value="launch-desc">Newest Launch</option>
+            <option value="launch-asc">Oldest Launch</option>
+            <option value="reviews-desc">Most Reviews</option>
+            <option value="rating-desc">Highest Rated</option>
+            <option value="name-asc">Alphabetical (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dynamic Grid -->
+      <div class="customers-grid" id="customers-grid"></div>
+    </section>
+
+    <!-- Contact & Ordering Section -->
+    <section class="container" id="contact">
+      <div class="contact-layout">
+        <div class="contact-info">
+          <div class="hero-tag" style="margin-bottom: 16px; margin-top: 30px">
+            <span style="
+                  background-color: var(--accent);
+                  box-shadow: 0 0 8px var(--accent);
+                "></span>
+            Let's Connect
+          </div>
+          <h2>Ready to capture reviews?</h2>
+          <p>
+            Get a completely tailor-made review layout built, branded, and
+            hosted for your local storefront. Fill out the form or reach out
+            directly.
+          </p>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="info-text">
+              <h5>Email</h5>
+              <p>hello@reviewflow.co</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg>
+            </div>
+            <div class="info-text">
+              <h5>Phone/Messaging</h5>
+              <p>+1 (555) 019-2834</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="main-contact-form" style="margin-top: 30px; margin-bottom: 40px">
+          <div class="form-group">
+            <label for="contact-name">Your Name</label>
+            <input type="text" id="contact-name" class="form-input" placeholder="e.g. John Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email Address</label>
+            <input type="email" id="contact-email" class="form-input" placeholder="john@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-biz">Business / Shop Name</label>
+            <input type="text" id="contact-biz" class="form-input" placeholder="e.g. Oak Street Bakery" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-msg">Requirements / Notes</label>
+            <textarea id="contact-msg" rows="4" class="form-textarea"
+              placeholder="Tell me about your shop or select a template..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit">
+            Submit Inquiry
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-logo">
+        <img src="assets/favicon-96x96.png" alt="ReviewFlow Logo" class="logo-icon" />
+        <span class="logo-text">Review<span>Flow</span></span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#demo">Live Demo</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#templates">Templates</a></li>
+        <li><a href="#customers">Customers</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="terms.html">Terms & Conditions</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <p class="footer-copyright">
+        &copy; 2026 ReviewFlow. Designed for local businesses.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Preview Modal -->
+  <div class="modal" id="preview-modal">
+    <div class="modal-container">
+      <button class="modal-close" id="modal-close-btn">&times;</button>
+      <div class="modal-body">
+        <div class="preview-device">
+          <!-- Device Content Simulated -->
+          <div class="device-screen">
+            <div class="device-header">
+              <h4 id="modal-shop-name">Artisanal Cafe</h4>
+              <p id="modal-shop-tag">Leave us a review</p>
+              <div class="device-stars">★★★★★</div>
+            </div>
+            <div class="device-form">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" class="form-input" placeholder="Jane Doe" disabled />
+              </div>
+              <div class="form-group">
+                <label>Review Comment</label>
+                <textarea rows="2" class="form-textarea" placeholder="We value your feedback..." disabled></textarea>
+              </div>
+              <div class="device-btn">Send Review</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-details">
+          <h4 id="modal-detail-title">Cafe Layout</h4>
+          <p id="modal-detail-desc">
+            Warm, modern, and perfectly suited for fast reviews. Logs details
+            directly into a Google Sheet cell-by-cell.
+          </p>
+          <div class="preview-meta">
+            <span>Fast Loading</span>
+            <span>Google Sheets App Script</span>
+            <span>Mobile-First Layout</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/index.js"></script>
+</body>
+
+</html>
