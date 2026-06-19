@@ -94,3 +94,30 @@
   border-color: rgba(255, 255, 255, 0.15);
   background-color: var(--bg-card-hover);
 }
+
+/* Media Queries for Privacy Page responsiveness */
+@media (max-width: 768px) {
+  .legal-container {
+    padding: 100px 20px 60px;
+  }
+
+  .legal-header {
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+  }
+
+  .legal-header h1 {
+    font-size: 2rem;
+  }
+
+  .legal-section-card {
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .legal-container {
+    padding: 100px 16px 40px;
+  }
+}

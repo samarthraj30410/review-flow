@@ -60,4 +60,34 @@ document.addEventListener('DOMContentLoaded', () => {
       contactForm.style.display = 'flex';
     });
   }
+
+  // --- 3. Mobile Menu Toggle ---
+  const menuToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  
+  if (menuToggle && navLinks) {
+    const hamburgerIcon = menuToggle.querySelector('.hamburger-icon');
+    const closeIcon = menuToggle.querySelector('.close-icon');
+
+    menuToggle.addEventListener('click', () => {
+      const isActive = navLinks.classList.toggle('active');
+      
+      if (isActive) {
+        hamburgerIcon.style.display = 'none';
+        closeIcon.style.display = 'block';
+      } else {
+        hamburgerIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+      }
+    });
+
+    // Close mobile menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburgerIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+      });
+    });
+  }
 });

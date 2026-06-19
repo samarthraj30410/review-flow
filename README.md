@@ -25,3 +25,15 @@ All pages (`index.html`, `about.html`, `contact.html`, `privacy.html`, `terms.ht
 - **`about.html`**: The About Us page, detailing Greenwood Cafe's background, why serverless, and core design values.
 - **`contact.html`**: Direct support inquiry and templates ordering form page.
 - **`privacy.html`** & **`terms.html`**: Legal policies and zero-maintenance serverless data privacy terms.
+- **`/templates/`**: Storefront feedback system layouts ready to edit and deploy for clients.
+  - **`/templates/hotel/`**: High-end luxury guest review template (champagne gold theme).
+    - `index.html`: Fully interactive guest review portal structured in 3 stages (rating, choice options/redirection, private feedback).
+    - `style.css`: Obsidian-themed style layout featuring ambient radial gradients, glassmorphism card panels, and custom star animations.
+    - `app.js`: Logic script routing ratings, custom event handlers, and data webhook dispatcher.
+
+## Customizing Templates
+
+To configure templates for a storefront, modify the settings in the header of the template's Javascript logic (e.g. `app.js`):
+1. **Redirection URL**: Provide the custom Google Places / TripAdvisor links for positive ratings ($\ge 4$ stars).
+2. **Webhook Endpoint**: Insert the target URL of the Google Sheets Apps Script Webhook. When a grievance ($\le 3$ stars) is filled out, the template automatically posts review metadata to the sheet.
+

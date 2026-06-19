@@ -40,6 +40,9 @@
         <li><a href="#customers" class="nav-link">Customers</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li class="mobile-cta-li">
+          <a href="contact.html" class="mobile-cta">Get Started</a>
+        </li>
       </ul>
       <div class="nav-actions" style="display: flex; align-items: center; gap: 16px">
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
@@ -61,6 +64,19 @@
           </svg>
         </button>
         <a href="contact.html" class="cta-nav">Get Started</a>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+          <svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="close-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </div>
   </header>
@@ -527,7 +543,9 @@
     <!-- Lucky Customers Section -->
     <section class="container" id="customers">
       <div style="text-align: center; margin-bottom: 40px">
-        <div class="hero-tag"><span></span> Customer Success</div>
+        <div class="hero-tag" style="margin-top: 20px">
+          <span></span> Customer Success
+        </div>
         <h2 style="font-size: 2.25rem; margin-bottom: 16px; margin-top: 30px">
           Our Lucky Customers
         </h2>

@@ -91,3 +91,41 @@
 .about-story-section p:last-child {
   margin-bottom: 0;
 }
+
+/* Media Queries for About Page responsiveness */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 100px 20px 60px;
+  }
+
+  .about-header {
+    margin-bottom: 40px;
+  }
+
+  .about-header h1 {
+    font-size: 2.25rem;
+  }
+
+  .about-subtitle {
+    font-size: 1rem;
+  }
+
+  .about-story-section {
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+
+  .about-story-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-card {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 100px 16px 40px;
+  }
+}

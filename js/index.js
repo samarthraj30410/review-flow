@@ -422,4 +422,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Run initial render
   renderCustomers();
+
+  // --- 8. Mobile Menu Toggle ---
+  const menuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileNavLinks = document.querySelector('.nav-links');
+  
+  if (menuToggle && mobileNavLinks) {
+    const hamburgerIcon = menuToggle.querySelector('.hamburger-icon');
+    const closeIcon = menuToggle.querySelector('.close-icon');
+
+    menuToggle.addEventListener('click', () => {
+      const isActive = mobileNavLinks.classList.toggle('active');
+      
+      if (isActive) {
+        hamburgerIcon.style.display = 'none';
+        closeIcon.style.display = 'block';
+      } else {
+        hamburgerIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+      }
+    });
+
+    // Close mobile menu when clicking a link
+    mobileNavLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNavLinks.classList.remove('active');
+        hamburgerIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+      });
+    });
+  }
 });

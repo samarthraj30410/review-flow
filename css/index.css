@@ -8,7 +8,7 @@ section {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding-top: 180px;
+  padding-top: 110px;
   position: relative;
 }
 
@@ -397,11 +397,9 @@ section {
   bottom: 0;
   left: 7px;
   width: 2px;
-  background: linear-gradient(
-    to bottom,
-    var(--accent) 0%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
+  background: linear-gradient(to bottom,
+      var(--accent) 0%,
+      rgba(255, 255, 255, 0.05) 100%);
 }
 
 .timeline-item {
@@ -478,11 +476,9 @@ section {
 .template-preview-area {
   height: 180px;
   background:
-    radial-gradient(
-      circle at center,
+    radial-gradient(circle at center,
       rgba(59, 130, 246, 0.1) 0%,
-      transparent 80%
-    ),
+      transparent 80%),
     var(--bg-secondary);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
@@ -940,7 +936,8 @@ section {
   transition: var(--transition);
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
   background-color: var(--accent);
   color: #fff;
   border-color: var(--accent);
@@ -1074,4 +1071,98 @@ section {
 .customer-launch {
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+/* Media Queries for Index Page responsiveness */
+@media (max-width: 768px) {
+  section {
+    padding: 60px 0;
+  }
+
+  .hero {
+    padding-top: 130px;
+    padding-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 28px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .demo-title-area h2,
+  section h2 {
+    font-size: 1.85rem !important;
+  }
+
+  .controls-panel {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .filter-buttons {
+    width: 100%;
+  }
+
+  .sort-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sort-select {
+    flex-grow: 1;
+    max-width: 240px;
+  }
+
+  .customers-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .customer-card {
+    padding: 20px;
+  }
+
+  .contact-form {
+    padding: 24px 20px;
+  }
+
+  .modal-container {
+    width: 95%;
+  }
 }
