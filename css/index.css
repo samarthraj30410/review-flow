@@ -3,6 +3,7 @@
 section {
   padding: 120px 0;
   border-bottom: 1px solid var(--border-subtle);
+  scroll-margin-top: 80px;
 }
 
 /* Hero Section */
@@ -154,6 +155,10 @@ section {
 }
 
 @media (max-width: 900px) {
+  body {
+    padding-top: 80px;
+  }
+
   .demo-layout {
     grid-template-columns: 1fr;
     gap: 32px;

@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Review — Liquid Glass</title>
+  <meta name="description" content="Share your hotel experience with a beautiful iOS-style review interface." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────
+       ROOT & TOKENS
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.12);
+      --glass-bg-hover: rgba(255, 255, 255, 0.20);
+      --glass-border: rgba(255, 255, 255, 0.30);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      --glass-blur: blur(24px) saturate(180%);
+      --glass-blur-heavy: blur(40px) saturate(200%);
+
+      --accent: #0A84FF;
+      --accent2: #30D158;
+      --accent3: #FF6B6B;
+      --gold: #FFD60A;
+
+      --text-primary: rgba(255,255,255,0.95);
+      --text-secondary: rgba(255,255,255,0.60);
+      --text-tertiary: rgba(255,255,255,0.35);
+
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+
+      --transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      --transition-fast: 0.2s ease;
+      --transition-smooth: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ─────────────────────────────────────────
+       BACKGROUND & LAYOUT
+    ───────────────────────────────────────── */
+    html, body {
+      min-height: 100vh;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    body {
+      background: #0A0A1A;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 20% 0%, rgba(10,132,255,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 100%, rgba(48,209,88,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 50% 50%, rgba(94,92,230,0.15) 0%, transparent 70%);
+      min-height: 100vh;
+    }
+
+    /* Animated gradient orbs */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: orbFloat 12s ease-in-out infinite;
+      opacity: 0.5;
+    }
+
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(10,132,255,0.6), transparent);
+      top: -150px; left: -100px;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(48,209,88,0.5), transparent);
+      bottom: -100px; right: -80px;
+      animation-delay: -4s;
+    }
+
+    .orb-3 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(94,92,230,0.5), transparent);
+      top: 50%; left: 60%;
+      animation-delay: -8s;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -40px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    /* ─────────────────────────────────────────
+       APP CONTAINER
+    ───────────────────────────────────────── */
+    .app-container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px 40px;
+    }
+
+    /* ─────────────────────────────────────────
+       HEADER (always visible)
+    ───────────────────────────────────────── */
+    .app-header {
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      padding: 40px 0 28px;
+    }
+
+    .hotel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .hotel-badge .dot {
+      width: 7px; height: 7px;
+      background: var(--accent2);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent2);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    .hotel-name {
+      font-size: clamp(26px, 6vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .hotel-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* ─────────────────────────────────────────
+       PROGRESS INDICATOR
+    ───────────────────────────────────────── */
+    .progress-bar-wrap {
+      width: 100%;
+      max-width: 480px;
+      margin-bottom: 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .progress-bar-wrap.visible { opacity: 1; }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .progress-track {
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 12px rgba(10,132,255,0.6);
+    }
+
+    /* ─────────────────────────────────────────
+       GLASS CARD (reusable)
+    ───────────────────────────────────────── */
+    .glass-card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: var(--glass-blur-heavy);
+      -webkit-backdrop-filter: var(--glass-blur-heavy);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.2);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ─────────────────────────────────────────
+       PAGE SYSTEM
+    ───────────────────────────────────────── */
+    .page {
+      display: none;
+      width: 100%;
+      max-width: 480px;
+      animation: pageIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .page.active { display: block; }
+
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(24px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes pageOut {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to   { opacity: 0; transform: translateY(-20px) scale(0.97); }
+    }
+
+    /* ─────────────────────────────────────────
+       PAGE 1 — CHOOSE REVIEW TYPE
+    ───────────────────────────────────────── */
+    .review-type-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 24px;
+    }
+
+    .review-type-btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: left;
+      color: var(--text-primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .review-type-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .review-type-btn:hover {
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .review-type-btn:hover::before { opacity: 1; }
+    .review-type-btn:active { transform: translateY(0) scale(0.98); }
+
+    .btn-icon {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .btn-icon.food     { background: linear-gradient(135deg, #FF6B6B, #FF8E53); box-shadow: 0 4px 16px rgba(255,107,107,0.4); }
+    .btn-icon.mgmt     { background: linear-gradient(135deg, #0A84FF, #5AC8FA); box-shadow: 0 4px 16px rgba(10,132,255,0.4); }
+    .btn-icon.hotel    { background: linear-gradient(135deg, #30D158, #34C759); box-shadow: 0 4px 16px rgba(48,209,88,0.4); }
+
+    .btn-text { flex: 1; }
+    .btn-title { font-size: 17px; font-weight: 600; margin-bottom: 3px; }
+    .btn-desc  { font-size: 13px; color: var(--text-secondary); }
+
+    .btn-chevron {
+      color: var(--text-tertiary);
+      font-size: 16px;
+      transition: transform 0.2s ease;
+    }
+    .review-type-btn:hover .btn-chevron { transform: translateX(4px); }
+
+    .card-header {
+      padding: 24px 24px 0;
+    }
+
+    .card-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* ─────────────────────────────────────────
+       FORM ELEMENTS
+    ───────────────────────────────────────── */
+    .form-body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 20px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 10px; }
+
+    .form-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.01em;
+    }
+
+    /* Checkboxes / Radios */
+    .option-group { display: flex; flex-direction: column; gap: 8px; }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .option-item:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.20);
+    }
+
+    .option-item input[type="checkbox"],
+    .option-item input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 22px; height: 22px;
+      border-radius: 7px;
+      border: 2px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.05);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .option-item input[type="radio"] { border-radius: 50%; }
+
+    .option-item input[type="checkbox"]:checked,
+    .option-item input[type="radio"]:checked {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .option-item input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .option-item input[type="radio"]:checked::after {
+      content: '';
+      position: absolute;
+      width: 8px; height: 8px;
+      background: white;
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .option-label { font-size: 15px; font-weight: 500; }
+
+    /* Range Slider */
+    .slider-wrap { display: flex; flex-direction: column; gap: 8px; }
+
+    .slider-row { display: flex; align-items: center; gap: 12px; }
+
+    .glass-range {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .glass-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3), 0 0 0 3px rgba(10,132,255,0.5);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .glass-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .glass-range::-moz-range-thumb {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+
+    .slider-val {
+      font-size: 20px;
+      font-weight: 700;
+      min-width: 36px;
+      text-align: center;
+      color: var(--accent);
+    }
+
+    .slider-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-tertiary); }
+
+    /* Star Rating */
+    .star-group { display: flex; flex-direction: column; gap: 10px; }
+
+    .star-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius-md);
+    }
+
+    .star-row-label { font-size: 14px; font-weight: 500; }
+
+    .stars {
+      display: flex;
+      gap: 4px;
+    }
+
+    .star {
+      font-size: 24px;
+      cursor: pointer;
+      color: rgba(255,255,255,0.15);
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .star:hover, .star.active { color: var(--gold); filter: drop-shadow(0 0 6px rgba(255,214,10,0.6)); }
+    .star:hover { transform: scale(1.2); }
+
+    /* Textarea */
+    .glass-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 14px 16px;
+      resize: vertical;
+      min-height: 110px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .glass-textarea::placeholder { color: var(--text-tertiary); }
+
+    .glass-textarea:focus {
+      border-color: rgba(10,132,255,0.6);
+      background: rgba(255,255,255,0.10);
+      box-shadow: 0 0 0 3px rgba(10,132,255,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    /* Select */
+    .glass-select {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 15px;
+      padding: 13px 16px;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      transition: all 0.2s ease;
+    }
+
+    .glass-select option { background: #1a1a2e; color: white; }
+
+    .glass-select:focus {
+      border-color: rgba(10,132,255,0.6);
+      box-shadow: 0 0 0 3px rgba(10,132,255,0.15);
+    }
+
+    /* ─────────────────────────────────────────
+       DIVIDER
+    ───────────────────────────────────────── */
+    .glass-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+      margin: 0 24px;
+    }
+
+    /* ─────────────────────────────────────────
+       BUTTONS
+    ───────────────────────────────────────── */
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 16px 24px;
+      border: none;
+      border-radius: var(--radius-lg);
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      pointer-events: none;
+    }
+
+    .btn-primary.accent {
+      background: linear-gradient(135deg, #0A84FF, #0066CC);
+      color: white;
+      box-shadow: 0 4px 20px rgba(10,132,255,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .btn-primary.accent:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(10,132,255,0.55), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .btn-primary.success {
+      background: linear-gradient(135deg, #30D158, #25A244);
+      color: white;
+      box-shadow: 0 4px 20px rgba(48,209,88,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .btn-primary.success:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(48,209,88,0.55);
+    }
+
+    .btn-primary.ghost {
+      background: rgba(255,255,255,0.08);
+      color: var(--text-secondary);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .btn-primary.ghost:hover {
+      background: rgba(255,255,255,0.14);
+      color: var(--text-primary);
+    }
+
+    .btn-primary:active { transform: scale(0.97) !important; }
+
+    .btn-row {
+      padding: 16px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Back button */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 14px 7px 10px;
+      cursor: pointer;
+      margin-bottom: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(255,255,255,0.14);
+      color: var(--text-primary);
+      transform: translateX(-2px);
+    }
+
+    /* ─────────────────────────────────────────
+       THANK YOU PAGE
+    ───────────────────────────────────────── */
+    .thankyou-body {
+      padding: 40px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+
+    .thankyou-icon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #30D158, #34C759);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      box-shadow: 0 8px 32px rgba(48,209,88,0.5);
+      animation: iconPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes iconPop {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .thankyou-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .thankyou-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 300px;
+    }
+
+    .review-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .review-tag {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    /* ─────────────────────────────────────────
+       TOAST NOTIFICATION
+    ───────────────────────────────────────── */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(30, 30, 50, 0.92);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+      z-index: 999;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      white-space: nowrap;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ─────────────────────────────────────────
+       FLOATING FOOTER
+    ───────────────────────────────────────── */
+    .app-footer {
+      margin-top: 28px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─────────────────────────────────────────
+       LOADING SHIMMER
+    ───────────────────────────────────────── */
+    @keyframes shimmer {
+      0%   { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 400px) {
+      .app-container { padding: 12px 10px 32px; }
+      .card-title { font-size: 19px; }
+      .review-type-btn { padding: 14px 16px; }
+      .btn-icon { width: 44px; height: 44px; font-size: 20px; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Animated background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="app-container">
+
+    <!-- ══════════════════════════════════════
+         HEADER — always visible
+    ══════════════════════════════════════ -->
+    <header class="app-header">
+      <div class="hotel-badge">
+        <span class="dot"></span>
+        Guest Review Portal
+      </div>
+      <h1 class="hotel-name" id="hotel-name-display">The Grand Meridian</h1>
+      <p class="hotel-subtitle" id="header-subtitle">We value your experience</p>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-wrap" id="progress-wrap">
+      <div class="progress-labels">
+        <span id="progress-label-left">Step 1 of 2</span>
+        <span id="progress-label-right">Review</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width: 50%"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         PAGE 0 — Choose Review Type
+    ══════════════════════════════════════ -->
+    <section class="page active" id="page-choose" aria-label="Choose review type">
+      <div class="glass-card">
+        <div class="card-header">
+          <p class="card-section-label">Share Your Experience</p>
+          <h2 class="card-title">What would you like to review?</h2>
+        </div>
+
+        <nav class="review-type-grid" aria-label="Review categories">
+          <button class="review-type-btn" id="btn-food" onclick="navigateTo('food')" aria-label="Review food and dining">
+            <div class="btn-icon food">🍽️</div>
+            <div class="btn-text">
+              <div class="btn-title">Food & Dining</div>
+              <div class="btn-desc">Meals, room service & bar</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">›</span>
+          </button>
+
+          <button class="review-type-btn" id="btn-mgmt" onclick="navigateTo('management')" aria-label="Review management and staff">
+            <div class="btn-icon mgmt">🤝</div>
+            <div class="btn-text">
+              <div class="btn-title">Management & Staff</div>
+              <div class="btn-desc">Service, helpfulness & check-in</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">›</span>
+          </button>
+
+          <button class="review-type-btn" id="btn-hotel" onclick="navigateTo('hotel')" aria-label="Review hotel experience">
+            <div class="btn-icon hotel">🏨</div>
+            <div class="btn-text">
+              <div class="btn-title">Hotel Experience</div>
+              <div class="btn-desc">Rooms, cleanliness & amenities</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">›</span>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PAGE 1 — Food & Dining Review
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-food" aria-label="Food and dining review">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
+      <div class="glass-card">
+        <div class="card-header">
+          <p class="card-section-label">🍽️ Food & Dining</p>
+          <h2 class="card-title">Food & Dining Review</h2>
+        </div>
+
+        <form id="food-form" class="form-body" novalidate>
+
+          <!-- Meal selection -->
+          <div class="form-group">
+            <label class="form-label">Which meals did you enjoy with us?</label>
+            <div class="option-group" role="group" aria-label="Meal selection">
+              <label class="option-item">
+                <input type="checkbox" id="meal-breakfast" name="meals" value="breakfast" />
+                <span class="option-label">🌅 Breakfast</span>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="meal-lunch" name="meals" value="lunch" />
+                <span class="option-label">☀️ Lunch</span>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="meal-dinner" name="meals" value="dinner" />
+                <span class="option-label">🌙 Dinner</span>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="meal-room-service" name="meals" value="room-service" />
+                <span class="option-label">🛎️ Room Service</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Food quality slider -->
+          <div class="form-group">
+            <label class="form-label" for="food-quality">Overall Food Quality</label>
+            <div class="slider-wrap">
+              <div class="slider-row">
+                <input type="range" class="glass-range" id="food-quality" name="food-quality"
+                  min="1" max="10" value="7"
+                  oninput="updateSlider('food-quality-val', this.value)" />
+                <span class="slider-val" id="food-quality-val">7</span>
+              </div>
+              <div class="slider-labels"><span>1 — Poor</span><span>10 — Outstanding</span></div>
+            </div>
+          </div>
+
+          <!-- Feedback textarea -->
+          <div class="form-group">
+            <label class="form-label" for="food-feedback">What did you love or what could we improve?</label>
+            <textarea class="glass-textarea" id="food-feedback" name="food-feedback"
+              placeholder="Tell us about the dishes you tried, the service speed, or any special moments…" rows="4"></textarea>
+          </div>
+
+        </form>
+
+        <div class="glass-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary accent" id="submit-food" onclick="submitReview('food')" type="button">
+            Submit Food Review ›
+          </button>
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PAGE 2 — Management & Staff Review
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-management" aria-label="Management and staff review">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
+      <div class="glass-card">
+        <div class="card-header">
+          <p class="card-section-label">🤝 Management & Staff</p>
+          <h2 class="card-title">Management & Staff Review</h2>
+        </div>
+
+        <form id="management-form" class="form-body" novalidate>
+
+          <!-- Staff helpful -->
+          <div class="form-group">
+            <label class="form-label">Was the staff welcoming and helpful?</label>
+            <div class="option-group" role="radiogroup" aria-label="Staff helpfulness">
+              <label class="option-item">
+                <input type="radio" id="staff-yes" name="staff-helpful" value="yes" />
+                <span class="option-label">👍 Yes, very helpful</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="staff-average" name="staff-helpful" value="average" />
+                <span class="option-label">😐 It was average</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="staff-no" name="staff-helpful" value="no" />
+                <span class="option-label">👎 Needs improvement</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Check-in rating -->
+          <div class="form-group">
+            <label class="form-label" for="check-in-rating">How smooth was your check-in process?</label>
+            <select class="glass-select" id="check-in-rating" name="check-in-rating">
+              <option value="">— Select an option —</option>
+              <option value="excellent">⭐ Excellent — Fast & seamless</option>
+              <option value="good">✅ Good — Minor hiccups</option>
+              <option value="average">😐 Average — Could be better</option>
+              <option value="poor">⚠️ Poor — Needs improvement</option>
+            </select>
+          </div>
+
+          <!-- Response time slider -->
+          <div class="form-group">
+            <label class="form-label" for="response-time">Staff Response Time Rating</label>
+            <div class="slider-wrap">
+              <div class="slider-row">
+                <input type="range" class="glass-range" id="response-time" name="response-time"
+                  min="1" max="10" value="7"
+                  oninput="updateSlider('response-time-val', this.value)" />
+                <span class="slider-val" id="response-time-val">7</span>
+              </div>
+              <div class="slider-labels"><span>1 — Very slow</span><span>10 — Instant</span></div>
+            </div>
+          </div>
+
+          <!-- Comments -->
+          <div class="form-group">
+            <label class="form-label" for="management-feedback">Additional Comments for Management</label>
+            <textarea class="glass-textarea" id="management-feedback" name="management-feedback"
+              placeholder="Mention any specific staff members, memorable interactions, or areas for improvement…" rows="4"></textarea>
+          </div>
+
+        </form>
+
+        <div class="glass-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary accent" id="submit-mgmt" onclick="submitReview('management')" type="button">
+            Submit Staff Review ›
+          </button>
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PAGE 3 — Hotel Experience Review
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-hotel" aria-label="Hotel experience review">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
+      <div class="glass-card">
+        <div class="card-header">
+          <p class="card-section-label">🏨 Hotel Experience</p>
+          <h2 class="card-title">Hotel Experience Review</h2>
+        </div>
+
+        <form id="hotel-form" class="form-body" novalidate>
+
+          <!-- Star ratings -->
+          <div class="form-group">
+            <label class="form-label">Rate your stay (tap to rate)</label>
+            <div class="star-group" role="group" aria-label="Hotel star ratings">
+
+              <div class="star-row">
+                <span class="star-row-label">🛏️ Room Cleanliness</span>
+                <div class="stars" id="stars-cleanliness" role="group" aria-label="Room cleanliness rating">
+                  <span class="star" data-group="cleanliness" data-val="1" onclick="setStars('cleanliness',1)" tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="cleanliness" data-val="2" onclick="setStars('cleanliness',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="3" onclick="setStars('cleanliness',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="4" onclick="setStars('cleanliness',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="5" onclick="setStars('cleanliness',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">💤 Room Comfort</span>
+                <div class="stars" id="stars-comfort" role="group" aria-label="Room comfort rating">
+                  <span class="star" data-group="comfort" data-val="1" onclick="setStars('comfort',1)" tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="comfort" data-val="2" onclick="setStars('comfort',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="3" onclick="setStars('comfort',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="4" onclick="setStars('comfort',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="5" onclick="setStars('comfort',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">🏊 Amenities</span>
+                <div class="stars" id="stars-amenities" role="group" aria-label="Amenities rating">
+                  <span class="star" data-group="amenities" data-val="1" onclick="setStars('amenities',1)" tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="amenities" data-val="2" onclick="setStars('amenities',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="3" onclick="setStars('amenities',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="4" onclick="setStars('amenities',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="5" onclick="setStars('amenities',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">📶 WiFi & Connectivity</span>
+                <div class="stars" id="stars-wifi" role="group" aria-label="WiFi rating">
+                  <span class="star" data-group="wifi" data-val="1" onclick="setStars('wifi',1)" tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="wifi" data-val="2" onclick="setStars('wifi',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="3" onclick="setStars('wifi',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="4" onclick="setStars('wifi',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="5" onclick="setStars('wifi',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Overall slider -->
+          <div class="form-group">
+            <label class="form-label" for="overall-experience">Overall Experience Score</label>
+            <div class="slider-wrap">
+              <div class="slider-row">
+                <input type="range" class="glass-range" id="overall-experience" name="overall-experience"
+                  min="1" max="10" value="8"
+                  oninput="updateSlider('overall-exp-val', this.value)" />
+                <span class="slider-val" id="overall-exp-val">8</span>
+              </div>
+              <div class="slider-labels"><span>1 — Terrible</span><span>10 — Perfect</span></div>
+            </div>
+          </div>
+
+          <!-- Would recommend -->
+          <div class="form-group">
+            <label class="form-label">Would you recommend us to others?</label>
+            <div class="option-group" role="radiogroup" aria-label="Would you recommend">
+              <label class="option-item">
+                <input type="radio" id="recommend-yes" name="recommend" value="yes" />
+                <span class="option-label">✅ Absolutely, yes!</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="recommend-maybe" name="recommend" value="maybe" />
+                <span class="option-label">🤔 Maybe, depends</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="recommend-no" name="recommend" value="no" />
+                <span class="option-label">❌ No, not really</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Detailed feedback -->
+          <div class="form-group">
+            <label class="form-label" for="hotel-feedback">Detailed Feedback</label>
+            <textarea class="glass-textarea" id="hotel-feedback" name="hotel-feedback"
+              placeholder="Tell us about your room, what made your stay memorable, or anything we can do to improve…" rows="4"></textarea>
+          </div>
+
+        </form>
+
+        <div class="glass-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary success" id="submit-hotel" onclick="submitReview('hotel')" type="button">
+            Submit Hotel Review ›
+          </button>
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PAGE 4 — Thank You
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-thankyou" aria-label="Thank you page">
+      <div class="glass-card">
+        <div class="thankyou-body">
+          <div class="thankyou-icon" aria-hidden="true">✓</div>
+          <h2 class="thankyou-title">Thank You!</h2>
+          <p class="thankyou-subtitle">
+            We sincerely appreciate you taking the time to share your feedback.
+            Your thoughts help us deliver an even better experience for every guest.
+          </p>
+          <div class="review-tags" id="review-summary-tags">
+            <!-- dynamically populated -->
+          </div>
+        </div>
+        <div class="glass-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary accent" onclick="navigateTo('choose')" type="button">
+            Leave Another Review
+          </button>
+          <button class="btn-primary ghost" onclick="closePortal()" type="button">
+            Close Portal
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      Powered by ReviewFlow · Secure &amp; Confidential
+    </footer>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ══════════════════════════════════════
+       JAVASCRIPT — All SPA logic
+  ══════════════════════════════════════ -->
+  <script>
+    /* ─── State ─────────────────────────────── */
+    const starRatings = { cleanliness: 0, comfort: 0, amenities: 0, wifi: 0 };
+    let currentPage = 'choose';
+
+    /* ─── Page Navigation ───────────────────── */
+    function navigateTo(pageId) {
+      const current = document.querySelector('.page.active');
+      const next = document.getElementById('page-' + pageId);
+      if (!next || current === next) return;
+
+      // Animate out
+      current.style.animation = 'pageOut 0.3s cubic-bezier(0.16,1,0.3,1) forwards';
+      setTimeout(() => {
+        current.classList.remove('active');
+        current.style.animation = '';
+
+        next.classList.add('active');
+        next.style.animation = 'pageIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards';
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 280);
+
+      currentPage = pageId;
+      updateProgress(pageId);
+      updateHeader(pageId);
+    }
+
+    /* ─── Update Progress Bar ───────────────── */
+    function updateProgress(pageId) {
+      const wrap = document.getElementById('progress-wrap');
+      const fill = document.getElementById('progress-fill');
+      const left = document.getElementById('progress-label-left');
+      const right = document.getElementById('progress-label-right');
+
+      const map = {
+        choose: { show: false, pct: 0, step: '', label: '' },
+        food: { show: true, pct: 50, step: 'Step 1 of 2', label: 'Food & Dining' },
+        management: { show: true, pct: 50, step: 'Step 1 of 2', label: 'Management' },
+        hotel: { show: true, pct: 50, step: 'Step 1 of 2', label: 'Hotel Experience' },
+        thankyou: { show: true, pct: 100, step: 'Completed!', label: '✓ Submitted' },
+      };
+
+      const info = map[pageId] || map.choose;
+      wrap.classList.toggle('visible', info.show);
+      fill.style.width = info.pct + '%';
+      left.textContent = info.step;
+      right.textContent = info.label;
+    }
+
+    /* ─── Update Header Subtitle ────────────── */
+    function updateHeader(pageId) {
+      const sub = document.getElementById('header-subtitle');
+      const subs = {
+        choose: 'We value your experience',
+        food: 'Tell us about your dining experience',
+        management: 'Help us improve our service',
+        hotel: 'Rate your overall stay',
+        thankyou: 'Review submitted successfully',
+      };
+      sub.style.opacity = '0';
+      setTimeout(() => {
+        sub.textContent = subs[pageId] || subs.choose;
+        sub.style.opacity = '1';
+      }, 200);
+      sub.style.transition = 'opacity 0.2s ease';
+    }
+
+    /* ─── Slider value display ──────────────── */
+    function updateSlider(targetId, val) {
+      const el = document.getElementById(targetId);
+      if (el) el.textContent = val;
+
+      // Update track fill color
+      const slider = event.target;
+      const pct = ((val - slider.min) / (slider.max - slider.min)) * 100;
+      slider.style.background = `linear-gradient(90deg, rgba(10,132,255,0.8) ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
+    }
+
+    /* ─── Initialize sliders ────────────────── */
+    function initSliders() {
+      document.querySelectorAll('.glass-range').forEach(slider => {
+        const val = slider.value;
+        const min = slider.min || 0;
+        const max = slider.max || 10;
+        const pct = ((val - min) / (max - min)) * 100;
+        slider.style.background = `linear-gradient(90deg, rgba(10,132,255,0.8) ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
+      });
+    }
+
+    /* ─── Star Rating ───────────────────────── */
+    function setStars(group, val) {
+      starRatings[group] = val;
+      const container = document.getElementById('stars-' + group);
+      if (!container) return;
+      container.querySelectorAll('.star').forEach(s => {
+        const sv = parseInt(s.getAttribute('data-val'));
+        s.classList.toggle('active', sv <= val);
+      });
+    }
+
+    /* ─── Hover preview for stars ───────────── */
+    document.addEventListener('mouseover', e => {
+      if (!e.target.classList.contains('star')) return;
+      const group = e.target.getAttribute('data-group');
+      const val = parseInt(e.target.getAttribute('data-val'));
+      const container = document.getElementById('stars-' + group);
+      if (!container) return;
+      container.querySelectorAll('.star').forEach(s => {
+        s.style.color = parseInt(s.getAttribute('data-val')) <= val
+          ? 'var(--gold)' : '';
+      });
+    });
+
+    document.addEventListener('mouseout', e => {
+      if (!e.target.classList.contains('star')) return;
+      const group = e.target.getAttribute('data-group');
+      const container = document.getElementById('stars-' + group);
+      if (!container) return;
+      container.querySelectorAll('.star').forEach(s => {
+        const sv = parseInt(s.getAttribute('data-val'));
+        s.style.color = sv <= (starRatings[group] || 0) ? 'var(--gold)' : '';
+      });
+    });
+
+    /* ─── Submit Review ─────────────────────── */
+    function submitReview(type) {
+      const tags = buildSummaryTags(type);
+      document.getElementById('review-summary-tags').innerHTML =
+        tags.map(t => `<span class="review-tag">${t}</span>`).join('');
+      showToast('✓ Review submitted — thank you!');
+      navigateTo('thankyou');
+    }
+
+    /* ─── Build summary tags ────────────────── */
+    function buildSummaryTags(type) {
+      const tags = [];
+
+      if (type === 'food') {
+        const meals = [...document.querySelectorAll('input[name="meals"]:checked')]
+          .map(i => i.value);
+        if (meals.length) tags.push(...meals.map(m => '🍽️ ' + m[0].toUpperCase() + m.slice(1)));
+        const q = document.getElementById('food-quality');
+        if (q) tags.push('Quality: ' + q.value + '/10');
+      }
+
+      if (type === 'management') {
+        const helpful = document.querySelector('input[name="staff-helpful"]:checked');
+        if (helpful) tags.push('Staff: ' + helpful.value);
+        const ci = document.getElementById('check-in-rating');
+        if (ci && ci.value) tags.push('Check-in: ' + ci.value);
+      }
+
+      if (type === 'hotel') {
+        Object.entries(starRatings).forEach(([k, v]) => {
+          if (v > 0) tags.push(k[0].toUpperCase() + k.slice(1) + ': ' + '★'.repeat(v));
+        });
+        const oe = document.getElementById('overall-experience');
+        if (oe) tags.push('Overall: ' + oe.value + '/10');
+      }
+
+      if (!tags.length) tags.push('Review submitted');
+      return tags;
+    }
+
+    /* ─── Toast ─────────────────────────────── */
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    /* ─── Close Portal ──────────────────────── */
+    function closePortal() {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'REVIEW_PORTAL_CLOSE' }, '*');
+      } else {
+        showToast('Thank you for your feedback!');
+        navigateTo('choose');
+      }
+    }
+
+    /* ─── Init ──────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      initSliders();
+      // Keyboard support for stars
+      document.querySelectorAll('.star').forEach(star => {
+        star.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setStars(star.getAttribute('data-group'), parseInt(star.getAttribute('data-val')));
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

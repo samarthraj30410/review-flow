@@ -24,26 +24,20 @@
   --radius: 12px;
 
   /* Mode Specific Variables */
-  --bg-radial-gradient: radial-gradient(
-    circle at 50% -20%,
-    rgba(59, 130, 246, 0.08),
-    transparent 70%
-  );
+  --bg-radial-gradient: radial-gradient(circle at 50% -20%,
+      rgba(59, 130, 246, 0.08),
+      transparent 70%);
   --bg-secondary-btn: rgba(255, 255, 255, 0.03);
   --bg-icon-surface: rgba(255, 255, 255, 0.03);
   --bg-inner-demo: rgba(9, 9, 11, 0.85);
   --header-bg: rgba(9, 9, 11, 0.7);
   --mobile-menu-bg: rgba(9, 9, 11, 0.95);
-  --logo-gradient: linear-gradient(
-    135deg,
-    #ffffff 50%,
-    var(--text-secondary) 100%
-  );
-  --hero-title-gradient: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    var(--text-secondary) 100%
-  );
+  --logo-gradient: linear-gradient(135deg,
+      #ffffff 50%,
+      var(--text-secondary) 100%);
+  --hero-title-gradient: linear-gradient(180deg,
+      #ffffff 0%,
+      var(--text-secondary) 100%);
 
   /* Spreadsheet Mockup */
   --sheet-bg: #0b0f19;
@@ -69,26 +63,20 @@ html[data-theme="light"] {
   --success: #059669;
   --success-glow: rgba(5, 150, 105, 0.08);
 
-  --bg-radial-gradient: radial-gradient(
-    circle at 50% -20%,
-    rgba(37, 99, 235, 0.06),
-    transparent 70%
-  );
+  --bg-radial-gradient: radial-gradient(circle at 50% -20%,
+      rgba(37, 99, 235, 0.06),
+      transparent 70%);
   --bg-secondary-btn: rgba(9, 9, 11, 0.03);
   --bg-icon-surface: rgba(9, 9, 11, 0.03);
   --bg-inner-demo: rgba(255, 255, 255, 0.85);
   --header-bg: rgba(250, 250, 250, 0.7);
   --mobile-menu-bg: rgba(250, 250, 250, 0.97);
-  --logo-gradient: linear-gradient(
-    135deg,
-    #09090b 50%,
-    var(--text-secondary) 100%
-  );
-  --hero-title-gradient: linear-gradient(
-    180deg,
-    #09090b 0%,
-    var(--text-secondary) 100%
-  );
+  --logo-gradient: linear-gradient(135deg,
+      #09090b 50%,
+      var(--text-secondary) 100%);
+  --hero-title-gradient: linear-gradient(180deg,
+      #09090b 0%,
+      var(--text-secondary) 100%);
 
   /* Spreadsheet Mockup */
   --sheet-bg: #ffffff;
@@ -179,7 +167,7 @@ header {
 
 .logo {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 25px;
   font-weight: 700;
   letter-spacing: -0.03em;
   display: flex;
@@ -202,8 +190,8 @@ header {
 }
 
 .logo-icon {
-  width: 24px;
-  height: 24px;
+  width: 35px;
+  height: 35px;
   object-fit: contain;
 }
 
@@ -435,9 +423,9 @@ html:not([data-theme="light"]) .moon-icon {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
