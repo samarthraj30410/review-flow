@@ -586,8 +586,15 @@ section {
 }
 
 @keyframes hotelOrb {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(12px, -12px) scale(1.08); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(12px, -12px) scale(1.08);
+  }
 }
 
 /* Glass-style badge for hotel card */
@@ -613,6 +620,107 @@ section {
 
 .template-inner-glass p {
   color: #ffd60a;
+}
+
+/* Neo Cyberpunk badge & preview */
+.template-badge-cyber {
+  background: rgba(0, 245, 255, 0.12) !important;
+  border: 1px solid rgba(0, 245, 255, 0.55) !important;
+  color: #00f5ff !important;
+  box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.06em;
+}
+
+/* Neo Cyberpunk preview area background */
+.temp-hotel:nth-child(2) .template-preview-area,
+.template-card:has(.template-badge-cyber) .template-preview-area {
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 10%, rgba(123, 47, 255, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 90%, rgba(255, 0, 204, 0.25) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(0, 245, 255, 0.04) 18px, rgba(0, 245, 255, 0.04) 19px),
+    repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(0, 245, 255, 0.04) 18px, rgba(0, 245, 255, 0.04) 19px),
+    #05050f;
+  overflow: hidden;
+}
+
+.template-inner-cyber {
+  background: rgba(6, 6, 20, 0.88) !important;
+  border: 1px solid rgba(0, 245, 255, 0.35) !important;
+  box-shadow: 0 0 18px rgba(0, 245, 255, 0.15), inset 0 1px 0 rgba(0, 245, 255, 0.1) !important;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  font-family: 'Courier New', monospace;
+}
+
+.template-inner-cyber h5 {
+  color: #00f5ff;
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+  letter-spacing: 0.06em;
+  font-size: 0.82rem;
+}
+
+.template-inner-cyber p {
+  color: #ff00cc;
+  text-shadow: 0 0 8px rgba(255, 0, 204, 0.4);
+}
+
+/* Aurora Gradient badge & preview */
+.template-badge-aurora {
+  background: rgba(139, 92, 246, 0.12) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  color: #a78bfa !important;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+  letter-spacing: 0.05em;
+}
+
+/* Aurora Gradient preview area background */
+.temp-hotel-aurora .template-preview-area {
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 10%, rgba(139, 92, 246, 0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 85% 5%, rgba(59, 130, 246, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 50% at 80% 90%, rgba(6, 182, 212, 0.2) 0%, transparent 60%),
+    #060610;
+  overflow: hidden;
+  position: relative;
+}
+
+.temp-hotel-aurora .template-preview-area::after {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 40%, rgba(139, 92, 246, 0.75), transparent 80%);
+  top: -20px;
+  left: -20px;
+  filter: blur(25px);
+  animation: auroraOrb 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes auroraOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(15px, -15px) scale(1.1); }
+}
+
+.template-inner-aurora {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
+}
+
+.template-inner-aurora h5 {
+  background: linear-gradient(135deg, #fff 0%, rgba(167, 139, 250, 0.95) 40%, rgba(6, 182, 212, 0.9) 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 0.9rem;
+}
+
+.template-inner-aurora p {
+  color: #fbbf24;
 }
 
 .template-badge {

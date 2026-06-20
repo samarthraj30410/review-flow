@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Review — Neo Cyberpunk</title>
+  <meta name="description" content="Share your hotel experience through a high-tech Neo Cyberpunk review interface." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/logo.jpg" />
+  <link rel="icon" type="image/jpeg" sizes="96x96" href="../../../assets/logo.jpg" />
+  <link rel="shortcut icon" href="../../../assets/logo.jpg" />
+</head>
+
+<body>
+
+  <!-- Scanline overlay -->
+  <div class="scanline-overlay" aria-hidden="true"></div>
+
+  <!-- Animated grid background -->
+  <div class="cyber-grid" aria-hidden="true"></div>
+
+  <!-- Neon corner brackets -->
+  <div class="corner-bracket top-left" aria-hidden="true"></div>
+  <div class="corner-bracket top-right" aria-hidden="true"></div>
+  <div class="corner-bracket bottom-left" aria-hidden="true"></div>
+  <div class="corner-bracket bottom-right" aria-hidden="true"></div>
+
+  <!-- Floating particles -->
+  <div class="particles" aria-hidden="true">
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+  </div>
+
+  <div class="app-container">
+
+    <!-- ══════════════════════════════════════
+         HEADER — always visible
+    ══════════════════════════════════════ -->
+    <header class="app-header">
+      <div class="cyber-badge">
+        <span class="blink-dot"></span>
+        <span class="badge-text">GUEST_REVIEW_PORTAL.EXE</span>
+        <span class="badge-id">SYS//NEXUS-7</span>
+      </div>
+      <div class="hotel-name-wrap">
+        <div class="glitch-line" aria-hidden="true"></div>
+        <h1 class="hotel-name glitch" id="hotel-name-display" data-text="NEXUS TOWER HOTEL">NEXUS TOWER HOTEL</h1>
+        <div class="glitch-line" aria-hidden="true"></div>
+      </div>
+      <p class="hotel-subtitle" id="header-subtitle">INITIALIZING REVIEW SEQUENCE...</p>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-wrap" id="progress-wrap">
+      <div class="progress-labels">
+        <span id="progress-label-left" class="mono">STEP_01_OF_02</span>
+        <span id="progress-label-right" class="mono">REVIEW</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width: 50%">
+          <div class="progress-glow"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         PAGE 0 — Choose Review Type
+    ══════════════════════════════════════ -->
+    <section class="page active" id="page-choose" aria-label="Choose review type">
+      <div class="cyber-card">
+        <div class="card-header">
+          <div class="header-prefix mono">// CLASSIFY_INPUT</div>
+          <h2 class="card-title">SELECT REVIEW MODULE</h2>
+          <div class="header-underline"></div>
+        </div>
+
+        <nav class="review-type-grid" aria-label="Review categories">
+          <button class="review-type-btn" id="btn-food" onclick="navigateTo('food')" aria-label="Review food and dining">
+            <div class="btn-icon food">
+              <span class="icon-emoji">🍽️</span>
+              <div class="icon-ring"></div>
+            </div>
+            <div class="btn-text">
+              <div class="btn-title">FOOD &amp; DINING</div>
+              <div class="btn-desc">Meals · Room Service · Bar</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">▶</span>
+          </button>
+
+          <button class="review-type-btn" id="btn-mgmt" onclick="navigateTo('management')" aria-label="Review management and staff">
+            <div class="btn-icon mgmt">
+              <span class="icon-emoji">🤝</span>
+              <div class="icon-ring"></div>
+            </div>
+            <div class="btn-text">
+              <div class="btn-title">MANAGEMENT &amp; STAFF</div>
+              <div class="btn-desc">Service · Helpfulness · Check-in</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">▶</span>
+          </button>
+
+          <button class="review-type-btn" id="btn-hotel" onclick="navigateTo('hotel')" aria-label="Review hotel experience">
+            <div class="btn-icon hotel">
+              <span class="icon-emoji">🏨</span>
+              <div class="icon-ring"></div>
+            </div>
+            <div class="btn-text">
+              <div class="btn-title">HOTEL EXPERIENCE</div>
+              <div class="btn-desc">Rooms · Cleanliness · Amenities</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">▶</span>
+          </button>
+        </nav>
+
+        <div class="card-footer-strip mono">
+          <span>SECURE_CHANNEL_ACTIVE</span>
+          <span class="dot-sep">◆</span>
+          <span>ENCRYPTED_UPLOAD</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PAGE 1 — Food & Dining Review
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-food" aria-label="Food and dining review">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
+        <span>◀</span> RETURN
+      </button>
+      <div class="cyber-card">
+        <div class="card-header">
+          <div class="header-prefix mono">// MODULE: FOOD_AND_DINING</div>
+          <h2 class="card-title">FOOD &amp; DINING REVIEW</h2>
+          <div class="header-underline"></div>
+        </div>
+
+        <form id="food-form" class="form-body" novalidate>
+
+          <!-- Meal selection -->
+          <div class="form-group">
+            <label class="form-label">MEALS CONSUMED DURING STAY</label>
+            <div class="option-group" role="group" aria-label="Meal selection">
+              <label class="option-item">
+                <input type="checkbox" id="meal-breakfast" name="meals" value="breakfast" />
+                <span class="option-label">🌅 BREAKFAST</span>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="meal-lunch" name="meals" value="lunch" />
+                <span class="option-label">☀️ LUNCH</span>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="meal-dinner" name="meals" value="dinner" />
+                <span class="option-label">🌙 DINNER</span>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="meal-room-service" name="meals" value="room-service" />
+                <span class="option-label">🛎️ ROOM SERVICE</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Food quality slider -->
+          <div class="form-group">
+            <label class="form-label" for="food-quality">FOOD QUALITY INDEX</label>
+            <div class="slider-wrap">
+              <div class="slider-row">
+                <input type="range" class="cyber-range" id="food-quality" name="food-quality"
+                  min="1" max="10" value="7"
+                  oninput="updateSlider('food-quality-val', this.value)" />
+                <span class="slider-val" id="food-quality-val">7</span>
+              </div>
+              <div class="slider-labels mono"><span>01 — POOR</span><span>10 — OUTSTANDING</span></div>
+            </div>
+          </div>
+
+          <!-- Feedback textarea -->
+          <div class="form-group">
+            <label class="form-label" for="food-feedback">SYSTEM_INPUT // FEEDBACK_DATA</label>
+            <textarea class="cyber-textarea" id="food-feedback" name="food-feedback"
+              placeholder=">> Enter your feedback data here..." rows="4"></textarea>
+          </div>
+
+        </form>
+
+        <div class="cyber-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary accent" id="submit-food" onclick="submitReview('food')" type="button">
+            <span class="btn-label">UPLOAD FOOD REVIEW</span>
+            <span class="btn-arrow">▶▶</span>
+          </button>
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
+            ABORT
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PAGE 2 — Management & Staff Review
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-management" aria-label="Management and staff review">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
+        <span>◀</span> RETURN
+      </button>
+      <div class="cyber-card">
+        <div class="card-header">
+          <div class="header-prefix mono">// MODULE: STAFF_ANALYTICS</div>
+          <h2 class="card-title">MANAGEMENT &amp; STAFF REVIEW</h2>
+          <div class="header-underline"></div>
+        </div>
+
+        <form id="management-form" class="form-body" novalidate>
+
+          <!-- Staff helpful -->
+          <div class="form-group">
+            <label class="form-label">STAFF PERFORMANCE RATING</label>
+            <div class="option-group" role="radiogroup" aria-label="Staff helpfulness">
+              <label class="option-item">
+                <input type="radio" id="staff-yes" name="staff-helpful" value="yes" />
+                <span class="option-label">👍 HIGHLY EFFICIENT</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="staff-average" name="staff-helpful" value="average" />
+                <span class="option-label">😐 AVERAGE OUTPUT</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="staff-no" name="staff-helpful" value="no" />
+                <span class="option-label">👎 NEEDS OPTIMIZATION</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Check-in rating -->
+          <div class="form-group">
+            <label class="form-label" for="check-in-rating">CHECK-IN PROCESS ANALYSIS</label>
+            <select class="cyber-select" id="check-in-rating" name="check-in-rating">
+              <option value="">— SELECT STATUS —</option>
+              <option value="excellent">⭐ EXCELLENT — Instant &amp; seamless</option>
+              <option value="good">✅ GOOD — Minor latency</option>
+              <option value="average">😐 AVERAGE — Suboptimal flow</option>
+              <option value="poor">⚠️ POOR — System failure</option>
+            </select>
+          </div>
+
+          <!-- Response time slider -->
+          <div class="form-group">
+            <label class="form-label" for="response-time">STAFF RESPONSE TIME METRIC</label>
+            <div class="slider-wrap">
+              <div class="slider-row">
+                <input type="range" class="cyber-range" id="response-time" name="response-time"
+                  min="1" max="10" value="7"
+                  oninput="updateSlider('response-time-val', this.value)" />
+                <span class="slider-val" id="response-time-val">7</span>
+              </div>
+              <div class="slider-labels mono"><span>01 — CRITICAL</span><span>10 — INSTANT</span></div>
+            </div>
+          </div>
+
+          <!-- Comments -->
+          <div class="form-group">
+            <label class="form-label" for="management-feedback">SYSTEM_INPUT // MANAGEMENT_LOG</label>
+            <textarea class="cyber-textarea" id="management-feedback" name="management-feedback"
+              placeholder=">> Log management interaction data..." rows="4"></textarea>
+          </div>
+
+        </form>
+
+        <div class="cyber-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary accent" id="submit-mgmt" onclick="submitReview('management')" type="button">
+            <span class="btn-label">UPLOAD STAFF REVIEW</span>
+            <span class="btn-arrow">▶▶</span>
+          </button>
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
+            ABORT
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PAGE 3 — Hotel Experience Review
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-hotel" aria-label="Hotel experience review">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
+        <span>◀</span> RETURN
+      </button>
+      <div class="cyber-card">
+        <div class="card-header">
+          <div class="header-prefix mono">// MODULE: FACILITY_SCAN</div>
+          <h2 class="card-title">HOTEL EXPERIENCE REVIEW</h2>
+          <div class="header-underline"></div>
+        </div>
+
+        <form id="hotel-form" class="form-body" novalidate>
+
+          <!-- Star ratings -->
+          <div class="form-group">
+            <label class="form-label">FACILITY PERFORMANCE MATRIX</label>
+            <div class="star-group" role="group" aria-label="Hotel star ratings">
+
+              <div class="star-row">
+                <span class="star-row-label">🛏️ ROOM CLEANLINESS</span>
+                <div class="stars" id="stars-cleanliness" role="group" aria-label="Room cleanliness rating">
+                  <span class="star" data-group="cleanliness" data-val="1" onclick="setStars('cleanliness',1)" tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="cleanliness" data-val="2" onclick="setStars('cleanliness',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="3" onclick="setStars('cleanliness',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="4" onclick="setStars('cleanliness',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="5" onclick="setStars('cleanliness',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">💤 ROOM COMFORT</span>
+                <div class="stars" id="stars-comfort" role="group" aria-label="Room comfort rating">
+                  <span class="star" data-group="comfort" data-val="1" onclick="setStars('comfort',1)" tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="comfort" data-val="2" onclick="setStars('comfort',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="3" onclick="setStars('comfort',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="4" onclick="setStars('comfort',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="5" onclick="setStars('comfort',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">🏊 AMENITIES</span>
+                <div class="stars" id="stars-amenities" role="group" aria-label="Amenities rating">
+                  <span class="star" data-group="amenities" data-val="1" onclick="setStars('amenities',1)" tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="amenities" data-val="2" onclick="setStars('amenities',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="3" onclick="setStars('amenities',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="4" onclick="setStars('amenities',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="5" onclick="setStars('amenities',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">📶 WIFI &amp; CONNECTIVITY</span>
+                <div class="stars" id="stars-wifi" role="group" aria-label="WiFi rating">
+                  <span class="star" data-group="wifi" data-val="1" onclick="setStars('wifi',1)" tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="wifi" data-val="2" onclick="setStars('wifi',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="3" onclick="setStars('wifi',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="4" onclick="setStars('wifi',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="5" onclick="setStars('wifi',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Overall slider -->
+          <div class="form-group">
+            <label class="form-label" for="overall-experience">OVERALL EXPERIENCE SCORE</label>
+            <div class="slider-wrap">
+              <div class="slider-row">
+                <input type="range" class="cyber-range" id="overall-experience" name="overall-experience"
+                  min="1" max="10" value="8"
+                  oninput="updateSlider('overall-exp-val', this.value)" />
+                <span class="slider-val" id="overall-exp-val">8</span>
+              </div>
+              <div class="slider-labels mono"><span>01 — CRITICAL</span><span>10 — PERFECT</span></div>
+            </div>
+          </div>
+
+          <!-- Would recommend -->
+          <div class="form-group">
+            <label class="form-label">RECOMMENDATION PROTOCOL</label>
+            <div class="option-group" role="radiogroup" aria-label="Would you recommend">
+              <label class="option-item">
+                <input type="radio" id="recommend-yes" name="recommend" value="yes" />
+                <span class="option-label">✅ AFFIRMATIVE — WILL RECOMMEND</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="recommend-maybe" name="recommend" value="maybe" />
+                <span class="option-label">🤔 CONDITIONAL — DEPENDS ON VARIABLES</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="recommend-no" name="recommend" value="no" />
+                <span class="option-label">❌ NEGATIVE — NOT RECOMMENDING</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Detailed feedback -->
+          <div class="form-group">
+            <label class="form-label" for="hotel-feedback">SYSTEM_INPUT // DETAILED_FEEDBACK_LOG</label>
+            <textarea class="cyber-textarea" id="hotel-feedback" name="hotel-feedback"
+              placeholder=">> Transmit your full experience data..." rows="4"></textarea>
+          </div>
+
+        </form>
+
+        <div class="cyber-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary success" id="submit-hotel" onclick="submitReview('hotel')" type="button">
+            <span class="btn-label">UPLOAD HOTEL REVIEW</span>
+            <span class="btn-arrow">▶▶</span>
+          </button>
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
+            ABORT
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PAGE 4 — Thank You
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-thankyou" aria-label="Thank you page">
+      <div class="cyber-card">
+        <div class="thankyou-body">
+          <div class="thankyou-icon" aria-hidden="true">
+            <div class="check-ring"></div>
+            <span class="check-symbol">✓</span>
+          </div>
+          <div class="mono success-code">[ STATUS: 200 OK ]</div>
+          <h2 class="thankyou-title">DATA TRANSMITTED</h2>
+          <p class="thankyou-subtitle">
+            Your review has been securely uploaded to our system.
+            All data is encrypted and processed in real-time.
+          </p>
+          <div class="review-tags" id="review-summary-tags">
+            <!-- dynamically populated -->
+          </div>
+        </div>
+        <div class="cyber-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary accent" onclick="navigateTo('choose')" type="button">
+            <span class="btn-label">SUBMIT ANOTHER REVIEW</span>
+            <span class="btn-arrow">▶▶</span>
+          </button>
+          <button class="btn-primary ghost" onclick="closePortal()" type="button">
+            DISCONNECT
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="app-footer mono">
+      POWERED_BY // REVIEWFLOW · NEXUS_SECURE_PROTOCOL · v2.0.77
+    </footer>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+
+  <!-- Inline page-nav script (same as Liquid Glass) -->
+  <script>
+    /* ─── State ─────────────────────────────── */
+    const starRatings = { cleanliness: 0, comfort: 0, amenities: 0, wifi: 0 };
+    let currentPage = 'choose';
+
+    /* ─── Page Navigation ───────────────────── */
+    function navigateTo(pageId) {
+      const current = document.querySelector('.page.active');
+      const next = document.getElementById('page-' + pageId);
+      if (!next || current === next) return;
+
+      current.style.animation = 'pageOut 0.3s cubic-bezier(0.16,1,0.3,1) forwards';
+      setTimeout(() => {
+        current.classList.remove('active');
+        current.style.animation = '';
+        next.classList.add('active');
+        next.style.animation = 'pageIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 280);
+
+      currentPage = pageId;
+      updateProgress(pageId);
+      updateHeader(pageId);
+    }
+
+    /* ─── Update Progress Bar ───────────────── */
+    function updateProgress(pageId) {
+      const wrap = document.getElementById('progress-wrap');
+      const fill = document.getElementById('progress-fill');
+      const left = document.getElementById('progress-label-left');
+      const right = document.getElementById('progress-label-right');
+
+      const map = {
+        choose:     { show: false, pct: 0,   step: '',            label: '' },
+        food:       { show: true,  pct: 50,  step: 'STEP_01_OF_02', label: 'FOOD_MODULE' },
+        management: { show: true,  pct: 50,  step: 'STEP_01_OF_02', label: 'STAFF_MODULE' },
+        hotel:      { show: true,  pct: 50,  step: 'STEP_01_OF_02', label: 'HOTEL_MODULE' },
+        thankyou:   { show: true,  pct: 100, step: 'UPLOAD_COMPLETE', label: '✓ TRANSMITTED' },
+      };
+
+      const info = map[pageId] || map.choose;
+      wrap.classList.toggle('visible', info.show);
+      fill.style.width = info.pct + '%';
+      left.textContent = info.step;
+      right.textContent = info.label;
+    }
+
+    /* ─── Update Header Subtitle ────────────── */
+    function updateHeader(pageId) {
+      const sub = document.getElementById('header-subtitle');
+      const subs = {
+        choose:     'INITIALIZING REVIEW SEQUENCE...',
+        food:       'FOOD_MODULE: AWAITING INPUT DATA',
+        management: 'STAFF_MODULE: ANALYZING PERFORMANCE',
+        hotel:      'FACILITY_SCAN: RUNNING DIAGNOSTIC',
+        thankyou:   'UPLOAD_COMPLETE: DATA LOGGED SUCCESSFULLY',
+      };
+      sub.style.opacity = '0';
+      setTimeout(() => {
+        sub.textContent = subs[pageId] || subs.choose;
+        sub.style.opacity = '1';
+      }, 200);
+      sub.style.transition = 'opacity 0.2s ease';
+    }
+
+    /* ─── Slider value display ──────────────── */
+    function updateSlider(targetId, val) {
+      const el = document.getElementById(targetId);
+      if (el) el.textContent = val;
+      const slider = event.target;
+      const pct = ((val - slider.min) / (slider.max - slider.min)) * 100;
+      slider.style.background = `linear-gradient(90deg, var(--cyan) ${pct}%, rgba(0,255,255,0.08) ${pct}%)`;
+    }
+
+    /* ─── Initialize sliders ────────────────── */
+    function initSliders() {
+      document.querySelectorAll('.cyber-range').forEach(slider => {
+        const val = slider.value;
+        const min = slider.min || 0;
+        const max = slider.max || 10;
+        const pct = ((val - min) / (max - min)) * 100;
+        slider.style.background = `linear-gradient(90deg, var(--cyan) ${pct}%, rgba(0,255,255,0.08) ${pct}%)`;
+      });
+    }
+
+    /* ─── Star Rating ───────────────────────── */
+    function setStars(group, val) {
+      starRatings[group] = val;
+      const container = document.getElementById('stars-' + group);
+      if (!container) return;
+      container.querySelectorAll('.star').forEach(s => {
+        const sv = parseInt(s.getAttribute('data-val'));
+        s.classList.toggle('active', sv <= val);
+      });
+    }
+
+    /* ─── Hover preview for stars ───────────── */
+    document.addEventListener('mouseover', e => {
+      if (!e.target.classList.contains('star')) return;
+      const group = e.target.getAttribute('data-group');
+      const val = parseInt(e.target.getAttribute('data-val'));
+      const container = document.getElementById('stars-' + group);
+      if (!container) return;
+      container.querySelectorAll('.star').forEach(s => {
+        s.style.color = parseInt(s.getAttribute('data-val')) <= val ? 'var(--cyan)' : '';
+      });
+    });
+
+    document.addEventListener('mouseout', e => {
+      if (!e.target.classList.contains('star')) return;
+      const group = e.target.getAttribute('data-group');
+      const container = document.getElementById('stars-' + group);
+      if (!container) return;
+      container.querySelectorAll('.star').forEach(s => {
+        const sv = parseInt(s.getAttribute('data-val'));
+        s.style.color = sv <= (starRatings[group] || 0) ? 'var(--cyan)' : '';
+      });
+    });
+
+    /* ─── Submit Review ─────────────────────── */
+    function submitReview(type) {
+      const tags = buildSummaryTags(type);
+      document.getElementById('review-summary-tags').innerHTML =
+        tags.map(t => `<span class="review-tag">${t}</span>`).join('');
+      showToast('✓ REVIEW DATA UPLOADED SUCCESSFULLY');
+      navigateTo('thankyou');
+    }
+
+    /* ─── Build summary tags ────────────────── */
+    function buildSummaryTags(type) {
+      const tags = [];
+
+      if (type === 'food') {
+        const meals = [...document.querySelectorAll('input[name="meals"]:checked')].map(i => i.value);
+        if (meals.length) tags.push(...meals.map(m => '🍽️ ' + m.toUpperCase()));
+        const q = document.getElementById('food-quality');
+        if (q) tags.push('QUALITY: ' + q.value + '/10');
+      }
+
+      if (type === 'management') {
+        const helpful = document.querySelector('input[name="staff-helpful"]:checked');
+        if (helpful) tags.push('STAFF: ' + helpful.value.toUpperCase());
+        const ci = document.getElementById('check-in-rating');
+        if (ci && ci.value) tags.push('CHECK-IN: ' + ci.value.toUpperCase());
+      }
+
+      if (type === 'hotel') {
+        Object.entries(starRatings).forEach(([k, v]) => {
+          if (v > 0) tags.push(k.toUpperCase() + ': ' + '★'.repeat(v));
+        });
+        const oe = document.getElementById('overall-experience');
+        if (oe) tags.push('OVERALL: ' + oe.value + '/10');
+      }
+
+      if (!tags.length) tags.push('REVIEW_SUBMITTED');
+      return tags;
+    }
+
+    /* ─── Toast ─────────────────────────────── */
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    /* ─── Close Portal ──────────────────────── */
+    function closePortal() {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'REVIEW_PORTAL_CLOSE' }, '*');
+      } else {
+        showToast('CONNECTION TERMINATED. THANK YOU.');
+        navigateTo('choose');
+      }
+    }
+
+    /* ─── Init ──────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      initSliders();
+      document.querySelectorAll('.star').forEach(star => {
+        star.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setStars(star.getAttribute('data-group'), parseInt(star.getAttribute('data-val')));
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
