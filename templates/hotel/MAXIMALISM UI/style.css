@@ -79,42 +79,43 @@ body::before {
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.45;
+  filter: blur(40px);
+  opacity: 0.35;
   will-change: transform;
+  transform: translateZ(0);
 }
 
 .orb-1 {
-  width: 400px; height: 400px;
+  width: 280px; height: 280px;
   background: var(--neon-pink);
-  top: -100px; left: -80px;
-  animation: orbFloat1 14s ease-in-out infinite alternate;
+  top: -80px; left: -60px;
+  animation: orbFloat1 18s ease-in-out infinite alternate;
 }
 .orb-2 {
-  width: 350px; height: 350px;
+  width: 240px; height: 240px;
   background: var(--neon-violet);
-  top: 30%; right: -100px;
-  animation: orbFloat2 18s ease-in-out infinite alternate;
+  top: 30%; right: -80px;
+  animation: orbFloat2 22s ease-in-out infinite alternate;
 }
 .orb-3 {
-  width: 300px; height: 300px;
+  width: 200px; height: 200px;
   background: var(--neon-cyan);
-  bottom: -50px; left: 30%;
-  animation: orbFloat3 16s ease-in-out infinite alternate;
+  bottom: -40px; left: 30%;
+  animation: orbFloat3 20s ease-in-out infinite alternate;
 }
 .orb-4 {
-  width: 250px; height: 250px;
+  width: 180px; height: 180px;
   background: var(--neon-lime);
-  top: 60%; left: -60px;
-  animation: orbFloat1 20s ease-in-out infinite alternate-reverse;
-  opacity: 0.25;
+  top: 60%; left: -40px;
+  animation: orbFloat1 24s ease-in-out infinite alternate-reverse;
+  opacity: 0.18;
 }
 .orb-5 {
-  width: 200px; height: 200px;
+  width: 150px; height: 150px;
   background: var(--neon-orange);
   top: 10%; right: 20%;
-  animation: orbFloat2 12s ease-in-out infinite alternate-reverse;
-  opacity: 0.3;
+  animation: orbFloat2 16s ease-in-out infinite alternate-reverse;
+  opacity: 0.2;
 }
 
 @keyframes orbFloat1 {
@@ -142,8 +143,9 @@ body::before {
 .deco {
   position: absolute;
   font-size: 28px;
-  opacity: 0.35;
-  animation: decoFloat 8s ease-in-out infinite alternate;
+  opacity: 0.3;
+  animation: decoFloat 10s ease-in-out infinite alternate;
+  transform: translateZ(0);
 }
 
 .deco-star     { top: 8%;  left: 10%;  color: var(--neon-lime);   animation-duration: 7s; }
@@ -298,13 +300,14 @@ body::before {
   width: 100%;
   max-width: 500px;
   background: var(--bg-card);
-  backdrop-filter: blur(24px) saturate(1.8);
-  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.08);
   overflow: hidden;
   position: relative;
+  transform: translateZ(0);
 }
 
 /* Top rainbow bar accent */
@@ -808,6 +811,75 @@ body::before {
 .toast.show { bottom: 32px; }
 
 /* ═══════════════════════════════════════════
+   CLICK EFFECTS
+   ═══════════════════════════════════════════ */
+
+/* Neon ripple — spawned by JS */
+.neon-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,45,149,0.25), rgba(176,38,255,0.12), transparent 70%);
+  pointer-events: none;
+  z-index: 10;
+  animation: neonRippleExpand 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes neonRippleExpand {
+  0%   { transform: scale(0); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* Glow pulse — toggled by JS */
+.glow-click {
+  animation: glowClickPulse 0.7s ease-out !important;
+}
+
+@keyframes glowClickPulse {
+  0%   { box-shadow: var(--glow-pink); }
+  35%  { box-shadow: 0 0 20px 6px rgba(176,38,255,0.35), 0 0 40px 12px rgba(0,240,255,0.12); }
+  100% { box-shadow: var(--glow-pink); }
+}
+
+/* Sparkle particles — spawned by JS */
+.click-sparkle {
+  position: absolute;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 20;
+  color: var(--neon-lime);
+  text-shadow: 0 0 6px var(--neon-lime);
+  animation: sparkleOut 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes sparkleOut {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.9; }
+  40%  { transform: translate(calc(-50% + var(--tx) * 0.6), calc(-50% + var(--ty) * 0.6)) scale(1); opacity: 0.7; }
+  100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0.3); opacity: 0; }
+}
+
+/* Star pop */
+.star-pop {
+  animation: starPop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes starPop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.35) rotate(-5deg); filter: drop-shadow(0 0 8px rgba(200,255,0,0.6)); }
+  65%  { transform: scale(0.92) rotate(2deg); }
+  100% { transform: scale(1) rotate(0deg); filter: none; }
+}
+
+/* Ensure interactive elements are positioned for effect containment */
+.review-type-btn,
+.btn-primary,
+.back-btn,
+.option-item,
+.star-row {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════ */
 @media (max-width: 400px) {
@@ -818,4 +890,29 @@ body::before {
   .btn-icon { width: 44px; height: 44px; font-size: 20px; }
   .form-body { padding: 20px 20px 24px; }
   .btn-row { padding: 16px 20px 24px; }
+}
+
+/* ═══════════════════════════════════════════
+   PERFORMANCE — reduce GPU load on large screens
+   ═══════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .orb { filter: blur(30px); opacity: 0.25; }
+  .orb-4, .orb-5 { display: none; }
+  .deco-circle, .deco-zigzag, .deco-sparkle { display: none; }
+  .glass-card {
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  }
+  body::before { opacity: 0.7; }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .orb, .deco { display: none; }
+  .neon-ripple, .click-sparkle { display: none; }
 }

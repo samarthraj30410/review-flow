@@ -75,7 +75,10 @@ function updateSlider(targetId, val) {
   const el = document.getElementById(targetId);
   if (el) el.textContent = val;
 
-  const slider = event.target;
+  // Find the slider by ID prefix — avoids relying on implicit `event`
+  const sliderId = targetId.replace('-val', '').replace('overall-exp', 'overall-experience');
+  const slider = document.getElementById(sliderId);
+  if (!slider) return;
   const pct = ((val - slider.min) / (slider.max - slider.min)) * 100;
   slider.style.background =
     `linear-gradient(90deg, rgba(255,45,149,0.8) ${pct}%, rgba(255,255,255,0.06) ${pct}%)`;
@@ -187,6 +190,46 @@ function closePortal() {
   }
 }
 
+/* ─── Neon Ripple Effect ───────────────── */
+function spawnNeonRipple(el, e) {
+  const rect = el.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height) * 2.5;
+  const ripple = document.createElement('span');
+  ripple.className = 'neon-ripple';
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+  ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+  el.appendChild(ripple);
+  ripple.addEventListener('animationend', () => ripple.remove());
+}
+
+/* ─── Glow Pulse on buttons ────────────── */
+function glowPulse(el) {
+  el.classList.add('glow-click');
+  setTimeout(() => el.classList.remove('glow-click'), 600);
+}
+
+/* ─── Sparkle Burst ────────────────────── */
+function spawnSparkles(el, e) {
+  const rect = el.getBoundingClientRect();
+  const cx = e.clientX - rect.left;
+  const cy = e.clientY - rect.top;
+  const symbols = ['✦', '✧', '◆', '●', '★'];
+  for (let i = 0; i < 5; i++) {
+    const spark = document.createElement('span');
+    spark.className = 'click-sparkle';
+    spark.textContent = symbols[i % symbols.length];
+    spark.style.left = cx + 'px';
+    spark.style.top = cy + 'px';
+    const angle = (i / 5) * 2 * Math.PI + (Math.random() * 0.5);
+    const dist = 25 + Math.random() * 35;
+    spark.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+    spark.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+    el.appendChild(spark);
+    spark.addEventListener('animationend', () => spark.remove());
+  }
+}
+
 /* ─── Init ──────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initSliders();
@@ -198,6 +241,33 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         setStars(star.getAttribute('data-group'), parseInt(star.getAttribute('data-val')));
       }
+    });
+  });
+
+  // Neon ripple + glow pulse on buttons
+  document.querySelectorAll('.review-type-btn, .btn-primary, .back-btn').forEach(el => {
+    el.addEventListener('click', e => {
+      spawnNeonRipple(el, e);
+      glowPulse(el);
+      spawnSparkles(el, e);
+    });
+  });
+
+  // Ripple on option items
+  document.querySelectorAll('.option-item').forEach(el => {
+    el.addEventListener('click', e => {
+      spawnNeonRipple(el, e);
+    });
+  });
+
+  // Star pop animation on click
+  document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', e => {
+      star.classList.remove('star-pop');
+      void star.offsetWidth;
+      star.classList.add('star-pop');
+      // Mini sparkle on star
+      spawnSparkles(star.closest('.star-row') || star.parentElement, e);
     });
   });
 });

@@ -71,10 +71,12 @@ function updateSlider(targetId, val) {
   const el = document.getElementById(targetId);
   if (el) el.textContent = val;
 
-  // Update track fill color
-  const slider = event.target;
+  // Find the slider by ID prefix — avoids relying on implicit `event`
+  const sliderId = targetId.replace('-val', '').replace('overall-exp', 'overall-experience');
+  const slider = document.getElementById(sliderId);
+  if (!slider) return;
   const pct = ((val - slider.min) / (slider.max - slider.min)) * 100;
-  // Use brutalist colors for slider fill instead of glassmorphism gradient
+  // Use brutalist colors for slider fill
   slider.style.background = `linear-gradient(90deg, #ff00ff ${pct}%, #fff ${pct}%)`;
 }
 
@@ -184,6 +186,31 @@ function closePortal() {
   }
 }
 
+/* ─── Brutalist Shake Effect ───────────── */
+function brutalShake(el) {
+  el.style.animation = 'none';
+  void el.offsetWidth;
+  el.style.animation = 'brutalShake 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97) both';
+}
+
+/* ─── Stamp / Slam Effect on Buttons ───── */
+function brutalStamp(el, e) {
+  // Create a stamp burst element
+  const rect = el.getBoundingClientRect();
+  const stamp = document.createElement('span');
+  stamp.className = 'brutal-stamp';
+  stamp.style.left = (e.clientX - rect.left) + 'px';
+  stamp.style.top = (e.clientY - rect.top) + 'px';
+  el.appendChild(stamp);
+  stamp.addEventListener('animationend', () => stamp.remove());
+}
+
+/* ─── Screen Jolt ──────────────────────── */
+function screenJolt() {
+  document.body.classList.add('jolt');
+  setTimeout(() => document.body.classList.remove('jolt'), 300);
+}
+
 /* ─── Init ──────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initSliders();
@@ -195,6 +222,37 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         setStars(star.getAttribute('data-group'), parseInt(star.getAttribute('data-val')));
       }
+    });
+  });
+
+  // Review type buttons — gentle stamp only, no shake/jolt
+  document.querySelectorAll('.review-type-btn').forEach(el => {
+    el.addEventListener('click', e => {
+      brutalStamp(el, e);
+    });
+  });
+
+  // Submit & back buttons — shake + stamp, no screen jolt
+  document.querySelectorAll('.btn-primary, .back-btn').forEach(el => {
+    el.addEventListener('click', e => {
+      brutalShake(el);
+      brutalStamp(el, e);
+    });
+  });
+
+  // Option items get a shake
+  document.querySelectorAll('.option-item').forEach(el => {
+    el.addEventListener('click', () => {
+      brutalShake(el);
+    });
+  });
+
+  // Star pop animation on click
+  document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', () => {
+      star.style.animation = 'none';
+      void star.offsetWidth;
+      star.style.animation = 'starSlam 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both';
     });
   });
 });
