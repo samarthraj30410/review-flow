@@ -176,4 +176,66 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  /* ─── Ripple Effect Helper ──────────────── */
+  function spawnRipple(el, e) {
+    const rect = el.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 2;
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple-effect';
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+    el.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove());
+  }
+
+  /* ─── Flash Burst Helper ────────────────── */
+  function spawnFlash(el, e) {
+    const rect = el.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%';
+    const flash = document.createElement('span');
+    flash.className = 'btn-click-flash';
+    flash.style.setProperty('--click-x', x);
+    flash.style.setProperty('--click-y', y);
+    el.appendChild(flash);
+    flash.addEventListener('animationend', () => flash.remove());
+  }
+
+  /* ─── Glitch Flash Helper ─────────────── */
+  function spawnGlitch(el) {
+    const glitch = document.createElement('span');
+    glitch.className = 'click-glitch';
+    el.appendChild(glitch);
+    glitch.addEventListener('animationend', () => glitch.remove());
+  }
+
+  /* Ripple + glitch on review-type buttons */
+  document.querySelectorAll('.review-type-btn').forEach(el => {
+    el.addEventListener('click', e => {
+      spawnRipple(el, e);
+      spawnGlitch(el);
+    });
+  });
+
+  /* Ripple on option items, back button */
+  document.querySelectorAll('.option-item, .back-btn').forEach(el => {
+    el.addEventListener('click', e => spawnRipple(el, e));
+  });
+
+  /* Flash burst on primary buttons */
+  document.querySelectorAll('.btn-primary').forEach(btn => {
+    btn.addEventListener('click', e => spawnFlash(btn, e));
+  });
+
+  /* Star pop animation on click */
+  document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', () => {
+      star.classList.remove('pop-animate');
+      void star.offsetWidth; /* force reflow */
+      star.classList.add('pop-animate');
+    });
+  });
 });
+

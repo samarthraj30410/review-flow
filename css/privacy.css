@@ -88,11 +88,13 @@
   padding: 32px;
   margin-bottom: 32px;
   transition: var(--transition);
+  box-shadow: var(--shadow-md);
 }
 
 .legal-section-card:hover {
   border-color: rgba(255, 255, 255, 0.15);
   background-color: var(--bg-card-hover);
+  box-shadow: var(--shadow-hover);
 }
 
 /* Media Queries for Privacy Page responsiveness */

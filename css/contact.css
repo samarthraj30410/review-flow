@@ -61,12 +61,14 @@
   align-items: flex-start;
   gap: 20px;
   transition: var(--transition);
+  box-shadow: var(--shadow-md);
 }
 
 .contact-card:hover {
   border-color: rgba(255, 255, 255, 0.15);
   background-color: var(--bg-card-hover);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
 }
 
 .info-icon {
@@ -80,6 +82,7 @@
   justify-content: center;
   color: var(--accent);
   flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
 }
 
 .info-text h5 {
@@ -115,7 +118,7 @@
   padding: 36px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-lg);
 }
 
 @media (max-width: 480px) {

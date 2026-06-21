@@ -195,4 +195,50 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  /* ─── Ripple Effect Helper ──────────────── */
+  function spawnRipple(el, e) {
+    const rect = el.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 2;
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple-effect';
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+    el.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove());
+  }
+
+  /* ─── Flash Burst Helper ────────────────── */
+  function spawnFlash(el, e) {
+    const rect = el.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%';
+    const flash = document.createElement('span');
+    flash.className = 'btn-click-flash';
+    flash.style.setProperty('--click-x', x);
+    flash.style.setProperty('--click-y', y);
+    el.appendChild(flash);
+    flash.addEventListener('animationend', () => flash.remove());
+  }
+
+  /* Ripple on star buttons, action option buttons, back buttons */
+  document.querySelectorAll('.star-btn, .btn-glass-secondary, .btn-back').forEach(el => {
+    el.addEventListener('click', e => spawnRipple(el, e));
+  });
+
+  /* Flash burst on gold buttons */
+  document.querySelectorAll('.btn-gold, .btn-submit').forEach(btn => {
+    btn.addEventListener('click', e => spawnFlash(btn, e));
+  });
+
+  /* Star button pop animation on click */
+  starButtons.forEach(star => {
+    star.addEventListener('click', () => {
+      star.classList.remove('pop-animate');
+      void star.offsetWidth; /* force reflow */
+      star.classList.add('pop-animate');
+    });
+  });
 });
+

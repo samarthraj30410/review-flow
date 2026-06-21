@@ -25,6 +25,7 @@ section {
   font-weight: 500;
   color: var(--text-secondary);
   margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
 }
 
 .hero-tag span {
@@ -114,12 +115,14 @@ section {
   border-radius: var(--radius);
   padding: 32px;
   transition: var(--transition);
+  box-shadow: var(--shadow-md);
 }
 
 .card:hover {
   border-color: rgba(255, 255, 255, 0.15);
   background-color: var(--bg-card-hover);
   transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
 }
 
 .card-icon {
@@ -133,6 +136,7 @@ section {
   justify-content: center;
   margin-bottom: 24px;
   color: var(--accent);
+  box-shadow: var(--shadow-sm);
 }
 
 .card h3 {
@@ -185,7 +189,7 @@ section {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
   padding: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 .widget-header {
@@ -283,7 +287,7 @@ section {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 .sheets-bar {
@@ -433,6 +437,7 @@ section {
   border: 1px solid var(--border-subtle);
   padding: 24px;
   border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
 }
 
 .timeline-content h4 {
@@ -456,6 +461,7 @@ section {
   border-radius: 4px;
   color: var(--text-secondary);
   font-weight: 500;
+  box-shadow: var(--shadow-sm);
 }
 
 /* Template Showcase Grid */
@@ -471,11 +477,13 @@ section {
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-md);
 }
 
 .template-card:hover {
   border-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
 }
 
 .template-preview-area {
@@ -699,8 +707,15 @@ section {
 }
 
 @keyframes auroraOrb {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(15px, -15px) scale(1.1); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(15px, -15px) scale(1.1);
+  }
 }
 
 .template-inner-aurora {
@@ -745,7 +760,7 @@ section {
   padding: 12px 18px;
   text-align: center;
   width: 80%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-md);
   transform: translateY(10px);
   transition: var(--transition);
 }
@@ -863,6 +878,7 @@ section {
   align-items: center;
   justify-content: center;
   color: var(--accent);
+  box-shadow: var(--shadow-sm);
 }
 
 .info-text h5 {
@@ -883,6 +899,7 @@ section {
   border: 1px solid var(--border-subtle);
   padding: 32px;
   border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
 }
 
 .contact-form .btn-submit {
@@ -922,7 +939,7 @@ section {
   position: relative;
   transform: scale(0.95);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
 }
 
@@ -967,7 +984,7 @@ section {
   background-color: var(--bg-primary);
   border: 1px solid var(--border-subtle);
   padding: 20px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-lg);
   position: relative;
 }
 
@@ -1047,6 +1064,7 @@ section {
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
   color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Scroll Animation classes */
@@ -1076,6 +1094,7 @@ section {
   border-radius: var(--radius);
   margin-top: 24px;
   margin-bottom: 32px;
+  box-shadow: var(--shadow-md);
 }
 
 .control-label {
@@ -1108,6 +1127,7 @@ section {
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
+  box-shadow: var(--shadow-sm);
 }
 
 .filter-btn:hover,
@@ -1163,13 +1183,14 @@ section {
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-md);
 }
 
 .customer-card:hover {
   border-color: rgba(255, 255, 255, 0.15);
   background-color: var(--bg-card-hover);
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-hover);
 }
 
 .customer-card-header {
