@@ -764,6 +764,72 @@ section {
   color: #ffc107 !important;
 }
 
+/* Maximalism UI badge & preview */
+.template-badge-maximalism {
+  background: linear-gradient(135deg, #ff2d95, #b026ff) !important;
+  border: none !important;
+  color: #fff !important;
+  box-shadow: 0 0 12px rgba(255, 45, 149, 0.4);
+  letter-spacing: 0.05em;
+}
+
+/* Maximalism preview area background */
+.temp-hotel-maximalism .template-preview-area {
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 20%, rgba(176, 38, 255, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 70% 80%, rgba(255, 45, 149, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0, 240, 255, 0.10) 0%, transparent 50%),
+    #0d0221;
+  overflow: hidden;
+  position: relative;
+}
+
+.temp-hotel-maximalism .template-preview-area::before {
+  background-image: none;
+  background: none;
+  opacity: 1;
+}
+
+/* Animated orb inside maximalism preview */
+.temp-hotel-maximalism .template-preview-area::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 45, 149, 0.5), rgba(176, 38, 255, 0.3), transparent 70%);
+  top: -30px;
+  right: -20px;
+  filter: blur(25px);
+  animation: maxOrb 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes maxOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-15px, 15px) scale(1.12); }
+}
+
+.template-inner-maximalism {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.template-inner-maximalism h5 {
+  background: linear-gradient(135deg, #ff2d95, #b026ff, #00f0ff, #c8ff00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 0.88rem;
+}
+
+.template-inner-maximalism p {
+  color: #c8ff00 !important;
+}
+
 .template-badge {
   position: absolute;
   top: 16px;

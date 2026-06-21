@@ -2,20 +2,44 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Hotel Guest Review — Claymorphism UI</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Google Fonts: Inter for a clean modern look often used with Claymorphism -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Review — Maximalism UI</title>
+  <meta name="description" content="Share your hotel experience with a vivid, layered maximalist interface." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/logo.jpg" />
   <link rel="icon" type="image/jpeg" sizes="96x96" href="../../../assets/logo.jpg" />
   <link rel="shortcut icon" href="../../../assets/logo.jpg" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+
+  <!-- Animated background layers -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+  </div>
+
+  <!-- Floating decorative shapes -->
+  <div class="deco-shapes" aria-hidden="true">
+    <div class="deco deco-star">✦</div>
+    <div class="deco deco-diamond">◆</div>
+    <div class="deco deco-circle">●</div>
+    <div class="deco deco-cross">✚</div>
+    <div class="deco deco-ring">◎</div>
+    <div class="deco deco-zigzag">〰</div>
+    <div class="deco deco-sparkle">✧</div>
+  </div>
 
   <div class="app-container">
 
@@ -27,17 +51,18 @@
         <span class="dot"></span>
         Guest Review Portal
       </div>
-      <h1 class="hotel-name" id="hotel-name-display">The Puffy Cloud Hotel</h1>
+      <h1 class="hotel-name" id="hotel-name-display">The Velvet Prism Hotel</h1>
       <p class="hotel-subtitle" id="header-subtitle">We value your experience</p>
+      <div class="header-deco-bar"></div>
     </header>
 
     <!-- Progress Bar -->
-    <div class="progress-bar-wrap clay-card" id="progress-wrap">
+    <div class="progress-bar-wrap" id="progress-wrap">
       <div class="progress-labels">
-        <span class="clay-pill" id="progress-label-left">Step 1 of 2</span>
-        <span class="clay-pill" id="progress-label-right">Review</span>
+        <span id="progress-label-left">Step 1 of 2</span>
+        <span id="progress-label-right">Review</span>
       </div>
-      <div class="progress-track clay-inset">
+      <div class="progress-track">
         <div class="progress-fill" id="progress-fill" style="width: 50%"></div>
       </div>
     </div>
@@ -46,15 +71,15 @@
          PAGE 0 — Choose Review Type
     ══════════════════════════════════════ -->
     <section class="page active" id="page-choose" aria-label="Choose review type">
-      <div class="clay-card main-card">
+      <div class="glass-card">
         <div class="card-header">
-          <p class="card-section-label clay-pill">Share Your Experience</p>
+          <p class="card-section-label">Share Your Experience</p>
           <h2 class="card-title">What would you like to review?</h2>
         </div>
 
         <nav class="review-type-grid" aria-label="Review categories">
-          <button class="review-type-btn clay-btn-secondary clay-bg-peach" id="btn-food" onclick="navigateTo('food')" aria-label="Review food and dining">
-            <div class="btn-icon food clay-icon">🍽️</div>
+          <button class="review-type-btn" id="btn-food" onclick="navigateTo('food')" aria-label="Review food and dining">
+            <div class="btn-icon food">🍽️</div>
             <div class="btn-text">
               <div class="btn-title">Food & Dining</div>
               <div class="btn-desc">Meals, room service & bar</div>
@@ -62,8 +87,8 @@
             <span class="btn-chevron" aria-hidden="true">›</span>
           </button>
 
-          <button class="review-type-btn clay-btn-secondary clay-bg-sky" id="btn-mgmt" onclick="navigateTo('management')" aria-label="Review management and staff">
-            <div class="btn-icon mgmt clay-icon">🤝</div>
+          <button class="review-type-btn" id="btn-mgmt" onclick="navigateTo('management')" aria-label="Review management and staff">
+            <div class="btn-icon mgmt">🤝</div>
             <div class="btn-text">
               <div class="btn-title">Management & Staff</div>
               <div class="btn-desc">Service, helpfulness & check-in</div>
@@ -71,8 +96,8 @@
             <span class="btn-chevron" aria-hidden="true">›</span>
           </button>
 
-          <button class="review-type-btn clay-btn-secondary clay-bg-lavender" id="btn-hotel" onclick="navigateTo('hotel')" aria-label="Review hotel experience">
-            <div class="btn-icon hotel clay-icon">🏨</div>
+          <button class="review-type-btn" id="btn-hotel" onclick="navigateTo('hotel')" aria-label="Review hotel experience">
+            <div class="btn-icon hotel">🏨</div>
             <div class="btn-text">
               <div class="btn-title">Hotel Experience</div>
               <div class="btn-desc">Rooms, cleanliness & amenities</div>
@@ -87,10 +112,10 @@
          PAGE 1 — Food & Dining Review
     ══════════════════════════════════════ -->
     <section class="page" id="page-food" aria-label="Food and dining review">
-      <button class="back-btn clay-btn-secondary" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
-      <div class="clay-card main-card">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
+      <div class="glass-card">
         <div class="card-header">
-          <p class="card-section-label clay-pill">🍽️ Food & Dining</p>
+          <p class="card-section-label">🍽️ Food & Dining</p>
           <h2 class="card-title">Food & Dining Review</h2>
         </div>
 
@@ -98,21 +123,21 @@
 
           <!-- Meal selection -->
           <div class="form-group">
-            <label class="form-label clay-pill">Which meals did you enjoy with us?</label>
+            <label class="form-label">Which meals did you enjoy with us?</label>
             <div class="option-group" role="group" aria-label="Meal selection">
-              <label class="option-item clay-btn-secondary">
+              <label class="option-item">
                 <input type="checkbox" id="meal-breakfast" name="meals" value="breakfast" />
                 <span class="option-label">🌅 Breakfast</span>
               </label>
-              <label class="option-item clay-btn-secondary">
+              <label class="option-item">
                 <input type="checkbox" id="meal-lunch" name="meals" value="lunch" />
                 <span class="option-label">☀️ Lunch</span>
               </label>
-              <label class="option-item clay-btn-secondary">
+              <label class="option-item">
                 <input type="checkbox" id="meal-dinner" name="meals" value="dinner" />
                 <span class="option-label">🌙 Dinner</span>
               </label>
-              <label class="option-item clay-btn-secondary">
+              <label class="option-item">
                 <input type="checkbox" id="meal-room-service" name="meals" value="room-service" />
                 <span class="option-label">🛎️ Room Service</span>
               </label>
@@ -121,33 +146,33 @@
 
           <!-- Food quality slider -->
           <div class="form-group">
-            <label class="form-label clay-pill" for="food-quality">Overall Food Quality</label>
-            <div class="slider-wrap clay-card">
+            <label class="form-label" for="food-quality">Overall Food Quality</label>
+            <div class="slider-wrap">
               <div class="slider-row">
-                <input type="range" class="clay-range" id="food-quality" name="food-quality"
+                <input type="range" class="glass-range" id="food-quality" name="food-quality"
                   min="1" max="10" value="7"
                   oninput="updateSlider('food-quality-val', this.value)" />
-                <span class="slider-val clay-inset" id="food-quality-val">7</span>
+                <span class="slider-val" id="food-quality-val">7</span>
               </div>
-              <div class="slider-labels"><span class="clay-pill">1 — Poor</span><span class="clay-pill">10 — Outstanding</span></div>
+              <div class="slider-labels"><span>1 — Poor</span><span>10 — Outstanding</span></div>
             </div>
           </div>
 
           <!-- Feedback textarea -->
           <div class="form-group">
-            <label class="form-label clay-pill" for="food-feedback">What did you love or what could we improve?</label>
-            <textarea class="clay-textarea" id="food-feedback" name="food-feedback"
+            <label class="form-label" for="food-feedback">What did you love or what could we improve?</label>
+            <textarea class="glass-textarea" id="food-feedback" name="food-feedback"
               placeholder="Tell us about the dishes you tried, the service speed, or any special moments…" rows="4"></textarea>
           </div>
 
         </form>
 
-        <div class="clay-divider"></div>
+        <div class="glass-divider"></div>
         <div class="btn-row">
-          <button class="btn-primary clay-btn-primary" id="submit-food" onclick="submitReview('food')" type="button">
+          <button class="btn-primary accent" id="submit-food" onclick="submitReview('food')" type="button">
             Submit Food Review ›
           </button>
-          <button class="btn-primary clay-btn-secondary ghost" onclick="navigateTo('choose')" type="button">
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
             Cancel
           </button>
         </div>
@@ -158,10 +183,10 @@
          PAGE 2 — Management & Staff Review
     ══════════════════════════════════════ -->
     <section class="page" id="page-management" aria-label="Management and staff review">
-      <button class="back-btn clay-btn-secondary" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
-      <div class="clay-card main-card">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
+      <div class="glass-card">
         <div class="card-header">
-          <p class="card-section-label clay-pill">🤝 Management & Staff</p>
+          <p class="card-section-label">🤝 Management & Staff</p>
           <h2 class="card-title">Management & Staff Review</h2>
         </div>
 
@@ -169,17 +194,17 @@
 
           <!-- Staff helpful -->
           <div class="form-group">
-            <label class="form-label clay-pill">Was the staff welcoming and helpful?</label>
+            <label class="form-label">Was the staff welcoming and helpful?</label>
             <div class="option-group" role="radiogroup" aria-label="Staff helpfulness">
-              <label class="option-item clay-btn-secondary">
+              <label class="option-item">
                 <input type="radio" id="staff-yes" name="staff-helpful" value="yes" />
                 <span class="option-label">👍 Yes, very helpful</span>
               </label>
-              <label class="option-item clay-btn-secondary">
+              <label class="option-item">
                 <input type="radio" id="staff-average" name="staff-helpful" value="average" />
                 <span class="option-label">😐 It was average</span>
               </label>
-              <label class="option-item clay-btn-secondary">
+              <label class="option-item">
                 <input type="radio" id="staff-no" name="staff-helpful" value="no" />
                 <span class="option-label">👎 Needs improvement</span>
               </label>
@@ -188,47 +213,45 @@
 
           <!-- Check-in rating -->
           <div class="form-group">
-            <label class="form-label clay-pill" for="check-in-rating">How smooth was your check-in process?</label>
-            <div class="select-wrap clay-inset">
-              <select class="clay-select" id="check-in-rating" name="check-in-rating">
-                <option value="">— Select an option —</option>
-                <option value="excellent">⭐ Excellent — Fast & seamless</option>
-                <option value="good">✅ Good — Minor hiccups</option>
-                <option value="average">😐 Average — Could be better</option>
-                <option value="poor">⚠️ Poor — Needs improvement</option>
-              </select>
-            </div>
+            <label class="form-label" for="check-in-rating">How smooth was your check-in process?</label>
+            <select class="glass-select" id="check-in-rating" name="check-in-rating">
+              <option value="">— Select an option —</option>
+              <option value="excellent">⭐ Excellent — Fast & seamless</option>
+              <option value="good">✅ Good — Minor hiccups</option>
+              <option value="average">😐 Average — Could be better</option>
+              <option value="poor">⚠️ Poor — Needs improvement</option>
+            </select>
           </div>
 
           <!-- Response time slider -->
           <div class="form-group">
-            <label class="form-label clay-pill" for="response-time">Staff Response Time Rating</label>
-            <div class="slider-wrap clay-card">
+            <label class="form-label" for="response-time">Staff Response Time Rating</label>
+            <div class="slider-wrap">
               <div class="slider-row">
-                <input type="range" class="clay-range" id="response-time" name="response-time"
+                <input type="range" class="glass-range" id="response-time" name="response-time"
                   min="1" max="10" value="7"
                   oninput="updateSlider('response-time-val', this.value)" />
-                <span class="slider-val clay-inset" id="response-time-val">7</span>
+                <span class="slider-val" id="response-time-val">7</span>
               </div>
-              <div class="slider-labels"><span class="clay-pill">1 — Very slow</span><span class="clay-pill">10 — Instant</span></div>
+              <div class="slider-labels"><span>1 — Very slow</span><span>10 — Instant</span></div>
             </div>
           </div>
 
           <!-- Comments -->
           <div class="form-group">
-            <label class="form-label clay-pill" for="management-feedback">Additional Comments for Management</label>
-            <textarea class="clay-textarea" id="management-feedback" name="management-feedback"
+            <label class="form-label" for="management-feedback">Additional Comments for Management</label>
+            <textarea class="glass-textarea" id="management-feedback" name="management-feedback"
               placeholder="Mention any specific staff members, memorable interactions, or areas for improvement…" rows="4"></textarea>
           </div>
 
         </form>
 
-        <div class="clay-divider"></div>
+        <div class="glass-divider"></div>
         <div class="btn-row">
-          <button class="btn-primary clay-btn-primary" id="submit-mgmt" onclick="submitReview('management')" type="button">
+          <button class="btn-primary accent" id="submit-mgmt" onclick="submitReview('management')" type="button">
             Submit Staff Review ›
           </button>
-          <button class="btn-primary clay-btn-secondary ghost" onclick="navigateTo('choose')" type="button">
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
             Cancel
           </button>
         </div>
@@ -239,10 +262,10 @@
          PAGE 3 — Hotel Experience Review
     ══════════════════════════════════════ -->
     <section class="page" id="page-hotel" aria-label="Hotel experience review">
-      <button class="back-btn clay-btn-secondary" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
-      <div class="clay-card main-card">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
+      <div class="glass-card">
         <div class="card-header">
-          <p class="card-section-label clay-pill">🏨 Hotel Experience</p>
+          <p class="card-section-label">🏨 Hotel Experience</p>
           <h2 class="card-title">Hotel Experience Review</h2>
         </div>
 
@@ -250,8 +273,8 @@
 
           <!-- Star ratings -->
           <div class="form-group">
-            <label class="form-label clay-pill">Rate your stay (tap to rate)</label>
-            <div class="star-group clay-card" role="group" aria-label="Hotel star ratings">
+            <label class="form-label">Rate your stay (tap to rate)</label>
+            <div class="star-group" role="group" aria-label="Hotel star ratings">
 
               <div class="star-row">
                 <span class="star-row-label">🛏️ Room Cleanliness</span>
@@ -302,31 +325,31 @@
 
           <!-- Overall slider -->
           <div class="form-group">
-            <label class="form-label clay-pill" for="overall-experience">Overall Experience Score</label>
-            <div class="slider-wrap clay-card">
+            <label class="form-label" for="overall-experience">Overall Experience Score</label>
+            <div class="slider-wrap">
               <div class="slider-row">
-                <input type="range" class="clay-range" id="overall-experience" name="overall-experience"
+                <input type="range" class="glass-range" id="overall-experience" name="overall-experience"
                   min="1" max="10" value="8"
                   oninput="updateSlider('overall-exp-val', this.value)" />
-                <span class="slider-val clay-inset" id="overall-exp-val">8</span>
+                <span class="slider-val" id="overall-exp-val">8</span>
               </div>
-              <div class="slider-labels"><span class="clay-pill">1 — Terrible</span><span class="clay-pill">10 — Perfect</span></div>
+              <div class="slider-labels"><span>1 — Terrible</span><span>10 — Perfect</span></div>
             </div>
           </div>
 
           <!-- Would recommend -->
           <div class="form-group">
-            <label class="form-label clay-pill">Would you recommend us to others?</label>
+            <label class="form-label">Would you recommend us to others?</label>
             <div class="option-group" role="radiogroup" aria-label="Would you recommend">
-              <label class="option-item clay-btn-secondary">
+              <label class="option-item">
                 <input type="radio" id="recommend-yes" name="recommend" value="yes" />
                 <span class="option-label">✅ Absolutely, yes!</span>
               </label>
-              <label class="option-item clay-btn-secondary">
+              <label class="option-item">
                 <input type="radio" id="recommend-maybe" name="recommend" value="maybe" />
                 <span class="option-label">🤔 Maybe, depends</span>
               </label>
-              <label class="option-item clay-btn-secondary">
+              <label class="option-item">
                 <input type="radio" id="recommend-no" name="recommend" value="no" />
                 <span class="option-label">❌ No, not really</span>
               </label>
@@ -335,19 +358,19 @@
 
           <!-- Detailed feedback -->
           <div class="form-group">
-            <label class="form-label clay-pill" for="hotel-feedback">Detailed Feedback</label>
-            <textarea class="clay-textarea" id="hotel-feedback" name="hotel-feedback"
+            <label class="form-label" for="hotel-feedback">Detailed Feedback</label>
+            <textarea class="glass-textarea" id="hotel-feedback" name="hotel-feedback"
               placeholder="Tell us about your room, what made your stay memorable, or anything we can do to improve…" rows="4"></textarea>
           </div>
 
         </form>
 
-        <div class="clay-divider"></div>
+        <div class="glass-divider"></div>
         <div class="btn-row">
-          <button class="btn-primary clay-btn-primary" id="submit-hotel" onclick="submitReview('hotel')" type="button">
+          <button class="btn-primary success" id="submit-hotel" onclick="submitReview('hotel')" type="button">
             Submit Hotel Review ›
           </button>
-          <button class="btn-primary clay-btn-secondary ghost" onclick="navigateTo('choose')" type="button">
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
             Cancel
           </button>
         </div>
@@ -358,11 +381,11 @@
          PAGE 4 — Thank You
     ══════════════════════════════════════ -->
     <section class="page" id="page-thankyou" aria-label="Thank you page">
-      <div class="clay-card main-card">
+      <div class="glass-card">
         <div class="thankyou-body">
-          <div class="thankyou-icon clay-icon" aria-hidden="true">✓</div>
-          <h2 class="thankyou-title clay-inset">Thank You!</h2>
-          <p class="thankyou-subtitle clay-pill">
+          <div class="thankyou-icon" aria-hidden="true">✓</div>
+          <h2 class="thankyou-title">Thank You!</h2>
+          <p class="thankyou-subtitle">
             We sincerely appreciate you taking the time to share your feedback.
             Your thoughts help us deliver an even better experience for every guest.
           </p>
@@ -370,26 +393,28 @@
             <!-- dynamically populated -->
           </div>
         </div>
-        <div class="clay-divider"></div>
+        <div class="glass-divider"></div>
         <div class="btn-row">
-          <button class="btn-primary clay-btn-primary" onclick="navigateTo('choose')" type="button">
+          <button class="btn-primary accent" onclick="navigateTo('choose')" type="button">
             Leave Another Review
           </button>
-          <button class="btn-primary clay-btn-secondary ghost" onclick="closePortal()" type="button">
+          <button class="btn-primary ghost" onclick="closePortal()" type="button">
             Close Portal
           </button>
         </div>
       </div>
     </section>
 
-    <footer class="app-footer clay-pill">
-      Powered by ReviewFlow · Secure &amp; Confidential
+    <footer class="app-footer">
+      Powered by ReviewFlow · Maximum Experience
     </footer>
   </div>
 
   <!-- Toast notification -->
-  <div class="toast clay-card" id="toast" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <!-- External Script -->
   <script src="app.js"></script>
+
 </body>
 </html>
