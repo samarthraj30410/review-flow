@@ -1,6 +1,6 @@
-# ReviewFlow Landing Page
+# ReviewFlo Landing Page
 
-ReviewFlow is a landing page built for custom, serverless customer review and feedback systems tailored for local businesses.
+ReviewFlo is a landing page built for custom, serverless customer review and feedback systems tailored for local businesses.
 
 ## Tech Stack & Architecture
 
