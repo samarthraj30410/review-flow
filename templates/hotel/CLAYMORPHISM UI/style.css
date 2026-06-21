@@ -1,0 +1,731 @@
+/* ════════════════════════════════════════════════════════
+   CLAYMORPHISM UI TEMPLATE
+════════════════════════════════════════════════════════ */
+
+:root {
+  /* Colors */
+  --clay-bg: #d4d4d4; /* slightly darker dim grey for background */
+  --clay-card-bg: #e0e0e0; /* the requested #e0e0e0 grey */
+  
+  /* Soft Pastel Palette - slightly dimmed to fit the grey */
+  --clay-lavender: #e8e8f2;
+  --clay-sky: #e8f0f2;
+  --clay-peach: #f2ebe8;
+  --clay-mint: #e8f2ea;
+  --clay-pink: #f2e8ec;
+  --clay-grey: #b8b8b8;
+
+  --clay-accent: #7c4dff;
+  --clay-accent-hover: #651fff;
+  --clay-accent-light: #e6e0ff;
+  --clay-success: #20c997;
+  --clay-star: #ffc107;
+  
+  --text-primary: #2d2e40;
+  --text-secondary: #6c7293;
+  --text-tertiary: #a0a6c0;
+
+  /* Geometry */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-pill: 100px;
+  
+  /* Clay Shadows (Adjusted for #ababab background) */
+  /* Outward bulging clay (Cards, Buttons) */
+  --clay-out: 
+    inset 4px 4px 8px rgba(255, 255, 255, 0.6),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.15),
+    10px 10px 24px rgba(0, 0, 0, 0.2),
+    -10px -10px 24px rgba(255, 255, 255, 0.5);
+
+  /* Smaller outward clay (Badges, small buttons) */
+  --clay-out-sm: 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.12),
+    6px 6px 12px rgba(0, 0, 0, 0.15),
+    -6px -6px 12px rgba(255, 255, 255, 0.5);
+
+  /* Inward pressed clay (Inputs, Tracks, Depressed state - ENHANCED) */
+  --clay-in: 
+    inset 6px 6px 12px rgba(0, 0, 0, 0.25),
+    inset -6px -6px 12px rgba(255, 255, 255, 0.65);
+    
+  /* Primary Button Clay */
+  --clay-primary: 
+    inset 4px 4px 8px rgba(255, 255, 255, 0.4),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.25),
+    8px 8px 16px rgba(124, 77, 255, 0.5);
+
+  /* Primary Button Clay Pressed - ENHANCED */
+  --clay-primary-in: 
+    inset 6px 6px 12px rgba(0, 0, 0, 0.35),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.2);
+
+  --transition-bounce: all 0.5s cubic-bezier(0.34, 1.8, 0.64, 1);
+  --transition-smooth: all 0.3s ease;
+}
+
+/* ─── Global Reset & Body ───────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--clay-bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Background Orbs (Soft Blobs) ──────── */
+.bg-orbs {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  animation: float 15s infinite ease-in-out alternate;
+}
+
+.orb-1 {
+  width: 400px; height: 400px;
+  background: var(--clay-accent-light);
+  top: -100px; left: -100px;
+}
+
+.orb-2 {
+  width: 300px; height: 300px;
+  background: #fff;
+  bottom: -50px; right: -50px;
+  animation-delay: -5s;
+}
+
+.orb-3 {
+  width: 250px; height: 250px;
+  background: #d4e0ff;
+  top: 40%; left: 60%;
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -50px) scale(1.1); }
+}
+
+/* ─── App Container ─────────────────────── */
+.app-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 32px 20px 48px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Header ────────────────────────────── */
+.app-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.hotel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--clay-card-bg);
+  box-shadow: var(--clay-out-sm);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--clay-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+
+.hotel-badge .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--clay-accent);
+}
+
+.hotel-name {
+  font-size: clamp(26px, 6vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+.hotel-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--clay-card-bg);
+  box-shadow: var(--clay-out-sm);
+}
+
+/* ─── Progress Bar ──────────────────────── */
+.progress-bar-wrap {
+  margin-bottom: 32px;
+  display: none;
+  padding: 16px 20px;
+  border-radius: var(--radius-lg);
+  background: var(--clay-card-bg);
+  box-shadow: var(--clay-out);
+}
+
+.progress-bar-wrap.visible {
+  display: block;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.clay-pill {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--clay-card-bg);
+  box-shadow: var(--clay-out-sm);
+}
+
+.progress-track {
+  height: 12px;
+  border-radius: var(--radius-pill);
+  background: var(--clay-bg);
+  box-shadow: var(--clay-in);
+  overflow: hidden;
+  padding: 2px;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--clay-accent);
+  box-shadow: var(--clay-primary);
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── SPA Pages ─────────────────────────── */
+.page {
+  display: none;
+  opacity: 0;
+  flex-direction: column;
+}
+
+.page.active {
+  display: flex;
+  opacity: 1;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pageOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-10px) scale(0.98); }
+}
+
+/* ─── Main Clay Card ────────────────────── */
+.main-card {
+  background: var(--clay-card-bg);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  box-shadow: var(--clay-out);
+}
+
+.card-header {
+  margin-bottom: 24px;
+}
+
+.card-section-label {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* ─── Clay Helpers ──────────────────────── */
+.clay-card {
+  background: var(--clay-card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--clay-out);
+}
+
+.clay-inset {
+  background: var(--clay-bg);
+  box-shadow: var(--clay-in);
+  border-radius: var(--radius-md);
+}
+
+.clay-icon {
+  width: 56px; height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--clay-card-bg);
+  box-shadow: var(--clay-out-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+/* ─── Navigation Buttons ────────────────── */
+.back-btn {
+  align-self: flex-start;
+  margin-bottom: 24px;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--clay-card-bg);
+  box-shadow: var(--clay-out-sm);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+
+.back-btn:active {
+  box-shadow: var(--clay-in);
+  transform: scale(0.95);
+}
+
+/* ─── Review Type Grid (Page 0) ─────────── */
+.review-type-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-type-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 20px;
+  background: var(--clay-card-bg);
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--clay-out);
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition-bounce);
+}
+
+.review-type-btn:active {
+  box-shadow: var(--clay-in);
+  transform: scale(0.98);
+}
+
+.review-type-btn .btn-icon {
+  flex-shrink: 0;
+}
+
+.review-type-btn .btn-text {
+  flex-grow: 1;
+}
+
+.review-type-btn .btn-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.review-type-btn .btn-desc {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.btn-chevron {
+  font-size: 24px;
+  color: var(--clay-accent);
+  font-weight: 300;
+}
+
+/* ─── Forms & Inputs ────────────────────── */
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-label {
+  align-self: flex-start;
+}
+
+/* Textarea */
+.clay-textarea {
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--clay-bg);
+  border: none;
+  box-shadow: var(--clay-in);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.clay-textarea:focus {
+  box-shadow: var(--clay-in), 0 0 0 2px var(--clay-accent-light);
+}
+
+.clay-textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Select */
+.select-wrap {
+  padding: 4px;
+}
+
+.clay-select {
+  width: 100%;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  appearance: none;
+}
+
+/* Option Groups (Radio/Checkbox) */
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  background: var(--clay-card-bg);
+  box-shadow: var(--clay-out-sm);
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+
+.option-item input {
+  position: absolute;
+  opacity: 0;
+}
+
+.option-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: var(--transition-smooth);
+}
+
+.option-item:active {
+  box-shadow: var(--clay-in);
+}
+
+/* Checked State for Options */
+.option-item:has(input:checked) {
+  background: var(--clay-accent);
+  box-shadow: var(--clay-primary);
+}
+
+.option-item:has(input:checked) .option-label {
+  color: white;
+}
+
+/* ─── Sliders ───────────────────────────── */
+.slider-wrap {
+  padding: 24px 20px;
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.clay-range {
+  flex-grow: 1;
+  -webkit-appearance: none;
+  height: 12px;
+  border-radius: var(--radius-pill);
+  background: var(--clay-bg);
+  box-shadow: var(--clay-in);
+  outline: none;
+  padding: 2px;
+}
+
+.clay-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--clay-card-bg);
+  box-shadow: var(--clay-out-sm);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.clay-range::-webkit-slider-thumb:active {
+  transform: scale(0.9);
+}
+
+.slider-val {
+  width: 44px; height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--clay-accent);
+  flex-shrink: 0;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ─── Star Ratings ──────────────────────── */
+.star-group {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.star-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.star-row-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stars {
+  display: flex;
+  justify-content: space-between;
+  background: var(--clay-bg);
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--clay-in);
+}
+
+.star {
+  font-size: 28px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: var(--transition-bounce);
+  -webkit-text-stroke: 1px rgba(0,0,0,0.05);
+}
+
+.star.active {
+  color: var(--clay-star);
+  text-shadow: 0 4px 8px rgba(255, 193, 7, 0.4);
+}
+
+.star.pop-animate {
+  animation: starPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes starPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4) rotate(10deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* ─── Divider & Buttons ─────────────────── */
+.clay-divider {
+  height: 2px;
+  background: var(--clay-bg);
+  box-shadow: var(--clay-in);
+  border-radius: 2px;
+  margin: 32px 0;
+}
+
+.btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 18px;
+  border-radius: var(--radius-pill);
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+  text-align: center;
+}
+
+.clay-btn-primary {
+  background: var(--clay-accent);
+  color: white;
+  box-shadow: var(--clay-primary);
+}
+
+.clay-btn-primary:active {
+  box-shadow: var(--clay-primary-in);
+  transform: scale(0.96);
+}
+
+.clay-btn-secondary {
+  background: var(--clay-card-bg);
+  color: var(--text-secondary);
+  box-shadow: var(--clay-out);
+}
+
+.clay-btn-secondary:active {
+  box-shadow: var(--clay-in);
+  transform: scale(0.96);
+}
+
+/* ─── Color Utilities ───────────────────── */
+.clay-bg-lavender { background: var(--clay-lavender) !important; }
+.clay-bg-sky { background: var(--clay-sky) !important; }
+.clay-bg-peach { background: var(--clay-peach) !important; }
+.clay-bg-mint { background: var(--clay-mint) !important; }
+.clay-bg-pink { background: var(--clay-pink) !important; }
+.clay-bg-grey { background: var(--clay-grey) !important; }
+
+.clay-bounce {
+  animation: clayBounce 0.5s cubic-bezier(0.34, 1.8, 0.64, 1);
+}
+
+@keyframes clayBounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(0.90); } /* Deepened the bounce scale for enhanced effect */
+  100% { transform: scale(1); }
+}
+
+/* ─── Thank You Page ────────────────────── */
+.thankyou-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.thankyou-icon {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  font-size: 40px;
+  color: var(--clay-success);
+  margin-bottom: 24px;
+}
+
+.thankyou-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--clay-success);
+  margin-bottom: 16px;
+  padding: 12px 32px;
+}
+
+.thankyou-subtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 300px;
+  margin-bottom: 24px;
+}
+
+.review-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.review-tag {
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--clay-card-bg);
+  box-shadow: var(--clay-out-sm);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--clay-accent);
+}
+
+/* ─── Toast ─────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 16px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  z-index: 999;
+  transition: var(--transition-bounce);
+  white-space: nowrap;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ─── Footer ────────────────────────────── */
+.app-footer {
+  margin-top: 24px;
+  text-align: center;
+  align-self: center;
+}

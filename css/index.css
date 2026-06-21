@@ -738,6 +738,32 @@ section {
   color: #fbbf24;
 }
 
+/* Claymorphism badge & preview */
+.template-badge-clay {
+  background: #e0e0e0 !important;
+  border: none !important;
+  color: #7c4dff !important;
+  box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 1), inset -2px -2px 4px rgba(160, 170, 200, 0.2), 4px 4px 8px rgba(160, 170, 200, 0.25) !important;
+  font-weight: 700;
+}
+
+.template-inner-clay {
+  background: #e0e0e0 !important;
+  border: none !important;
+  border-radius: 24px !important;
+  box-shadow: inset 4px 4px 8px rgba(255, 255, 255, 1), inset -4px -4px 8px rgba(160, 170, 200, 0.25), 10px 10px 24px rgba(0, 0, 0, 0.1) !important;
+}
+
+.template-inner-clay h5 {
+  color: #2d2e40 !important;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+}
+
+.template-inner-clay p {
+  color: #ffc107 !important;
+}
+
 .template-badge {
   position: absolute;
   top: 16px;
