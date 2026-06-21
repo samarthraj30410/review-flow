@@ -79,7 +79,7 @@ html, body {
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
+  filter: blur(80px);
   will-change: transform;
 }
 
@@ -911,6 +911,21 @@ html, body {
   box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(139,92,246,0.25);
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ═══════════════════════════════════════════
+   PERFORMANCE MODE (Mobile / Smaller screens)
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .orb {
+    filter: none;
+  }
+  .progress-fill {
+    animation: none;
+  }
+  .btn-primary.accent {
+    animation: none;
+  }
+}
 
 /* ═══════════════════════════════════════════
    FOOTER

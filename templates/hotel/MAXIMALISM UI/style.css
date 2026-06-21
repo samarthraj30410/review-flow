@@ -79,7 +79,7 @@ body::before {
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(40px);
+  filter: blur(60px);
   opacity: 0.35;
   will-change: transform;
   transform: translateZ(0);
@@ -896,7 +896,7 @@ body::before {
    PERFORMANCE — reduce GPU load on large screens
    ═══════════════════════════════════════════ */
 @media (min-width: 1024px) {
-  .orb { filter: blur(30px); opacity: 0.25; }
+  .orb { filter: blur(100px); opacity: 0.25; }
   .orb-4, .orb-5 { display: none; }
   .deco-circle, .deco-zigzag, .deco-sparkle { display: none; }
   .glass-card {
@@ -904,6 +904,29 @@ body::before {
     -webkit-backdrop-filter: blur(12px) saturate(1.2);
   }
   body::before { opacity: 0.7; }
+}
+
+/* ═══════════════════════════════════════════
+   PERFORMANCE MODE (Mobile / Smaller screens)
+   ═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .bg-orbs, .deco-shapes, .glass-card {
+    contain: paint layout;
+  }
+  .orb {
+    filter: none;
+  }
+  .orb-1 { background: radial-gradient(circle, var(--neon-pink) 0%, transparent 70%); }
+  .orb-2 { background: radial-gradient(circle, var(--neon-violet) 0%, transparent 70%); }
+  .orb-3 { background: radial-gradient(circle, var(--neon-cyan) 0%, transparent 70%); }
+  .orb-4 { background: radial-gradient(circle, var(--neon-lime) 0%, transparent 70%); }
+  .orb-5 { background: radial-gradient(circle, var(--neon-orange) 0%, transparent 70%); }
+  .hotel-name {
+    animation: none;
+  }
+  .glass-card::before {
+    animation: none;
+  }
 }
 
 /* Respect reduced motion preferences */

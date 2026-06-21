@@ -48,7 +48,7 @@ body {
   width: 40vw;
   height: 40vw;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(160px);
   pointer-events: none;
   opacity: 0.25;
   z-index: -1;
@@ -553,5 +553,19 @@ body {
   
   .star-btn {
     font-size: 2.2rem;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   PERFORMANCE MODE (Mobile / Smaller screens)
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .ambient-glow {
+    filter: blur(60px);
+  }
+  .card-glass {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
   }
 }

@@ -4,9 +4,11 @@
 
 :root {
   /* Colors */
-  --clay-bg: #d4d4d4; /* slightly darker dim grey for background */
-  --clay-card-bg: #e0e0e0; /* the requested #e0e0e0 grey */
-  
+  --clay-bg: #d4d4d4;
+  /* slightly darker dim grey for background */
+  --clay-card-bg: #e0e0e0;
+  /* the requested #e0e0e0 grey */
+
   /* Soft Pastel Palette - slightly dimmed to fit the grey */
   --clay-lavender: #e8e8f2;
   --clay-sky: #e8f0f2;
@@ -20,7 +22,7 @@
   --clay-accent-light: #e6e0ff;
   --clay-success: #20c997;
   --clay-star: #ffc107;
-  
+
   --text-primary: #2d2e40;
   --text-secondary: #6c7293;
   --text-tertiary: #a0a6c0;
@@ -30,35 +32,35 @@
   --radius-md: 20px;
   --radius-lg: 32px;
   --radius-pill: 100px;
-  
+
   /* Clay Shadows (Adjusted for #ababab background) */
   /* Outward bulging clay (Cards, Buttons) */
-  --clay-out: 
+  --clay-out:
     inset 4px 4px 8px rgba(255, 255, 255, 0.6),
     inset -4px -4px 8px rgba(0, 0, 0, 0.15),
     10px 10px 24px rgba(0, 0, 0, 0.2),
     -10px -10px 24px rgba(255, 255, 255, 0.5);
 
   /* Smaller outward clay (Badges, small buttons) */
-  --clay-out-sm: 
+  --clay-out-sm:
     inset 2px 2px 4px rgba(255, 255, 255, 0.6),
     inset -2px -2px 4px rgba(0, 0, 0, 0.12),
     6px 6px 12px rgba(0, 0, 0, 0.15),
     -6px -6px 12px rgba(255, 255, 255, 0.5);
 
   /* Inward pressed clay (Inputs, Tracks, Depressed state - ENHANCED) */
-  --clay-in: 
+  --clay-in:
     inset 6px 6px 12px rgba(0, 0, 0, 0.25),
     inset -6px -6px 12px rgba(255, 255, 255, 0.65);
-    
+
   /* Primary Button Clay */
-  --clay-primary: 
+  --clay-primary:
     inset 4px 4px 8px rgba(255, 255, 255, 0.4),
     inset -4px -4px 8px rgba(0, 0, 0, 0.25),
     8px 8px 16px rgba(124, 77, 255, 0.5);
 
   /* Primary Button Clay Pressed - ENHANCED */
-  --clay-primary-in: 
+  --clay-primary-in:
     inset 6px 6px 12px rgba(0, 0, 0, 0.35),
     inset -4px -4px 8px rgba(255, 255, 255, 0.2);
 
@@ -88,7 +90,10 @@ body {
 /* ─── Background Orbs (Soft Blobs) ──────── */
 .bg-orbs {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
@@ -103,28 +108,39 @@ body {
 }
 
 .orb-1 {
-  width: 400px; height: 400px;
+  width: 400px;
+  height: 400px;
   background: var(--clay-accent-light);
-  top: -100px; left: -100px;
+  top: -100px;
+  left: -100px;
 }
 
 .orb-2 {
-  width: 300px; height: 300px;
+  width: 300px;
+  height: 300px;
   background: #fff;
-  bottom: -50px; right: -50px;
+  bottom: -50px;
+  right: -50px;
   animation-delay: -5s;
 }
 
 .orb-3 {
-  width: 250px; height: 250px;
+  width: 250px;
+  height: 250px;
   background: #d4e0ff;
-  top: 40%; left: 60%;
+  top: 40%;
+  left: 60%;
   animation-delay: -10s;
 }
 
 @keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(30px, -50px) scale(1.1); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
 }
 
 /* ─── App Container ─────────────────────── */
@@ -161,7 +177,8 @@ body {
 }
 
 .hotel-badge .dot {
-  width: 6px; height: 6px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--clay-accent);
 }
@@ -211,7 +228,7 @@ body {
   font-weight: 600;
   color: var(--text-secondary);
   padding: 4px 12px;
-  border-radius: var(--radius-pill);
+  border-radius: 32px;
   background: var(--clay-card-bg);
   box-shadow: var(--clay-out-sm);
 }
@@ -246,13 +263,27 @@ body {
 }
 
 @keyframes pageIn {
-  from { opacity: 0; transform: translateY(20px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes pageOut {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-10px) scale(0.98); }
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
 }
 
 /* ─── Main Clay Card ────────────────────── */
@@ -293,7 +324,8 @@ body {
 }
 
 .clay-icon {
-  width: 56px; height: 56px;
+  width: 56px;
+  height: 56px;
   border-radius: var(--radius-md);
   background: var(--clay-card-bg);
   box-shadow: var(--clay-out-sm);
@@ -507,7 +539,8 @@ body {
 
 .clay-range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 28px; height: 28px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: var(--clay-card-bg);
   box-shadow: var(--clay-out-sm);
@@ -520,7 +553,8 @@ body {
 }
 
 .slider-val {
-  width: 44px; height: 44px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -569,7 +603,7 @@ body {
   color: var(--text-tertiary);
   cursor: pointer;
   transition: var(--transition-bounce);
-  -webkit-text-stroke: 1px rgba(0,0,0,0.05);
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.05);
 }
 
 .star.active {
@@ -582,9 +616,17 @@ body {
 }
 
 @keyframes starPop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.4) rotate(10deg); }
-  100% { transform: scale(1) rotate(0deg); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.4) rotate(10deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 /* ─── Divider & Buttons ─────────────────── */
@@ -637,21 +679,47 @@ body {
 }
 
 /* ─── Color Utilities ───────────────────── */
-.clay-bg-lavender { background: var(--clay-lavender) !important; }
-.clay-bg-sky { background: var(--clay-sky) !important; }
-.clay-bg-peach { background: var(--clay-peach) !important; }
-.clay-bg-mint { background: var(--clay-mint) !important; }
-.clay-bg-pink { background: var(--clay-pink) !important; }
-.clay-bg-grey { background: var(--clay-grey) !important; }
+.clay-bg-lavender {
+  background: var(--clay-lavender) !important;
+}
+
+.clay-bg-sky {
+  background: var(--clay-sky) !important;
+}
+
+.clay-bg-peach {
+  background: var(--clay-peach) !important;
+}
+
+.clay-bg-mint {
+  background: var(--clay-mint) !important;
+}
+
+.clay-bg-pink {
+  background: var(--clay-pink) !important;
+}
+
+.clay-bg-grey {
+  background: var(--clay-grey) !important;
+}
 
 .clay-bounce {
   animation: clayBounce 0.5s cubic-bezier(0.34, 1.8, 0.64, 1);
 }
 
 @keyframes clayBounce {
-  0% { transform: scale(1); }
-  40% { transform: scale(0.90); } /* Deepened the bounce scale for enhanced effect */
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(0.90);
+  }
+
+  /* Deepened the bounce scale for enhanced effect */
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* ─── Thank You Page ────────────────────── */
@@ -664,7 +732,8 @@ body {
 }
 
 .thankyou-icon {
-  width: 80px; height: 80px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   font-size: 40px;
   color: var(--clay-success);
