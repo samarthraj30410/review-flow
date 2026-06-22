@@ -1,0 +1,571 @@
+/* Aurelia Grand Resort & Spa - Design System */
+
+:root {
+  --bg-dark: #0B0B0C;
+  --bg-card: rgba(18, 18, 19, 0.7);
+  --gold-accent: #D4AF37; /* Luxury Gold */
+  --gold-glow: rgba(212, 175, 55, 0.15);
+  --gold-muted: rgba(212, 175, 55, 0.4);
+  --gold-bright: #F3E5AB; /* Sand Gold */
+  
+  --text-light: #F7F7F7;
+  --text-muted: #A0A0A5;
+  --border-glass: rgba(212, 175, 55, 0.08);
+  --border-focus: rgba(212, 175, 55, 0.6);
+  --input-bg: rgba(255, 255, 255, 0.02);
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-premium: 16px;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+  padding: 24px 16px;
+}
+
+/* Ambient Backdrop Glows */
+.ambient-glow {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  filter: blur(160px);
+  pointer-events: none;
+  opacity: 0.25;
+  z-index: -1;
+}
+
+.glow-1 {
+  top: -10%;
+  left: 20%;
+  background: radial-gradient(circle, var(--gold-accent) 0%, transparent 70%);
+}
+
+.glow-2 {
+  bottom: -10%;
+  right: 15%;
+  background: radial-gradient(circle, #8A701A 0%, transparent 70%);
+}
+
+/* Page Layout */
+.review-container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* Hotel Header */
+.hotel-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.hotel-logo {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 12px;
+}
+
+.logo-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.2));
+}
+
+.hotel-title {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.hotel-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--gold-accent);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.divider-gold {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+  margin: 16px auto 0;
+}
+
+/* Glassmorphic Main Card */
+.card-glass {
+  width: 100%;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-premium);
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shadow-premium {
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.03),
+    inset 0 0 16px rgba(212, 175, 55, 0.03);
+}
+
+/* Review Stages and Fade-in Animation */
+.card-stage {
+  display: none;
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.card-stage.active {
+  display: block;
+  animation: stageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stageEnter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stage Headers */
+.stage-title {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 8px;
+  color: var(--text-light);
+}
+
+.text-gold {
+  color: var(--gold-accent);
+  background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stage-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* Interactive Star Selectors */
+.rating-stars {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: #1F1F22;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));
+}
+
+.star-btn:hover {
+  transform: scale(1.15);
+  color: var(--gold-muted);
+}
+
+.star-btn.active {
+  color: var(--gold-accent);
+  transform: scale(1.1);
+  text-shadow: 0 0 12px var(--gold-glow);
+}
+
+.star-btn:active {
+  transform: scale(1.35) rotate(-5deg);
+  text-shadow: 0 0 20px var(--gold-glow), 0 0 40px rgba(212, 175, 55, 0.4);
+  transition-duration: 0.06s;
+}
+
+.star-btn.pop-animate {
+  animation: starBtnPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes starBtnPop {
+  0%   { transform: scale(1.35) rotate(-5deg); }
+  40%  { transform: scale(0.9) rotate(3deg); }
+  70%  { transform: scale(1.15) rotate(-1deg); }
+  100% { transform: scale(1.1) rotate(0deg); }
+}
+
+.star-btn.active ~ .star-btn {
+  color: #1F1F22;
+  text-shadow: none;
+}
+
+.rating-label {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Static Star Display */
+.rating-stars-static {
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--gold-accent);
+  letter-spacing: 6px;
+  margin-bottom: 24px;
+  text-shadow: 0 0 8px var(--gold-glow);
+}
+
+/* Buttons and Links */
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-accent) 0%, #B89228 100%);
+  color: #0A0A0A;
+  border: none;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--gold-glow);
+  opacity: 0.95;
+}
+
+.btn-gold:active {
+  transform: translateY(1px) scale(0.95);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4), 0 0 30px var(--gold-glow);
+  transition-duration: 0.08s;
+  filter: brightness(1.1);
+}
+
+/* Luxury ripple effect */
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, rgba(243, 229, 171, 0.15) 40%, transparent 70%);
+  transform: scale(0);
+  animation: rippleExpand 0.55s ease-out forwards;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes rippleExpand {
+  0%   { transform: scale(0); opacity: 1; }
+  50%  { opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+/* Gold flash burst on buttons */
+.btn-click-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--click-x, 50%) var(--click-y, 50%), rgba(212, 175, 55, 0.4) 0%, transparent 60%);
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  animation: flashBurst 0.45s ease-out forwards;
+}
+
+@keyframes flashBurst {
+  0%   { opacity: 1; transform: scale(0.8); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+.btn-glass-secondary {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: var(--text-light);
+  border: 1px solid var(--border-glass);
+}
+
+.btn-glass-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--gold-muted);
+}
+
+.btn-glass-secondary:active {
+  transform: scale(0.95);
+  background-color: rgba(212, 175, 55, 0.08);
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 16px var(--gold-glow);
+  transition-duration: 0.06s;
+}
+
+.action-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 16px auto 0;
+  display: block;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  width: max-content;
+}
+
+.btn-back:hover {
+  color: var(--gold-accent);
+  letter-spacing: 0.08em;
+}
+
+.btn-back:active {
+  transform: scale(0.94);
+  color: var(--gold-bright);
+  text-shadow: 0 0 8px var(--gold-glow);
+  transition-duration: 0.06s;
+}
+
+/* Luxury Forms Styling */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold-accent);
+  margin-bottom: 6px;
+}
+
+.luxury-input, 
+.luxury-textarea {
+  width: 100%;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-light);
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.luxury-input:focus, 
+.luxury-textarea:focus {
+  border-color: var(--border-focus);
+  background-color: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.05);
+}
+
+.required {
+  color: #EF4444;
+}
+
+/* Form Submit State / Loading Spinner */
+.btn-submit {
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.spinner {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(10, 10, 10, 0.2);
+  border-top-color: #0A0A0A;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  position: absolute;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading .btn-text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.loading .spinner {
+  display: block;
+}
+
+/* Success Checkmark Animations */
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+}
+
+.checkmark-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.circle-draw {
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  animation: drawCircle 0.8s ease-out 0.2s forwards;
+  transform-origin: center;
+}
+
+.check-draw {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: drawCheck 0.5s ease-out 0.8s forwards;
+}
+
+@keyframes drawCircle {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+.closing-signoff {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 24px;
+}
+
+.signoff-name {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold-accent);
+  display: block;
+  margin-top: 4px;
+}
+
+/* Luxury Footer */
+.template-footer {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.footer-secured {
+  color: var(--gold-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 6px;
+}
+
+/* Responsive Adaptations */
+@media (max-width: 480px) {
+  body {
+    padding: 16px 8px;
+  }
+  
+  .card-glass {
+    padding: 24px 16px;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .hotel-title {
+    font-size: 1.85rem;
+  }
+  
+  .stage-title {
+    font-size: 1.4rem;
+  }
+  
+  .star-btn {
+    font-size: 2.2rem;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   PERFORMANCE MODE (Mobile / Smaller screens)
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .ambient-glow {
+    filter: blur(60px);
+  }
+  .card-glass {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}

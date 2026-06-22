@@ -1,0 +1,684 @@
+/* ─────────────────────────────────────────
+   ROOT & TOKENS
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Brutalist Theme Colors */
+  --bg-color: #f7f7f7;
+  --primary-color: #ffde00; /* Neo Yellow */
+  --secondary-color: #ff00ff; /* Neo Pink */
+  --tertiary-color: #00ffff; /* Cyan */
+  --border-color: #000000;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-tertiary: #666666;
+  
+  --shadow-offset: 6px;
+  --border-width: 3px;
+  --hard-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--border-color);
+  
+  --radius: 0px; /* Sharp corners */
+  --font-mono: 'Space Mono', monospace;
+  --font-bold: 'Archivo Black', sans-serif;
+  
+  --transition-fast: 0.1s ease-in-out;
+}
+
+/* ─────────────────────────────────────────
+   BACKGROUND & LAYOUT
+───────────────────────────────────────── */
+html, body {
+  min-height: 100vh;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  background-color: var(--bg-color);
+  background-image: radial-gradient(var(--text-tertiary) 1px, transparent 1px);
+  background-size: 20px 20px;
+  overflow-x: hidden;
+}
+
+/* Animated background orbs (reused structure, brutalist twist) */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border: var(--border-width) solid var(--border-color);
+  animation: floatOrb 10s linear infinite;
+  will-change: transform;
+}
+
+.orb-1 {
+  width: 150px; height: 150px;
+  background: var(--tertiary-color);
+  top: 10%; left: -50px;
+  box-shadow: var(--hard-shadow);
+}
+
+.orb-2 {
+  width: 200px; height: 50px;
+  background: var(--primary-color);
+  bottom: 20%; right: -50px;
+  box-shadow: var(--hard-shadow);
+  animation-delay: -3s;
+}
+
+.orb-3 {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  top: 40%; left: 70%;
+  box-shadow: var(--hard-shadow);
+  animation-delay: -6s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(40px, -40px) rotate(90deg); }
+  50% { transform: translate(0px, -80px) rotate(180deg); }
+  75% { transform: translate(-40px, -40px) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────
+   APP CONTAINER
+───────────────────────────────────────── */
+.app-container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 16px 40px;
+}
+
+/* ─────────────────────────────────────────
+   HEADER
+───────────────────────────────────────── */
+.app-header {
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  padding: 40px 0 28px;
+}
+
+.hotel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-color);
+  border: var(--border-width) solid var(--border-color);
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  box-shadow: var(--hard-shadow);
+}
+
+.hotel-badge .dot {
+  width: 12px; height: 12px;
+  background: var(--secondary-color);
+  border: 2px solid var(--border-color);
+}
+
+.hotel-name {
+  font-family: var(--font-bold);
+  font-size: clamp(32px, 8vw, 42px);
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  color: var(--primary-color);
+  -webkit-text-stroke: 2px var(--border-color);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  position: relative;
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--bg-color);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--hard-shadow);
+}
+
+.hotel-subtitle {
+  font-size: 16px;
+  font-weight: 700;
+  display: inline-block;
+  padding: 8px 20px;
+  background: var(--tertiary-color);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 4px 4px 0px var(--border-color);
+}
+
+/* ─────────────────────────────────────────
+   PROGRESS INDICATOR
+───────────────────────────────────────── */
+.progress-bar-wrap {
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 24px;
+  opacity: 0;
+}
+
+.progress-bar-wrap.visible { opacity: 1; }
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.progress-track {
+  height: 16px;
+  background: var(--bg-color);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 4px 4px 0px var(--border-color);
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--secondary-color);
+  border-right: var(--border-width) solid var(--border-color);
+  transition: width 0.3s linear;
+}
+
+/* ─────────────────────────────────────────
+   GLASS CARD -> BRUTALIST CARD
+───────────────────────────────────────── */
+.glass-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--bg-color);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--hard-shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ─────────────────────────────────────────
+   PAGE SYSTEM
+───────────────────────────────────────── */
+.page {
+  display: none;
+  width: 100%;
+  max-width: 480px;
+  animation: pageSlide 0.3s ease forwards;
+}
+
+.page.active { display: block; }
+
+@keyframes pageSlide {
+  from { opacity: 0; transform: translateX(50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pageOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-50px); }
+}
+
+/* ─────────────────────────────────────────
+   PAGE 1 — CHOOSE REVIEW TYPE
+───────────────────────────────────────── */
+.review-type-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.review-type-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border: var(--border-width) solid var(--border-color);
+  padding: 16px;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-primary);
+  box-shadow: var(--hard-shadow);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.review-type-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px var(--border-color);
+}
+
+.review-type-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0px var(--border-color);
+}
+
+.btn-icon {
+  width: 52px; height: 52px;
+  border: var(--border-width) solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.btn-icon.food  { background: var(--primary-color); }
+.btn-icon.mgmt  { background: var(--tertiary-color); }
+.btn-icon.hotel { background: var(--secondary-color); }
+
+.btn-text { flex: 1; }
+.btn-title { font-family: var(--font-bold); font-size: 18px; text-transform: uppercase; }
+.btn-desc  { font-size: 13px; font-weight: 700; color: var(--text-secondary); }
+
+.btn-chevron {
+  font-family: var(--font-bold);
+  font-size: 24px;
+}
+
+.card-header {
+  padding: 24px 24px 0;
+  background: var(--primary-color);
+  border-bottom: var(--border-width) solid var(--border-color);
+  padding-bottom: 24px;
+}
+
+.card-section-label {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--bg-color);
+  border: var(--border-width) solid var(--border-color);
+  padding: 4px 10px;
+  display: inline-block;
+  margin-bottom: 12px;
+  box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.card-title {
+  font-family: var(--font-bold);
+  font-size: 24px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  display: block;
+}
+
+/* ─────────────────────────────────────────
+   FORM ELEMENTS
+───────────────────────────────────────── */
+.form-body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 24px; }
+
+.form-group { display: flex; flex-direction: column; gap: 12px; }
+
+.form-label {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--secondary-color);
+  color: #fff;
+  border: var(--border-width) solid var(--border-color);
+  display: inline-block;
+  padding: 6px 12px;
+  box-shadow: 3px 3px 0px var(--border-color);
+  align-self: flex-start;
+}
+
+/* Checkboxes / Radios */
+.option-group { display: flex; flex-direction: column; gap: 12px; }
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: var(--border-width) solid var(--border-color);
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 3px 3px 0px var(--border-color);
+  transition: transform 0.1s;
+}
+
+.option-item:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0px var(--border-color); }
+.option-item:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px var(--border-color); }
+
+.option-item input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px; height: 24px;
+  border: var(--border-width) solid var(--border-color);
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.option-item input[type="radio"] { border-radius: 0; /* Brutalist prefers squares */ }
+
+.option-item input:checked {
+  background: var(--tertiary-color);
+}
+
+.option-item input:checked::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: var(--border-color);
+}
+
+.option-label { font-size: 16px; font-weight: 700; text-transform: uppercase; }
+
+/* Range Slider */
+.slider-wrap { display: flex; flex-direction: column; gap: 12px; }
+
+.slider-row { display: flex; align-items: center; gap: 16px; }
+
+.glass-range {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  background: #fff;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 3px 3px 0px var(--border-color);
+  outline: none;
+}
+
+.glass-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px; height: 32px;
+  background: var(--primary-color);
+  border: var(--border-width) solid var(--border-color);
+  cursor: pointer;
+}
+
+.slider-val {
+  font-family: var(--font-bold);
+  font-size: 24px;
+  min-width: 48px;
+  text-align: center;
+  background: #fff;
+  border: var(--border-width) solid var(--border-color);
+  padding: 4px;
+  box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.slider-labels { display: flex; justify-content: space-between; font-weight: 700; text-transform: uppercase; }
+
+/* Star Rating */
+.star-group { display: flex; flex-direction: column; gap: 12px; }
+
+.star-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.star-row-label {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.stars { display: flex; gap: 4px; }
+
+.star {
+  font-size: 28px;
+  cursor: pointer;
+  color: #ccc;
+  -webkit-text-stroke: 1px #000;
+  transition: transform 0.1s;
+}
+
+.star.active { color: var(--primary-color); -webkit-text-stroke: 2px #000; }
+.star:hover { transform: scale(1.2); }
+
+/* Textarea & Select */
+.glass-textarea, .glass-select {
+  width: 100%;
+  background: #fff;
+  border: var(--border-width) solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  padding: 16px;
+  box-shadow: var(--hard-shadow);
+  outline: none;
+}
+
+.glass-textarea { min-height: 120px; resize: vertical; }
+
+.glass-textarea:focus, .glass-select:focus {
+  background: var(--primary-color);
+}
+
+/* ─────────────────────────────────────────
+   DIVIDER
+───────────────────────────────────────── */
+.glass-divider {
+  height: var(--border-width);
+  background: var(--border-color);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────── */
+.btn-row {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  background: #e0e0e0;
+}
+
+.btn-primary {
+  flex: 1;
+  padding: 16px;
+  border: var(--border-width) solid var(--border-color);
+  font-family: var(--font-bold);
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--hard-shadow);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-primary.accent, .btn-primary.success {
+  background: var(--tertiary-color);
+  color: var(--text-primary);
+}
+
+.btn-primary.ghost {
+  background: #ffffff;
+  color: var(--text-primary);
+}
+
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px var(--border-color);
+}
+
+.btn-primary:active {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 2px 2px 0px var(--border-color) !important;
+}
+
+.back-btn {
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  font-family: var(--font-bold);
+  text-transform: uppercase;
+  background: var(--secondary-color);
+  color: #fff;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 4px 4px 0px var(--border-color);
+  cursor: pointer;
+}
+
+.back-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--border-color);
+}
+
+/* ─────────────────────────────────────────
+   THANK YOU PAGE
+───────────────────────────────────────── */
+.thankyou-body {
+  padding: 40px 24px;
+  text-align: center;
+  background: var(--primary-color);
+}
+
+.thankyou-icon {
+  font-size: 80px;
+  font-family: var(--font-bold);
+  line-height: 1;
+  margin-bottom: 16px;
+  color: var(--bg-color);
+  -webkit-text-stroke: 4px var(--border-color);
+  text-shadow: var(--hard-shadow);
+}
+
+.thankyou-title {
+  font-family: var(--font-bold);
+  font-size: 32px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.thankyou-subtitle {
+  font-size: 16px;
+  font-weight: 700;
+  border: var(--border-width) solid var(--border-color);
+  background: #fff;
+  padding: 16px;
+  box-shadow: 4px 4px 0px var(--border-color);
+  margin-bottom: 24px;
+}
+
+.review-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+
+.review-tag {
+  background: var(--tertiary-color);
+  border: var(--border-width) solid var(--border-color);
+  padding: 6px 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.app-footer {
+  margin-top: 24px;
+  font-family: var(--font-bold);
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center;
+  background: #fff;
+  border: var(--border-width) solid var(--border-color);
+  padding: 8px 16px;
+  box-shadow: 4px 4px 0px var(--border-color);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--secondary-color);
+  color: #fff;
+  border: var(--border-width) solid var(--border-color);
+  padding: 16px 24px;
+  font-family: var(--font-bold);
+  text-transform: uppercase;
+  box-shadow: var(--hard-shadow);
+  z-index: 1000;
+  transition: bottom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast.show { bottom: 30px; }
+
+/* ─────────────────────────────────────────
+   CLICK EFFECTS
+───────────────────────────────────────── */
+
+/* Screen jolt — applied to body */
+body.jolt {
+  animation: screenJolt 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes screenJolt {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-2px, 1px); }
+  40%  { transform: translate(1.5px, -1px); }
+  60%  { transform: translate(-1px, 0.5px); }
+  80%  { transform: translate(0.5px, -0.5px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Shake on individual elements */
+@keyframes brutalShake {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  20%  { transform: translate(-2px, 0) rotate(-0.8deg); }
+  40%  { transform: translate(1.5px, 0) rotate(0.5deg); }
+  60%  { transform: translate(-1px, 0) rotate(-0.3deg); }
+  80%  { transform: translate(0.5px, 0) rotate(0.2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Star slam */
+@keyframes starSlam {
+  0%   { transform: scale(1) rotate(0deg); }
+  25%  { transform: scale(1.25) rotate(-4deg); }
+  50%  { transform: scale(0.9) rotate(2deg); }
+  75%  { transform: scale(1.05) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Stamp burst — spawned by JS */
+.brutal-stamp {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--secondary-color);
+  border: 3px solid var(--border-color);
+  pointer-events: none;
+  z-index: 10;
+  animation: stampBurst 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+@keyframes stampBurst {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.6; }
+  50%  { transform: translate(-50%, -50%) scale(3); opacity: 0.3; }
+  100% { transform: translate(-50%, -50%) scale(5); opacity: 0; }
+}
+
+/* Make interactive elements position-relative for stamp containment */
+.review-type-btn,
+.btn-primary,
+.back-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 400px) {
+  .app-container { padding: 12px 10px 32px; }
+  .hotel-name { font-size: 24px; }
+  .card-title { font-size: 20px; }
+  .review-type-btn { padding: 12px; }
+  .btn-icon { width: 44px; height: 44px; font-size: 20px; }
+}
