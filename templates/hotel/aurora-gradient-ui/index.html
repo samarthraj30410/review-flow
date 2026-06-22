@@ -15,7 +15,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
 
   <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css" />
@@ -66,7 +68,8 @@
         </div>
 
         <nav class="review-type-grid" aria-label="Review categories">
-          <button class="review-type-btn" id="btn-food" onclick="navigateTo('food')" aria-label="Review food and dining">
+          <button class="review-type-btn" id="btn-food" onclick="navigateTo('food')"
+            aria-label="Review food and dining">
             <div class="btn-icon food">🍽️</div>
             <div class="btn-text">
               <div class="btn-title">Food &amp; Dining</div>
@@ -75,7 +78,8 @@
             <span class="btn-chevron" aria-hidden="true">›</span>
           </button>
 
-          <button class="review-type-btn" id="btn-mgmt" onclick="navigateTo('management')" aria-label="Review management and staff">
+          <button class="review-type-btn" id="btn-mgmt" onclick="navigateTo('management')"
+            aria-label="Review management and staff">
             <div class="btn-icon mgmt">🤝</div>
             <div class="btn-text">
               <div class="btn-title">Management &amp; Staff</div>
@@ -84,7 +88,8 @@
             <span class="btn-chevron" aria-hidden="true">›</span>
           </button>
 
-          <button class="review-type-btn" id="btn-hotel" onclick="navigateTo('hotel')" aria-label="Review hotel experience">
+          <button class="review-type-btn" id="btn-hotel" onclick="navigateTo('hotel')"
+            aria-label="Review hotel experience">
             <div class="btn-icon hotel">🏨</div>
             <div class="btn-text">
               <div class="btn-title">Hotel Experience</div>
@@ -137,9 +142,8 @@
             <label class="form-label" for="food-quality">Overall Food Quality</label>
             <div class="slider-wrap">
               <div class="slider-row">
-                <input type="range" class="aurora-range" id="food-quality" name="food-quality"
-                  min="1" max="10" value="7"
-                  oninput="updateSlider('food-quality-val', this.value)" />
+                <input type="range" class="aurora-range" id="food-quality" name="food-quality" min="1" max="10"
+                  value="7" oninput="updateSlider('food-quality-val', this.value)" />
                 <span class="slider-val" id="food-quality-val">7</span>
               </div>
               <div class="slider-labels"><span>1 — Poor</span><span>10 — Outstanding</span></div>
@@ -150,7 +154,8 @@
           <div class="form-group">
             <label class="form-label" for="food-feedback">What did you love or what could we improve?</label>
             <textarea class="aurora-textarea" id="food-feedback" name="food-feedback"
-              placeholder="Tell us about the dishes you tried, the service speed, or any special moments…" rows="4"></textarea>
+              placeholder="Tell us about the dishes you tried, the service speed, or any special moments…"
+              rows="4"></textarea>
           </div>
 
         </form>
@@ -216,9 +221,8 @@
             <label class="form-label" for="response-time">Staff Response Time Rating</label>
             <div class="slider-wrap">
               <div class="slider-row">
-                <input type="range" class="aurora-range" id="response-time" name="response-time"
-                  min="1" max="10" value="7"
-                  oninput="updateSlider('response-time-val', this.value)" />
+                <input type="range" class="aurora-range" id="response-time" name="response-time" min="1" max="10"
+                  value="7" oninput="updateSlider('response-time-val', this.value)" />
                 <span class="slider-val" id="response-time-val">7</span>
               </div>
               <div class="slider-labels"><span>1 — Very slow</span><span>10 — Instant</span></div>
@@ -229,7 +233,8 @@
           <div class="form-group">
             <label class="form-label" for="management-feedback">Additional Comments for Management</label>
             <textarea class="aurora-textarea" id="management-feedback" name="management-feedback"
-              placeholder="Mention any specific staff members, memorable interactions, or areas for improvement…" rows="4"></textarea>
+              placeholder="Mention any specific staff members, memorable interactions, or areas for improvement…"
+              rows="4"></textarea>
           </div>
 
         </form>
@@ -267,44 +272,64 @@
               <div class="star-row">
                 <span class="star-row-label">🛏️ Room Cleanliness</span>
                 <div class="stars" id="stars-cleanliness" role="group" aria-label="Room cleanliness rating">
-                  <span class="star" data-group="cleanliness" data-val="1" onclick="setStars('cleanliness',1)" tabindex="0" role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="cleanliness" data-val="2" onclick="setStars('cleanliness',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="cleanliness" data-val="3" onclick="setStars('cleanliness',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="cleanliness" data-val="4" onclick="setStars('cleanliness',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="cleanliness" data-val="5" onclick="setStars('cleanliness',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="1" onclick="setStars('cleanliness',1)"
+                    tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="cleanliness" data-val="2" onclick="setStars('cleanliness',2)"
+                    tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="3" onclick="setStars('cleanliness',3)"
+                    tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="4" onclick="setStars('cleanliness',4)"
+                    tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="5" onclick="setStars('cleanliness',5)"
+                    tabindex="0" role="button" aria-label="5 stars">★</span>
                 </div>
               </div>
 
               <div class="star-row">
                 <span class="star-row-label">💤 Room Comfort</span>
                 <div class="stars" id="stars-comfort" role="group" aria-label="Room comfort rating">
-                  <span class="star" data-group="comfort" data-val="1" onclick="setStars('comfort',1)" tabindex="0" role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="comfort" data-val="2" onclick="setStars('comfort',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="comfort" data-val="3" onclick="setStars('comfort',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="comfort" data-val="4" onclick="setStars('comfort',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="comfort" data-val="5" onclick="setStars('comfort',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="1" onclick="setStars('comfort',1)" tabindex="0"
+                    role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="comfort" data-val="2" onclick="setStars('comfort',2)" tabindex="0"
+                    role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="3" onclick="setStars('comfort',3)" tabindex="0"
+                    role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="4" onclick="setStars('comfort',4)" tabindex="0"
+                    role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="5" onclick="setStars('comfort',5)" tabindex="0"
+                    role="button" aria-label="5 stars">★</span>
                 </div>
               </div>
 
               <div class="star-row">
                 <span class="star-row-label">🏊 Amenities</span>
                 <div class="stars" id="stars-amenities" role="group" aria-label="Amenities rating">
-                  <span class="star" data-group="amenities" data-val="1" onclick="setStars('amenities',1)" tabindex="0" role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="amenities" data-val="2" onclick="setStars('amenities',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="amenities" data-val="3" onclick="setStars('amenities',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="amenities" data-val="4" onclick="setStars('amenities',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="amenities" data-val="5" onclick="setStars('amenities',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="1" onclick="setStars('amenities',1)" tabindex="0"
+                    role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="amenities" data-val="2" onclick="setStars('amenities',2)" tabindex="0"
+                    role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="3" onclick="setStars('amenities',3)" tabindex="0"
+                    role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="4" onclick="setStars('amenities',4)" tabindex="0"
+                    role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="5" onclick="setStars('amenities',5)" tabindex="0"
+                    role="button" aria-label="5 stars">★</span>
                 </div>
               </div>
 
               <div class="star-row">
                 <span class="star-row-label">📶 WiFi &amp; Connectivity</span>
                 <div class="stars" id="stars-wifi" role="group" aria-label="WiFi rating">
-                  <span class="star" data-group="wifi" data-val="1" onclick="setStars('wifi',1)" tabindex="0" role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="wifi" data-val="2" onclick="setStars('wifi',2)" tabindex="0" role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="wifi" data-val="3" onclick="setStars('wifi',3)" tabindex="0" role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="wifi" data-val="4" onclick="setStars('wifi',4)" tabindex="0" role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="wifi" data-val="5" onclick="setStars('wifi',5)" tabindex="0" role="button" aria-label="5 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="1" onclick="setStars('wifi',1)" tabindex="0"
+                    role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="wifi" data-val="2" onclick="setStars('wifi',2)" tabindex="0"
+                    role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="3" onclick="setStars('wifi',3)" tabindex="0"
+                    role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="4" onclick="setStars('wifi',4)" tabindex="0"
+                    role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="5" onclick="setStars('wifi',5)" tabindex="0"
+                    role="button" aria-label="5 stars">★</span>
                 </div>
               </div>
 
@@ -316,9 +341,8 @@
             <label class="form-label" for="overall-experience">Overall Experience Score</label>
             <div class="slider-wrap">
               <div class="slider-row">
-                <input type="range" class="aurora-range" id="overall-experience" name="overall-experience"
-                  min="1" max="10" value="8"
-                  oninput="updateSlider('overall-exp-val', this.value)" />
+                <input type="range" class="aurora-range" id="overall-experience" name="overall-experience" min="1"
+                  max="10" value="8" oninput="updateSlider('overall-exp-val', this.value)" />
                 <span class="slider-val" id="overall-exp-val">8</span>
               </div>
               <div class="slider-labels"><span>1 — Terrible</span><span>10 — Perfect</span></div>
@@ -348,7 +372,8 @@
           <div class="form-group">
             <label class="form-label" for="hotel-feedback">Detailed Feedback</label>
             <textarea class="aurora-textarea" id="hotel-feedback" name="hotel-feedback"
-              placeholder="Tell us about your room, what made your stay memorable, or anything we can do to improve…" rows="4"></textarea>
+              placeholder="Tell us about your room, what made your stay memorable, or anything we can do to improve…"
+              rows="4"></textarea>
           </div>
 
         </form>
@@ -405,4 +430,5 @@
   <script src="app.js"></script>
 
 </body>
+
 </html>
