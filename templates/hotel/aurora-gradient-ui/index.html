@@ -12,6 +12,13 @@
   <link rel="icon" type="image/jpeg" sizes="96x96" href="../../../assets/logo.jpg" />
   <link rel="shortcut icon" href="../../../assets/logo.jpg" />
 
+  <!-- Trailing Slash Fix for Clean URLs -->
+  <script>
+    if (!window.location.pathname.endsWith('/') && !window.location.pathname.endsWith('.html')) {
+      window.location.replace(window.location.href + '/');
+    }
+  </script>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
