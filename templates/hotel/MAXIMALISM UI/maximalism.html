@@ -109,71 +109,128 @@
     </section>
 
     <!-- ══════════════════════════════════════
-         PAGE 1 — Food & Dining Review
+         PAGE 1 — Food & Dining Menu
     ══════════════════════════════════════ -->
-    <section class="page" id="page-food" aria-label="Food and dining review">
+    <section class="page" id="page-food" aria-label="Food and dining menu">
       <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
       <div class="glass-card">
         <div class="card-header">
-          <p class="card-section-label">🍽️ Food & Dining</p>
-          <h2 class="card-title">Food & Dining Review</h2>
+          <p class="card-section-label">🍽️ Food Menu</p>
+          <h2 class="card-title">Order Your Food</h2>
         </div>
 
-        <form id="food-form" class="form-body" novalidate>
+        <!-- Sorting and Filtering System -->
+        <style>
+          .filter-system::-webkit-scrollbar { display: none; }
+          .filter-system { scrollbar-width: none; -ms-overflow-style: none; }
+        </style>
+        <nav class="filter-system" style="display: flex; gap: 8px; padding: 8px 24px; overflow-x: auto; margin-bottom: 24px; align-items: center;">
+          <button class="filter-btn btn-primary" style="padding: 8px 16px; border-radius: var(--radius-pill); font-size: 13px; cursor: pointer; white-space: nowrap; flex: 0 0 auto; width: auto;" data-category="all" onclick="filterMenu('all', this, event)">All</button>
+          <button class="filter-btn btn-primary ghost" style="padding: 8px 16px; border-radius: var(--radius-pill); font-size: 13px; cursor: pointer; white-space: nowrap; flex: 0 0 auto; width: auto;" data-category="south-indian" onclick="filterMenu('south-indian', this, event)">South Indian</button>
+          <button class="filter-btn btn-primary ghost" style="padding: 8px 16px; border-radius: var(--radius-pill); font-size: 13px; cursor: pointer; white-space: nowrap; flex: 0 0 auto; width: auto;" data-category="chinese" onclick="filterMenu('chinese', this, event)">Chinese</button>
+        </nav>
 
-          <!-- Meal selection -->
-          <div class="form-group">
-            <label class="form-label">Which meals did you enjoy with us?</label>
-            <div class="option-group" role="group" aria-label="Meal selection">
-              <label class="option-item">
-                <input type="checkbox" id="meal-breakfast" name="meals" value="breakfast" />
-                <span class="option-label">🌅 Breakfast</span>
-              </label>
-              <label class="option-item">
-                <input type="checkbox" id="meal-lunch" name="meals" value="lunch" />
-                <span class="option-label">☀️ Lunch</span>
-              </label>
-              <label class="option-item">
-                <input type="checkbox" id="meal-dinner" name="meals" value="dinner" />
-                <span class="option-label">🌙 Dinner</span>
-              </label>
-              <label class="option-item">
-                <input type="checkbox" id="meal-room-service" name="meals" value="room-service" />
-                <span class="option-label">🛎️ Room Service</span>
-              </label>
-            </div>
-          </div>
+        <!-- Menu Categories -->
+        <div class="menu-container" style="padding: 0 24px;">
+          <!-- South Indian Category -->
+          <section class="menu-category" id="cat-south-indian">
+            <h3 class="category-title" style="margin-bottom: 16px; font-weight: 600; font-size: 18px; color: var(--text-primary);">South Indian</h3>
+            <ul class="dish-list" style="list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; padding: 0;">
+              <li class="dish-card" style="padding: 16px; display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid var(--glass-border-subtle); border-radius: var(--radius-md);">
+                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);"></div>
+                <div class="dish-info" style="flex-grow: 1;">
+                  <h4 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">Idli</h4>
+                  <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-secondary);">Soft, steamed rice cakes served with sambar and chutney.</p>
+                  <button class="add-to-order-btn btn-primary ghost" style="padding: 6px 12px; font-size: 12px; width: auto; border-radius: var(--radius-pill);" onclick="addToOrder('Idli', this, event)">Add to Order</button>
+                </div>
+              </li>
+              <li class="dish-card" style="padding: 16px; display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid var(--glass-border-subtle); border-radius: var(--radius-md);">
+                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);"></div>
+                <div class="dish-info" style="flex-grow: 1;">
+                  <h4 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">Dosa</h4>
+                  <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-secondary);">Crispy savory crepe filled with spiced potatoes.</p>
+                  <button class="add-to-order-btn btn-primary ghost" style="padding: 6px 12px; font-size: 12px; width: auto; border-radius: var(--radius-pill);" onclick="addToOrder('Dosa', this, event)">Add to Order</button>
+                </div>
+              </li>
+              <li class="dish-card" style="padding: 16px; display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid var(--glass-border-subtle); border-radius: var(--radius-md);">
+                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);"></div>
+                <div class="dish-info" style="flex-grow: 1;">
+                  <h4 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">Wada</h4>
+                  <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-secondary);">Crispy deep-fried lentil donuts.</p>
+                  <button class="add-to-order-btn btn-primary ghost" style="padding: 6px 12px; font-size: 12px; width: auto; border-radius: var(--radius-pill);" onclick="addToOrder('Wada', this, event)">Add to Order</button>
+                </div>
+              </li>
+              <li class="dish-card" style="padding: 16px; display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid var(--glass-border-subtle); border-radius: var(--radius-md);">
+                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);"></div>
+                <div class="dish-info" style="flex-grow: 1;">
+                  <h4 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">Uttapam</h4>
+                  <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-secondary);">Thick savory pancake topped with fresh vegetables.</p>
+                  <button class="add-to-order-btn btn-primary ghost" style="padding: 6px 12px; font-size: 12px; width: auto; border-radius: var(--radius-pill);" onclick="addToOrder('Uttapam', this, event)">Add to Order</button>
+                </div>
+              </li>
+            </ul>
+          </section>
 
-          <!-- Food quality slider -->
-          <div class="form-group">
-            <label class="form-label" for="food-quality">Overall Food Quality</label>
-            <div class="slider-wrap">
-              <div class="slider-row">
-                <input type="range" class="glass-range" id="food-quality" name="food-quality"
-                  min="1" max="10" value="7"
-                  oninput="updateSlider('food-quality-val', this.value)" />
-                <span class="slider-val" id="food-quality-val">7</span>
-              </div>
-              <div class="slider-labels"><span>1 — Poor</span><span>10 — Outstanding</span></div>
-            </div>
-          </div>
-
-          <!-- Feedback textarea -->
-          <div class="form-group">
-            <label class="form-label" for="food-feedback">What did you love or what could we improve?</label>
-            <textarea class="glass-textarea" id="food-feedback" name="food-feedback"
-              placeholder="Tell us about the dishes you tried, the service speed, or any special moments…" rows="4"></textarea>
-          </div>
-
-        </form>
+          <!-- Chinese Category -->
+          <section class="menu-category" id="cat-chinese">
+            <h3 class="category-title" style="margin-bottom: 16px; font-weight: 600; font-size: 18px; color: var(--text-primary);">Chinese</h3>
+            <ul class="dish-list" style="list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; padding: 0;">
+              <li class="dish-card" style="padding: 16px; display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid var(--glass-border-subtle); border-radius: var(--radius-md);">
+                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);"></div>
+                <div class="dish-info" style="flex-grow: 1;">
+                  <h4 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">Veg Chowmein</h4>
+                  <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-secondary);">Stir-fried noodles tossed with fresh vegetables.</p>
+                  <button class="add-to-order-btn btn-primary ghost" style="padding: 6px 12px; font-size: 12px; width: auto; border-radius: var(--radius-pill);" onclick="addToOrder('Veg Chowmein', this, event)">Add to Order</button>
+                </div>
+              </li>
+              <li class="dish-card" style="padding: 16px; display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid var(--glass-border-subtle); border-radius: var(--radius-md);">
+                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);"></div>
+                <div class="dish-info" style="flex-grow: 1;">
+                  <h4 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">Paneer Chowmein</h4>
+                  <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-secondary);">Classic chowmein loaded with soft paneer cubes.</p>
+                  <button class="add-to-order-btn btn-primary ghost" style="padding: 6px 12px; font-size: 12px; width: auto; border-radius: var(--radius-pill);" onclick="addToOrder('Paneer Chowmein', this, event)">Add to Order</button>
+                </div>
+              </li>
+              <li class="dish-card" style="padding: 16px; display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid var(--glass-border-subtle); border-radius: var(--radius-md);">
+                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);"></div>
+                <div class="dish-info" style="flex-grow: 1;">
+                  <h4 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">Egg Roll</h4>
+                  <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-secondary);">Flaky paratha wrapped around a spiced omelette.</p>
+                  <button class="add-to-order-btn btn-primary ghost" style="padding: 6px 12px; font-size: 12px; width: auto; border-radius: var(--radius-pill);" onclick="addToOrder('Egg Roll', this, event)">Add to Order</button>
+                </div>
+              </li>
+              <li class="dish-card" style="padding: 16px; display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid var(--glass-border-subtle); border-radius: var(--radius-md);">
+                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);"></div>
+                <div class="dish-info" style="flex-grow: 1;">
+                  <h4 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">Paneer Roll</h4>
+                  <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-secondary);">Spicy paneer chunks wrapped in a crispy paratha.</p>
+                  <button class="add-to-order-btn btn-primary ghost" style="padding: 6px 12px; font-size: 12px; width: auto; border-radius: var(--radius-pill);" onclick="addToOrder('Paneer Roll', this, event)">Add to Order</button>
+                </div>
+              </li>
+              <li class="dish-card" style="padding: 16px; display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid var(--glass-border-subtle); border-radius: var(--radius-md);">
+                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);"></div>
+                <div class="dish-info" style="flex-grow: 1;">
+                  <h4 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">Manchurian</h4>
+                  <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-secondary);">Deep-fried vegetable balls in a spicy, dark soy sauce.</p>
+                  <button class="add-to-order-btn btn-primary ghost" style="padding: 6px 12px; font-size: 12px; width: auto; border-radius: var(--radius-pill);" onclick="addToOrder('Manchurian', this, event)">Add to Order</button>
+                </div>
+              </li>
+              <li class="dish-card" style="padding: 16px; display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.06); border: 1.5px solid var(--glass-border-subtle); border-radius: var(--radius-md);">
+                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm);"></div>
+                <div class="dish-info" style="flex-grow: 1;">
+                  <h4 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">Paneer Chilli Gravy</h4>
+                  <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-secondary);">Spicy and tangy gravy with bell peppers and paneer.</p>
+                  <button class="add-to-order-btn btn-primary ghost" style="padding: 6px 12px; font-size: 12px; width: auto; border-radius: var(--radius-pill);" onclick="addToOrder('Paneer Chilli Gravy', this, event)">Add to Order</button>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
 
         <div class="glass-divider"></div>
         <div class="btn-row">
-          <button class="btn-primary accent" id="submit-food" onclick="submitReview('food')" type="button">
-            Submit Food Review ›
-          </button>
-          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
-            Cancel
+          <button class="btn-primary accent" id="view-order-btn" onclick="submitReview('food-order')" type="button">
+            View Ordered (<span id="cart-count">0</span>) ›
           </button>
         </div>
       </div>

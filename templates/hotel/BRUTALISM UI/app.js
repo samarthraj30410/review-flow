@@ -8,12 +8,15 @@ function navigateTo(pageId) {
   const next = document.getElementById('page-' + pageId);
   if (!next || current === next) return;
 
+  // Animate out
   current.style.animation = 'pageOut 0.3s cubic-bezier(0.16,1,0.3,1) forwards';
   setTimeout(() => {
     current.classList.remove('active');
     current.style.animation = '';
+
     next.classList.add('active');
     next.style.animation = 'pageIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards';
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, 280);
 
@@ -30,29 +33,30 @@ function updateProgress(pageId) {
   const right = document.getElementById('progress-label-right');
 
   const map = {
-    choose:     { show: false, pct: 0,   step: '',            label: '' },
-    food:       { show: true,  pct: 50,  step: 'Step 1 of 2', label: 'Food & Dining' },
-    management: { show: true,  pct: 50,  step: 'Step 1 of 2', label: 'Management' },
-    hotel:      { show: true,  pct: 50,  step: 'Step 1 of 2', label: 'Hotel Experience' },
-    thankyou:   { show: true,  pct: 100, step: 'Completed!',  label: '✓ Submitted' },
+    choose: { show: false, pct: 0, step: '', label: '' },
+    food: { show: true, pct: 50, step: 'Step 1 of 2', label: 'Food & Dining' },
+    management: { show: true, pct: 50, step: 'Step 1 of 2', label: 'Management' },
+    hotel: { show: true, pct: 50, step: 'Step 1 of 2', label: 'Hotel Experience' },
+    thankyou: { show: true, pct: 100, step: 'Completed!', label: '✓ Submitted' },
   };
 
   const info = map[pageId] || map.choose;
-  wrap.classList.toggle('visible', info.show);
-  fill.style.width = info.pct + '%';
-  left.textContent = info.step;
-  right.textContent = info.label;
+  if(wrap) wrap.classList.toggle('visible', info.show);
+  if(fill) fill.style.width = info.pct + '%';
+  if(left) left.textContent = info.step;
+  if(right) right.textContent = info.label;
 }
 
 /* ─── Update Header Subtitle ────────────── */
 function updateHeader(pageId) {
   const sub = document.getElementById('header-subtitle');
+  if(!sub) return;
   const subs = {
-    choose:     'We value your experience',
-    food:       'Tell us about your dining experience',
+    choose: 'We value your experience',
+    food: 'Tell us about your dining experience',
     management: 'Help us improve our service',
-    hotel:      'Rate your overall stay',
-    thankyou:   'Review submitted successfully',
+    hotel: 'Rate your overall stay',
+    thankyou: 'Review submitted successfully',
   };
   sub.style.opacity = '0';
   setTimeout(() => {
@@ -66,19 +70,24 @@ function updateHeader(pageId) {
 function updateSlider(targetId, val) {
   const el = document.getElementById(targetId);
   if (el) el.textContent = val;
-  const slider = event.target;
+
+  // Find the slider by ID prefix — avoids relying on implicit `event`
+  const sliderId = targetId.replace('-val', '').replace('overall-exp', 'overall-experience');
+  const slider = document.getElementById(sliderId);
+  if (!slider) return;
   const pct = ((val - slider.min) / (slider.max - slider.min)) * 100;
-  slider.style.background = `linear-gradient(90deg, rgba(139,92,246,0.85) ${pct}%, rgba(255,255,255,0.10) ${pct}%)`;
+  // Use brutalist colors for slider fill
+  slider.style.background = `linear-gradient(90deg, #ff00ff ${pct}%, #fff ${pct}%)`;
 }
 
 /* ─── Initialize sliders ────────────────── */
 function initSliders() {
-  document.querySelectorAll('.aurora-range').forEach(slider => {
+  document.querySelectorAll('.glass-range').forEach(slider => {
     const val = slider.value;
     const min = slider.min || 0;
     const max = slider.max || 10;
     const pct = ((val - min) / (max - min)) * 100;
-    slider.style.background = `linear-gradient(90deg, rgba(139,92,246,0.85) ${pct}%, rgba(255,255,255,0.10) ${pct}%)`;
+    slider.style.background = `linear-gradient(90deg, #ff00ff ${pct}%, #fff ${pct}%)`;
   });
 }
 
@@ -101,8 +110,7 @@ document.addEventListener('mouseover', e => {
   const container = document.getElementById('stars-' + group);
   if (!container) return;
   container.querySelectorAll('.star').forEach(s => {
-    s.style.color = parseInt(s.getAttribute('data-val')) <= val ? 'var(--gold)' : '';
-    s.style.filter = parseInt(s.getAttribute('data-val')) <= val ? 'drop-shadow(0 0 8px rgba(251,191,36,0.65))' : '';
+    s.style.color = parseInt(s.getAttribute('data-val')) <= val ? 'var(--primary-color)' : '';
   });
 });
 
@@ -113,17 +121,17 @@ document.addEventListener('mouseout', e => {
   if (!container) return;
   container.querySelectorAll('.star').forEach(s => {
     const sv = parseInt(s.getAttribute('data-val'));
-    const active = sv <= (starRatings[group] || 0);
-    s.style.color  = active ? 'var(--gold)' : '';
-    s.style.filter = active ? 'drop-shadow(0 0 8px rgba(251,191,36,0.65))' : '';
+    s.style.color = sv <= (starRatings[group] || 0) ? 'var(--primary-color)' : '';
   });
 });
 
 /* ─── Submit Review ─────────────────────── */
 function submitReview(type) {
   const tags = buildSummaryTags(type);
-  document.getElementById('review-summary-tags').innerHTML =
-    tags.map(t => `<span class="review-tag">${t}</span>`).join('');
+  const summaryEl = document.getElementById('review-summary-tags');
+  if(summaryEl) {
+    summaryEl.innerHTML = tags.map(t => `<span class="review-tag">${t}</span>`).join('');
+  }
   showToast('✓ Review submitted — thank you!');
   navigateTo('thankyou');
 }
@@ -133,19 +141,11 @@ function buildSummaryTags(type) {
   const tags = [];
 
   if (type === 'food') {
-    const meals = [...document.querySelectorAll('input[name="meals"]:checked')].map(i => i.value);
+    const meals = [...document.querySelectorAll('input[name="meals"]:checked')]
+      .map(i => i.value);
     if (meals.length) tags.push(...meals.map(m => '🍽️ ' + m[0].toUpperCase() + m.slice(1)));
     const q = document.getElementById('food-quality');
     if (q) tags.push('Quality: ' + q.value + '/10');
-  }
-
-  if (type === 'food-order') {
-    tags.push('Items Ordered: ' + cart.length);
-    if (cart.length > 0) {
-      let itemsStr = cart.join(', ');
-      if (itemsStr.length > 40) itemsStr = itemsStr.substring(0, 40) + '...';
-      tags.push('Order: ' + itemsStr);
-    }
   }
 
   if (type === 'management') {
@@ -170,6 +170,7 @@ function buildSummaryTags(type) {
 /* ─── Toast ─────────────────────────────── */
 function showToast(msg) {
   const t = document.getElementById('toast');
+  if(!t) return;
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 3500);
@@ -185,90 +186,36 @@ function closePortal() {
   }
 }
 
-/* ─── Ripple Effect Helper ──────────────── */
-function spawnRipple(el, e) {
+/* ─── Brutalist Shake Effect ───────────── */
+function brutalShake(el) {
+  el.style.animation = 'none';
+  void el.offsetWidth;
+  el.style.animation = 'brutalShake 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97) both';
+}
+
+/* ─── Stamp / Slam Effect on Buttons ───── */
+function brutalStamp(el, e) {
+  // Create a stamp burst element
   const rect = el.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height) * 2;
-  const ripple = document.createElement('span');
-  ripple.className = 'ripple-effect';
-  ripple.style.width = ripple.style.height = size + 'px';
-  ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-  ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-  el.appendChild(ripple);
-  ripple.addEventListener('animationend', () => ripple.remove());
+  const stamp = document.createElement('span');
+  stamp.className = 'brutal-stamp';
+  stamp.style.left = (e.clientX - rect.left) + 'px';
+  stamp.style.top = (e.clientY - rect.top) + 'px';
+  el.appendChild(stamp);
+  stamp.addEventListener('animationend', () => stamp.remove());
 }
 
-/* ─── Flash Burst Helper ────────────────── */
-function spawnFlash(el, e) {
-  const rect = el.getBoundingClientRect();
-  const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
-  const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%';
-  const flash = document.createElement('span');
-  flash.className = 'btn-click-flash';
-  flash.style.setProperty('--click-x', x);
-  flash.style.setProperty('--click-y', y);
-  el.appendChild(flash);
-  flash.addEventListener('animationend', () => flash.remove());
-}
-
-/* ─── Menu System Logic ──────────────────── */
-let cart = [];
-let itemCounts = {};
-
-function filterMenu(category, btnElement, event) {
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.remove('btn-primary');
-    btn.classList.add('ghost');
-    btn.style.border = '1px solid rgba(255,255,255,0.2)';
-    btn.style.background = 'transparent';
-  });
-  btnElement.classList.remove('ghost');
-  btnElement.classList.add('btn-primary');
-  btnElement.style.border = 'none';
-  btnElement.style.background = '';
-
-  if (event && event.clientX) {
-    spawnFlash(btnElement, event);
-  }
-
-  if (category === 'all') {
-    document.getElementById('cat-south-indian').style.display = 'block';
-    document.getElementById('cat-chinese').style.display = 'block';
-  } else if (category === 'south-indian') {
-    document.getElementById('cat-south-indian').style.display = 'block';
-    document.getElementById('cat-chinese').style.display = 'none';
-  } else if (category === 'chinese') {
-    document.getElementById('cat-south-indian').style.display = 'none';
-    document.getElementById('cat-chinese').style.display = 'block';
-  }
-}
-
-function addToOrder(itemName, btnElement, event) {
-  cart.push(itemName);
-  itemCounts[itemName] = (itemCounts[itemName] || 0) + 1;
-  document.getElementById('cart-count').textContent = cart.length;
-  showToast('✓ Added ' + itemName + ' to order');
-  
-  if (btnElement) {
-    const originalText = btnElement.getAttribute('data-original-text') || btnElement.textContent.replace(/\s*\(\d+\)$/, '');
-    if (!btnElement.hasAttribute('data-original-text')) {
-      btnElement.setAttribute('data-original-text', originalText);
-    }
-    btnElement.textContent = originalText + ' (' + itemCounts[itemName] + ')';
-  }
-
-  if (event && event.clientX && typeof spawnFlash === 'function') {
-    spawnFlash(btnElement, event);
-  } else if (event && event.target && typeof spawnRipple === 'function') {
-    spawnRipple(event.target, event);
-  }
+/* ─── Screen Jolt ──────────────────────── */
+function screenJolt() {
+  document.body.classList.add('jolt');
+  setTimeout(() => document.body.classList.remove('jolt'), 300);
 }
 
 /* ─── Init ──────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initSliders();
 
-  /* Star keyboard accessibility */
+  // Keyboard support for stars
   document.querySelectorAll('.star').forEach(star => {
     star.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -278,22 +225,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* Ripple on review-type buttons, option items, back button */
-  document.querySelectorAll('.review-type-btn, .option-item, .back-btn').forEach(el => {
-    el.addEventListener('click', e => spawnRipple(el, e));
+  // Review type buttons — gentle stamp only, no shake/jolt
+  document.querySelectorAll('.review-type-btn').forEach(el => {
+    el.addEventListener('click', e => {
+      brutalStamp(el, e);
+    });
   });
 
-  /* Flash burst on primary buttons */
-  document.querySelectorAll('.btn-primary').forEach(btn => {
-    btn.addEventListener('click', e => spawnFlash(btn, e));
+  // Submit & back buttons — shake + stamp, no screen jolt
+  document.querySelectorAll('.btn-primary, .back-btn').forEach(el => {
+    el.addEventListener('click', e => {
+      brutalShake(el);
+      brutalStamp(el, e);
+    });
   });
 
-  /* Star pop animation on click */
+  // Option items get a shake
+  document.querySelectorAll('.option-item').forEach(el => {
+    el.addEventListener('click', () => {
+      brutalShake(el);
+    });
+  });
+
+  // Star pop animation on click
   document.querySelectorAll('.star').forEach(star => {
     star.addEventListener('click', () => {
-      star.classList.remove('pop-animate');
-      void star.offsetWidth; /* force reflow */
-      star.classList.add('pop-animate');
+      star.style.animation = 'none';
+      void star.offsetWidth;
+      star.style.animation = 'starSlam 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both';
     });
   });
 });

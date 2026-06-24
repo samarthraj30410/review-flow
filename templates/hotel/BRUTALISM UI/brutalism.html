@@ -95,128 +95,71 @@
     </section>
 
     <!-- ══════════════════════════════════════
-         PAGE 1 — Food & Dining Menu
+         PAGE 1 — Food & Dining Review
     ══════════════════════════════════════ -->
-    <section class="page" id="page-food" aria-label="Food and dining menu">
+    <section class="page" id="page-food" aria-label="Food and dining review">
       <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">‹ Back</button>
       <div class="glass-card">
         <div class="card-header">
-          <p class="card-section-label">🍽️ Food Menu</p>
-          <h2 class="card-title">Order Your Food</h2>
+          <p class="card-section-label">🍽️ Food & Dining</p>
+          <h2 class="card-title">Food & Dining Review</h2>
         </div>
 
-        <!-- Sorting and Filtering System -->
-        <style>
-          .filter-system::-webkit-scrollbar { display: none; }
-          .filter-system { scrollbar-width: none; -ms-overflow-style: none; }
-        </style>
-        <nav class="filter-system" style="display: flex; gap: 8px; padding: 8px; overflow-x: auto; margin-bottom: 24px; border: 2px solid #000; background: #fff; align-items: center;">
-          <button class="filter-btn btn-primary" style="padding: 8px 16px; font-size: 13px; border: 2px solid #000; cursor: pointer; white-space: nowrap; font-family: 'Space Mono', monospace; flex: 0 0 auto; width: auto;" data-category="all" onclick="filterMenu('all', this, event)">All</button>
-          <button class="filter-btn btn-primary ghost" style="padding: 8px 16px; font-size: 13px; border: 2px solid transparent; background: transparent; color: inherit; cursor: pointer; white-space: nowrap; font-family: 'Space Mono', monospace; flex: 0 0 auto; width: auto;" data-category="south-indian" onclick="filterMenu('south-indian', this, event)">South Indian</button>
-          <button class="filter-btn btn-primary ghost" style="padding: 8px 16px; font-size: 13px; border: 2px solid transparent; background: transparent; color: inherit; cursor: pointer; white-space: nowrap; font-family: 'Space Mono', monospace; flex: 0 0 auto; width: auto;" data-category="chinese" onclick="filterMenu('chinese', this, event)">Chinese</button>
-        </nav>
+        <form id="food-form" class="form-body" novalidate>
 
-        <!-- Menu Categories -->
-        <div class="menu-container">
-          <!-- South Indian Category -->
-          <section class="menu-category" id="cat-south-indian">
-            <h3 class="category-title" style="margin-bottom: 16px; display: inline-block; background: #000; color: #fff; padding: 4px 12px; font-family: 'Archivo Black', sans-serif;">South Indian</h3>
-            <ul class="dish-list" style="list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; padding: 0;">
-              <li class="dish-card glass-card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: #ccc; border: 2px solid #000;"></div>
-                <div class="dish-info" style="flex-grow: 1;">
-                  <h4 style="font-size: 16px; margin-bottom: 4px; font-family: 'Archivo Black', sans-serif;">Idli</h4>
-                  <p style="font-size: 13px; margin-bottom: 12px; font-family: 'Space Mono', monospace;">Soft, steamed rice cakes served with sambar and chutney.</p>
-                  <button class="add-to-order-btn btn-primary" style="padding: 6px 12px; font-size: 12px; border: 2px solid #000; cursor: pointer; font-family: 'Space Mono', monospace;" onclick="addToOrder('Idli', this, event)">Add to Order</button>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: #ccc; border: 2px solid #000;"></div>
-                <div class="dish-info" style="flex-grow: 1;">
-                  <h4 style="font-size: 16px; margin-bottom: 4px; font-family: 'Archivo Black', sans-serif;">Dosa</h4>
-                  <p style="font-size: 13px; margin-bottom: 12px; font-family: 'Space Mono', monospace;">Crispy savory crepe filled with spiced potatoes.</p>
-                  <button class="add-to-order-btn btn-primary" style="padding: 6px 12px; font-size: 12px; border: 2px solid #000; cursor: pointer; font-family: 'Space Mono', monospace;" onclick="addToOrder('Dosa', this, event)">Add to Order</button>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: #ccc; border: 2px solid #000;"></div>
-                <div class="dish-info" style="flex-grow: 1;">
-                  <h4 style="font-size: 16px; margin-bottom: 4px; font-family: 'Archivo Black', sans-serif;">Wada</h4>
-                  <p style="font-size: 13px; margin-bottom: 12px; font-family: 'Space Mono', monospace;">Crispy deep-fried lentil donuts.</p>
-                  <button class="add-to-order-btn btn-primary" style="padding: 6px 12px; font-size: 12px; border: 2px solid #000; cursor: pointer; font-family: 'Space Mono', monospace;" onclick="addToOrder('Wada', this, event)">Add to Order</button>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: #ccc; border: 2px solid #000;"></div>
-                <div class="dish-info" style="flex-grow: 1;">
-                  <h4 style="font-size: 16px; margin-bottom: 4px; font-family: 'Archivo Black', sans-serif;">Uttapam</h4>
-                  <p style="font-size: 13px; margin-bottom: 12px; font-family: 'Space Mono', monospace;">Thick savory pancake topped with fresh vegetables.</p>
-                  <button class="add-to-order-btn btn-primary" style="padding: 6px 12px; font-size: 12px; border: 2px solid #000; cursor: pointer; font-family: 'Space Mono', monospace;" onclick="addToOrder('Uttapam', this, event)">Add to Order</button>
-                </div>
-              </li>
-            </ul>
-          </section>
+          <!-- Meal selection -->
+          <div class="form-group">
+            <label class="form-label">Which meals did you enjoy with us?</label>
+            <div class="option-group" role="group" aria-label="Meal selection">
+              <label class="option-item">
+                <input type="checkbox" id="meal-breakfast" name="meals" value="breakfast" />
+                <span class="option-label">🌅 Breakfast</span>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="meal-lunch" name="meals" value="lunch" />
+                <span class="option-label">☀️ Lunch</span>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="meal-dinner" name="meals" value="dinner" />
+                <span class="option-label">🌙 Dinner</span>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="meal-room-service" name="meals" value="room-service" />
+                <span class="option-label">🛎️ Room Service</span>
+              </label>
+            </div>
+          </div>
 
-          <!-- Chinese Category -->
-          <section class="menu-category" id="cat-chinese">
-            <h3 class="category-title" style="margin-bottom: 16px; display: inline-block; background: #000; color: #fff; padding: 4px 12px; font-family: 'Archivo Black', sans-serif;">Chinese</h3>
-            <ul class="dish-list" style="list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; padding: 0;">
-              <li class="dish-card glass-card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: #ccc; border: 2px solid #000;"></div>
-                <div class="dish-info" style="flex-grow: 1;">
-                  <h4 style="font-size: 16px; margin-bottom: 4px; font-family: 'Archivo Black', sans-serif;">Veg Chowmein</h4>
-                  <p style="font-size: 13px; margin-bottom: 12px; font-family: 'Space Mono', monospace;">Stir-fried noodles tossed with fresh vegetables.</p>
-                  <button class="add-to-order-btn btn-primary" style="padding: 6px 12px; font-size: 12px; border: 2px solid #000; cursor: pointer; font-family: 'Space Mono', monospace;" onclick="addToOrder('Veg Chowmein', this, event)">Add to Order</button>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: #ccc; border: 2px solid #000;"></div>
-                <div class="dish-info" style="flex-grow: 1;">
-                  <h4 style="font-size: 16px; margin-bottom: 4px; font-family: 'Archivo Black', sans-serif;">Paneer Chowmein</h4>
-                  <p style="font-size: 13px; margin-bottom: 12px; font-family: 'Space Mono', monospace;">Classic chowmein loaded with soft paneer cubes.</p>
-                  <button class="add-to-order-btn btn-primary" style="padding: 6px 12px; font-size: 12px; border: 2px solid #000; cursor: pointer; font-family: 'Space Mono', monospace;" onclick="addToOrder('Paneer Chowmein', this, event)">Add to Order</button>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: #ccc; border: 2px solid #000;"></div>
-                <div class="dish-info" style="flex-grow: 1;">
-                  <h4 style="font-size: 16px; margin-bottom: 4px; font-family: 'Archivo Black', sans-serif;">Egg Roll</h4>
-                  <p style="font-size: 13px; margin-bottom: 12px; font-family: 'Space Mono', monospace;">Flaky paratha wrapped around a spiced omelette.</p>
-                  <button class="add-to-order-btn btn-primary" style="padding: 6px 12px; font-size: 12px; border: 2px solid #000; cursor: pointer; font-family: 'Space Mono', monospace;" onclick="addToOrder('Egg Roll', this, event)">Add to Order</button>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: #ccc; border: 2px solid #000;"></div>
-                <div class="dish-info" style="flex-grow: 1;">
-                  <h4 style="font-size: 16px; margin-bottom: 4px; font-family: 'Archivo Black', sans-serif;">Paneer Roll</h4>
-                  <p style="font-size: 13px; margin-bottom: 12px; font-family: 'Space Mono', monospace;">Spicy paneer chunks wrapped in a crispy paratha.</p>
-                  <button class="add-to-order-btn btn-primary" style="padding: 6px 12px; font-size: 12px; border: 2px solid #000; cursor: pointer; font-family: 'Space Mono', monospace;" onclick="addToOrder('Paneer Roll', this, event)">Add to Order</button>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: #ccc; border: 2px solid #000;"></div>
-                <div class="dish-info" style="flex-grow: 1;">
-                  <h4 style="font-size: 16px; margin-bottom: 4px; font-family: 'Archivo Black', sans-serif;">Manchurian</h4>
-                  <p style="font-size: 13px; margin-bottom: 12px; font-family: 'Space Mono', monospace;">Deep-fried vegetable balls in a spicy, dark soy sauce.</p>
-                  <button class="add-to-order-btn btn-primary" style="padding: 6px 12px; font-size: 12px; border: 2px solid #000; cursor: pointer; font-family: 'Space Mono', monospace;" onclick="addToOrder('Manchurian', this, event)">Add to Order</button>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-                <div class="dish-img" style="width: 80px; height: 80px; flex-shrink: 0; background: #ccc; border: 2px solid #000;"></div>
-                <div class="dish-info" style="flex-grow: 1;">
-                  <h4 style="font-size: 16px; margin-bottom: 4px; font-family: 'Archivo Black', sans-serif;">Paneer Chilli Gravy</h4>
-                  <p style="font-size: 13px; margin-bottom: 12px; font-family: 'Space Mono', monospace;">Spicy and tangy gravy with bell peppers and paneer.</p>
-                  <button class="add-to-order-btn btn-primary" style="padding: 6px 12px; font-size: 12px; border: 2px solid #000; cursor: pointer; font-family: 'Space Mono', monospace;" onclick="addToOrder('Paneer Chilli Gravy', this, event)">Add to Order</button>
-                </div>
-              </li>
-            </ul>
-          </section>
-        </div>
+          <!-- Food quality slider -->
+          <div class="form-group">
+            <label class="form-label" for="food-quality">Overall Food Quality</label>
+            <div class="slider-wrap">
+              <div class="slider-row">
+                <input type="range" class="glass-range" id="food-quality" name="food-quality"
+                  min="1" max="10" value="7"
+                  oninput="updateSlider('food-quality-val', this.value)" />
+                <span class="slider-val" id="food-quality-val">7</span>
+              </div>
+              <div class="slider-labels"><span>1 — Poor</span><span>10 — Outstanding</span></div>
+            </div>
+          </div>
+
+          <!-- Feedback textarea -->
+          <div class="form-group">
+            <label class="form-label" for="food-feedback">What did you love or what could we improve?</label>
+            <textarea class="glass-textarea" id="food-feedback" name="food-feedback"
+              placeholder="Tell us about the dishes you tried, the service speed, or any special moments…" rows="4"></textarea>
+          </div>
+
+        </form>
 
         <div class="glass-divider"></div>
         <div class="btn-row">
-          <button class="btn-primary accent" id="view-order-btn" onclick="submitReview('food-order')" type="button">
-            View Ordered (<span id="cart-count">0</span>) ›
+          <button class="btn-primary accent" id="submit-food" onclick="submitReview('food')" type="button">
+            Submit Food Review ›
+          </button>
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
+            Cancel
           </button>
         </div>
       </div>

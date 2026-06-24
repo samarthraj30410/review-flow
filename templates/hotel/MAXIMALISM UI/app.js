@@ -152,6 +152,15 @@ function buildSummaryTags(type) {
     if (q) tags.push('Quality: ' + q.value + '/10');
   }
 
+  if (type === 'food-order') {
+    tags.push('Items Ordered: ' + cart.length);
+    if (cart.length > 0) {
+      let itemsStr = cart.join(', ');
+      if (itemsStr.length > 40) itemsStr = itemsStr.substring(0, 40) + '...';
+      tags.push('Order: ' + itemsStr);
+    }
+  }
+
   if (type === 'management') {
     const helpful = document.querySelector('input[name="staff-helpful"]:checked');
     if (helpful) tags.push('Staff: ' + helpful.value);
@@ -187,6 +196,61 @@ function closePortal() {
   } else {
     showToast('Thank you for your feedback!');
     navigateTo('choose');
+  }
+}
+
+/* ─── Menu System Logic ──────────────────── */
+let cart = [];
+let itemCounts = {};
+
+function filterMenu(category, btnElement, event) {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('accent');
+    btn.classList.add('ghost');
+  });
+  btnElement.classList.remove('ghost');
+  btnElement.classList.add('accent');
+
+  if (event && event.target && typeof spawnNeonRipple === 'function') {
+    spawnNeonRipple(event.target, event);
+    glowPulse(event.target);
+    spawnSparkles(event.target, event);
+  } else if (btnElement && typeof glowPulse === 'function') {
+    glowPulse(btnElement);
+  }
+
+  if (category === 'all') {
+    document.getElementById('cat-south-indian').style.display = 'block';
+    document.getElementById('cat-chinese').style.display = 'block';
+  } else if (category === 'south-indian') {
+    document.getElementById('cat-south-indian').style.display = 'block';
+    document.getElementById('cat-chinese').style.display = 'none';
+  } else if (category === 'chinese') {
+    document.getElementById('cat-south-indian').style.display = 'none';
+    document.getElementById('cat-chinese').style.display = 'block';
+  }
+}
+
+function addToOrder(itemName, btnElement, event) {
+  cart.push(itemName);
+  itemCounts[itemName] = (itemCounts[itemName] || 0) + 1;
+  document.getElementById('cart-count').textContent = cart.length;
+  showToast('✓ Added ' + itemName + ' to order');
+  
+  if (btnElement) {
+    const originalText = btnElement.getAttribute('data-original-text') || btnElement.textContent.replace(/\s*\(\d+\)$/, '');
+    if (!btnElement.hasAttribute('data-original-text')) {
+      btnElement.setAttribute('data-original-text', originalText);
+    }
+    btnElement.textContent = originalText + ' (' + itemCounts[itemName] + ')';
+  }
+
+  if (event && event.target && typeof spawnNeonRipple === 'function') {
+    spawnNeonRipple(event.target, event);
+    glowPulse(event.target);
+    spawnSparkles(event.target, event);
+  } else if (btnElement && typeof glowPulse === 'function') {
+    glowPulse(btnElement);
   }
 }
 

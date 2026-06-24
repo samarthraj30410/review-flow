@@ -148,6 +148,15 @@ function buildSummaryTags(type) {
     if (q) tags.push('Quality: ' + q.value + '/10');
   }
 
+  if (type === 'food-order') {
+    tags.push('Items Ordered: ' + cart.length);
+    if (cart.length > 0) {
+      let itemsStr = cart.join(', ');
+      if (itemsStr.length > 40) itemsStr = itemsStr.substring(0, 40) + '...';
+      tags.push('Order: ' + itemsStr);
+    }
+  }
+
   if (type === 'management') {
     const helpful = document.querySelector('input[name="staff-helpful"]:checked');
     if (helpful) tags.push('Staff: ' + helpful.value);
@@ -186,6 +195,65 @@ function closePortal() {
   }
 }
 
+/* ─── Menu System Logic ──────────────────── */
+let cart = [];
+let itemCounts = {};
+
+function filterMenu(category, btnElement, event) {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('btn-primary');
+    btn.classList.add('ghost');
+    btn.style.border = '2px solid transparent';
+    btn.style.background = 'transparent';
+    btn.style.color = 'inherit';
+  });
+  btnElement.classList.remove('ghost');
+  btnElement.classList.add('btn-primary');
+  btnElement.style.border = '2px solid #000';
+  btnElement.style.background = '';
+  btnElement.style.color = '';
+
+  if (event && event.target && typeof brutalShake === 'function') {
+    brutalShake(event.target);
+    brutalStamp(event.target, event);
+  } else if (btnElement && typeof brutalShake === 'function') {
+    brutalShake(btnElement);
+  }
+
+  if (category === 'all') {
+    document.getElementById('cat-south-indian').style.display = 'block';
+    document.getElementById('cat-chinese').style.display = 'block';
+  } else if (category === 'south-indian') {
+    document.getElementById('cat-south-indian').style.display = 'block';
+    document.getElementById('cat-chinese').style.display = 'none';
+  } else if (category === 'chinese') {
+    document.getElementById('cat-south-indian').style.display = 'none';
+    document.getElementById('cat-chinese').style.display = 'block';
+  }
+}
+
+function addToOrder(itemName, btnElement, event) {
+  cart.push(itemName);
+  itemCounts[itemName] = (itemCounts[itemName] || 0) + 1;
+  document.getElementById('cart-count').textContent = cart.length;
+  showToast('✓ Added ' + itemName + ' to order');
+  
+  if (btnElement) {
+    const originalText = btnElement.getAttribute('data-original-text') || btnElement.textContent.replace(/\s*\(\d+\)$/, '');
+    if (!btnElement.hasAttribute('data-original-text')) {
+      btnElement.setAttribute('data-original-text', originalText);
+    }
+    btnElement.textContent = originalText + ' (' + itemCounts[itemName] + ')';
+  }
+
+  if (event && event.target && typeof brutalShake === 'function') {
+    brutalShake(event.target);
+    brutalStamp(event.target, event);
+  } else if (btnElement && typeof brutalShake === 'function') {
+    brutalShake(btnElement);
+  }
+}
+
 /* ─── Brutalist Shake Effect ───────────── */
 function brutalShake(el) {
   el.style.animation = 'none';
@@ -195,7 +263,6 @@ function brutalShake(el) {
 
 /* ─── Stamp / Slam Effect on Buttons ───── */
 function brutalStamp(el, e) {
-  // Create a stamp burst element
   const rect = el.getBoundingClientRect();
   const stamp = document.createElement('span');
   stamp.className = 'brutal-stamp';

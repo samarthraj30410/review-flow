@@ -144,6 +144,15 @@ function buildSummaryTags(type) {
     if (q) tags.push('Quality: ' + q.value + '/10');
   }
 
+  if (type === 'food-order') {
+    tags.push('Items Ordered: ' + cart.length);
+    if (cart.length > 0) {
+      let itemsStr = cart.join(', ');
+      if (itemsStr.length > 40) itemsStr = itemsStr.substring(0, 40) + '...';
+      tags.push('Order: ' + itemsStr);
+    }
+  }
+
   if (type === 'management') {
     const helpful = document.querySelector('input[name="staff-helpful"]:checked');
     if (helpful) tags.push('Staff: ' + helpful.value);
@@ -186,6 +195,60 @@ function triggerBounce(el) {
   el.classList.remove('clay-bounce');
   void el.offsetWidth; // force reflow
   el.classList.add('clay-bounce');
+}
+
+/* ─── Menu System Logic ──────────────────── */
+let cart = [];
+let itemCounts = {};
+
+function filterMenu(category, btnElement, event) {
+  // Update button active states
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('clay-btn-primary');
+    btn.classList.add('clay-btn-secondary');
+  });
+  btnElement.classList.remove('clay-btn-secondary');
+  btnElement.classList.add('clay-btn-primary');
+
+  // Trigger bounce on filter button
+  if (event && event.target) {
+    triggerBounce(event.target);
+  } else if (btnElement) {
+    triggerBounce(btnElement);
+  }
+
+  // Filter sections
+  if (category === 'all') {
+    document.getElementById('cat-south-indian').style.display = 'block';
+    document.getElementById('cat-chinese').style.display = 'block';
+  } else if (category === 'south-indian') {
+    document.getElementById('cat-south-indian').style.display = 'block';
+    document.getElementById('cat-chinese').style.display = 'none';
+  } else if (category === 'chinese') {
+    document.getElementById('cat-south-indian').style.display = 'none';
+    document.getElementById('cat-chinese').style.display = 'block';
+  }
+}
+
+function addToOrder(itemName, btnElement, event) {
+  cart.push(itemName);
+  itemCounts[itemName] = (itemCounts[itemName] || 0) + 1;
+  document.getElementById('cart-count').textContent = cart.length;
+  showToast('✓ Added ' + itemName + ' to order');
+  
+  if (btnElement) {
+    const originalText = btnElement.getAttribute('data-original-text') || btnElement.textContent.replace(/\s*\(\d+\)$/, '');
+    if (!btnElement.hasAttribute('data-original-text')) {
+      btnElement.setAttribute('data-original-text', originalText);
+    }
+    btnElement.textContent = originalText + ' (' + itemCounts[itemName] + ')';
+  }
+
+  if (event && event.target) {
+    triggerBounce(event.target);
+  } else if (btnElement) {
+    triggerBounce(btnElement);
+  }
 }
 
 /* ─── Init ──────────────────────────────── */
