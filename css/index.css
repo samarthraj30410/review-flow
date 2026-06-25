@@ -406,9 +406,11 @@ section {
   bottom: 0;
   left: 7px;
   width: 2px;
-  background: linear-gradient(to bottom,
-      var(--accent) 0%,
-      rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--accent) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
 }
 
 .timeline-item {
@@ -489,9 +491,11 @@ section {
 .template-preview-area {
   height: 180px;
   background:
-    radial-gradient(circle at center,
+    radial-gradient(
+      circle at center,
       rgba(59, 130, 246, 0.1) 0%,
-      transparent 80%),
+      transparent 80%
+    ),
     var(--bg-secondary);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
@@ -565,8 +569,16 @@ section {
 /* Hotel — Liquid Glass UI */
 .temp-hotel .template-preview-area {
   background:
-    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(10, 132, 255, 0.45) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(48, 209, 88, 0.3) 0%, transparent 60%),
+    radial-gradient(
+      ellipse 80% 60% at 20% 0%,
+      rgba(10, 132, 255, 0.45) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 80% 100%,
+      rgba(48, 209, 88, 0.3) 0%,
+      transparent 60%
+    ),
     #0a0a1a;
   overflow: hidden;
   position: relative;
@@ -585,7 +597,11 @@ section {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(10, 132, 255, 0.55), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(10, 132, 255, 0.55),
+    transparent 70%
+  );
   top: -40px;
   left: -30px;
   filter: blur(30px);
@@ -594,7 +610,6 @@ section {
 }
 
 @keyframes hotelOrb {
-
   0%,
   100% {
     transform: translate(0, 0) scale(1);
@@ -607,7 +622,7 @@ section {
 
 /* Glass-style badge for hotel card */
 .template-badge-glass {
-  background: rgba(10, 132, 255, 0.20) !important;
+  background: rgba(10, 132, 255, 0.2) !important;
   border: 1px solid rgba(10, 132, 255, 0.55) !important;
   color: #5ac8fa !important;
   box-shadow: 0 0 10px rgba(10, 132, 255, 0.25);
@@ -615,11 +630,13 @@ section {
 
 /* Glass-style inner demo card */
 .template-inner-glass {
-  background: rgba(255, 255, 255, 0.10) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
 }
 
 .template-inner-glass h5 {
@@ -636,7 +653,7 @@ section {
   border: 1px solid rgba(0, 245, 255, 0.55) !important;
   color: #00f5ff !important;
   box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   letter-spacing: 0.06em;
 }
 
@@ -644,10 +661,30 @@ section {
 .temp-hotel:nth-child(2) .template-preview-area,
 .template-card:has(.template-badge-cyber) .template-preview-area {
   background:
-    radial-gradient(ellipse 70% 60% at 20% 10%, rgba(123, 47, 255, 0.35) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 80% 90%, rgba(255, 0, 204, 0.25) 0%, transparent 60%),
-    repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(0, 245, 255, 0.04) 18px, rgba(0, 245, 255, 0.04) 19px),
-    repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(0, 245, 255, 0.04) 18px, rgba(0, 245, 255, 0.04) 19px),
+    radial-gradient(
+      ellipse 70% 60% at 20% 10%,
+      rgba(123, 47, 255, 0.35) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 50% 50% at 80% 90%,
+      rgba(255, 0, 204, 0.25) 0%,
+      transparent 60%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 18px,
+      rgba(0, 245, 255, 0.04) 18px,
+      rgba(0, 245, 255, 0.04) 19px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 18px,
+      rgba(0, 245, 255, 0.04) 18px,
+      rgba(0, 245, 255, 0.04) 19px
+    ),
     #05050f;
   overflow: hidden;
 }
@@ -655,9 +692,11 @@ section {
 .template-inner-cyber {
   background: rgba(6, 6, 20, 0.88) !important;
   border: 1px solid rgba(0, 245, 255, 0.35) !important;
-  box-shadow: 0 0 18px rgba(0, 245, 255, 0.15), inset 0 1px 0 rgba(0, 245, 255, 0.1) !important;
+  box-shadow:
+    0 0 18px rgba(0, 245, 255, 0.15),
+    inset 0 1px 0 rgba(0, 245, 255, 0.1) !important;
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 
 .template-inner-cyber h5 {
@@ -684,9 +723,21 @@ section {
 /* Aurora Gradient preview area background */
 .temp-hotel-aurora .template-preview-area {
   background:
-    radial-gradient(ellipse 70% 55% at 15% 10%, rgba(139, 92, 246, 0.28) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 85% 5%, rgba(59, 130, 246, 0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 50% at 80% 90%, rgba(6, 182, 212, 0.2) 0%, transparent 60%),
+    radial-gradient(
+      ellipse 70% 55% at 15% 10%,
+      rgba(139, 92, 246, 0.28) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 85% 5%,
+      rgba(59, 130, 246, 0.22) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 55% 50% at 80% 90%,
+      rgba(6, 182, 212, 0.2) 0%,
+      transparent 60%
+    ),
     #060610;
   overflow: hidden;
   position: relative;
@@ -698,7 +749,11 @@ section {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 40%, rgba(139, 92, 246, 0.75), transparent 80%);
+  background: radial-gradient(
+    circle at 35% 40%,
+    rgba(139, 92, 246, 0.75),
+    transparent 80%
+  );
   top: -20px;
   left: -20px;
   filter: blur(25px);
@@ -707,7 +762,6 @@ section {
 }
 
 @keyframes auroraOrb {
-
   0%,
   100% {
     transform: translate(0, 0) scale(1);
@@ -723,11 +777,18 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
 }
 
 .template-inner-aurora h5 {
-  background: linear-gradient(135deg, #fff 0%, rgba(167, 139, 250, 0.95) 40%, rgba(6, 182, 212, 0.9) 75%);
+  background: linear-gradient(
+    135deg,
+    #fff 0%,
+    rgba(167, 139, 250, 0.95) 40%,
+    rgba(6, 182, 212, 0.9) 75%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -743,7 +804,10 @@ section {
   background: #e0e0e0 !important;
   border: none !important;
   color: #7c4dff !important;
-  box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 1), inset -2px -2px 4px rgba(160, 170, 200, 0.2), 4px 4px 8px rgba(160, 170, 200, 0.25) !important;
+  box-shadow:
+    inset 2px 2px 4px rgba(255, 255, 255, 1),
+    inset -2px -2px 4px rgba(160, 170, 200, 0.2),
+    4px 4px 8px rgba(160, 170, 200, 0.25) !important;
   font-weight: 700;
 }
 
@@ -751,12 +815,15 @@ section {
   background: #e0e0e0 !important;
   border: none !important;
   border-radius: 24px !important;
-  box-shadow: inset 4px 4px 8px rgba(255, 255, 255, 1), inset -4px -4px 8px rgba(160, 170, 200, 0.25), 10px 10px 24px rgba(0, 0, 0, 0.1) !important;
+  box-shadow:
+    inset 4px 4px 8px rgba(255, 255, 255, 1),
+    inset -4px -4px 8px rgba(160, 170, 200, 0.25),
+    10px 10px 24px rgba(0, 0, 0, 0.1) !important;
 }
 
 .template-inner-clay h5 {
   color: #2d2e40 !important;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 800;
 }
 
@@ -776,9 +843,21 @@ section {
 /* Maximalism preview area background */
 .temp-hotel-maximalism .template-preview-area {
   background:
-    radial-gradient(ellipse 70% 60% at 30% 20%, rgba(176, 38, 255, 0.35) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 70% 80%, rgba(255, 45, 149, 0.25) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0, 240, 255, 0.10) 0%, transparent 50%),
+    radial-gradient(
+      ellipse 70% 60% at 30% 20%,
+      rgba(176, 38, 255, 0.35) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 70% 80%,
+      rgba(255, 45, 149, 0.25) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 50% 50%,
+      rgba(0, 240, 255, 0.1) 0%,
+      transparent 50%
+    ),
     #0d0221;
   overflow: hidden;
   position: relative;
@@ -797,7 +876,12 @@ section {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 45, 149, 0.5), rgba(176, 38, 255, 0.3), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 45, 149, 0.5),
+    rgba(176, 38, 255, 0.3),
+    transparent 70%
+  );
   top: -30px;
   right: -20px;
   filter: blur(25px);
@@ -806,8 +890,13 @@ section {
 }
 
 @keyframes maxOrb {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%      { transform: translate(-15px, 15px) scale(1.12); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-15px, 15px) scale(1.12);
+  }
 }
 
 .template-inner-maximalism {
@@ -815,7 +904,9 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 .template-inner-maximalism h5 {

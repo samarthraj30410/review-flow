@@ -37,15 +37,13 @@
   /* Outward bulging clay (Cards, Buttons) */
   --clay-out:
     inset 4px 4px 8px rgba(255, 255, 255, 0.6),
-    inset -4px -4px 8px rgba(0, 0, 0, 0.15),
-    10px 10px 24px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.15), 10px 10px 24px rgba(0, 0, 0, 0.2),
     -10px -10px 24px rgba(255, 255, 255, 0.5);
 
   /* Smaller outward clay (Badges, small buttons) */
   --clay-out-sm:
     inset 2px 2px 4px rgba(255, 255, 255, 0.6),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.12),
-    6px 6px 12px rgba(0, 0, 0, 0.15),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.12), 6px 6px 12px rgba(0, 0, 0, 0.15),
     -6px -6px 12px rgba(255, 255, 255, 0.5);
 
   /* Inward pressed clay (Inputs, Tracks, Depressed state - ENHANCED) */
@@ -77,7 +75,11 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   background-color: var(--clay-bg);
   color: var(--text-primary);
   line-height: 1.5;
@@ -444,7 +446,9 @@ body {
 }
 
 .clay-textarea:focus {
-  box-shadow: var(--clay-in), 0 0 0 2px var(--clay-accent-light);
+  box-shadow:
+    var(--clay-in),
+    0 0 0 2px var(--clay-accent-light);
 }
 
 .clay-textarea::placeholder {
@@ -713,7 +717,7 @@ body {
   }
 
   40% {
-    transform: scale(0.90);
+    transform: scale(0.9);
   }
 
   /* Deepened the bounce scale for enhanced effect */

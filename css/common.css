@@ -24,20 +24,26 @@
   --radius: 12px;
 
   /* Mode Specific Variables */
-  --bg-radial-gradient: radial-gradient(circle at 50% -20%,
-      rgba(59, 130, 246, 0.08),
-      transparent 70%);
+  --bg-radial-gradient: radial-gradient(
+    circle at 50% -20%,
+    rgba(59, 130, 246, 0.08),
+    transparent 70%
+  );
   --bg-secondary-btn: rgba(255, 255, 255, 0.03);
   --bg-icon-surface: rgba(255, 255, 255, 0.03);
   --bg-inner-demo: rgba(9, 9, 11, 0.85);
   --header-bg: rgba(9, 9, 11, 0.7);
   --mobile-menu-bg: rgba(9, 9, 11, 0.95);
-  --logo-gradient: linear-gradient(135deg,
-      #ffffff 50%,
-      var(--text-secondary) 100%);
-  --hero-title-gradient: linear-gradient(180deg,
-      #ffffff 0%,
-      var(--text-secondary) 100%);
+  --logo-gradient: linear-gradient(
+    135deg,
+    #ffffff 50%,
+    var(--text-secondary) 100%
+  );
+  --hero-title-gradient: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    var(--text-secondary) 100%
+  );
 
   /* Spreadsheet Mockup */
   --sheet-bg: #0b0f19;
@@ -45,10 +51,14 @@
   --sheet-th: #111827;
 
   /* Shadows — Dark Mode: subtle grey/white outer glow */
-  --shadow-sm: 0 2px 8px rgba(255, 255, 255, 0.04), 0 1px 3px rgba(255, 255, 255, 0.03);
-  --shadow-md: 0 4px 16px rgba(255, 255, 255, 0.05), 0 2px 6px rgba(255, 255, 255, 0.04);
-  --shadow-lg: 0 8px 32px rgba(255, 255, 255, 0.06), 0 4px 12px rgba(255, 255, 255, 0.04);
-  --shadow-hover: 0 12px 40px rgba(255, 255, 255, 0.08), 0 6px 16px rgba(255, 255, 255, 0.05);
+  --shadow-sm:
+    0 2px 8px rgba(255, 255, 255, 0.04), 0 1px 3px rgba(255, 255, 255, 0.03);
+  --shadow-md:
+    0 4px 16px rgba(255, 255, 255, 0.05), 0 2px 6px rgba(255, 255, 255, 0.04);
+  --shadow-lg:
+    0 8px 32px rgba(255, 255, 255, 0.06), 0 4px 12px rgba(255, 255, 255, 0.04);
+  --shadow-hover:
+    0 12px 40px rgba(255, 255, 255, 0.08), 0 6px 16px rgba(255, 255, 255, 0.05);
 }
 
 html[data-theme="light"] {
@@ -69,20 +79,26 @@ html[data-theme="light"] {
   --success: #059669;
   --success-glow: rgba(5, 150, 105, 0.08);
 
-  --bg-radial-gradient: radial-gradient(circle at 50% -20%,
-      rgba(37, 99, 235, 0.06),
-      transparent 70%);
+  --bg-radial-gradient: radial-gradient(
+    circle at 50% -20%,
+    rgba(37, 99, 235, 0.06),
+    transparent 70%
+  );
   --bg-secondary-btn: rgba(9, 9, 11, 0.03);
   --bg-icon-surface: rgba(9, 9, 11, 0.03);
   --bg-inner-demo: rgba(255, 255, 255, 0.85);
   --header-bg: rgba(250, 250, 250, 0.7);
   --mobile-menu-bg: rgba(250, 250, 250, 0.97);
-  --logo-gradient: linear-gradient(135deg,
-      #09090b 50%,
-      var(--text-secondary) 100%);
-  --hero-title-gradient: linear-gradient(180deg,
-      #09090b 0%,
-      var(--text-secondary) 100%);
+  --logo-gradient: linear-gradient(
+    135deg,
+    #09090b 50%,
+    var(--text-secondary) 100%
+  );
+  --hero-title-gradient: linear-gradient(
+    180deg,
+    #09090b 0%,
+    var(--text-secondary) 100%
+  );
 
   /* Spreadsheet Mockup */
   --sheet-bg: #ffffff;
@@ -92,8 +108,9 @@ html[data-theme="light"] {
   /* Shadows — Light Mode: classic soft drop shadows */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.14), 0 8px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-hover:
+    0 16px 48px rgba(0, 0, 0, 0.14), 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -185,7 +202,6 @@ header {
   display: flex;
   align-items: center;
   gap: 8px;
-
 }
 
 .logo-text {
@@ -204,7 +220,11 @@ header {
 
 /* Footer logo always stays white regardless of theme */
 .footer-logo .logo-text {
-  background: linear-gradient(135deg, #ffffff 50%, rgba(255, 255, 255, 0.75) 100%);
+  background: linear-gradient(
+    135deg,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -216,7 +236,11 @@ header {
 }
 
 html[data-theme="light"] .footer-logo .logo-text {
-  background: linear-gradient(135deg, #ffffff 50%, rgba(255, 255, 255, 0.75) 100%);
+  background: linear-gradient(
+    135deg,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

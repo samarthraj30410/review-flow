@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurelia Grand Resort - Guest Review System</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Share your experience at Aurelia Grand Resort & Spa. Your feedback helps us deliver exceptional luxury hospitality."
+    />
+    <meta property="og:title" content="Aurelia Grand Resort - Guest Review" />
+    <meta
+      property="og:description"
+      content="Share your experience at Aurelia Grand Resort & Spa."
+    />
+    <meta name="theme-color" content="#0B0B0C" />
+
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../../assets/logo.jpg"
+    />
+    <link
+      rel="icon"
+      type="image/jpeg"
+      sizes="96x96"
+      href="../../../assets/logo.jpg"
+    />
+    <link rel="shortcut icon" href="../../../assets/logo.jpg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Background Ambient Glows -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <main class="review-container">
+      <!-- Hotel Header/Branding -->
+      <header class="hotel-header">
+        <div class="hotel-logo">
+          <img
+            src="../../../assets/logo.jpg"
+            alt="ReviewFlo Logo"
+            class="logo-svg"
+            style="
+              width: 80px;
+              height: 80px;
+              object-fit: contain;
+              border-radius: 50%;
+            "
+          />
+        </div>
+        <h1 class="hotel-title">Aurelia Grand</h1>
+        <p class="hotel-subtitle">Resort & Spa</p>
+        <div class="divider-gold"></div>
+      </header>
+
+      <!-- Review Content Card -->
+      <section class="card-glass shadow-premium" id="review-card">
+        <!-- Stage 1: Star Rating Input -->
+        <div class="card-stage active" id="stage-rating">
+          <h2 class="stage-title">Rate Your Experience</h2>
+          <p class="stage-desc">
+            Please take a moment to rate your overall experience with our
+            accommodations and hospitality.
+          </p>
+
+          <div
+            class="rating-stars"
+            role="radiogroup"
+            aria-label="Star Rating Select"
+          >
+            <button class="star-btn" data-val="1" aria-label="1 Star">★</button>
+            <button class="star-btn" data-val="2" aria-label="2 Stars">
+              ★
+            </button>
+            <button class="star-btn" data-val="3" aria-label="3 Stars">
+              ★
+            </button>
+            <button class="star-btn" data-val="4" aria-label="4 Stars">
+              ★
+            </button>
+            <button class="star-btn" data-val="5" aria-label="5 Stars">
+              ★
+            </button>
+          </div>
+          <input type="hidden" id="selected-rating" value="0" />
+
+          <p class="rating-label" id="rating-text-feedback">
+            Select a rating to continue
+          </p>
+        </div>
+
+        <!-- Stage 2A: High Rating Redirection (4 or 5 stars) -->
+        <div class="card-stage" id="stage-high-rating">
+          <h2 class="stage-title text-gold">We are delighted!</h2>
+          <p class="stage-desc">
+            It is a pleasure knowing you had an excellent stay. Your kind
+            comments assist our team in maintaining the highest standards of
+            luxury.
+          </p>
+
+          <div class="rating-stars-static">★★★★★</div>
+
+          <div class="action-options">
+            <a
+              href="https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID"
+              target="_blank"
+              class="btn btn-gold btn-ripple"
+              id="google-review-btn"
+            >
+              <span>Write on Google Review</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                ></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+
+            <a
+              href="https://www.tripadvisor.com/UserReview"
+              target="_blank"
+              class="btn btn-glass-secondary"
+              id="tripadvisor-review-btn"
+            >
+              <span>Review on TripAdvisor</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                ></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+
+          <button class="btn-back" type="button">Modify rating</button>
+        </div>
+
+        <!-- Stage 2B: Low Rating Feedback Capture (1, 2, or 3 stars) -->
+        <div class="card-stage" id="stage-low-rating">
+          <h2 class="stage-title">Share Your Thoughts</h2>
+          <p class="stage-desc">
+            We deeply regret that your stay did not fully meet your
+            expectations. Please share your suggestions privately with our
+            executive management team.
+          </p>
+
+          <form id="grievance-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="guest-name">Full Name</label>
+                <input
+                  type="text"
+                  id="guest-name"
+                  class="luxury-input"
+                  placeholder="e.g. Elizabeth Bennet"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="guest-room">Room Number</label>
+                <input
+                  type="text"
+                  id="guest-room"
+                  class="luxury-input"
+                  placeholder="e.g. 402"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="guest-email">Email Address</label>
+              <input
+                type="email"
+                id="guest-email"
+                class="luxury-input"
+                placeholder="elizabeth@example.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="guest-feedback"
+                >How can we improve? <span class="required">*</span></label
+              >
+              <textarea
+                id="guest-feedback"
+                rows="4"
+                class="luxury-textarea"
+                placeholder="Please describe any issues faced during your visit..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-gold btn-submit btn-ripple">
+              <span class="btn-text">Submit Private Feedback</span>
+              <div class="spinner"></div>
+            </button>
+
+            <button class="btn-back" type="button">Modify rating</button>
+          </form>
+        </div>
+
+        <!-- Stage 3: Success Confirmation Screen -->
+        <div class="card-stage" id="stage-success">
+          <div class="success-icon">
+            <svg viewBox="0 0 100 100" class="checkmark-svg">
+              <circle
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="var(--gold-accent)"
+                stroke-width="2"
+                class="circle-draw"
+              />
+              <path
+                d="M30,52 L44,66 L70,36"
+                fill="none"
+                stroke="var(--gold-accent)"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="check-draw"
+              />
+            </svg>
+          </div>
+
+          <h2 class="stage-title text-gold">Thank You</h2>
+          <p class="stage-desc">
+            Your response has been registered. The guest relations team reviews
+            all feedback in detail to continuously elevate our signature
+            hospitality standards.
+          </p>
+
+          <p class="closing-signoff">
+            Warmest regards,<br /><span class="signoff-name"
+              >The Guest Experience Team</span
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- Luxury Footer -->
+      <footer class="template-footer">
+        <p>&copy; 2026 Aurelia Grand Resort & Spa. All rights reserved.</p>
+        <p class="footer-secured">Secured private feedback portal.</p>
+      </footer>
+    </main>
+
+    <!-- JavaScript Behavior -->
+    <script src="app.js"></script>
+  </body>
+</html>

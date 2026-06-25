@@ -56,7 +56,8 @@
   font-size: 0.98rem;
 }
 
-.legal-content ul, .legal-content ol {
+.legal-content ul,
+.legal-content ol {
   margin-bottom: 24px;
   padding-left: 24px;
   color: var(--text-secondary);

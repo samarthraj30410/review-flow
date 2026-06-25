@@ -12,6 +12,7 @@ ReviewFlo is a landing page built for custom, serverless customer review and fee
 ## Brand Logo & Favicons Configuration
 
 The brand logo assets are located in the `/assets/` directory:
+
 - `favicon.svg`: The primary SVG brand logo (transparent background).
 - `apple-touch-icon.png`: Apple touch icon for mobile shortcuts.
 - `favicon-96x96.png` & `favicon.ico`: Desktop and browser tab icons.
@@ -34,6 +35,6 @@ All pages (`index.html`, `about.html`, `contact.html`, `privacy.html`, `terms.ht
 ## Customizing Templates
 
 To configure templates for a storefront, modify the settings in the header of the template's Javascript logic (e.g. `app.js`):
+
 1. **Redirection URL**: Provide the custom Google Places / TripAdvisor links for positive ratings ($\ge 4$ stars).
 2. **Webhook Endpoint**: Insert the target URL of the Google Sheets Apps Script Webhook. When a grievance ($\le 3$ stars) is filled out, the template automatically posts review metadata to the sheet.
-

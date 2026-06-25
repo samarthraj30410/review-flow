@@ -251,7 +251,9 @@
   stroke: var(--success);
   stroke-miterlimit: 10;
   box-shadow: inset 0px 0px 0px var(--success);
-  animation: fillCheckmark .4s ease-in-out .4s forwards, scaleCheckmark .3s ease-in-out .9s calcMode;
+  animation:
+    fillCheckmark 0.4s ease-in-out 0.4s forwards,
+    scaleCheckmark 0.3s ease-in-out 0.9s calcMode;
 }
 
 .checkmark-circle {
@@ -294,7 +296,8 @@
 }
 
 @keyframes scaleCheckmark {
-  0%, 100% {
+  0%,
+  100% {
     transform: none;
   }
   50% {

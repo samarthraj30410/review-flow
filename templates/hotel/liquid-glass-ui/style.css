@@ -1,21 +1,21 @@
 /* Aurelia Grand Resort & Spa - Design System */
 
 :root {
-  --bg-dark: #0B0B0C;
+  --bg-dark: #0b0b0c;
   --bg-card: rgba(18, 18, 19, 0.7);
-  --gold-accent: #D4AF37; /* Luxury Gold */
+  --gold-accent: #d4af37; /* Luxury Gold */
   --gold-glow: rgba(212, 175, 55, 0.15);
   --gold-muted: rgba(212, 175, 55, 0.4);
-  --gold-bright: #F3E5AB; /* Sand Gold */
-  
-  --text-light: #F7F7F7;
-  --text-muted: #A0A0A5;
+  --gold-bright: #f3e5ab; /* Sand Gold */
+
+  --text-light: #f7f7f7;
+  --text-muted: #a0a0a5;
   --border-glass: rgba(212, 175, 55, 0.08);
   --border-focus: rgba(212, 175, 55, 0.6);
   --input-bg: rgba(255, 255, 255, 0.02);
 
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --radius-premium: 16px;
 }
@@ -63,7 +63,7 @@ body {
 .glow-2 {
   bottom: -10%;
   right: 15%;
-  background: radial-gradient(circle, #8A701A 0%, transparent 70%);
+  background: radial-gradient(circle, #8a701a 0%, transparent 70%);
 }
 
 /* Page Layout */
@@ -118,7 +118,12 @@ body {
 .divider-gold {
   width: 40px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-accent),
+    transparent
+  );
   margin: 16px auto 0;
 }
 
@@ -136,7 +141,7 @@ body {
 }
 
 .shadow-premium {
-  box-shadow: 
+  box-shadow:
     0 4px 30px rgba(0, 0, 0, 0.4),
     inset 0 1px 1px rgba(255, 255, 255, 0.03),
     inset 0 0 16px rgba(212, 175, 55, 0.03);
@@ -173,7 +178,11 @@ body {
 
 .text-gold {
   color: var(--gold-accent);
-  background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-accent) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gold-bright) 0%,
+    var(--gold-accent) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -199,10 +208,10 @@ body {
   background: none;
   border: none;
   font-size: 2.5rem;
-  color: #1F1F22;
+  color: #1f1f22;
   cursor: pointer;
   transition: var(--transition-smooth);
-  filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8));
 }
 
 .star-btn:hover {
@@ -218,7 +227,9 @@ body {
 
 .star-btn:active {
   transform: scale(1.35) rotate(-5deg);
-  text-shadow: 0 0 20px var(--gold-glow), 0 0 40px rgba(212, 175, 55, 0.4);
+  text-shadow:
+    0 0 20px var(--gold-glow),
+    0 0 40px rgba(212, 175, 55, 0.4);
   transition-duration: 0.06s;
 }
 
@@ -227,14 +238,22 @@ body {
 }
 
 @keyframes starBtnPop {
-  0%   { transform: scale(1.35) rotate(-5deg); }
-  40%  { transform: scale(0.9) rotate(3deg); }
-  70%  { transform: scale(1.15) rotate(-1deg); }
-  100% { transform: scale(1.1) rotate(0deg); }
+  0% {
+    transform: scale(1.35) rotate(-5deg);
+  }
+  40% {
+    transform: scale(0.9) rotate(3deg);
+  }
+  70% {
+    transform: scale(1.15) rotate(-1deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(0deg);
+  }
 }
 
 .star-btn.active ~ .star-btn {
-  color: #1F1F22;
+  color: #1f1f22;
   text-shadow: none;
 }
 
@@ -275,8 +294,8 @@ body {
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, var(--gold-accent) 0%, #B89228 100%);
-  color: #0A0A0A;
+  background: linear-gradient(135deg, var(--gold-accent) 0%, #b89228 100%);
+  color: #0a0a0a;
   border: none;
   box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2);
 }
@@ -289,7 +308,9 @@ body {
 
 .btn-gold:active {
   transform: translateY(1px) scale(0.95);
-  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4), 0 0 30px var(--gold-glow);
+  box-shadow:
+    0 2px 8px rgba(212, 175, 55, 0.4),
+    0 0 30px var(--gold-glow);
   transition-duration: 0.08s;
   filter: brightness(1.1);
 }
@@ -298,7 +319,12 @@ body {
 .ripple-effect {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, rgba(243, 229, 171, 0.15) 40%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.35) 0%,
+    rgba(243, 229, 171, 0.15) 40%,
+    transparent 70%
+  );
   transform: scale(0);
   animation: rippleExpand 0.55s ease-out forwards;
   pointer-events: none;
@@ -306,16 +332,28 @@ body {
 }
 
 @keyframes rippleExpand {
-  0%   { transform: scale(0); opacity: 1; }
-  50%  { opacity: 0.5; }
-  100% { transform: scale(4); opacity: 0; }
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 /* Gold flash burst on buttons */
 .btn-click-flash {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at var(--click-x, 50%) var(--click-y, 50%), rgba(212, 175, 55, 0.4) 0%, transparent 60%);
+  background: radial-gradient(
+    circle at var(--click-x, 50%) var(--click-y, 50%),
+    rgba(212, 175, 55, 0.4) 0%,
+    transparent 60%
+  );
   border-radius: inherit;
   pointer-events: none;
   opacity: 0;
@@ -323,8 +361,14 @@ body {
 }
 
 @keyframes flashBurst {
-  0%   { opacity: 1; transform: scale(0.8); }
-  100% { opacity: 0; transform: scale(1.5); }
+  0% {
+    opacity: 1;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
 }
 
 .btn-glass-secondary {
@@ -401,7 +445,7 @@ body {
   margin-bottom: 6px;
 }
 
-.luxury-input, 
+.luxury-input,
 .luxury-textarea {
   width: 100%;
   background-color: var(--input-bg);
@@ -415,7 +459,7 @@ body {
   transition: var(--transition-smooth);
 }
 
-.luxury-input:focus, 
+.luxury-input:focus,
 .luxury-textarea:focus {
   border-color: var(--border-focus);
   background-color: rgba(255, 255, 255, 0.04);
@@ -423,7 +467,7 @@ body {
 }
 
 .required {
-  color: #EF4444;
+  color: #ef4444;
 }
 
 /* Form Submit State / Loading Spinner */
@@ -438,14 +482,16 @@ body {
   width: 20px;
   height: 20px;
   border: 2px solid rgba(10, 10, 10, 0.2);
-  border-top-color: #0A0A0A;
+  border-top-color: #0a0a0a;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   position: absolute;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .loading .btn-text {
@@ -483,11 +529,15 @@ body {
 }
 
 @keyframes drawCircle {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes drawCheck {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .closing-signoff {
@@ -533,24 +583,24 @@ body {
   body {
     padding: 16px 8px;
   }
-  
+
   .card-glass {
     padding: 24px 16px;
   }
-  
+
   .form-grid {
     grid-template-columns: 1fr;
     gap: 0;
   }
-  
+
   .hotel-title {
     font-size: 1.85rem;
   }
-  
+
   .stage-title {
     font-size: 1.4rem;
   }
-  
+
   .star-btn {
     font-size: 2.2rem;
   }
