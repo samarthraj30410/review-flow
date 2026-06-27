@@ -7,6 +7,7 @@
 /contact.html                                   /contact                                301!
 /privacy.html                                   /privacy                                301!
 /terms.html                                     /terms                                  301!
+/manifesto.html                                 /manifesto                              301!
 
 /templates/hotel/aurora-gradient-ui/index.html  /templates/hotel/aurora-gradient-ui/    301!
 /templates/hotel/brutalist-ui/index.html        /templates/hotel/brutalist-ui/          301!
@@ -15,6 +16,8 @@
 /templates/hotel/maximalism-ui/index.html       /templates/hotel/maximalism-ui/         301!
 /templates/hotel/neo-cyberpunk-ui/index.html    /templates/hotel/neo-cyberpunk-ui/      301!
 
+
+/templates/list-of-templates     /templates/list-of-templates/       301!
 
 
 
