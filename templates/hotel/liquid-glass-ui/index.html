@@ -1,1455 +1,137 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hotel Review — Liquid Glass</title>
-    <meta
-      name="description"
-      content="Share your hotel experience with a beautiful iOS-style review interface."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
 
-    <!-- Favicon -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../../../assets/logo.jpg"
-    />
-    <link
-      rel="icon"
-      type="image/jpeg"
-      sizes="96x96"
-      href="../../../assets/logo.jpg"
-    />
-    <link rel="shortcut icon" href="../../../assets/logo.jpg" />
-
-    <style>
-      /* ─────────────────────────────────────────
-       ROOT & TOKENS
-    ───────────────────────────────────────── */
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      :root {
-        /* iOS Liquid Glass — enhanced border visibility */
-        --glass-bg: rgba(255, 255, 255, 0.1);
-        --glass-bg-hover: rgba(255, 255, 255, 0.18);
-        --glass-border: rgba(255, 255, 255, 0.45);
-        --glass-border-subtle: rgba(255, 255, 255, 0.28);
-        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-        --glass-blur: blur(20px) saturate(200%);
-        --glass-blur-heavy: blur(28px) saturate(220%);
-
-        /* iOS text glass containers */
-        --glass-pill-bg: rgba(255, 255, 255, 0.08);
-        --glass-pill-border: rgba(255, 255, 255, 0.22);
-        --glass-pill-strong-bg: rgba(255, 255, 255, 0.18);
-        --glass-pill-strong-border: rgba(255, 255, 255, 0.38);
-
-        --accent: #0a84ff;
-        --accent2: #30d158;
-        --accent3: #ff6b6b;
-        --gold: #ffd60a;
-
-        --text-primary: rgba(255, 255, 255, 0.95);
-        --text-secondary: rgba(255, 255, 255, 0.6);
-        --text-tertiary: rgba(255, 255, 255, 0.35);
-
-        --radius-sm: 12px;
-        --radius-md: 20px;
-        --radius-lg: 28px;
-        --radius-xl: 36px;
-        --radius-pill: 100px;
-
-        --transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        --transition-fast: 0.2s ease;
-        --transition-smooth: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      /* ─────────────────────────────────────────
-       BACKGROUND & LAYOUT
-    ───────────────────────────────────────── */
-      html,
-      body {
-        min-height: 100vh;
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          sans-serif;
-        color: var(--text-primary);
-        overflow-x: hidden;
-      }
-
-      body {
-        background: #0a0a1a;
-        background-image:
-          radial-gradient(
-            ellipse 80% 60% at 20% 0%,
-            rgba(10, 132, 255, 0.35) 0%,
-            transparent 60%
-          ),
-          radial-gradient(
-            ellipse 60% 50% at 80% 100%,
-            rgba(48, 209, 88, 0.25) 0%,
-            transparent 60%
-          ),
-          radial-gradient(
-            ellipse 50% 50% at 50% 50%,
-            rgba(94, 92, 230, 0.15) 0%,
-            transparent 70%
-          );
-        min-height: 100vh;
-      }
-
-      /* Animated gradient orbs */
-      .bg-orbs {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 0;
-        overflow: hidden;
-      }
-
-      .orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(40px);
-        animation: orbFloat 12s ease-in-out infinite;
-        opacity: 0.5;
-        will-change: transform;
-      }
-
-      .orb-1 {
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(
-          circle,
-          rgba(10, 132, 255, 0.6),
-          transparent
-        );
-        top: -150px;
-        left: -100px;
-        animation-delay: 0s;
-      }
-
-      .orb-2 {
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(
-          circle,
-          rgba(48, 209, 88, 0.5),
-          transparent
-        );
-        bottom: -100px;
-        right: -80px;
-        animation-delay: -4s;
-      }
-
-      .orb-3 {
-        width: 350px;
-        height: 350px;
-        background: radial-gradient(
-          circle,
-          rgba(94, 92, 230, 0.5),
-          transparent
-        );
-        top: 50%;
-        left: 60%;
-        animation-delay: -8s;
-      }
-
-      @keyframes orbFloat {
-        0%,
-        100% {
-          transform: translate(0, 0) scale(1);
-        }
-        33% {
-          transform: translate(30px, -40px) scale(1.05);
-        }
-        66% {
-          transform: translate(-20px, 20px) scale(0.95);
-        }
-      }
-
-      /* ─────────────────────────────────────────
-       APP CONTAINER
-    ───────────────────────────────────────── */
-      .app-container {
-        position: relative;
-        z-index: 1;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 16px 40px;
-      }
-
-      /* ─────────────────────────────────────────
-       HEADER (always visible)
-    ───────────────────────────────────────── */
-      .app-header {
-        width: 100%;
-        max-width: 480px;
-        text-align: center;
-        padding: 40px 0 28px;
-      }
-
-      .hotel-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        backdrop-filter: var(--glass-blur);
-        -webkit-backdrop-filter: var(--glass-blur);
-        border-radius: var(--radius-pill);
-        padding: 8px 18px;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-        margin-bottom: 16px;
-        box-shadow:
-          0 2px 12px rgba(0, 0, 0, 0.1),
-          inset 0 1px 0 rgba(255, 255, 255, 0.15);
-      }
-
-      .hotel-badge .dot {
-        width: 7px;
-        height: 7px;
-        background: var(--accent2);
-        border-radius: 50%;
-        box-shadow: 0 0 8px var(--accent2);
-        animation: pulse 2s ease-in-out infinite;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 0.6;
-          transform: scale(0.85);
-        }
-      }
-
-      .hotel-name {
-        font-size: clamp(26px, 6vw, 38px);
-        font-weight: 700;
-        letter-spacing: -0.03em;
-        line-height: 1.1;
-        /* Text gradient */
-        background: linear-gradient(
-          135deg,
-          #fff 0%,
-          rgba(255, 255, 255, 0.75) 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 12px;
-        display: inline-block;
-        padding: 14px 28px;
-        border-radius: var(--radius-lg);
-        position: relative;
-      }
-
-      /* Frosted glass box behind hotel name text */
-      .hotel-name::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: var(--glass-pill-strong-bg);
-        border: 1.5px solid var(--glass-pill-strong-border);
-        backdrop-filter: var(--glass-blur-heavy);
-        -webkit-backdrop-filter: var(--glass-blur-heavy);
-        box-shadow:
-          0 4px 24px rgba(0, 0, 0, 0.15),
-          inset 0 1px 0 rgba(255, 255, 255, 0.25),
-          inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
-        z-index: -1;
-      }
-
-      .hotel-subtitle {
-        font-size: 14px;
-        color: var(--text-secondary);
-        font-weight: 400;
-        display: inline-block;
-        padding: 8px 20px;
-        border-radius: var(--radius-pill);
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        backdrop-filter: blur(12px) saturate(160%);
-        -webkit-backdrop-filter: blur(12px) saturate(160%);
-        box-shadow:
-          0 2px 8px rgba(0, 0, 0, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        transition: opacity 0.2s ease;
-      }
-
-      /* ─────────────────────────────────────────
-       PROGRESS INDICATOR
-    ───────────────────────────────────────── */
-      .progress-bar-wrap {
-        width: 100%;
-        max-width: 480px;
-        margin-bottom: 24px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .progress-bar-wrap.visible {
-        opacity: 1;
-      }
-
-      .progress-labels {
-        display: flex;
-        justify-content: space-between;
-        font-size: 11px;
-        color: var(--text-tertiary);
-        margin-bottom: 8px;
-        font-weight: 500;
-      }
-
-      .progress-track {
-        height: 3px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 2px;
-        overflow: hidden;
-      }
-
-      .progress-fill {
-        height: 100%;
-        background: linear-gradient(90deg, var(--accent), var(--accent2));
-        border-radius: 2px;
-        transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 0 12px rgba(10, 132, 255, 0.6);
-      }
-
-      /* ─────────────────────────────────────────
-       GLASS CARD (reusable)
-    ───────────────────────────────────────── */
-      .glass-card {
-        width: 100%;
-        max-width: 480px;
-        background: var(--glass-bg);
-        border: 1.5px solid var(--glass-border);
-        backdrop-filter: var(--glass-blur-heavy);
-        -webkit-backdrop-filter: var(--glass-blur-heavy);
-        border-radius: var(--radius-xl);
-        box-shadow:
-          var(--glass-shadow),
-          inset 0 1px 0 rgba(255, 255, 255, 0.25),
-          inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
-        overflow: hidden;
-        position: relative;
-        transform: translateZ(0);
-      }
-
-      .glass-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.08) 0%,
-          transparent 50%
-        );
-        pointer-events: none;
-      }
-
-      /* ─────────────────────────────────────────
-       PAGE SYSTEM
-    ───────────────────────────────────────── */
-      .page {
-        display: none;
-        width: 100%;
-        max-width: 480px;
-        animation: pageIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-
-      .page.active {
-        display: block;
-      }
-
-      @keyframes pageIn {
-        from {
-          opacity: 0;
-          transform: translateY(24px) scale(0.97);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-      }
-
-      @keyframes pageOut {
-        from {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-        to {
-          opacity: 0;
-          transform: translateY(-20px) scale(0.97);
-        }
-      }
-
-      /* ─────────────────────────────────────────
-       PAGE 1 — CHOOSE REVIEW TYPE
-    ───────────────────────────────────────── */
-      .review-type-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        padding: 24px;
-      }
-
-      .review-type-btn {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        background: rgba(255, 255, 255, 0.07);
-        border: 1.5px solid var(--glass-border-subtle);
-        border-radius: var(--radius-lg);
-        padding: 18px 20px;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        text-align: left;
-        color: var(--text-primary);
-        position: relative;
-        overflow: hidden;
-        box-shadow:
-          0 2px 8px rgba(0, 0, 0, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.12);
-      }
-
-      .review-type-btn::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.08) 0%,
-          transparent 100%
-        );
-        opacity: 0;
-        transition: opacity 0.2s ease;
-      }
-
-      .review-type-btn:hover {
-        background: rgba(255, 255, 255, 0.14);
-        border-color: var(--glass-border);
-        transform: translateY(-2px);
-        box-shadow:
-          0 8px 24px rgba(0, 0, 0, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      }
-
-      .review-type-btn:hover::before {
-        opacity: 1;
-      }
-      .review-type-btn:active {
-        transform: translateY(1px) scale(0.95);
-        box-shadow:
-          0 2px 8px rgba(0, 0, 0, 0.3),
-          0 0 24px rgba(10, 132, 255, 0.3);
-        border-color: rgba(10, 132, 255, 0.4);
-        transition-duration: 0.08s;
-      }
-
-      /* iOS-style ripple effect */
-      .ripple-effect {
-        position: absolute;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(255, 255, 255, 0.35) 0%,
-          rgba(10, 132, 255, 0.15) 40%,
-          transparent 70%
-        );
-        transform: scale(0);
-        animation: rippleExpand 0.55s ease-out forwards;
-        pointer-events: none;
-        z-index: 10;
-      }
-
-      @keyframes rippleExpand {
-        0% {
-          transform: scale(0);
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.5;
-        }
-        100% {
-          transform: scale(4);
-          opacity: 0;
-        }
-      }
-
-      .btn-icon {
-        width: 52px;
-        height: 52px;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        flex-shrink: 0;
-        position: relative;
-      }
-
-      .btn-icon.food {
-        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-        box-shadow: 0 4px 16px rgba(255, 107, 107, 0.4);
-      }
-      .btn-icon.mgmt {
-        background: linear-gradient(135deg, #0a84ff, #5ac8fa);
-        box-shadow: 0 4px 16px rgba(10, 132, 255, 0.4);
-      }
-      .btn-icon.hotel {
-        background: linear-gradient(135deg, #30d158, #34c759);
-        box-shadow: 0 4px 16px rgba(48, 209, 88, 0.4);
-      }
-
-      .btn-text {
-        flex: 1;
-      }
-      .btn-title {
-        font-size: 17px;
-        font-weight: 600;
-        margin-bottom: 3px;
-      }
-      .btn-desc {
-        font-size: 13px;
-        color: var(--text-secondary);
-      }
-
-      .btn-chevron {
-        color: var(--text-tertiary);
-        font-size: 16px;
-        transition: transform 0.2s ease;
-      }
-      .review-type-btn:hover .btn-chevron {
-        transform: translateX(4px);
-      }
-
-      .card-header {
-        padding: 24px 24px 0;
-      }
-
-      .card-section-label {
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-tertiary);
-        margin-bottom: 10px;
-        display: inline-block;
-        padding: 5px 14px;
-        border-radius: var(--radius-pill);
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        backdrop-filter: blur(10px) saturate(150%);
-        -webkit-backdrop-filter: blur(10px) saturate(150%);
-        box-shadow:
-          0 1px 4px rgba(0, 0, 0, 0.06),
-          inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      }
-
-      .card-title {
-        font-size: 22px;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: var(--radius-md);
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        backdrop-filter: blur(10px) saturate(150%);
-        -webkit-backdrop-filter: blur(10px) saturate(150%);
-        box-shadow:
-          0 2px 8px rgba(0, 0, 0, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        margin-bottom: 4px;
-      }
-
-      /* ─────────────────────────────────────────
-       FORM ELEMENTS
-    ───────────────────────────────────────── */
-      .form-body {
-        padding: 20px 24px 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .form-label {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--text-secondary);
-        letter-spacing: 0.01em;
-        display: inline-block;
-        padding: 6px 14px;
-        border-radius: var(--radius-sm);
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        backdrop-filter: blur(8px) saturate(140%);
-        -webkit-backdrop-filter: blur(8px) saturate(140%);
-        box-shadow:
-          0 1px 4px rgba(0, 0, 0, 0.05),
-          inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      }
-
-      /* Checkboxes / Radios */
-      .option-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .option-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 13px 16px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1.5px solid var(--glass-border-subtle);
-        border-radius: var(--radius-md);
-        cursor: pointer;
-        transition: all 0.2s ease;
-        user-select: none;
-        box-shadow:
-          0 1px 4px rgba(0, 0, 0, 0.06),
-          inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      }
-
-      .option-item:hover {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: var(--glass-border);
-      }
-
-      .option-item:active {
-        transform: scale(0.96);
-        background: rgba(10, 132, 255, 0.1);
-        border-color: rgba(10, 132, 255, 0.4);
-        box-shadow: inset 0 0 16px rgba(10, 132, 255, 0.12);
-        transition-duration: 0.06s;
-      }
-
-      .option-item input[type="checkbox"],
-      .option-item input[type="radio"] {
-        appearance: none;
-        -webkit-appearance: none;
-        width: 22px;
-        height: 22px;
-        border-radius: 7px;
-        border: 2px solid rgba(255, 255, 255, 0.25);
-        background: rgba(255, 255, 255, 0.05);
-        cursor: pointer;
-        position: relative;
-        transition: all 0.2s ease;
-        flex-shrink: 0;
-      }
-
-      .option-item input[type="radio"] {
-        border-radius: 50%;
-      }
-
-      .option-item input[type="checkbox"]:checked,
-      .option-item input[type="radio"]:checked {
-        background: var(--accent);
-        border-color: var(--accent);
-        box-shadow: 0 0 12px rgba(10, 132, 255, 0.4);
-      }
-
-      .option-item input[type="checkbox"]:checked::after {
-        content: "✓";
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 13px;
-        font-weight: 700;
-      }
-
-      .option-item input[type="radio"]:checked::after {
-        content: "";
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        background: white;
-        border-radius: 50%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .option-label {
-        font-size: 15px;
-        font-weight: 500;
-      }
-
-      /* Range Slider */
-      .slider-wrap {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .slider-row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .glass-range {
-        flex: 1;
-        -webkit-appearance: none;
-        appearance: none;
-        height: 6px;
-        background: rgba(255, 255, 255, 0.12);
-        border-radius: 3px;
-        outline: none;
-        cursor: pointer;
-        position: relative;
-      }
-
-      .glass-range::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background: white;
-        box-shadow:
-          0 2px 12px rgba(0, 0, 0, 0.3),
-          0 0 0 3px rgba(10, 132, 255, 0.5);
-        cursor: pointer;
-        transition: transform 0.15s ease;
-      }
-
-      .glass-range::-webkit-slider-thumb:hover {
-        transform: scale(1.15);
-      }
-      .glass-range::-moz-range-thumb {
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background: white;
-        border: none;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-        cursor: pointer;
-      }
-
-      .slider-val {
-        font-size: 20px;
-        font-weight: 700;
-        min-width: 36px;
-        text-align: center;
-        color: var(--accent);
-      }
-
-      .slider-labels {
-        display: flex;
-        justify-content: space-between;
-        font-size: 11px;
-        color: var(--text-tertiary);
-      }
-
-      /* Star Rating */
-      .star-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .star-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 16px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1.5px solid var(--glass-border-subtle);
-        border-radius: var(--radius-md);
-        box-shadow:
-          0 1px 4px rgba(0, 0, 0, 0.06),
-          inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      }
-
-      .star-row-label {
-        font-size: 14px;
-        font-weight: 500;
-        padding: 4px 12px;
-        border-radius: var(--radius-sm);
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-      }
-
-      .stars {
-        display: flex;
-        gap: 4px;
-      }
-
-      .star {
-        font-size: 24px;
-        cursor: pointer;
-        color: rgba(255, 255, 255, 0.15);
-        transition: all 0.15s ease;
-        user-select: none;
-      }
-
-      .star:hover,
-      .star.active {
-        color: var(--gold);
-        filter: drop-shadow(0 0 6px rgba(255, 214, 10, 0.6));
-      }
-      .star:hover {
-        transform: scale(1.2);
-      }
-
-      .star:active {
-        transform: scale(1.5) rotate(-8deg);
-        filter: drop-shadow(0 0 16px rgba(255, 214, 10, 1))
-          drop-shadow(0 0 32px rgba(255, 214, 10, 0.5));
-        transition-duration: 0.06s;
-      }
-
-      .star.pop-animate {
-        animation: starPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      }
-
-      @keyframes starPop {
-        0% {
-          transform: scale(1.5) rotate(-8deg);
-        }
-        40% {
-          transform: scale(0.85) rotate(4deg);
-        }
-        70% {
-          transform: scale(1.12) rotate(-2deg);
-        }
-        100% {
-          transform: scale(1) rotate(0deg);
-        }
-      }
-
-      /* Textarea */
-      .glass-textarea {
-        width: 100%;
-        background: rgba(255, 255, 255, 0.07);
-        border: 1.5px solid var(--glass-border-subtle);
-        border-radius: var(--radius-md);
-        color: var(--text-primary);
-        font-family: inherit;
-        font-size: 15px;
-        line-height: 1.6;
-        padding: 14px 16px;
-        resize: vertical;
-        min-height: 110px;
-        outline: none;
-        transition: all 0.2s ease;
-        box-shadow:
-          0 1px 4px rgba(0, 0, 0, 0.06),
-          inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      }
-
-      .glass-textarea::placeholder {
-        color: var(--text-tertiary);
-      }
-
-      .glass-textarea:focus {
-        border-color: rgba(10, 132, 255, 0.6);
-        background: rgba(255, 255, 255, 0.1);
-        box-shadow:
-          0 0 0 3px rgba(10, 132, 255, 0.15),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1),
-          0 2px 12px rgba(10, 132, 255, 0.1);
-      }
-
-      /* Select */
-      .glass-select {
-        width: 100%;
-        background: rgba(255, 255, 255, 0.07);
-        border: 1.5px solid var(--glass-border-subtle);
-        border-radius: var(--radius-md);
-        color: var(--text-primary);
-        font-family: inherit;
-        font-size: 15px;
-        padding: 13px 16px;
-        outline: none;
-        cursor: pointer;
-        appearance: none;
-        -webkit-appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 14px center;
-        transition: all 0.2s ease;
-        box-shadow:
-          0 1px 4px rgba(0, 0, 0, 0.06),
-          inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      }
-
-      .glass-select option {
-        background: #1a1a2e;
-        color: white;
-      }
-
-      .glass-select:focus {
-        border-color: rgba(10, 132, 255, 0.6);
-        box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15);
-      }
-
-      /* ─────────────────────────────────────────
-       DIVIDER
-    ───────────────────────────────────────── */
-      .glass-divider {
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--glass-border-subtle),
-          transparent
-        );
-        margin: 0 24px;
-      }
-
-      /* ─────────────────────────────────────────
-       BUTTONS
-    ───────────────────────────────────────── */
-      .btn-primary {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        width: 100%;
-        padding: 16px 24px;
-        border: none;
-        border-radius: var(--radius-lg);
-        font-family: inherit;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn-primary::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.15),
-          transparent
-        );
-        pointer-events: none;
-      }
-
-      .btn-primary.accent {
-        background: linear-gradient(135deg, #0a84ff, #0066cc);
-        color: white;
-        box-shadow:
-          0 4px 20px rgba(10, 132, 255, 0.45),
-          inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      }
-
-      .btn-primary.accent:hover {
-        transform: translateY(-2px);
-        box-shadow:
-          0 8px 28px rgba(10, 132, 255, 0.55),
-          inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      }
-
-      .btn-primary.success {
-        background: linear-gradient(135deg, #30d158, #25a244);
-        color: white;
-        box-shadow:
-          0 4px 20px rgba(48, 209, 88, 0.45),
-          inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      }
-
-      .btn-primary.success:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 28px rgba(48, 209, 88, 0.55);
-      }
-
-      .btn-primary.ghost {
-        background: rgba(255, 255, 255, 0.08);
-        color: var(--text-secondary);
-        border: 1.5px solid var(--glass-border-subtle);
-        box-shadow:
-          0 1px 4px rgba(0, 0, 0, 0.06),
-          inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      }
-
-      .btn-primary.ghost:hover {
-        background: rgba(255, 255, 255, 0.14);
-        color: var(--text-primary);
-        border-color: var(--glass-border);
-      }
-
-      .btn-primary:active {
-        transform: scale(0.94) translateY(2px) !important;
-        transition-duration: 0.08s !important;
-        filter: brightness(1.1);
-      }
-
-      .btn-primary.accent:active {
-        box-shadow:
-          0 2px 8px rgba(10, 132, 255, 0.6),
-          0 0 32px rgba(10, 132, 255, 0.3),
-          inset 0 0 16px rgba(255, 255, 255, 0.1) !important;
-      }
-
-      .btn-primary.success:active {
-        box-shadow:
-          0 2px 8px rgba(48, 209, 88, 0.6),
-          0 0 32px rgba(48, 209, 88, 0.3),
-          inset 0 0 16px rgba(255, 255, 255, 0.1) !important;
-      }
-
-      .btn-primary.ghost:active {
-        background: rgba(10, 132, 255, 0.12) !important;
-        border-color: rgba(10, 132, 255, 0.4) !important;
-        box-shadow: 0 0 16px rgba(10, 132, 255, 0.15) !important;
-      }
-
-      /* Click flash burst */
-      .btn-click-flash {
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          circle at var(--click-x, 50%) var(--click-y, 50%),
-          rgba(255, 255, 255, 0.4) 0%,
-          transparent 60%
-        );
-        border-radius: inherit;
-        pointer-events: none;
-        opacity: 0;
-        animation: flashBurst 0.45s ease-out forwards;
-      }
-
-      @keyframes flashBurst {
-        0% {
-          opacity: 1;
-          transform: scale(0.8);
-        }
-        100% {
-          opacity: 0;
-          transform: scale(1.5);
-        }
-      }
-
-      .btn-row {
-        padding: 16px 24px 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      /* Back button */
-      .back-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: var(--glass-pill-bg);
-        border: 1.5px solid var(--glass-pill-border);
-        border-radius: var(--radius-pill);
-        color: var(--text-secondary);
-        font-family: inherit;
-        font-size: 13px;
-        font-weight: 500;
-        padding: 7px 14px 7px 10px;
-        cursor: pointer;
-        margin-bottom: 14px;
-        transition: all 0.2s ease;
-        backdrop-filter: blur(10px) saturate(150%);
-        -webkit-backdrop-filter: blur(10px) saturate(150%);
-        box-shadow:
-          0 1px 6px rgba(0, 0, 0, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      }
-
-      .back-btn:hover {
-        background: rgba(255, 255, 255, 0.14);
-        color: var(--text-primary);
-        transform: translateX(-2px);
-      }
-
-      .back-btn:active {
-        transform: translateX(-1px) scale(0.94);
-        background: rgba(10, 132, 255, 0.15);
-        box-shadow: 0 0 16px rgba(10, 132, 255, 0.2);
-        transition-duration: 0.06s;
-      }
-
-      /* ─────────────────────────────────────────
-       THANK YOU PAGE
-    ───────────────────────────────────────── */
-      .thankyou-body {
-        padding: 40px 24px 32px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 16px;
-      }
-
-      .thankyou-icon {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #30d158, #34c759);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 36px;
-        box-shadow: 0 8px 32px rgba(48, 209, 88, 0.5);
-        animation: iconPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      }
-
-      @keyframes iconPop {
-        from {
-          transform: scale(0);
-          opacity: 0;
-        }
-        to {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-
-      .thankyou-title {
-        font-size: 26px;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        display: inline-block;
-        padding: 10px 24px;
-        border-radius: var(--radius-lg);
-        background: var(--glass-pill-strong-bg);
-        border: 1px solid var(--glass-pill-strong-border);
-        backdrop-filter: blur(12px) saturate(160%);
-        -webkit-backdrop-filter: blur(12px) saturate(160%);
-        box-shadow:
-          0 2px 12px rgba(0, 0, 0, 0.1),
-          inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      }
-
-      .thankyou-subtitle {
-        font-size: 15px;
-        color: var(--text-secondary);
-        line-height: 1.6;
-        max-width: 300px;
-        padding: 10px 18px;
-        border-radius: var(--radius-md);
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        backdrop-filter: blur(8px) saturate(140%);
-        -webkit-backdrop-filter: blur(8px) saturate(140%);
-        box-shadow:
-          0 1px 6px rgba(0, 0, 0, 0.06),
-          inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      }
-
-      .review-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
-        margin-top: 4px;
-      }
-
-      .review-tag {
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        border-radius: var(--radius-pill);
-        padding: 6px 14px;
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--text-secondary);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-      }
-
-      /* ─────────────────────────────────────────
-       TOAST NOTIFICATION
-    ───────────────────────────────────────── */
-      .toast {
-        position: fixed;
-        bottom: 32px;
-        left: 50%;
-        transform: translateX(-50%) translateY(100px);
-        background: rgba(30, 30, 50, 0.88);
-        border: 1.5px solid var(--glass-border);
-        backdrop-filter: blur(24px) saturate(200%);
-        -webkit-backdrop-filter: blur(24px) saturate(200%);
-        border-radius: var(--radius-pill);
-        padding: 12px 20px;
-        font-size: 14px;
-        font-weight: 500;
-        color: white;
-        z-index: 999;
-        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        white-space: nowrap;
-        box-shadow:
-          0 8px 32px rgba(0, 0, 0, 0.4),
-          inset 0 1px 0 rgba(255, 255, 255, 0.15);
-      }
-
-      .toast.show {
-        transform: translateX(-50%) translateY(0);
-      }
-
-      /* ─────────────────────────────────────────
-       FLOATING FOOTER
-    ───────────────────────────────────────── */
-      .app-footer {
-        margin-top: 28px;
-        font-size: 12px;
-        color: var(--text-tertiary);
-        text-align: center;
-        letter-spacing: 0.02em;
-        display: inline-block;
-        padding: 6px 16px;
-        border-radius: var(--radius-pill);
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        backdrop-filter: blur(8px) saturate(140%);
-        -webkit-backdrop-filter: blur(8px) saturate(140%);
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-      }
-
-      /* ─────────────────────────────────────────
-       SLIDER LABELS — frosted glass pill
-    ───────────────────────────────────────── */
-      .slider-labels {
-        display: flex;
-        justify-content: space-between;
-        font-size: 11px;
-        color: var(--text-tertiary);
-      }
-
-      .slider-labels span {
-        padding: 3px 10px;
-        border-radius: var(--radius-sm);
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-      }
-
-      .progress-labels span {
-        padding: 3px 10px;
-        border-radius: var(--radius-sm);
-        background: var(--glass-pill-bg);
-        border: 1px solid var(--glass-pill-border);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-      }
-
-      /* ─────────────────────────────────────────
-       LOADING SHIMMER
-    ───────────────────────────────────────── */
-      @keyframes shimmer {
-        0% {
-          background-position: -400px 0;
-        }
-        100% {
-          background-position: 400px 0;
-        }
-      }
-
-      /* ─────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────── */
-      @media (max-width: 400px) {
-        .app-container {
-          padding: 12px 10px 32px;
-        }
-        .card-title {
-          font-size: 19px;
-        }
-        .review-type-btn {
-          padding: 14px 16px;
-        }
-        .btn-icon {
-          width: 44px;
-          height: 44px;
-          font-size: 20px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- Animated background orbs -->
-    <div class="bg-orbs" aria-hidden="true">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
-    </div>
-
-    <div class="app-container">
-      <!-- ══════════════════════════════════════
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Review — Liquid Glass</title>
+  <meta name="description" content="Share your hotel experience with a beautiful iOS-style review interface." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/logo.jpg" />
+  <link rel="icon" type="image/jpeg" sizes="96x96" href="../../../assets/logo.jpg" />
+  <link rel="shortcut icon" href="../../../assets/logo.jpg" />
+
+  <link rel="stylesheet" href="liquid-glass-ui/style.css" />
+  <link rel="stylesheet" href="script.js" />
+</head>
+
+<body>
+  <!-- Animated background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- ══════════════════════════════════════
          HEADER — always visible
     ══════════════════════════════════════ -->
-      <header class="app-header">
-        <div class="hotel-badge">
-          <span class="dot"></span>
-          Guest Review Portal
-        </div>
-        <h1 class="hotel-name" id="hotel-name-display">Grand Vista Hotel</h1>
-        <p class="hotel-subtitle" id="header-subtitle">
-          We value your experience
-        </p>
-      </header>
-
-      <!-- Progress Bar -->
-      <div class="progress-bar-wrap" id="progress-wrap">
-        <div class="progress-labels">
-          <span id="progress-label-left">Step 1 of 2</span>
-          <span id="progress-label-right">Review</span>
-        </div>
-        <div class="progress-track">
-          <div
-            class="progress-fill"
-            id="progress-fill"
-            style="width: 50%"
-          ></div>
-        </div>
+    <header class="app-header">
+      <div class="hotel-badge">
+        <span class="dot"></span>
+        Guest Review Portal
       </div>
+      <h1 class="hotel-name" id="hotel-name-display">Grand Vista Hotel</h1>
+      <p class="hotel-subtitle" id="header-subtitle">
+        We value your experience
+      </p>
+    </header>
 
-      <!-- ══════════════════════════════════════
+    <!-- Progress Bar -->
+    <div class="progress-bar-wrap" id="progress-wrap">
+      <div class="progress-labels">
+        <span id="progress-label-left">Step 1 of 2</span>
+        <span id="progress-label-right">Review</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width: 50%"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
          PAGE 0 — Choose Review Type
     ══════════════════════════════════════ -->
-      <section
-        class="page active"
-        id="page-choose"
-        aria-label="Choose review type"
-      >
-        <div class="glass-card">
-          <div class="card-header">
-            <p class="card-section-label">Share Your Experience</p>
-            <h2 class="card-title">What would you like to review?</h2>
-          </div>
-
-          <nav class="review-type-grid" aria-label="Review categories">
-            <button
-              class="review-type-btn"
-              id="btn-food"
-              onclick="navigateTo('food')"
-              aria-label="Review food and dining"
-            >
-              <div class="btn-icon food">🍽️</div>
-              <div class="btn-text">
-                <div class="btn-title">Food & Dining</div>
-                <div class="btn-desc">Meals, room service & bar</div>
-              </div>
-              <span class="btn-chevron" aria-hidden="true">›</span>
-            </button>
-
-            <button
-              class="review-type-btn"
-              id="btn-mgmt"
-              onclick="navigateTo('management')"
-              aria-label="Review management and staff"
-            >
-              <div class="btn-icon mgmt">🤝</div>
-              <div class="btn-text">
-                <div class="btn-title">Management & Staff</div>
-                <div class="btn-desc">Service, helpfulness & check-in</div>
-              </div>
-              <span class="btn-chevron" aria-hidden="true">›</span>
-            </button>
-
-            <button
-              class="review-type-btn"
-              id="btn-hotel"
-              onclick="navigateTo('hotel')"
-              aria-label="Review hotel experience"
-            >
-              <div class="btn-icon hotel">🏨</div>
-              <div class="btn-text">
-                <div class="btn-title">Hotel Experience</div>
-                <div class="btn-desc">Rooms, cleanliness & amenities</div>
-              </div>
-              <span class="btn-chevron" aria-hidden="true">›</span>
-            </button>
-          </nav>
+    <section class="page active" id="page-choose" aria-label="Choose review type">
+      <div class="glass-card">
+        <div class="card-header">
+          <p class="card-section-label">Share Your Experience</p>
+          <h2 class="card-title">What would you like to review?</h2>
         </div>
-      </section>
 
-      <!-- ══════════════════════════════════════
+        <nav class="review-type-grid" aria-label="Review categories">
+          <button class="review-type-btn" id="btn-food" onclick="navigateTo('food')"
+            aria-label="Review food and dining">
+            <div class="btn-icon food">🍽️</div>
+            <div class="btn-text">
+              <div class="btn-title">Food & Dining</div>
+              <div class="btn-desc">Meals, room service & bar</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">›</span>
+          </button>
+
+          <button class="review-type-btn" id="btn-mgmt" onclick="navigateTo('management')"
+            aria-label="Review management and staff">
+            <div class="btn-icon mgmt">🤝</div>
+            <div class="btn-text">
+              <div class="btn-title">Management & Staff</div>
+              <div class="btn-desc">Service, helpfulness & check-in</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">›</span>
+          </button>
+
+          <button class="review-type-btn" id="btn-hotel" onclick="navigateTo('hotel')"
+            aria-label="Review hotel experience">
+            <div class="btn-icon hotel">🏨</div>
+            <div class="btn-text">
+              <div class="btn-title">Hotel Experience</div>
+              <div class="btn-desc">Rooms, cleanliness & amenities</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">›</span>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
          PAGE 1 — Food & Dining Menu
     ══════════════════════════════════════ -->
-      <section class="page" id="page-food" aria-label="Food and dining menu">
-        <button
-          class="back-btn"
-          onclick="navigateTo('choose')"
-          aria-label="Go back"
-        >
-          ‹ Back
-        </button>
-        <div class="glass-card">
-          <div class="card-header">
-            <p class="card-section-label">🍽️ Food Menu</p>
-            <h2 class="card-title">Order Your Food</h2>
-          </div>
+    <section class="page" id="page-food" aria-label="Food and dining menu">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
+        ‹ Back
+      </button>
+      <div class="glass-card">
+        <div class="card-header">
+          <p class="card-section-label">🍽️ Food Menu</p>
+          <h2 class="card-title">Order Your Food</h2>
+        </div>
 
-          <!-- Sorting and Filtering System -->
-          <style>
-            .filter-system::-webkit-scrollbar {
-              display: none;
-            }
-            .filter-system {
-              scrollbar-width: none;
-              -ms-overflow-style: none;
-            }
-          </style>
-          <nav
-            class="filter-system"
-            style="
+        <!-- Sorting and Filtering System -->
+        <style>
+          .filter-system::-webkit-scrollbar {
+            display: none;
+          }
+
+          .filter-system {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+        </style>
+        <nav class="filter-system" style="
               display: flex;
               gap: 8px;
               padding: 8px 24px;
               overflow-x: auto;
               margin-bottom: 24px;
               align-items: center;
-            "
-          >
-            <button
-              class="filter-btn btn-primary"
-              style="
+            ">
+          <button class="filter-btn btn-primary" style="
                 padding: 8px 16px;
                 border-radius: var(--radius-pill);
                 font-size: 13px;
@@ -1457,15 +139,10 @@
                 white-space: nowrap;
                 flex: 0 0 auto;
                 width: auto;
-              "
-              data-category="all"
-              onclick="filterMenu('all', this, event)"
-            >
-              All
-            </button>
-            <button
-              class="filter-btn btn-primary ghost"
-              style="
+              " data-category="all" onclick="filterMenu('all', this, event)">
+            All
+          </button>
+          <button class="filter-btn btn-primary ghost" style="
                 padding: 8px 16px;
                 border-radius: var(--radius-pill);
                 font-size: 13px;
@@ -1473,59 +150,228 @@
                 white-space: nowrap;
                 flex: 0 0 auto;
                 width: auto;
-              "
-              data-category="south-indian"
-              onclick="filterMenu('south-indian', this, event)"
-            >
+              " data-category="south-indian" onclick="filterMenu('south-indian', this, event)">
+            South Indian
+          </button>
+          <button class="filter-btn btn-primary ghost" style="
+                padding: 8px 16px;
+                border-radius: var(--radius-pill);
+                font-size: 13px;
+                cursor: pointer;
+                white-space: nowrap;
+                flex: 0 0 auto;
+                width: auto;
+              " data-category="chinese" onclick="filterMenu('chinese', this, event)">
+            Chinese
+          </button>
+        </nav>
+
+        <!-- Menu Categories -->
+        <div class="menu-container" style="padding: 0 24px">
+          <!-- South Indian Category -->
+          <section class="menu-category" id="cat-south-indian">
+            <h3 class="category-title" style="
+                  margin-bottom: 16px;
+                  font-weight: 600;
+                  font-size: 18px;
+                  color: var(--text-primary);
+                ">
               South Indian
-            </button>
-            <button
-              class="filter-btn btn-primary ghost"
-              style="
-                padding: 8px 16px;
-                border-radius: var(--radius-pill);
-                font-size: 13px;
-                cursor: pointer;
-                white-space: nowrap;
-                flex: 0 0 auto;
-                width: auto;
-              "
-              data-category="chinese"
-              onclick="filterMenu('chinese', this, event)"
-            >
+            </h3>
+            <ul class="dish-list" style="
+                  list-style: none;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 16px;
+                  margin-bottom: 24px;
+                  padding: 0;
+                ">
+              <li class="dish-card" style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                    background: rgba(255, 255, 255, 0.06);
+                    border: 1.5px solid var(--glass-border-subtle);
+                    border-radius: var(--radius-md);
+                  ">
+                <div class="dish-img" style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: rgba(255, 255, 255, 0.1);
+                      border-radius: var(--radius-sm);
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        font-weight: 600;
+                      ">
+                    Idli
+                  </h4>
+                  <p style="
+                        font-size: 13px;
+                        margin-bottom: 12px;
+                        color: var(--text-secondary);
+                      ">
+                    Soft, steamed rice cakes served with sambar and chutney.
+                  </p>
+                  <button class="add-to-order-btn btn-primary ghost" style="
+                        padding: 6px 12px;
+                        font-size: 12px;
+                        width: auto;
+                        border-radius: var(--radius-pill);
+                      " onclick="addToOrder('Idli', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card" style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                    background: rgba(255, 255, 255, 0.06);
+                    border: 1.5px solid var(--glass-border-subtle);
+                    border-radius: var(--radius-md);
+                  ">
+                <div class="dish-img" style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: rgba(255, 255, 255, 0.1);
+                      border-radius: var(--radius-sm);
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        font-weight: 600;
+                      ">
+                    Dosa
+                  </h4>
+                  <p style="
+                        font-size: 13px;
+                        margin-bottom: 12px;
+                        color: var(--text-secondary);
+                      ">
+                    Crispy savory crepe filled with spiced potatoes.
+                  </p>
+                  <button class="add-to-order-btn btn-primary ghost" style="
+                        padding: 6px 12px;
+                        font-size: 12px;
+                        width: auto;
+                        border-radius: var(--radius-pill);
+                      " onclick="addToOrder('Dosa', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card" style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                    background: rgba(255, 255, 255, 0.06);
+                    border: 1.5px solid var(--glass-border-subtle);
+                    border-radius: var(--radius-md);
+                  ">
+                <div class="dish-img" style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: rgba(255, 255, 255, 0.1);
+                      border-radius: var(--radius-sm);
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        font-weight: 600;
+                      ">
+                    Wada
+                  </h4>
+                  <p style="
+                        font-size: 13px;
+                        margin-bottom: 12px;
+                        color: var(--text-secondary);
+                      ">
+                    Crispy deep-fried lentil donuts.
+                  </p>
+                  <button class="add-to-order-btn btn-primary ghost" style="
+                        padding: 6px 12px;
+                        font-size: 12px;
+                        width: auto;
+                        border-radius: var(--radius-pill);
+                      " onclick="addToOrder('Wada', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card" style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                    background: rgba(255, 255, 255, 0.06);
+                    border: 1.5px solid var(--glass-border-subtle);
+                    border-radius: var(--radius-md);
+                  ">
+                <div class="dish-img" style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: rgba(255, 255, 255, 0.1);
+                      border-radius: var(--radius-sm);
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        font-weight: 600;
+                      ">
+                    Uttapam
+                  </h4>
+                  <p style="
+                        font-size: 13px;
+                        margin-bottom: 12px;
+                        color: var(--text-secondary);
+                      ">
+                    Thick savory pancake topped with fresh vegetables.
+                  </p>
+                  <button class="add-to-order-btn btn-primary ghost" style="
+                        padding: 6px 12px;
+                        font-size: 12px;
+                        width: auto;
+                        border-radius: var(--radius-pill);
+                      " onclick="addToOrder('Uttapam', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Chinese Category -->
+          <section class="menu-category" id="cat-chinese">
+            <h3 class="category-title" style="
+                  margin-bottom: 16px;
+                  font-weight: 600;
+                  font-size: 18px;
+                  color: var(--text-primary);
+                ">
               Chinese
-            </button>
-          </nav>
-
-          <!-- Menu Categories -->
-          <div class="menu-container" style="padding: 0 24px">
-            <!-- South Indian Category -->
-            <section class="menu-category" id="cat-south-indian">
-              <h3
-                class="category-title"
-                style="
-                  margin-bottom: 16px;
-                  font-weight: 600;
-                  font-size: 18px;
-                  color: var(--text-primary);
-                "
-              >
-                South Indian
-              </h3>
-              <ul
-                class="dish-list"
-                style="
+            </h3>
+            <ul class="dish-list" style="
                   list-style: none;
                   display: flex;
                   flex-direction: column;
                   gap: 16px;
                   margin-bottom: 24px;
                   padding: 0;
-                "
-              >
-                <li
-                  class="dish-card"
-                  style="
+                ">
+              <li class="dish-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -1533,54 +379,40 @@
                     background: rgba(255, 255, 255, 0.06);
                     border: 1.5px solid var(--glass-border-subtle);
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img"
-                    style="
+                  ">
+                <div class="dish-img" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(255, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
-                      "
-                    >
-                      Idli
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Veg Chowmein
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      "
-                    >
-                      Soft, steamed rice cakes served with sambar and chutney.
-                    </p>
-                    <button
-                      class="add-to-order-btn btn-primary ghost"
-                      style="
+                      ">
+                    Stir-fried noodles tossed with fresh vegetables.
+                  </p>
+                  <button class="add-to-order-btn btn-primary ghost" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         width: auto;
                         border-radius: var(--radius-pill);
-                      "
-                      onclick="addToOrder('Idli', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card"
-                  style="
+                      " onclick="addToOrder('Veg Chowmein', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -1588,54 +420,40 @@
                     background: rgba(255, 255, 255, 0.06);
                     border: 1.5px solid var(--glass-border-subtle);
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img"
-                    style="
+                  ">
+                <div class="dish-img" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(255, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
-                      "
-                    >
-                      Dosa
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Paneer Chowmein
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      "
-                    >
-                      Crispy savory crepe filled with spiced potatoes.
-                    </p>
-                    <button
-                      class="add-to-order-btn btn-primary ghost"
-                      style="
+                      ">
+                    Classic chowmein loaded with soft paneer cubes.
+                  </p>
+                  <button class="add-to-order-btn btn-primary ghost" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         width: auto;
                         border-radius: var(--radius-pill);
-                      "
-                      onclick="addToOrder('Dosa', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card"
-                  style="
+                      " onclick="addToOrder('Paneer Chowmein', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -1643,54 +461,40 @@
                     background: rgba(255, 255, 255, 0.06);
                     border: 1.5px solid var(--glass-border-subtle);
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img"
-                    style="
+                  ">
+                <div class="dish-img" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(255, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
-                      "
-                    >
-                      Wada
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Egg Roll
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      "
-                    >
-                      Crispy deep-fried lentil donuts.
-                    </p>
-                    <button
-                      class="add-to-order-btn btn-primary ghost"
-                      style="
+                      ">
+                    Flaky paratha wrapped around a spiced omelette.
+                  </p>
+                  <button class="add-to-order-btn btn-primary ghost" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         width: auto;
                         border-radius: var(--radius-pill);
-                      "
-                      onclick="addToOrder('Wada', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card"
-                  style="
+                      " onclick="addToOrder('Egg Roll', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -1698,81 +502,40 @@
                     background: rgba(255, 255, 255, 0.06);
                     border: 1.5px solid var(--glass-border-subtle);
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img"
-                    style="
+                  ">
+                <div class="dish-img" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(255, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
-                      "
-                    >
-                      Uttapam
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Paneer Roll
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      "
-                    >
-                      Thick savory pancake topped with fresh vegetables.
-                    </p>
-                    <button
-                      class="add-to-order-btn btn-primary ghost"
-                      style="
+                      ">
+                    Spicy paneer chunks wrapped in a crispy paratha.
+                  </p>
+                  <button class="add-to-order-btn btn-primary ghost" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         width: auto;
                         border-radius: var(--radius-pill);
-                      "
-                      onclick="addToOrder('Uttapam', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </section>
-
-            <!-- Chinese Category -->
-            <section class="menu-category" id="cat-chinese">
-              <h3
-                class="category-title"
-                style="
-                  margin-bottom: 16px;
-                  font-weight: 600;
-                  font-size: 18px;
-                  color: var(--text-primary);
-                "
-              >
-                Chinese
-              </h3>
-              <ul
-                class="dish-list"
-                style="
-                  list-style: none;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 16px;
-                  margin-bottom: 24px;
-                  padding: 0;
-                "
-              >
-                <li
-                  class="dish-card"
-                  style="
+                      " onclick="addToOrder('Paneer Roll', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -1780,54 +543,40 @@
                     background: rgba(255, 255, 255, 0.06);
                     border: 1.5px solid var(--glass-border-subtle);
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img"
-                    style="
+                  ">
+                <div class="dish-img" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(255, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
-                      "
-                    >
-                      Veg Chowmein
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Manchurian
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      "
-                    >
-                      Stir-fried noodles tossed with fresh vegetables.
-                    </p>
-                    <button
-                      class="add-to-order-btn btn-primary ghost"
-                      style="
+                      ">
+                    Deep-fried vegetable balls in a spicy, dark soy sauce.
+                  </p>
+                  <button class="add-to-order-btn btn-primary ghost" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         width: auto;
                         border-radius: var(--radius-pill);
-                      "
-                      onclick="addToOrder('Veg Chowmein', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card"
-                  style="
+                      " onclick="addToOrder('Manchurian', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -1835,1200 +584,658 @@
                     background: rgba(255, 255, 255, 0.06);
                     border: 1.5px solid var(--glass-border-subtle);
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img"
-                    style="
+                  ">
+                <div class="dish-img" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(255, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
-                      "
-                    >
-                      Paneer Chowmein
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Paneer Chilli Gravy
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      "
-                    >
-                      Classic chowmein loaded with soft paneer cubes.
-                    </p>
-                    <button
-                      class="add-to-order-btn btn-primary ghost"
-                      style="
+                      ">
+                    Spicy and tangy gravy with bell peppers and paneer.
+                  </p>
+                  <button class="add-to-order-btn btn-primary ghost" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         width: auto;
                         border-radius: var(--radius-pill);
-                      "
-                      onclick="addToOrder('Paneer Chowmein', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card"
-                  style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                    background: rgba(255, 255, 255, 0.06);
-                    border: 1.5px solid var(--glass-border-subtle);
-                    border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img"
-                    style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: rgba(255, 255, 255, 0.1);
-                      border-radius: var(--radius-sm);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        font-weight: 600;
-                      "
-                    >
-                      Egg Roll
-                    </h4>
-                    <p
-                      style="
-                        font-size: 13px;
-                        margin-bottom: 12px;
-                        color: var(--text-secondary);
-                      "
-                    >
-                      Flaky paratha wrapped around a spiced omelette.
-                    </p>
-                    <button
-                      class="add-to-order-btn btn-primary ghost"
-                      style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        width: auto;
-                        border-radius: var(--radius-pill);
-                      "
-                      onclick="addToOrder('Egg Roll', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card"
-                  style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                    background: rgba(255, 255, 255, 0.06);
-                    border: 1.5px solid var(--glass-border-subtle);
-                    border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img"
-                    style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: rgba(255, 255, 255, 0.1);
-                      border-radius: var(--radius-sm);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        font-weight: 600;
-                      "
-                    >
-                      Paneer Roll
-                    </h4>
-                    <p
-                      style="
-                        font-size: 13px;
-                        margin-bottom: 12px;
-                        color: var(--text-secondary);
-                      "
-                    >
-                      Spicy paneer chunks wrapped in a crispy paratha.
-                    </p>
-                    <button
-                      class="add-to-order-btn btn-primary ghost"
-                      style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        width: auto;
-                        border-radius: var(--radius-pill);
-                      "
-                      onclick="addToOrder('Paneer Roll', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card"
-                  style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                    background: rgba(255, 255, 255, 0.06);
-                    border: 1.5px solid var(--glass-border-subtle);
-                    border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img"
-                    style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: rgba(255, 255, 255, 0.1);
-                      border-radius: var(--radius-sm);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        font-weight: 600;
-                      "
-                    >
-                      Manchurian
-                    </h4>
-                    <p
-                      style="
-                        font-size: 13px;
-                        margin-bottom: 12px;
-                        color: var(--text-secondary);
-                      "
-                    >
-                      Deep-fried vegetable balls in a spicy, dark soy sauce.
-                    </p>
-                    <button
-                      class="add-to-order-btn btn-primary ghost"
-                      style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        width: auto;
-                        border-radius: var(--radius-pill);
-                      "
-                      onclick="addToOrder('Manchurian', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card"
-                  style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                    background: rgba(255, 255, 255, 0.06);
-                    border: 1.5px solid var(--glass-border-subtle);
-                    border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img"
-                    style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: rgba(255, 255, 255, 0.1);
-                      border-radius: var(--radius-sm);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        font-weight: 600;
-                      "
-                    >
-                      Paneer Chilli Gravy
-                    </h4>
-                    <p
-                      style="
-                        font-size: 13px;
-                        margin-bottom: 12px;
-                        color: var(--text-secondary);
-                      "
-                    >
-                      Spicy and tangy gravy with bell peppers and paneer.
-                    </p>
-                    <button
-                      class="add-to-order-btn btn-primary ghost"
-                      style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        width: auto;
-                        border-radius: var(--radius-pill);
-                      "
-                      onclick="addToOrder('Paneer Chilli Gravy', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </section>
-          </div>
-
-          <div class="glass-divider"></div>
-          <div class="btn-row">
-            <button
-              class="btn-primary accent"
-              id="view-order-btn"
-              onclick="submitReview('food-order')"
-              type="button"
-            >
-              View Ordered (<span id="cart-count">0</span>) ›
-            </button>
-          </div>
+                      " onclick="addToOrder('Paneer Chilli Gravy', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </section>
         </div>
-      </section>
 
-      <!-- ══════════════════════════════════════
-         PAGE 2 — Management & Staff Review
-    ══════════════════════════════════════ -->
-      <section
-        class="page"
-        id="page-management"
-        aria-label="Management and staff review"
-      >
-        <button
-          class="back-btn"
-          onclick="navigateTo('choose')"
-          aria-label="Go back"
-        >
-          ‹ Back
-        </button>
-        <div class="glass-card">
-          <div class="card-header">
-            <p class="card-section-label">🤝 Management & Staff</p>
-            <h2 class="card-title">Management & Staff Review</h2>
-          </div>
-
-          <form id="management-form" class="form-body" novalidate>
-            <!-- Staff helpful -->
-            <div class="form-group">
-              <label class="form-label"
-                >Was the staff welcoming and helpful?</label
-              >
-              <div
-                class="option-group"
-                role="radiogroup"
-                aria-label="Staff helpfulness"
-              >
-                <label class="option-item">
-                  <input
-                    type="radio"
-                    id="staff-yes"
-                    name="staff-helpful"
-                    value="yes"
-                  />
-                  <span class="option-label">👍 Yes, very helpful</span>
-                </label>
-                <label class="option-item">
-                  <input
-                    type="radio"
-                    id="staff-average"
-                    name="staff-helpful"
-                    value="average"
-                  />
-                  <span class="option-label">😐 It was average</span>
-                </label>
-                <label class="option-item">
-                  <input
-                    type="radio"
-                    id="staff-no"
-                    name="staff-helpful"
-                    value="no"
-                  />
-                  <span class="option-label">👎 Needs improvement</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Check-in rating -->
-            <div class="form-group">
-              <label class="form-label" for="check-in-rating"
-                >How smooth was your check-in process?</label
-              >
-              <select
-                class="glass-select"
-                id="check-in-rating"
-                name="check-in-rating"
-              >
-                <option value="">— Select an option —</option>
-                <option value="excellent">
-                  ⭐ Excellent — Fast & seamless
-                </option>
-                <option value="good">✅ Good — Minor hiccups</option>
-                <option value="average">😐 Average — Could be better</option>
-                <option value="poor">⚠️ Poor — Needs improvement</option>
-              </select>
-            </div>
-
-            <!-- Response time slider -->
-            <div class="form-group">
-              <label class="form-label" for="response-time"
-                >Staff Response Time Rating</label
-              >
-              <div class="slider-wrap">
-                <div class="slider-row">
-                  <input
-                    type="range"
-                    class="glass-range"
-                    id="response-time"
-                    name="response-time"
-                    min="1"
-                    max="10"
-                    value="7"
-                    oninput="updateSlider('response-time-val', this.value)"
-                  />
-                  <span class="slider-val" id="response-time-val">7</span>
-                </div>
-                <div class="slider-labels">
-                  <span>1 — Very slow</span><span>10 — Instant</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Comments -->
-            <div class="form-group">
-              <label class="form-label" for="management-feedback"
-                >Additional Comments for Management</label
-              >
-              <textarea
-                class="glass-textarea"
-                id="management-feedback"
-                name="management-feedback"
-                placeholder="Mention any specific staff members, memorable interactions, or areas for improvement…"
-                rows="4"
-              ></textarea>
-            </div>
-          </form>
-
-          <div class="glass-divider"></div>
-          <div class="btn-row">
-            <button
-              class="btn-primary accent"
-              id="submit-mgmt"
-              onclick="submitReview('management')"
-              type="button"
-            >
-              Submit Staff Review ›
-            </button>
-            <button
-              class="btn-primary ghost"
-              onclick="navigateTo('choose')"
-              type="button"
-            >
-              Cancel
-            </button>
-          </div>
+        <div class="glass-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary accent" id="view-order-btn" onclick="submitReview('food-order')" type="button">
+            View Ordered (<span id="cart-count">0</span>) ›
+          </button>
         </div>
-      </section>
-
-      <!-- ══════════════════════════════════════
-         PAGE 3 — Hotel Experience Review
-    ══════════════════════════════════════ -->
-      <section
-        class="page"
-        id="page-hotel"
-        aria-label="Hotel experience review"
-      >
-        <button
-          class="back-btn"
-          onclick="navigateTo('choose')"
-          aria-label="Go back"
-        >
-          ‹ Back
-        </button>
-        <div class="glass-card">
-          <div class="card-header">
-            <p class="card-section-label">🏨 Hotel Experience</p>
-            <h2 class="card-title">Hotel Experience Review</h2>
-          </div>
-
-          <form id="hotel-form" class="form-body" novalidate>
-            <!-- Star ratings -->
-            <div class="form-group">
-              <label class="form-label">Rate your stay (tap to rate)</label>
-              <div
-                class="star-group"
-                role="group"
-                aria-label="Hotel star ratings"
-              >
-                <div class="star-row">
-                  <span class="star-row-label">🛏️ Room Cleanliness</span>
-                  <div
-                    class="stars"
-                    id="stars-cleanliness"
-                    role="group"
-                    aria-label="Room cleanliness rating"
-                  >
-                    <span
-                      class="star"
-                      data-group="cleanliness"
-                      data-val="1"
-                      onclick="setStars('cleanliness', 1)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="1 star"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="cleanliness"
-                      data-val="2"
-                      onclick="setStars('cleanliness', 2)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="2 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="cleanliness"
-                      data-val="3"
-                      onclick="setStars('cleanliness', 3)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="3 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="cleanliness"
-                      data-val="4"
-                      onclick="setStars('cleanliness', 4)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="4 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="cleanliness"
-                      data-val="5"
-                      onclick="setStars('cleanliness', 5)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="5 stars"
-                      >★</span
-                    >
-                  </div>
-                </div>
-
-                <div class="star-row">
-                  <span class="star-row-label">💤 Room Comfort</span>
-                  <div
-                    class="stars"
-                    id="stars-comfort"
-                    role="group"
-                    aria-label="Room comfort rating"
-                  >
-                    <span
-                      class="star"
-                      data-group="comfort"
-                      data-val="1"
-                      onclick="setStars('comfort', 1)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="1 star"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="comfort"
-                      data-val="2"
-                      onclick="setStars('comfort', 2)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="2 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="comfort"
-                      data-val="3"
-                      onclick="setStars('comfort', 3)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="3 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="comfort"
-                      data-val="4"
-                      onclick="setStars('comfort', 4)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="4 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="comfort"
-                      data-val="5"
-                      onclick="setStars('comfort', 5)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="5 stars"
-                      >★</span
-                    >
-                  </div>
-                </div>
-
-                <div class="star-row">
-                  <span class="star-row-label">🏊 Amenities</span>
-                  <div
-                    class="stars"
-                    id="stars-amenities"
-                    role="group"
-                    aria-label="Amenities rating"
-                  >
-                    <span
-                      class="star"
-                      data-group="amenities"
-                      data-val="1"
-                      onclick="setStars('amenities', 1)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="1 star"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="amenities"
-                      data-val="2"
-                      onclick="setStars('amenities', 2)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="2 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="amenities"
-                      data-val="3"
-                      onclick="setStars('amenities', 3)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="3 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="amenities"
-                      data-val="4"
-                      onclick="setStars('amenities', 4)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="4 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="amenities"
-                      data-val="5"
-                      onclick="setStars('amenities', 5)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="5 stars"
-                      >★</span
-                    >
-                  </div>
-                </div>
-
-                <div class="star-row">
-                  <span class="star-row-label">📶 WiFi & Connectivity</span>
-                  <div
-                    class="stars"
-                    id="stars-wifi"
-                    role="group"
-                    aria-label="WiFi rating"
-                  >
-                    <span
-                      class="star"
-                      data-group="wifi"
-                      data-val="1"
-                      onclick="setStars('wifi', 1)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="1 star"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="wifi"
-                      data-val="2"
-                      onclick="setStars('wifi', 2)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="2 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="wifi"
-                      data-val="3"
-                      onclick="setStars('wifi', 3)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="3 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="wifi"
-                      data-val="4"
-                      onclick="setStars('wifi', 4)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="4 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="wifi"
-                      data-val="5"
-                      onclick="setStars('wifi', 5)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="5 stars"
-                      >★</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Overall slider -->
-            <div class="form-group">
-              <label class="form-label" for="overall-experience"
-                >Overall Experience Score</label
-              >
-              <div class="slider-wrap">
-                <div class="slider-row">
-                  <input
-                    type="range"
-                    class="glass-range"
-                    id="overall-experience"
-                    name="overall-experience"
-                    min="1"
-                    max="10"
-                    value="8"
-                    oninput="updateSlider('overall-exp-val', this.value)"
-                  />
-                  <span class="slider-val" id="overall-exp-val">8</span>
-                </div>
-                <div class="slider-labels">
-                  <span>1 — Terrible</span><span>10 — Perfect</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Would recommend -->
-            <div class="form-group">
-              <label class="form-label"
-                >Would you recommend us to others?</label
-              >
-              <div
-                class="option-group"
-                role="radiogroup"
-                aria-label="Would you recommend"
-              >
-                <label class="option-item">
-                  <input
-                    type="radio"
-                    id="recommend-yes"
-                    name="recommend"
-                    value="yes"
-                  />
-                  <span class="option-label">✅ Absolutely, yes!</span>
-                </label>
-                <label class="option-item">
-                  <input
-                    type="radio"
-                    id="recommend-maybe"
-                    name="recommend"
-                    value="maybe"
-                  />
-                  <span class="option-label">🤔 Maybe, depends</span>
-                </label>
-                <label class="option-item">
-                  <input
-                    type="radio"
-                    id="recommend-no"
-                    name="recommend"
-                    value="no"
-                  />
-                  <span class="option-label">❌ No, not really</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Detailed feedback -->
-            <div class="form-group">
-              <label class="form-label" for="hotel-feedback"
-                >Detailed Feedback</label
-              >
-              <textarea
-                class="glass-textarea"
-                id="hotel-feedback"
-                name="hotel-feedback"
-                placeholder="Tell us about your room, what made your stay memorable, or anything we can do to improve…"
-                rows="4"
-              ></textarea>
-            </div>
-          </form>
-
-          <div class="glass-divider"></div>
-          <div class="btn-row">
-            <button
-              class="btn-primary success"
-              id="submit-hotel"
-              onclick="submitReview('hotel')"
-              type="button"
-            >
-              Submit Hotel Review ›
-            </button>
-            <button
-              class="btn-primary ghost"
-              onclick="navigateTo('choose')"
-              type="button"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════════════════════════════════
-         PAGE 4 — Thank You
-    ══════════════════════════════════════ -->
-      <section class="page" id="page-thankyou" aria-label="Thank you page">
-        <div class="glass-card">
-          <div class="thankyou-body">
-            <div class="thankyou-icon" aria-hidden="true">✓</div>
-            <h2 class="thankyou-title">Thank You!</h2>
-            <p class="thankyou-subtitle">
-              We sincerely appreciate you taking the time to share your
-              feedback. Your thoughts help us deliver an even better experience
-              for every guest.
-            </p>
-            <div class="review-tags" id="review-summary-tags">
-              <!-- dynamically populated -->
-            </div>
-          </div>
-          <div class="glass-divider"></div>
-          <div class="btn-row">
-            <button
-              class="btn-primary accent"
-              onclick="navigateTo('choose')"
-              type="button"
-            >
-              Leave Another Review
-            </button>
-            <button
-              class="btn-primary ghost"
-              onclick="closePortal()"
-              type="button"
-            >
-              Close Portal
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <footer class="app-footer">
-        Powered by ReviewFlo · Secure &amp; Confidential
-      </footer>
-    </div>
-
-    <!-- Toast notification -->
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </div>
+    </section>
 
     <!-- ══════════════════════════════════════
+         PAGE 2 — Management & Staff Review
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-management" aria-label="Management and staff review">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
+        ‹ Back
+      </button>
+      <div class="glass-card">
+        <div class="card-header">
+          <p class="card-section-label">🤝 Management & Staff</p>
+          <h2 class="card-title">Management & Staff Review</h2>
+        </div>
+
+        <form id="management-form" class="form-body" novalidate>
+          <!-- Staff helpful -->
+          <div class="form-group">
+            <label class="form-label">Was the staff welcoming and helpful?</label>
+            <div class="option-group" role="radiogroup" aria-label="Staff helpfulness">
+              <label class="option-item">
+                <input type="radio" id="staff-yes" name="staff-helpful" value="yes" />
+                <span class="option-label">👍 Yes, very helpful</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="staff-average" name="staff-helpful" value="average" />
+                <span class="option-label">😐 It was average</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="staff-no" name="staff-helpful" value="no" />
+                <span class="option-label">👎 Needs improvement</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Check-in rating -->
+          <div class="form-group">
+            <label class="form-label" for="check-in-rating">How smooth was your check-in process?</label>
+            <select class="glass-select" id="check-in-rating" name="check-in-rating">
+              <option value="">— Select an option —</option>
+              <option value="excellent">
+                ⭐ Excellent — Fast & seamless
+              </option>
+              <option value="good">✅ Good — Minor hiccups</option>
+              <option value="average">😐 Average — Could be better</option>
+              <option value="poor">⚠️ Poor — Needs improvement</option>
+            </select>
+          </div>
+
+          <!-- Response time slider -->
+          <div class="form-group">
+            <label class="form-label" for="response-time">Staff Response Time Rating</label>
+            <div class="slider-wrap">
+              <div class="slider-row">
+                <input type="range" class="glass-range" id="response-time" name="response-time" min="1" max="10"
+                  value="7" oninput="updateSlider('response-time-val', this.value)" />
+                <span class="slider-val" id="response-time-val">7</span>
+              </div>
+              <div class="slider-labels">
+                <span>1 — Very slow</span><span>10 — Instant</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comments -->
+          <div class="form-group">
+            <label class="form-label" for="management-feedback">Additional Comments for Management</label>
+            <textarea class="glass-textarea" id="management-feedback" name="management-feedback"
+              placeholder="Mention any specific staff members, memorable interactions, or areas for improvement…"
+              rows="4"></textarea>
+          </div>
+        </form>
+
+        <div class="glass-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary accent" id="submit-mgmt" onclick="submitReview('management')" type="button">
+            Submit Staff Review ›
+          </button>
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PAGE 3 — Hotel Experience Review
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-hotel" aria-label="Hotel experience review">
+      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
+        ‹ Back
+      </button>
+      <div class="glass-card">
+        <div class="card-header">
+          <p class="card-section-label">🏨 Hotel Experience</p>
+          <h2 class="card-title">Hotel Experience Review</h2>
+        </div>
+
+        <form id="hotel-form" class="form-body" novalidate>
+          <!-- Star ratings -->
+          <div class="form-group">
+            <label class="form-label">Rate your stay (tap to rate)</label>
+            <div class="star-group" role="group" aria-label="Hotel star ratings">
+              <div class="star-row">
+                <span class="star-row-label">🛏️ Room Cleanliness</span>
+                <div class="stars" id="stars-cleanliness" role="group" aria-label="Room cleanliness rating">
+                  <span class="star" data-group="cleanliness" data-val="1" onclick="setStars('cleanliness', 1)"
+                    tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="cleanliness" data-val="2" onclick="setStars('cleanliness', 2)"
+                    tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="3" onclick="setStars('cleanliness', 3)"
+                    tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="4" onclick="setStars('cleanliness', 4)"
+                    tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="5" onclick="setStars('cleanliness', 5)"
+                    tabindex="0" role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">💤 Room Comfort</span>
+                <div class="stars" id="stars-comfort" role="group" aria-label="Room comfort rating">
+                  <span class="star" data-group="comfort" data-val="1" onclick="setStars('comfort', 1)" tabindex="0"
+                    role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="comfort" data-val="2" onclick="setStars('comfort', 2)" tabindex="0"
+                    role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="3" onclick="setStars('comfort', 3)" tabindex="0"
+                    role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="4" onclick="setStars('comfort', 4)" tabindex="0"
+                    role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="5" onclick="setStars('comfort', 5)" tabindex="0"
+                    role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">🏊 Amenities</span>
+                <div class="stars" id="stars-amenities" role="group" aria-label="Amenities rating">
+                  <span class="star" data-group="amenities" data-val="1" onclick="setStars('amenities', 1)" tabindex="0"
+                    role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="amenities" data-val="2" onclick="setStars('amenities', 2)" tabindex="0"
+                    role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="3" onclick="setStars('amenities', 3)" tabindex="0"
+                    role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="4" onclick="setStars('amenities', 4)" tabindex="0"
+                    role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="5" onclick="setStars('amenities', 5)" tabindex="0"
+                    role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">📶 WiFi & Connectivity</span>
+                <div class="stars" id="stars-wifi" role="group" aria-label="WiFi rating">
+                  <span class="star" data-group="wifi" data-val="1" onclick="setStars('wifi', 1)" tabindex="0"
+                    role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="wifi" data-val="2" onclick="setStars('wifi', 2)" tabindex="0"
+                    role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="3" onclick="setStars('wifi', 3)" tabindex="0"
+                    role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="4" onclick="setStars('wifi', 4)" tabindex="0"
+                    role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="5" onclick="setStars('wifi', 5)" tabindex="0"
+                    role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overall slider -->
+          <div class="form-group">
+            <label class="form-label" for="overall-experience">Overall Experience Score</label>
+            <div class="slider-wrap">
+              <div class="slider-row">
+                <input type="range" class="glass-range" id="overall-experience" name="overall-experience" min="1"
+                  max="10" value="8" oninput="updateSlider('overall-exp-val', this.value)" />
+                <span class="slider-val" id="overall-exp-val">8</span>
+              </div>
+              <div class="slider-labels">
+                <span>1 — Terrible</span><span>10 — Perfect</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Would recommend -->
+          <div class="form-group">
+            <label class="form-label">Would you recommend us to others?</label>
+            <div class="option-group" role="radiogroup" aria-label="Would you recommend">
+              <label class="option-item">
+                <input type="radio" id="recommend-yes" name="recommend" value="yes" />
+                <span class="option-label">✅ Absolutely, yes!</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="recommend-maybe" name="recommend" value="maybe" />
+                <span class="option-label">🤔 Maybe, depends</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" id="recommend-no" name="recommend" value="no" />
+                <span class="option-label">❌ No, not really</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Detailed feedback -->
+          <div class="form-group">
+            <label class="form-label" for="hotel-feedback">Detailed Feedback</label>
+            <textarea class="glass-textarea" id="hotel-feedback" name="hotel-feedback"
+              placeholder="Tell us about your room, what made your stay memorable, or anything we can do to improve…"
+              rows="4"></textarea>
+          </div>
+        </form>
+
+        <div class="glass-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary success" id="submit-hotel" onclick="submitReview('hotel')" type="button">
+            Submit Hotel Review ›
+          </button>
+          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PAGE 4 — Thank You
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-thankyou" aria-label="Thank you page">
+      <div class="glass-card">
+        <div class="thankyou-body">
+          <div class="thankyou-icon" aria-hidden="true">✓</div>
+          <h2 class="thankyou-title">Thank You!</h2>
+          <p class="thankyou-subtitle">
+            We sincerely appreciate you taking the time to share your
+            feedback. Your thoughts help us deliver an even better experience
+            for every guest.
+          </p>
+          <div class="review-tags" id="review-summary-tags">
+            <!-- dynamically populated -->
+          </div>
+        </div>
+        <div class="glass-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary accent" onclick="navigateTo('choose')" type="button">
+            Leave Another Review
+          </button>
+          <button class="btn-primary ghost" onclick="closePortal()" type="button">
+            Close Portal
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      Powered by ReviewFlo · Secure &amp; Confidential
+    </footer>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ══════════════════════════════════════
        JAVASCRIPT — All SPA logic
   ══════════════════════════════════════ -->
-    <script>
-      /* ─── State ─────────────────────────────── */
-      const starRatings = { cleanliness: 0, comfort: 0, amenities: 0, wifi: 0 };
-      let currentPage = "choose";
+  <script>
+    /* ─── State ─────────────────────────────── */
+    const starRatings = { cleanliness: 0, comfort: 0, amenities: 0, wifi: 0 };
+    let currentPage = "choose";
 
-      /* ─── Page Navigation ───────────────────── */
-      function navigateTo(pageId) {
-        const current = document.querySelector(".page.active");
-        const next = document.getElementById("page-" + pageId);
-        if (!next || current === next) return;
+    /* ─── Page Navigation ───────────────────── */
+    function navigateTo(pageId) {
+      const current = document.querySelector(".page.active");
+      const next = document.getElementById("page-" + pageId);
+      if (!next || current === next) return;
 
-        // Animate out
-        current.style.animation =
-          "pageOut 0.3s cubic-bezier(0.16,1,0.3,1) forwards";
-        setTimeout(() => {
-          current.classList.remove("active");
-          current.style.animation = "";
+      // Animate out
+      current.style.animation =
+        "pageOut 0.3s cubic-bezier(0.16,1,0.3,1) forwards";
+      setTimeout(() => {
+        current.classList.remove("active");
+        current.style.animation = "";
 
-          next.classList.add("active");
-          next.style.animation =
-            "pageIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards";
+        next.classList.add("active");
+        next.style.animation =
+          "pageIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards";
 
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 280);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 280);
 
-        currentPage = pageId;
-        updateProgress(pageId);
-        updateHeader(pageId);
-      }
+      currentPage = pageId;
+      updateProgress(pageId);
+      updateHeader(pageId);
+    }
 
-      /* ─── Update Progress Bar ───────────────── */
-      function updateProgress(pageId) {
-        const wrap = document.getElementById("progress-wrap");
-        const fill = document.getElementById("progress-fill");
-        const left = document.getElementById("progress-label-left");
-        const right = document.getElementById("progress-label-right");
+    /* ─── Update Progress Bar ───────────────── */
+    function updateProgress(pageId) {
+      const wrap = document.getElementById("progress-wrap");
+      const fill = document.getElementById("progress-fill");
+      const left = document.getElementById("progress-label-left");
+      const right = document.getElementById("progress-label-right");
 
-        const map = {
-          choose: { show: false, pct: 0, step: "", label: "" },
-          food: {
-            show: true,
-            pct: 50,
-            step: "Step 1 of 2",
-            label: "Food & Dining",
-          },
-          management: {
-            show: true,
-            pct: 50,
-            step: "Step 1 of 2",
-            label: "Management",
-          },
-          hotel: {
-            show: true,
-            pct: 50,
-            step: "Step 1 of 2",
-            label: "Hotel Experience",
-          },
-          thankyou: {
-            show: true,
-            pct: 100,
-            step: "Completed!",
-            label: "✓ Submitted",
-          },
-        };
+      const map = {
+        choose: { show: false, pct: 0, step: "", label: "" },
+        food: {
+          show: true,
+          pct: 50,
+          step: "Step 1 of 2",
+          label: "Food & Dining",
+        },
+        management: {
+          show: true,
+          pct: 50,
+          step: "Step 1 of 2",
+          label: "Management",
+        },
+        hotel: {
+          show: true,
+          pct: 50,
+          step: "Step 1 of 2",
+          label: "Hotel Experience",
+        },
+        thankyou: {
+          show: true,
+          pct: 100,
+          step: "Completed!",
+          label: "✓ Submitted",
+        },
+      };
 
-        const info = map[pageId] || map.choose;
-        wrap.classList.toggle("visible", info.show);
-        fill.style.width = info.pct + "%";
-        left.textContent = info.step;
-        right.textContent = info.label;
-      }
+      const info = map[pageId] || map.choose;
+      wrap.classList.toggle("visible", info.show);
+      fill.style.width = info.pct + "%";
+      left.textContent = info.step;
+      right.textContent = info.label;
+    }
 
-      /* ─── Update Header Subtitle ────────────── */
-      function updateHeader(pageId) {
-        const sub = document.getElementById("header-subtitle");
-        const subs = {
-          choose: "We value your experience",
-          food: "Tell us about your dining experience",
-          management: "Help us improve our service",
-          hotel: "Rate your overall stay",
-          thankyou: "Review submitted successfully",
-        };
-        sub.style.opacity = "0";
-        setTimeout(() => {
-          sub.textContent = subs[pageId] || subs.choose;
-          sub.style.opacity = "1";
-        }, 200);
-        sub.style.transition = "opacity 0.2s ease";
-      }
+    /* ─── Update Header Subtitle ────────────── */
+    function updateHeader(pageId) {
+      const sub = document.getElementById("header-subtitle");
+      const subs = {
+        choose: "We value your experience",
+        food: "Tell us about your dining experience",
+        management: "Help us improve our service",
+        hotel: "Rate your overall stay",
+        thankyou: "Review submitted successfully",
+      };
+      sub.style.opacity = "0";
+      setTimeout(() => {
+        sub.textContent = subs[pageId] || subs.choose;
+        sub.style.opacity = "1";
+      }, 200);
+      sub.style.transition = "opacity 0.2s ease";
+    }
 
-      /* ─── Slider value display ──────────────── */
-      function updateSlider(targetId, val) {
-        const el = document.getElementById(targetId);
-        if (el) el.textContent = val;
+    /* ─── Slider value display ──────────────── */
+    function updateSlider(targetId, val) {
+      const el = document.getElementById(targetId);
+      if (el) el.textContent = val;
 
-        // Update track fill color
-        const slider = event.target;
-        const pct = ((val - slider.min) / (slider.max - slider.min)) * 100;
+      // Update track fill color
+      const slider = event.target;
+      const pct = ((val - slider.min) / (slider.max - slider.min)) * 100;
+      slider.style.background = `linear-gradient(90deg, rgba(10,132,255,0.8) ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
+    }
+
+    /* ─── Initialize sliders ────────────────── */
+    function initSliders() {
+      document.querySelectorAll(".glass-range").forEach((slider) => {
+        const val = slider.value;
+        const min = slider.min || 0;
+        const max = slider.max || 10;
+        const pct = ((val - min) / (max - min)) * 100;
         slider.style.background = `linear-gradient(90deg, rgba(10,132,255,0.8) ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
-      }
-
-      /* ─── Initialize sliders ────────────────── */
-      function initSliders() {
-        document.querySelectorAll(".glass-range").forEach((slider) => {
-          const val = slider.value;
-          const min = slider.min || 0;
-          const max = slider.max || 10;
-          const pct = ((val - min) / (max - min)) * 100;
-          slider.style.background = `linear-gradient(90deg, rgba(10,132,255,0.8) ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
-        });
-      }
-
-      /* ─── Star Rating ───────────────────────── */
-      function setStars(group, val) {
-        starRatings[group] = val;
-        const container = document.getElementById("stars-" + group);
-        if (!container) return;
-        container.querySelectorAll(".star").forEach((s) => {
-          const sv = parseInt(s.getAttribute("data-val"));
-          s.classList.toggle("active", sv <= val);
-        });
-      }
-
-      /* ─── Hover preview for stars ───────────── */
-      document.addEventListener("mouseover", (e) => {
-        if (!e.target.classList.contains("star")) return;
-        const group = e.target.getAttribute("data-group");
-        const val = parseInt(e.target.getAttribute("data-val"));
-        const container = document.getElementById("stars-" + group);
-        if (!container) return;
-        container.querySelectorAll(".star").forEach((s) => {
-          s.style.color =
-            parseInt(s.getAttribute("data-val")) <= val ? "var(--gold)" : "";
-        });
       });
+    }
 
-      document.addEventListener("mouseout", (e) => {
-        if (!e.target.classList.contains("star")) return;
-        const group = e.target.getAttribute("data-group");
-        const container = document.getElementById("stars-" + group);
-        if (!container) return;
-        container.querySelectorAll(".star").forEach((s) => {
-          const sv = parseInt(s.getAttribute("data-val"));
-          s.style.color = sv <= (starRatings[group] || 0) ? "var(--gold)" : "";
-        });
+    /* ─── Star Rating ───────────────────────── */
+    function setStars(group, val) {
+      starRatings[group] = val;
+      const container = document.getElementById("stars-" + group);
+      if (!container) return;
+      container.querySelectorAll(".star").forEach((s) => {
+        const sv = parseInt(s.getAttribute("data-val"));
+        s.classList.toggle("active", sv <= val);
       });
+    }
 
-      /* ─── Submit Review ─────────────────────── */
-      function submitReview(type) {
-        const tags = buildSummaryTags(type);
-        document.getElementById("review-summary-tags").innerHTML = tags
-          .map((t) => `<span class="review-tag">${t}</span>`)
-          .join("");
-        showToast("✓ Review submitted — thank you!");
-        navigateTo("thankyou");
-      }
+    /* ─── Hover preview for stars ───────────── */
+    document.addEventListener("mouseover", (e) => {
+      if (!e.target.classList.contains("star")) return;
+      const group = e.target.getAttribute("data-group");
+      const val = parseInt(e.target.getAttribute("data-val"));
+      const container = document.getElementById("stars-" + group);
+      if (!container) return;
+      container.querySelectorAll(".star").forEach((s) => {
+        s.style.color =
+          parseInt(s.getAttribute("data-val")) <= val ? "var(--gold)" : "";
+      });
+    });
 
-      /* ─── Build summary tags ────────────────── */
-      function buildSummaryTags(type) {
-        const tags = [];
+    document.addEventListener("mouseout", (e) => {
+      if (!e.target.classList.contains("star")) return;
+      const group = e.target.getAttribute("data-group");
+      const container = document.getElementById("stars-" + group);
+      if (!container) return;
+      container.querySelectorAll(".star").forEach((s) => {
+        const sv = parseInt(s.getAttribute("data-val"));
+        s.style.color = sv <= (starRatings[group] || 0) ? "var(--gold)" : "";
+      });
+    });
 
-        if (type === "food") {
-          const meals = [
-            ...document.querySelectorAll('input[name="meals"]:checked'),
-          ].map((i) => i.value);
-          if (meals.length)
-            tags.push(
-              ...meals.map((m) => "🍽️ " + m[0].toUpperCase() + m.slice(1)),
-            );
-          const q = document.getElementById("food-quality");
-          if (q) tags.push("Quality: " + q.value + "/10");
-        }
+    /* ─── Submit Review ─────────────────────── */
+    function submitReview(type) {
+      const tags = buildSummaryTags(type);
+      document.getElementById("review-summary-tags").innerHTML = tags
+        .map((t) => `<span class="review-tag">${t}</span>`)
+        .join("");
+      showToast("✓ Review submitted — thank you!");
+      navigateTo("thankyou");
+    }
 
-        if (type === "food-order") {
-          tags.push("Items Ordered: " + cart.length);
-          if (cart.length > 0) {
-            let itemsStr = cart.join(", ");
-            if (itemsStr.length > 40)
-              itemsStr = itemsStr.substring(0, 40) + "...";
-            tags.push("Order: " + itemsStr);
-          }
-        }
+    /* ─── Build summary tags ────────────────── */
+    function buildSummaryTags(type) {
+      const tags = [];
 
-        if (type === "management") {
-          const helpful = document.querySelector(
-            'input[name="staff-helpful"]:checked',
+      if (type === "food") {
+        const meals = [
+          ...document.querySelectorAll('input[name="meals"]:checked'),
+        ].map((i) => i.value);
+        if (meals.length)
+          tags.push(
+            ...meals.map((m) => "🍽️ " + m[0].toUpperCase() + m.slice(1)),
           );
-          if (helpful) tags.push("Staff: " + helpful.value);
-          const ci = document.getElementById("check-in-rating");
-          if (ci && ci.value) tags.push("Check-in: " + ci.value);
-        }
-
-        if (type === "hotel") {
-          Object.entries(starRatings).forEach(([k, v]) => {
-            if (v > 0)
-              tags.push(k[0].toUpperCase() + k.slice(1) + ": " + "★".repeat(v));
-          });
-          const oe = document.getElementById("overall-experience");
-          if (oe) tags.push("Overall: " + oe.value + "/10");
-        }
-
-        if (!tags.length) tags.push("Review submitted");
-        return tags;
+        const q = document.getElementById("food-quality");
+        if (q) tags.push("Quality: " + q.value + "/10");
       }
 
-      /* ─── Toast ─────────────────────────────── */
-      function showToast(msg) {
-        const t = document.getElementById("toast");
-        t.textContent = msg;
-        t.classList.add("show");
-        setTimeout(() => t.classList.remove("show"), 3500);
-      }
-
-      /* ─── Close Portal ──────────────────────── */
-      function closePortal() {
-        if (window.parent && window.parent !== window) {
-          window.parent.postMessage({ type: "REVIEW_PORTAL_CLOSE" }, "*");
-        } else {
-          showToast("Thank you for your feedback!");
-          navigateTo("choose");
+      if (type === "food-order") {
+        tags.push("Items Ordered: " + cart.length);
+        if (cart.length > 0) {
+          let itemsStr = cart.join(", ");
+          if (itemsStr.length > 40)
+            itemsStr = itemsStr.substring(0, 40) + "...";
+          tags.push("Order: " + itemsStr);
         }
       }
 
-      /* ─── Menu System Logic ──────────────────── */
-      let cart = [];
-      let itemCounts = {};
+      if (type === "management") {
+        const helpful = document.querySelector(
+          'input[name="staff-helpful"]:checked',
+        );
+        if (helpful) tags.push("Staff: " + helpful.value);
+        const ci = document.getElementById("check-in-rating");
+        if (ci && ci.value) tags.push("Check-in: " + ci.value);
+      }
 
-      function filterMenu(category, btnElement, event) {
-        document.querySelectorAll(".filter-btn").forEach((btn) => {
-          btn.classList.remove("accent");
-          btn.classList.add("ghost");
+      if (type === "hotel") {
+        Object.entries(starRatings).forEach(([k, v]) => {
+          if (v > 0)
+            tags.push(k[0].toUpperCase() + k.slice(1) + ": " + "★".repeat(v));
         });
-        btnElement.classList.remove("ghost");
-        btnElement.classList.add("accent");
-
-        if (event && event.clientX && typeof spawnFlash === "function") {
-          spawnFlash(btnElement, event);
-        } else if (event && event.target && typeof spawnRipple === "function") {
-          spawnRipple(event.target, event);
-        }
-
-        if (category === "all") {
-          document.getElementById("cat-south-indian").style.display = "block";
-          document.getElementById("cat-chinese").style.display = "block";
-        } else if (category === "south-indian") {
-          document.getElementById("cat-south-indian").style.display = "block";
-          document.getElementById("cat-chinese").style.display = "none";
-        } else if (category === "chinese") {
-          document.getElementById("cat-south-indian").style.display = "none";
-          document.getElementById("cat-chinese").style.display = "block";
-        }
+        const oe = document.getElementById("overall-experience");
+        if (oe) tags.push("Overall: " + oe.value + "/10");
       }
 
-      function addToOrder(itemName, btnElement, event) {
-        cart.push(itemName);
-        itemCounts[itemName] = (itemCounts[itemName] || 0) + 1;
-        document.getElementById("cart-count").textContent = cart.length;
-        showToast("✓ Added " + itemName + " to order");
+      if (!tags.length) tags.push("Review submitted");
+      return tags;
+    }
 
-        if (btnElement) {
-          const originalText =
-            btnElement.getAttribute("data-original-text") ||
-            btnElement.textContent.replace(/\s*\(\d+\)$/, "");
-          if (!btnElement.hasAttribute("data-original-text")) {
-            btnElement.setAttribute("data-original-text", originalText);
+    /* ─── Toast ─────────────────────────────── */
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 3500);
+    }
+
+    /* ─── Close Portal ──────────────────────── */
+    function closePortal() {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: "REVIEW_PORTAL_CLOSE" }, "*");
+      } else {
+        showToast("Thank you for your feedback!");
+        navigateTo("choose");
+      }
+    }
+
+    /* ─── Menu System Logic ──────────────────── */
+    let cart = [];
+    let itemCounts = {};
+
+    function filterMenu(category, btnElement, event) {
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.classList.remove("accent");
+        btn.classList.add("ghost");
+      });
+      btnElement.classList.remove("ghost");
+      btnElement.classList.add("accent");
+
+      if (event && event.clientX && typeof spawnFlash === "function") {
+        spawnFlash(btnElement, event);
+      } else if (event && event.target && typeof spawnRipple === "function") {
+        spawnRipple(event.target, event);
+      }
+
+      if (category === "all") {
+        document.getElementById("cat-south-indian").style.display = "block";
+        document.getElementById("cat-chinese").style.display = "block";
+      } else if (category === "south-indian") {
+        document.getElementById("cat-south-indian").style.display = "block";
+        document.getElementById("cat-chinese").style.display = "none";
+      } else if (category === "chinese") {
+        document.getElementById("cat-south-indian").style.display = "none";
+        document.getElementById("cat-chinese").style.display = "block";
+      }
+    }
+
+    function addToOrder(itemName, btnElement, event) {
+      cart.push(itemName);
+      itemCounts[itemName] = (itemCounts[itemName] || 0) + 1;
+      document.getElementById("cart-count").textContent = cart.length;
+      showToast("✓ Added " + itemName + " to order");
+
+      if (btnElement) {
+        const originalText =
+          btnElement.getAttribute("data-original-text") ||
+          btnElement.textContent.replace(/\s*\(\d+\)$/, "");
+        if (!btnElement.hasAttribute("data-original-text")) {
+          btnElement.setAttribute("data-original-text", originalText);
+        }
+        btnElement.textContent =
+          originalText + " (" + itemCounts[itemName] + ")";
+      }
+
+      if (event && event.clientX && typeof spawnFlash === "function") {
+        spawnFlash(btnElement, event);
+      } else if (event && event.target && typeof spawnRipple === "function") {
+        spawnRipple(event.target, event);
+      }
+    }
+
+    /* ─── Ripple Effect Helper ──────────────── */
+    function spawnRipple(el, e) {
+      const rect = el.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 2;
+      const ripple = document.createElement("span");
+      ripple.className = "ripple-effect";
+      ripple.style.width = ripple.style.height = size + "px";
+      ripple.style.left = e.clientX - rect.left - size / 2 + "px";
+      ripple.style.top = e.clientY - rect.top - size / 2 + "px";
+      el.appendChild(ripple);
+      ripple.addEventListener("animationend", () => ripple.remove());
+    }
+
+    /* ─── Flash Burst Helper ────────────────── */
+    function spawnFlash(el, e) {
+      const rect = el.getBoundingClientRect();
+      const x =
+        (((e.clientX - rect.left) / rect.width) * 100).toFixed(1) + "%";
+      const y =
+        (((e.clientY - rect.top) / rect.height) * 100).toFixed(1) + "%";
+      const flash = document.createElement("span");
+      flash.className = "btn-click-flash";
+      flash.style.setProperty("--click-x", x);
+      flash.style.setProperty("--click-y", y);
+      el.appendChild(flash);
+      flash.addEventListener("animationend", () => flash.remove());
+    }
+
+    /* ─── Init ──────────────────────────────── */
+    document.addEventListener("DOMContentLoaded", () => {
+      initSliders();
+
+      // Keyboard support for stars
+      document.querySelectorAll(".star").forEach((star) => {
+        star.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setStars(
+              star.getAttribute("data-group"),
+              parseInt(star.getAttribute("data-val")),
+            );
           }
-          btnElement.textContent =
-            originalText + " (" + itemCounts[itemName] + ")";
-        }
-
-        if (event && event.clientX && typeof spawnFlash === "function") {
-          spawnFlash(btnElement, event);
-        } else if (event && event.target && typeof spawnRipple === "function") {
-          spawnRipple(event.target, event);
-        }
-      }
-
-      /* ─── Ripple Effect Helper ──────────────── */
-      function spawnRipple(el, e) {
-        const rect = el.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height) * 2;
-        const ripple = document.createElement("span");
-        ripple.className = "ripple-effect";
-        ripple.style.width = ripple.style.height = size + "px";
-        ripple.style.left = e.clientX - rect.left - size / 2 + "px";
-        ripple.style.top = e.clientY - rect.top - size / 2 + "px";
-        el.appendChild(ripple);
-        ripple.addEventListener("animationend", () => ripple.remove());
-      }
-
-      /* ─── Flash Burst Helper ────────────────── */
-      function spawnFlash(el, e) {
-        const rect = el.getBoundingClientRect();
-        const x =
-          (((e.clientX - rect.left) / rect.width) * 100).toFixed(1) + "%";
-        const y =
-          (((e.clientY - rect.top) / rect.height) * 100).toFixed(1) + "%";
-        const flash = document.createElement("span");
-        flash.className = "btn-click-flash";
-        flash.style.setProperty("--click-x", x);
-        flash.style.setProperty("--click-y", y);
-        el.appendChild(flash);
-        flash.addEventListener("animationend", () => flash.remove());
-      }
-
-      /* ─── Init ──────────────────────────────── */
-      document.addEventListener("DOMContentLoaded", () => {
-        initSliders();
-
-        // Keyboard support for stars
-        document.querySelectorAll(".star").forEach((star) => {
-          star.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setStars(
-                star.getAttribute("data-group"),
-                parseInt(star.getAttribute("data-val")),
-              );
-            }
-          });
-        });
-
-        /* Ripple on review-type buttons, option items, back button */
-        document
-          .querySelectorAll(".review-type-btn, .option-item, .back-btn")
-          .forEach((el) => {
-            el.addEventListener("click", (e) => spawnRipple(el, e));
-          });
-
-        /* Flash burst on primary buttons */
-        document.querySelectorAll(".btn-primary").forEach((btn) => {
-          btn.addEventListener("click", (e) => spawnFlash(btn, e));
-        });
-
-        /* Star pop animation on click */
-        document.querySelectorAll(".star").forEach((star) => {
-          star.addEventListener("click", () => {
-            star.classList.remove("pop-animate");
-            void star.offsetWidth; /* force reflow */
-            star.classList.add("pop-animate");
-          });
         });
       });
-    </script>
-  </body>
+
+      /* Ripple on review-type buttons, option items, back button */
+      document
+        .querySelectorAll(".review-type-btn, .option-item, .back-btn")
+        .forEach((el) => {
+          el.addEventListener("click", (e) => spawnRipple(el, e));
+        });
+
+      /* Flash burst on primary buttons */
+      document.querySelectorAll(".btn-primary").forEach((btn) => {
+        btn.addEventListener("click", (e) => spawnFlash(btn, e));
+      });
+
+      /* Star pop animation on click */
+      document.querySelectorAll(".star").forEach((star) => {
+        star.addEventListener("click", () => {
+          star.classList.remove("pop-animate");
+          void star.offsetWidth; /* force reflow */
+          star.classList.add("pop-animate");
+        });
+      });
+    });
+  </script>
+</body>
+
 </html>
