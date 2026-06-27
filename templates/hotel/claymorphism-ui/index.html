@@ -1,157 +1,118 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>Hotel Guest Review — Claymorphism UI</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- Google Fonts: Inter for a clean modern look often used with Claymorphism -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
 
-    <!-- Favicon -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../../../assets/logo.jpg"
-    />
-    <link
-      rel="icon"
-      type="image/jpeg"
-      sizes="96x96"
-      href="../../../assets/logo.jpg"
-    />
-    <link rel="shortcut icon" href="../../../assets/logo.jpg" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Hotel Guest Review — Claymorphism UI</title>
+  <link rel="stylesheet" href="claymorphism-ui/style.css" />
+  <!-- Google Fonts: Inter for a clean modern look often used with Claymorphism -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <body>
-    <div class="app-container">
-      <!-- ══════════════════════════════════════
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/logo.jpg" />
+  <link rel="icon" type="image/jpeg" sizes="96x96" href="../../../assets/logo.jpg" />
+  <link rel="shortcut icon" href="../../../assets/logo.jpg" />
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- ══════════════════════════════════════
          HEADER — always visible
     ══════════════════════════════════════ -->
-      <header class="app-header">
-        <div class="hotel-badge">
-          <span class="dot"></span>
-          Guest Review Portal
-        </div>
-        <h1 class="hotel-name" id="hotel-name-display">
-          The Puffy Cloud Hotel
-        </h1>
-        <p class="hotel-subtitle" id="header-subtitle">
-          We value your experience
-        </p>
-      </header>
-
-      <!-- Progress Bar -->
-      <div class="progress-bar-wrap clay-card" id="progress-wrap">
-        <div class="progress-labels">
-          <span class="clay-pill" id="progress-label-left">Step 1 of 2</span>
-          <span class="clay-pill" id="progress-label-right">Review</span>
-        </div>
-        <div class="progress-track clay-inset">
-          <div
-            class="progress-fill"
-            id="progress-fill"
-            style="width: 50%"
-          ></div>
-        </div>
+    <header class="app-header">
+      <div class="hotel-badge">
+        <span class="dot"></span>
+        Guest Review Portal
       </div>
+      <h1 class="hotel-name" id="hotel-name-display">
+        The Puffy Cloud Hotel
+      </h1>
+      <p class="hotel-subtitle" id="header-subtitle">
+        We value your experience
+      </p>
+    </header>
 
-      <!-- ══════════════════════════════════════
+    <!-- Progress Bar -->
+    <div class="progress-bar-wrap clay-card" id="progress-wrap">
+      <div class="progress-labels">
+        <span class="clay-pill" id="progress-label-left">Step 1 of 2</span>
+        <span class="clay-pill" id="progress-label-right">Review</span>
+      </div>
+      <div class="progress-track clay-inset">
+        <div class="progress-fill" id="progress-fill" style="width: 50%"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
          PAGE 0 — Choose Review Type
     ══════════════════════════════════════ -->
-      <section
-        class="page active"
-        id="page-choose"
-        aria-label="Choose review type"
-      >
-        <div class="clay-card main-card">
-          <div class="card-header">
-            <p class="card-section-label clay-pill">Share Your Experience</p>
-            <h2 class="card-title">What would you like to review?</h2>
-          </div>
-
-          <nav class="review-type-grid" aria-label="Review categories">
-            <button
-              class="review-type-btn clay-btn-secondary clay-bg-peach"
-              id="btn-food"
-              onclick="navigateTo('food')"
-              aria-label="Review food and dining"
-            >
-              <div class="btn-icon food clay-icon">🍽️</div>
-              <div class="btn-text">
-                <div class="btn-title">Food & Dining</div>
-                <div class="btn-desc">Meals, room service & bar</div>
-              </div>
-              <span class="btn-chevron" aria-hidden="true">›</span>
-            </button>
-
-            <button
-              class="review-type-btn clay-btn-secondary clay-bg-sky"
-              id="btn-mgmt"
-              onclick="navigateTo('management')"
-              aria-label="Review management and staff"
-            >
-              <div class="btn-icon mgmt clay-icon">🤝</div>
-              <div class="btn-text">
-                <div class="btn-title">Management & Staff</div>
-                <div class="btn-desc">Service, helpfulness & check-in</div>
-              </div>
-              <span class="btn-chevron" aria-hidden="true">›</span>
-            </button>
-
-            <button
-              class="review-type-btn clay-btn-secondary clay-bg-lavender"
-              id="btn-hotel"
-              onclick="navigateTo('hotel')"
-              aria-label="Review hotel experience"
-            >
-              <div class="btn-icon hotel clay-icon">🏨</div>
-              <div class="btn-text">
-                <div class="btn-title">Hotel Experience</div>
-                <div class="btn-desc">Rooms, cleanliness & amenities</div>
-              </div>
-              <span class="btn-chevron" aria-hidden="true">›</span>
-            </button>
-          </nav>
+    <section class="page active" id="page-choose" aria-label="Choose review type">
+      <div class="clay-card main-card">
+        <div class="card-header">
+          <p class="card-section-label clay-pill">Share Your Experience</p>
+          <h2 class="card-title">What would you like to review?</h2>
         </div>
-      </section>
 
-      <!-- ══════════════════════════════════════
+        <nav class="review-type-grid" aria-label="Review categories">
+          <button class="review-type-btn clay-btn-secondary clay-bg-peach" id="btn-food" onclick="navigateTo('food')"
+            aria-label="Review food and dining">
+            <div class="btn-icon food clay-icon">🍽️</div>
+            <div class="btn-text">
+              <div class="btn-title">Food & Dining</div>
+              <div class="btn-desc">Meals, room service & bar</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">›</span>
+          </button>
+
+          <button class="review-type-btn clay-btn-secondary clay-bg-sky" id="btn-mgmt"
+            onclick="navigateTo('management')" aria-label="Review management and staff">
+            <div class="btn-icon mgmt clay-icon">🤝</div>
+            <div class="btn-text">
+              <div class="btn-title">Management & Staff</div>
+              <div class="btn-desc">Service, helpfulness & check-in</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">›</span>
+          </button>
+
+          <button class="review-type-btn clay-btn-secondary clay-bg-lavender" id="btn-hotel"
+            onclick="navigateTo('hotel')" aria-label="Review hotel experience">
+            <div class="btn-icon hotel clay-icon">🏨</div>
+            <div class="btn-text">
+              <div class="btn-title">Hotel Experience</div>
+              <div class="btn-desc">Rooms, cleanliness & amenities</div>
+            </div>
+            <span class="btn-chevron" aria-hidden="true">›</span>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
          PAGE 1 — Food & Dining Menu
     ══════════════════════════════════════ -->
-      <section class="page" id="page-food" aria-label="Food and dining menu">
-        <button
-          class="back-btn clay-btn-secondary"
-          onclick="navigateTo('choose')"
-          aria-label="Go back"
-        >
-          ‹ Back
-        </button>
-        <div class="clay-card main-card">
-          <div class="card-header">
-            <p class="card-section-label clay-pill">🍽️ Food Menu</p>
-            <h2 class="card-title">Order Your Food</h2>
-          </div>
+    <section class="page" id="page-food" aria-label="Food and dining menu">
+      <button class="back-btn clay-btn-secondary" onclick="navigateTo('choose')" aria-label="Go back">
+        ‹ Back
+      </button>
+      <div class="clay-card main-card">
+        <div class="card-header">
+          <p class="card-section-label clay-pill">🍽️ Food Menu</p>
+          <h2 class="card-title">Order Your Food</h2>
+        </div>
 
-          <!-- Sorting and Filtering System -->
-          <style>
-            .filter-system::-webkit-scrollbar {
-              display: none;
-            }
-            .filter-system {
-              scrollbar-width: none;
-              -ms-overflow-style: none;
-            }
-          </style>
-          <nav
-            class="filter-system clay-inset"
-            style="
+        <!-- Sorting and Filtering System -->
+        <style>
+          .filter-system::-webkit-scrollbar {
+            display: none;
+          }
+
+          .filter-system {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+        </style>
+        <nav class="filter-system clay-inset" style="
               display: flex;
               gap: 8px;
               padding: 8px;
@@ -159,11 +120,8 @@
               margin-bottom: 24px;
               border-radius: var(--radius-pill);
               align-items: center;
-            "
-          >
-            <button
-              class="filter-btn clay-btn-primary"
-              style="
+            ">
+          <button class="filter-btn clay-btn-primary" style="
                 padding: 8px 16px;
                 border-radius: var(--radius-pill);
                 font-size: 13px;
@@ -171,15 +129,10 @@
                 cursor: pointer;
                 white-space: nowrap;
                 flex: 0 0 auto;
-              "
-              data-category="all"
-              onclick="filterMenu('all', this, event)"
-            >
-              All
-            </button>
-            <button
-              class="filter-btn clay-btn-secondary"
-              style="
+              " data-category="all" onclick="filterMenu('all', this, event)">
+            All
+          </button>
+          <button class="filter-btn clay-btn-secondary" style="
                 padding: 8px 16px;
                 border-radius: var(--radius-pill);
                 font-size: 13px;
@@ -187,1211 +140,730 @@
                 cursor: pointer;
                 white-space: nowrap;
                 flex: 0 0 auto;
-              "
-              data-category="south-indian"
-              onclick="filterMenu('south-indian', this, event)"
-            >
+              " data-category="south-indian" onclick="filterMenu('south-indian', this, event)">
+            South Indian
+          </button>
+          <button class="filter-btn clay-btn-secondary" style="
+                padding: 8px 16px;
+                border-radius: var(--radius-pill);
+                font-size: 13px;
+                border: none;
+                cursor: pointer;
+                white-space: nowrap;
+                flex: 0 0 auto;
+              " data-category="chinese" onclick="filterMenu('chinese', this, event)">
+            Chinese
+          </button>
+        </nav>
+
+        <!-- Menu Categories -->
+        <div class="menu-container">
+          <!-- South Indian Category -->
+          <section class="menu-category" id="cat-south-indian">
+            <h3 class="category-title clay-pill" style="margin-bottom: 16px; display: inline-block">
               South Indian
-            </button>
-            <button
-              class="filter-btn clay-btn-secondary"
-              style="
-                padding: 8px 16px;
-                border-radius: var(--radius-pill);
-                font-size: 13px;
-                border: none;
-                cursor: pointer;
-                white-space: nowrap;
-                flex: 0 0 auto;
-              "
-              data-category="chinese"
-              onclick="filterMenu('chinese', this, event)"
-            >
+            </h3>
+            <ul class="dish-list" style="
+                  list-style: none;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 16px;
+                  margin-bottom: 24px;
+                  padding: 0;
+                ">
+              <li class="dish-card clay-card" style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                    border-radius: var(--radius-md);
+                  ">
+                <div class="dish-img clay-inset" style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: #c0c0c0;
+                      border-radius: var(--radius-md);
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        color: var(--text-primary);
+                      ">
+                    Idli
+                  </h4>
+                  <p style="
+                        font-size: 13px;
+                        color: var(--text-secondary);
+                        margin-bottom: 12px;
+                      ">
+                    Soft, steamed rice cakes served with sambar and chutney.
+                  </p>
+                  <button class="add-to-order-btn clay-btn-secondary" style="
+                        padding: 6px 12px;
+                        font-size: 12px;
+                        border-radius: var(--radius-pill);
+                        border: none;
+                        cursor: pointer;
+                      " onclick="addToOrder('Idli', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card clay-card" style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                    border-radius: var(--radius-md);
+                  ">
+                <div class="dish-img clay-inset" style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: #c0c0c0;
+                      border-radius: var(--radius-md);
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        color: var(--text-primary);
+                      ">
+                    Dosa
+                  </h4>
+                  <p style="
+                        font-size: 13px;
+                        color: var(--text-secondary);
+                        margin-bottom: 12px;
+                      ">
+                    Crispy savory crepe filled with spiced potatoes.
+                  </p>
+                  <button class="add-to-order-btn clay-btn-secondary" style="
+                        padding: 6px 12px;
+                        font-size: 12px;
+                        border-radius: var(--radius-pill);
+                        border: none;
+                        cursor: pointer;
+                      " onclick="addToOrder('Dosa', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card clay-card" style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                    border-radius: var(--radius-md);
+                  ">
+                <div class="dish-img clay-inset" style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: #c0c0c0;
+                      border-radius: var(--radius-md);
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        color: var(--text-primary);
+                      ">
+                    Wada
+                  </h4>
+                  <p style="
+                        font-size: 13px;
+                        color: var(--text-secondary);
+                        margin-bottom: 12px;
+                      ">
+                    Crispy deep-fried lentil donuts.
+                  </p>
+                  <button class="add-to-order-btn clay-btn-secondary" style="
+                        padding: 6px 12px;
+                        font-size: 12px;
+                        border-radius: var(--radius-pill);
+                        border: none;
+                        cursor: pointer;
+                      " onclick="addToOrder('Wada', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card clay-card" style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                    border-radius: var(--radius-md);
+                  ">
+                <div class="dish-img clay-inset" style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: #c0c0c0;
+                      border-radius: var(--radius-md);
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        color: var(--text-primary);
+                      ">
+                    Uttapam
+                  </h4>
+                  <p style="
+                        font-size: 13px;
+                        color: var(--text-secondary);
+                        margin-bottom: 12px;
+                      ">
+                    Thick savory pancake topped with fresh vegetables.
+                  </p>
+                  <button class="add-to-order-btn clay-btn-secondary" style="
+                        padding: 6px 12px;
+                        font-size: 12px;
+                        border-radius: var(--radius-pill);
+                        border: none;
+                        cursor: pointer;
+                      " onclick="addToOrder('Uttapam', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Chinese Category -->
+          <section class="menu-category" id="cat-chinese">
+            <h3 class="category-title clay-pill" style="margin-bottom: 16px; display: inline-block">
               Chinese
-            </button>
-          </nav>
-
-          <!-- Menu Categories -->
-          <div class="menu-container">
-            <!-- South Indian Category -->
-            <section class="menu-category" id="cat-south-indian">
-              <h3
-                class="category-title clay-pill"
-                style="margin-bottom: 16px; display: inline-block"
-              >
-                South Indian
-              </h3>
-              <ul
-                class="dish-list"
-                style="
+            </h3>
+            <ul class="dish-list" style="
                   list-style: none;
                   display: flex;
                   flex-direction: column;
                   gap: 16px;
                   margin-bottom: 24px;
                   padding: 0;
-                "
-              >
-                <li
-                  class="dish-card clay-card"
-                  style="
+                ">
+              <li class="dish-card clay-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
                     align-items: center;
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img clay-inset"
-                    style="
+                  ">
+                <div class="dish-img clay-inset" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         color: var(--text-primary);
-                      "
-                    >
-                      Idli
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Veg Chowmein
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         color: var(--text-secondary);
                         margin-bottom: 12px;
-                      "
-                    >
-                      Soft, steamed rice cakes served with sambar and chutney.
-                    </p>
-                    <button
-                      class="add-to-order-btn clay-btn-secondary"
-                      style="
+                      ">
+                    Stir-fried noodles tossed with fresh vegetables.
+                  </p>
+                  <button class="add-to-order-btn clay-btn-secondary" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         border-radius: var(--radius-pill);
                         border: none;
                         cursor: pointer;
-                      "
-                      onclick="addToOrder('Idli', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card clay-card"
-                  style="
+                      " onclick="addToOrder('Veg Chowmein', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card clay-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
                     align-items: center;
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img clay-inset"
-                    style="
+                  ">
+                <div class="dish-img clay-inset" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         color: var(--text-primary);
-                      "
-                    >
-                      Dosa
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Paneer Chowmein
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         color: var(--text-secondary);
                         margin-bottom: 12px;
-                      "
-                    >
-                      Crispy savory crepe filled with spiced potatoes.
-                    </p>
-                    <button
-                      class="add-to-order-btn clay-btn-secondary"
-                      style="
+                      ">
+                    Classic chowmein loaded with soft paneer cubes.
+                  </p>
+                  <button class="add-to-order-btn clay-btn-secondary" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         border-radius: var(--radius-pill);
                         border: none;
                         cursor: pointer;
-                      "
-                      onclick="addToOrder('Dosa', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card clay-card"
-                  style="
+                      " onclick="addToOrder('Paneer Chowmein', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card clay-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
                     align-items: center;
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img clay-inset"
-                    style="
+                  ">
+                <div class="dish-img clay-inset" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         color: var(--text-primary);
-                      "
-                    >
-                      Wada
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Egg Roll
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         color: var(--text-secondary);
                         margin-bottom: 12px;
-                      "
-                    >
-                      Crispy deep-fried lentil donuts.
-                    </p>
-                    <button
-                      class="add-to-order-btn clay-btn-secondary"
-                      style="
+                      ">
+                    Flaky paratha wrapped around a spiced omelette.
+                  </p>
+                  <button class="add-to-order-btn clay-btn-secondary" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         border-radius: var(--radius-pill);
                         border: none;
                         cursor: pointer;
-                      "
-                      onclick="addToOrder('Wada', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card clay-card"
-                  style="
+                      " onclick="addToOrder('Egg Roll', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card clay-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
                     align-items: center;
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img clay-inset"
-                    style="
+                  ">
+                <div class="dish-img clay-inset" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         color: var(--text-primary);
-                      "
-                    >
-                      Uttapam
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Paneer Roll
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         color: var(--text-secondary);
                         margin-bottom: 12px;
-                      "
-                    >
-                      Thick savory pancake topped with fresh vegetables.
-                    </p>
-                    <button
-                      class="add-to-order-btn clay-btn-secondary"
-                      style="
+                      ">
+                    Spicy paneer chunks wrapped in a crispy paratha.
+                  </p>
+                  <button class="add-to-order-btn clay-btn-secondary" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         border-radius: var(--radius-pill);
                         border: none;
                         cursor: pointer;
-                      "
-                      onclick="addToOrder('Uttapam', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </section>
-
-            <!-- Chinese Category -->
-            <section class="menu-category" id="cat-chinese">
-              <h3
-                class="category-title clay-pill"
-                style="margin-bottom: 16px; display: inline-block"
-              >
-                Chinese
-              </h3>
-              <ul
-                class="dish-list"
-                style="
-                  list-style: none;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 16px;
-                  margin-bottom: 24px;
-                  padding: 0;
-                "
-              >
-                <li
-                  class="dish-card clay-card"
-                  style="
+                      " onclick="addToOrder('Paneer Roll', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card clay-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
                     align-items: center;
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img clay-inset"
-                    style="
+                  ">
+                <div class="dish-img clay-inset" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         color: var(--text-primary);
-                      "
-                    >
-                      Veg Chowmein
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Manchurian
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         color: var(--text-secondary);
                         margin-bottom: 12px;
-                      "
-                    >
-                      Stir-fried noodles tossed with fresh vegetables.
-                    </p>
-                    <button
-                      class="add-to-order-btn clay-btn-secondary"
-                      style="
+                      ">
+                    Deep-fried vegetable balls in a spicy, dark soy sauce.
+                  </p>
+                  <button class="add-to-order-btn clay-btn-secondary" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         border-radius: var(--radius-pill);
                         border: none;
                         cursor: pointer;
-                      "
-                      onclick="addToOrder('Veg Chowmein', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card clay-card"
-                  style="
+                      " onclick="addToOrder('Manchurian', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+              <li class="dish-card clay-card" style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
                     align-items: center;
                     border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img clay-inset"
-                    style="
+                  ">
+                <div class="dish-img clay-inset" style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
+                    "></div>
+                <div class="dish-info" style="flex-grow: 1">
+                  <h4 style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         color: var(--text-primary);
-                      "
-                    >
-                      Paneer Chowmein
-                    </h4>
-                    <p
-                      style="
+                      ">
+                    Paneer Chilli Gravy
+                  </h4>
+                  <p style="
                         font-size: 13px;
                         color: var(--text-secondary);
                         margin-bottom: 12px;
-                      "
-                    >
-                      Classic chowmein loaded with soft paneer cubes.
-                    </p>
-                    <button
-                      class="add-to-order-btn clay-btn-secondary"
-                      style="
+                      ">
+                    Spicy and tangy gravy with bell peppers and paneer.
+                  </p>
+                  <button class="add-to-order-btn clay-btn-secondary" style="
                         padding: 6px 12px;
                         font-size: 12px;
                         border-radius: var(--radius-pill);
                         border: none;
                         cursor: pointer;
-                      "
-                      onclick="addToOrder('Paneer Chowmein', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card clay-card"
-                  style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                    border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img clay-inset"
-                    style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: #c0c0c0;
-                      border-radius: var(--radius-md);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        color: var(--text-primary);
-                      "
-                    >
-                      Egg Roll
-                    </h4>
-                    <p
-                      style="
-                        font-size: 13px;
-                        color: var(--text-secondary);
-                        margin-bottom: 12px;
-                      "
-                    >
-                      Flaky paratha wrapped around a spiced omelette.
-                    </p>
-                    <button
-                      class="add-to-order-btn clay-btn-secondary"
-                      style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      "
-                      onclick="addToOrder('Egg Roll', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card clay-card"
-                  style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                    border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img clay-inset"
-                    style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: #c0c0c0;
-                      border-radius: var(--radius-md);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        color: var(--text-primary);
-                      "
-                    >
-                      Paneer Roll
-                    </h4>
-                    <p
-                      style="
-                        font-size: 13px;
-                        color: var(--text-secondary);
-                        margin-bottom: 12px;
-                      "
-                    >
-                      Spicy paneer chunks wrapped in a crispy paratha.
-                    </p>
-                    <button
-                      class="add-to-order-btn clay-btn-secondary"
-                      style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      "
-                      onclick="addToOrder('Paneer Roll', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card clay-card"
-                  style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                    border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img clay-inset"
-                    style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: #c0c0c0;
-                      border-radius: var(--radius-md);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        color: var(--text-primary);
-                      "
-                    >
-                      Manchurian
-                    </h4>
-                    <p
-                      style="
-                        font-size: 13px;
-                        color: var(--text-secondary);
-                        margin-bottom: 12px;
-                      "
-                    >
-                      Deep-fried vegetable balls in a spicy, dark soy sauce.
-                    </p>
-                    <button
-                      class="add-to-order-btn clay-btn-secondary"
-                      style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      "
-                      onclick="addToOrder('Manchurian', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="dish-card clay-card"
-                  style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                    border-radius: var(--radius-md);
-                  "
-                >
-                  <div
-                    class="dish-img clay-inset"
-                    style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: #c0c0c0;
-                      border-radius: var(--radius-md);
-                    "
-                  ></div>
-                  <div class="dish-info" style="flex-grow: 1">
-                    <h4
-                      style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        color: var(--text-primary);
-                      "
-                    >
-                      Paneer Chilli Gravy
-                    </h4>
-                    <p
-                      style="
-                        font-size: 13px;
-                        color: var(--text-secondary);
-                        margin-bottom: 12px;
-                      "
-                    >
-                      Spicy and tangy gravy with bell peppers and paneer.
-                    </p>
-                    <button
-                      class="add-to-order-btn clay-btn-secondary"
-                      style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      "
-                      onclick="addToOrder('Paneer Chilli Gravy', this, event)"
-                    >
-                      Add to Order
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </section>
-          </div>
-
-          <div class="clay-divider"></div>
-          <div class="btn-row">
-            <button
-              class="btn-primary clay-btn-primary"
-              id="view-order-btn"
-              onclick="submitReview('food-order')"
-              type="button"
-            >
-              View Ordered (<span id="cart-count">0</span>) ›
-            </button>
-          </div>
+                      " onclick="addToOrder('Paneer Chilli Gravy', this, event)">
+                    Add to Order
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </section>
         </div>
-      </section>
 
-      <!-- ══════════════════════════════════════
+        <div class="clay-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary clay-btn-primary" id="view-order-btn" onclick="submitReview('food-order')"
+            type="button">
+            View Ordered (<span id="cart-count">0</span>) ›
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
          PAGE 2 — Management & Staff Review
     ══════════════════════════════════════ -->
-      <section
-        class="page"
-        id="page-management"
-        aria-label="Management and staff review"
-      >
-        <button
-          class="back-btn clay-btn-secondary"
-          onclick="navigateTo('choose')"
-          aria-label="Go back"
-        >
-          ‹ Back
-        </button>
-        <div class="clay-card main-card">
-          <div class="card-header">
-            <p class="card-section-label clay-pill">🤝 Management & Staff</p>
-            <h2 class="card-title">Management & Staff Review</h2>
-          </div>
-
-          <form id="management-form" class="form-body" novalidate>
-            <!-- Staff helpful -->
-            <div class="form-group">
-              <label class="form-label clay-pill"
-                >Was the staff welcoming and helpful?</label
-              >
-              <div
-                class="option-group"
-                role="radiogroup"
-                aria-label="Staff helpfulness"
-              >
-                <label class="option-item clay-btn-secondary">
-                  <input
-                    type="radio"
-                    id="staff-yes"
-                    name="staff-helpful"
-                    value="yes"
-                  />
-                  <span class="option-label">👍 Yes, very helpful</span>
-                </label>
-                <label class="option-item clay-btn-secondary">
-                  <input
-                    type="radio"
-                    id="staff-average"
-                    name="staff-helpful"
-                    value="average"
-                  />
-                  <span class="option-label">😐 It was average</span>
-                </label>
-                <label class="option-item clay-btn-secondary">
-                  <input
-                    type="radio"
-                    id="staff-no"
-                    name="staff-helpful"
-                    value="no"
-                  />
-                  <span class="option-label">👎 Needs improvement</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Check-in rating -->
-            <div class="form-group">
-              <label class="form-label clay-pill" for="check-in-rating"
-                >How smooth was your check-in process?</label
-              >
-              <div class="select-wrap clay-inset">
-                <select
-                  class="clay-select"
-                  id="check-in-rating"
-                  name="check-in-rating"
-                >
-                  <option value="">— Select an option —</option>
-                  <option value="excellent">
-                    ⭐ Excellent — Fast & seamless
-                  </option>
-                  <option value="good">✅ Good — Minor hiccups</option>
-                  <option value="average">😐 Average — Could be better</option>
-                  <option value="poor">⚠️ Poor — Needs improvement</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Response time slider -->
-            <div class="form-group">
-              <label class="form-label clay-pill" for="response-time"
-                >Staff Response Time Rating</label
-              >
-              <div class="slider-wrap clay-card">
-                <div class="slider-row">
-                  <input
-                    type="range"
-                    class="clay-range"
-                    id="response-time"
-                    name="response-time"
-                    min="1"
-                    max="10"
-                    value="7"
-                    oninput="updateSlider('response-time-val', this.value)"
-                  />
-                  <span class="slider-val clay-inset" id="response-time-val"
-                    >7</span
-                  >
-                </div>
-                <div class="slider-labels">
-                  <span class="clay-pill">1 — Very slow</span
-                  ><span class="clay-pill">10 — Instant</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Comments -->
-            <div class="form-group">
-              <label class="form-label clay-pill" for="management-feedback"
-                >Additional Comments for Management</label
-              >
-              <textarea
-                class="clay-textarea"
-                id="management-feedback"
-                name="management-feedback"
-                placeholder="Mention any specific staff members, memorable interactions, or areas for improvement…"
-                rows="4"
-              ></textarea>
-            </div>
-          </form>
-
-          <div class="clay-divider"></div>
-          <div class="btn-row">
-            <button
-              class="btn-primary clay-btn-primary"
-              id="submit-mgmt"
-              onclick="submitReview('management')"
-              type="button"
-            >
-              Submit Staff Review ›
-            </button>
-            <button
-              class="btn-primary clay-btn-secondary ghost"
-              onclick="navigateTo('choose')"
-              type="button"
-            >
-              Cancel
-            </button>
-          </div>
+    <section class="page" id="page-management" aria-label="Management and staff review">
+      <button class="back-btn clay-btn-secondary" onclick="navigateTo('choose')" aria-label="Go back">
+        ‹ Back
+      </button>
+      <div class="clay-card main-card">
+        <div class="card-header">
+          <p class="card-section-label clay-pill">🤝 Management & Staff</p>
+          <h2 class="card-title">Management & Staff Review</h2>
         </div>
-      </section>
 
-      <!-- ══════════════════════════════════════
+        <form id="management-form" class="form-body" novalidate>
+          <!-- Staff helpful -->
+          <div class="form-group">
+            <label class="form-label clay-pill">Was the staff welcoming and helpful?</label>
+            <div class="option-group" role="radiogroup" aria-label="Staff helpfulness">
+              <label class="option-item clay-btn-secondary">
+                <input type="radio" id="staff-yes" name="staff-helpful" value="yes" />
+                <span class="option-label">👍 Yes, very helpful</span>
+              </label>
+              <label class="option-item clay-btn-secondary">
+                <input type="radio" id="staff-average" name="staff-helpful" value="average" />
+                <span class="option-label">😐 It was average</span>
+              </label>
+              <label class="option-item clay-btn-secondary">
+                <input type="radio" id="staff-no" name="staff-helpful" value="no" />
+                <span class="option-label">👎 Needs improvement</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Check-in rating -->
+          <div class="form-group">
+            <label class="form-label clay-pill" for="check-in-rating">How smooth was your check-in process?</label>
+            <div class="select-wrap clay-inset">
+              <select class="clay-select" id="check-in-rating" name="check-in-rating">
+                <option value="">— Select an option —</option>
+                <option value="excellent">
+                  ⭐ Excellent — Fast & seamless
+                </option>
+                <option value="good">✅ Good — Minor hiccups</option>
+                <option value="average">😐 Average — Could be better</option>
+                <option value="poor">⚠️ Poor — Needs improvement</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Response time slider -->
+          <div class="form-group">
+            <label class="form-label clay-pill" for="response-time">Staff Response Time Rating</label>
+            <div class="slider-wrap clay-card">
+              <div class="slider-row">
+                <input type="range" class="clay-range" id="response-time" name="response-time" min="1" max="10"
+                  value="7" oninput="updateSlider('response-time-val', this.value)" />
+                <span class="slider-val clay-inset" id="response-time-val">7</span>
+              </div>
+              <div class="slider-labels">
+                <span class="clay-pill">1 — Very slow</span><span class="clay-pill">10 — Instant</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comments -->
+          <div class="form-group">
+            <label class="form-label clay-pill" for="management-feedback">Additional Comments for Management</label>
+            <textarea class="clay-textarea" id="management-feedback" name="management-feedback"
+              placeholder="Mention any specific staff members, memorable interactions, or areas for improvement…"
+              rows="4"></textarea>
+          </div>
+        </form>
+
+        <div class="clay-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary clay-btn-primary" id="submit-mgmt" onclick="submitReview('management')"
+            type="button">
+            Submit Staff Review ›
+          </button>
+          <button class="btn-primary clay-btn-secondary ghost" onclick="navigateTo('choose')" type="button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
          PAGE 3 — Hotel Experience Review
     ══════════════════════════════════════ -->
-      <section
-        class="page"
-        id="page-hotel"
-        aria-label="Hotel experience review"
-      >
-        <button
-          class="back-btn clay-btn-secondary"
-          onclick="navigateTo('choose')"
-          aria-label="Go back"
-        >
-          ‹ Back
-        </button>
-        <div class="clay-card main-card">
-          <div class="card-header">
-            <p class="card-section-label clay-pill">🏨 Hotel Experience</p>
-            <h2 class="card-title">Hotel Experience Review</h2>
-          </div>
-
-          <form id="hotel-form" class="form-body" novalidate>
-            <!-- Star ratings -->
-            <div class="form-group">
-              <label class="form-label clay-pill"
-                >Rate your stay (tap to rate)</label
-              >
-              <div
-                class="star-group clay-card"
-                role="group"
-                aria-label="Hotel star ratings"
-              >
-                <div class="star-row">
-                  <span class="star-row-label">🛏️ Room Cleanliness</span>
-                  <div
-                    class="stars"
-                    id="stars-cleanliness"
-                    role="group"
-                    aria-label="Room cleanliness rating"
-                  >
-                    <span
-                      class="star"
-                      data-group="cleanliness"
-                      data-val="1"
-                      onclick="setStars('cleanliness', 1)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="1 star"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="cleanliness"
-                      data-val="2"
-                      onclick="setStars('cleanliness', 2)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="2 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="cleanliness"
-                      data-val="3"
-                      onclick="setStars('cleanliness', 3)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="3 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="cleanliness"
-                      data-val="4"
-                      onclick="setStars('cleanliness', 4)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="4 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="cleanliness"
-                      data-val="5"
-                      onclick="setStars('cleanliness', 5)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="5 stars"
-                      >★</span
-                    >
-                  </div>
-                </div>
-
-                <div class="star-row">
-                  <span class="star-row-label">💤 Room Comfort</span>
-                  <div
-                    class="stars"
-                    id="stars-comfort"
-                    role="group"
-                    aria-label="Room comfort rating"
-                  >
-                    <span
-                      class="star"
-                      data-group="comfort"
-                      data-val="1"
-                      onclick="setStars('comfort', 1)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="1 star"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="comfort"
-                      data-val="2"
-                      onclick="setStars('comfort', 2)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="2 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="comfort"
-                      data-val="3"
-                      onclick="setStars('comfort', 3)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="3 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="comfort"
-                      data-val="4"
-                      onclick="setStars('comfort', 4)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="4 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="comfort"
-                      data-val="5"
-                      onclick="setStars('comfort', 5)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="5 stars"
-                      >★</span
-                    >
-                  </div>
-                </div>
-
-                <div class="star-row">
-                  <span class="star-row-label">🏊 Amenities</span>
-                  <div
-                    class="stars"
-                    id="stars-amenities"
-                    role="group"
-                    aria-label="Amenities rating"
-                  >
-                    <span
-                      class="star"
-                      data-group="amenities"
-                      data-val="1"
-                      onclick="setStars('amenities', 1)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="1 star"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="amenities"
-                      data-val="2"
-                      onclick="setStars('amenities', 2)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="2 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="amenities"
-                      data-val="3"
-                      onclick="setStars('amenities', 3)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="3 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="amenities"
-                      data-val="4"
-                      onclick="setStars('amenities', 4)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="4 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="amenities"
-                      data-val="5"
-                      onclick="setStars('amenities', 5)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="5 stars"
-                      >★</span
-                    >
-                  </div>
-                </div>
-
-                <div class="star-row">
-                  <span class="star-row-label">📶 WiFi & Connectivity</span>
-                  <div
-                    class="stars"
-                    id="stars-wifi"
-                    role="group"
-                    aria-label="WiFi rating"
-                  >
-                    <span
-                      class="star"
-                      data-group="wifi"
-                      data-val="1"
-                      onclick="setStars('wifi', 1)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="1 star"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="wifi"
-                      data-val="2"
-                      onclick="setStars('wifi', 2)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="2 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="wifi"
-                      data-val="3"
-                      onclick="setStars('wifi', 3)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="3 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="wifi"
-                      data-val="4"
-                      onclick="setStars('wifi', 4)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="4 stars"
-                      >★</span
-                    >
-                    <span
-                      class="star"
-                      data-group="wifi"
-                      data-val="5"
-                      onclick="setStars('wifi', 5)"
-                      tabindex="0"
-                      role="button"
-                      aria-label="5 stars"
-                      >★</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Overall slider -->
-            <div class="form-group">
-              <label class="form-label clay-pill" for="overall-experience"
-                >Overall Experience Score</label
-              >
-              <div class="slider-wrap clay-card">
-                <div class="slider-row">
-                  <input
-                    type="range"
-                    class="clay-range"
-                    id="overall-experience"
-                    name="overall-experience"
-                    min="1"
-                    max="10"
-                    value="8"
-                    oninput="updateSlider('overall-exp-val', this.value)"
-                  />
-                  <span class="slider-val clay-inset" id="overall-exp-val"
-                    >8</span
-                  >
-                </div>
-                <div class="slider-labels">
-                  <span class="clay-pill">1 — Terrible</span
-                  ><span class="clay-pill">10 — Perfect</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Would recommend -->
-            <div class="form-group">
-              <label class="form-label clay-pill"
-                >Would you recommend us to others?</label
-              >
-              <div
-                class="option-group"
-                role="radiogroup"
-                aria-label="Would you recommend"
-              >
-                <label class="option-item clay-btn-secondary">
-                  <input
-                    type="radio"
-                    id="recommend-yes"
-                    name="recommend"
-                    value="yes"
-                  />
-                  <span class="option-label">✅ Absolutely, yes!</span>
-                </label>
-                <label class="option-item clay-btn-secondary">
-                  <input
-                    type="radio"
-                    id="recommend-maybe"
-                    name="recommend"
-                    value="maybe"
-                  />
-                  <span class="option-label">🤔 Maybe, depends</span>
-                </label>
-                <label class="option-item clay-btn-secondary">
-                  <input
-                    type="radio"
-                    id="recommend-no"
-                    name="recommend"
-                    value="no"
-                  />
-                  <span class="option-label">❌ No, not really</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Detailed feedback -->
-            <div class="form-group">
-              <label class="form-label clay-pill" for="hotel-feedback"
-                >Detailed Feedback</label
-              >
-              <textarea
-                class="clay-textarea"
-                id="hotel-feedback"
-                name="hotel-feedback"
-                placeholder="Tell us about your room, what made your stay memorable, or anything we can do to improve…"
-                rows="4"
-              ></textarea>
-            </div>
-          </form>
-
-          <div class="clay-divider"></div>
-          <div class="btn-row">
-            <button
-              class="btn-primary clay-btn-primary"
-              id="submit-hotel"
-              onclick="submitReview('hotel')"
-              type="button"
-            >
-              Submit Hotel Review ›
-            </button>
-            <button
-              class="btn-primary clay-btn-secondary ghost"
-              onclick="navigateTo('choose')"
-              type="button"
-            >
-              Cancel
-            </button>
-          </div>
+    <section class="page" id="page-hotel" aria-label="Hotel experience review">
+      <button class="back-btn clay-btn-secondary" onclick="navigateTo('choose')" aria-label="Go back">
+        ‹ Back
+      </button>
+      <div class="clay-card main-card">
+        <div class="card-header">
+          <p class="card-section-label clay-pill">🏨 Hotel Experience</p>
+          <h2 class="card-title">Hotel Experience Review</h2>
         </div>
-      </section>
 
-      <!-- ══════════════════════════════════════
+        <form id="hotel-form" class="form-body" novalidate>
+          <!-- Star ratings -->
+          <div class="form-group">
+            <label class="form-label clay-pill">Rate your stay (tap to rate)</label>
+            <div class="star-group clay-card" role="group" aria-label="Hotel star ratings">
+              <div class="star-row">
+                <span class="star-row-label">🛏️ Room Cleanliness</span>
+                <div class="stars" id="stars-cleanliness" role="group" aria-label="Room cleanliness rating">
+                  <span class="star" data-group="cleanliness" data-val="1" onclick="setStars('cleanliness', 1)"
+                    tabindex="0" role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="cleanliness" data-val="2" onclick="setStars('cleanliness', 2)"
+                    tabindex="0" role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="3" onclick="setStars('cleanliness', 3)"
+                    tabindex="0" role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="4" onclick="setStars('cleanliness', 4)"
+                    tabindex="0" role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="cleanliness" data-val="5" onclick="setStars('cleanliness', 5)"
+                    tabindex="0" role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">💤 Room Comfort</span>
+                <div class="stars" id="stars-comfort" role="group" aria-label="Room comfort rating">
+                  <span class="star" data-group="comfort" data-val="1" onclick="setStars('comfort', 1)" tabindex="0"
+                    role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="comfort" data-val="2" onclick="setStars('comfort', 2)" tabindex="0"
+                    role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="3" onclick="setStars('comfort', 3)" tabindex="0"
+                    role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="4" onclick="setStars('comfort', 4)" tabindex="0"
+                    role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="comfort" data-val="5" onclick="setStars('comfort', 5)" tabindex="0"
+                    role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">🏊 Amenities</span>
+                <div class="stars" id="stars-amenities" role="group" aria-label="Amenities rating">
+                  <span class="star" data-group="amenities" data-val="1" onclick="setStars('amenities', 1)" tabindex="0"
+                    role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="amenities" data-val="2" onclick="setStars('amenities', 2)" tabindex="0"
+                    role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="3" onclick="setStars('amenities', 3)" tabindex="0"
+                    role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="4" onclick="setStars('amenities', 4)" tabindex="0"
+                    role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="amenities" data-val="5" onclick="setStars('amenities', 5)" tabindex="0"
+                    role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+
+              <div class="star-row">
+                <span class="star-row-label">📶 WiFi & Connectivity</span>
+                <div class="stars" id="stars-wifi" role="group" aria-label="WiFi rating">
+                  <span class="star" data-group="wifi" data-val="1" onclick="setStars('wifi', 1)" tabindex="0"
+                    role="button" aria-label="1 star">★</span>
+                  <span class="star" data-group="wifi" data-val="2" onclick="setStars('wifi', 2)" tabindex="0"
+                    role="button" aria-label="2 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="3" onclick="setStars('wifi', 3)" tabindex="0"
+                    role="button" aria-label="3 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="4" onclick="setStars('wifi', 4)" tabindex="0"
+                    role="button" aria-label="4 stars">★</span>
+                  <span class="star" data-group="wifi" data-val="5" onclick="setStars('wifi', 5)" tabindex="0"
+                    role="button" aria-label="5 stars">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overall slider -->
+          <div class="form-group">
+            <label class="form-label clay-pill" for="overall-experience">Overall Experience Score</label>
+            <div class="slider-wrap clay-card">
+              <div class="slider-row">
+                <input type="range" class="clay-range" id="overall-experience" name="overall-experience" min="1"
+                  max="10" value="8" oninput="updateSlider('overall-exp-val', this.value)" />
+                <span class="slider-val clay-inset" id="overall-exp-val">8</span>
+              </div>
+              <div class="slider-labels">
+                <span class="clay-pill">1 — Terrible</span><span class="clay-pill">10 — Perfect</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Would recommend -->
+          <div class="form-group">
+            <label class="form-label clay-pill">Would you recommend us to others?</label>
+            <div class="option-group" role="radiogroup" aria-label="Would you recommend">
+              <label class="option-item clay-btn-secondary">
+                <input type="radio" id="recommend-yes" name="recommend" value="yes" />
+                <span class="option-label">✅ Absolutely, yes!</span>
+              </label>
+              <label class="option-item clay-btn-secondary">
+                <input type="radio" id="recommend-maybe" name="recommend" value="maybe" />
+                <span class="option-label">🤔 Maybe, depends</span>
+              </label>
+              <label class="option-item clay-btn-secondary">
+                <input type="radio" id="recommend-no" name="recommend" value="no" />
+                <span class="option-label">❌ No, not really</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Detailed feedback -->
+          <div class="form-group">
+            <label class="form-label clay-pill" for="hotel-feedback">Detailed Feedback</label>
+            <textarea class="clay-textarea" id="hotel-feedback" name="hotel-feedback"
+              placeholder="Tell us about your room, what made your stay memorable, or anything we can do to improve…"
+              rows="4"></textarea>
+          </div>
+        </form>
+
+        <div class="clay-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary clay-btn-primary" id="submit-hotel" onclick="submitReview('hotel')" type="button">
+            Submit Hotel Review ›
+          </button>
+          <button class="btn-primary clay-btn-secondary ghost" onclick="navigateTo('choose')" type="button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
          PAGE 4 — Thank You
     ══════════════════════════════════════ -->
-      <section class="page" id="page-thankyou" aria-label="Thank you page">
-        <div class="clay-card main-card">
-          <div class="thankyou-body">
-            <div class="thankyou-icon clay-icon" aria-hidden="true">✓</div>
-            <h2 class="thankyou-title clay-inset">Thank You!</h2>
-            <p class="thankyou-subtitle clay-pill">
-              We sincerely appreciate you taking the time to share your
-              feedback. Your thoughts help us deliver an even better experience
-              for every guest.
-            </p>
-            <div class="review-tags" id="review-summary-tags">
-              <!-- dynamically populated -->
-            </div>
-          </div>
-          <div class="clay-divider"></div>
-          <div class="btn-row">
-            <button
-              class="btn-primary clay-btn-primary"
-              onclick="navigateTo('choose')"
-              type="button"
-            >
-              Leave Another Review
-            </button>
-            <button
-              class="btn-primary clay-btn-secondary ghost"
-              onclick="closePortal()"
-              type="button"
-            >
-              Close Portal
-            </button>
+    <section class="page" id="page-thankyou" aria-label="Thank you page">
+      <div class="clay-card main-card">
+        <div class="thankyou-body">
+          <div class="thankyou-icon clay-icon" aria-hidden="true">✓</div>
+          <h2 class="thankyou-title clay-inset">Thank You!</h2>
+          <p class="thankyou-subtitle clay-pill">
+            We sincerely appreciate you taking the time to share your
+            feedback. Your thoughts help us deliver an even better experience
+            for every guest.
+          </p>
+          <div class="review-tags" id="review-summary-tags">
+            <!-- dynamically populated -->
           </div>
         </div>
-      </section>
+        <div class="clay-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary clay-btn-primary" onclick="navigateTo('choose')" type="button">
+            Leave Another Review
+          </button>
+          <button class="btn-primary clay-btn-secondary ghost" onclick="closePortal()" type="button">
+            Close Portal
+          </button>
+        </div>
+      </div>
+    </section>
 
-      <footer class="app-footer clay-pill">
-        Powered by ReviewFlo · Secure &amp; Confidential
-      </footer>
-    </div>
+    <footer class="app-footer clay-pill">
+      Powered by ReviewFlo · Secure &amp; Confidential
+    </footer>
+  </div>
 
-    <!-- Toast notification -->
-    <div
-      class="toast clay-card"
-      id="toast"
-      role="status"
-      aria-live="polite"
-    ></div>
+  <!-- Toast notification -->
+  <div class="toast clay-card" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="app.js"></script>
-  </body>
+  <script src="app.js"></script>
+</body>
+
 </html>
