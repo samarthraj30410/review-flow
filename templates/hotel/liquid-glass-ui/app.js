@@ -1,255 +1,330 @@
-/**
- * Aurelia Grand Resort & Spa - Guest Review System
- *
- * Configuration & Event Handlers
- */
+/* ─── State ─────────────────────────────── */
+const starRatings = { cleanliness: 0, comfort: 0, amenities: 0, wifi: 0 };
+let currentPage = "choose";
 
-const CONFIG = {
-  // Replace these with the hotel's actual public profile links
-  googleReviewUrl:
-    "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID",
-  tripAdvisorUrl:
-    "https://www.tripadvisor.com/UserReview-g187147-d188757-Aurelia_Grand-Paris_Ile_de_France.html",
+/* ─── Page Navigation ───────────────────── */
+function navigateTo(pageId) {
+  const current = document.querySelector(".page.active");
+  const next = document.getElementById("page-" + pageId);
+  if (!next || current === next) return;
 
-  // Google Sheets Apps Script Webhook URL
-  // Setup tutorial included in the main project repository
-  webhookUrl:
-    "https://script.google.com/macros/s/AKfycbz_example_webhook_url/exec",
-};
+  // Animate out
+  current.style.animation = "pageOut 0.3s cubic-bezier(0.16,1,0.3,1) forwards";
+  setTimeout(() => {
+    current.classList.remove("active");
+    current.style.animation = "";
 
-document.addEventListener("DOMContentLoaded", () => {
-  // State variables
-  let currentRating = 0;
+    next.classList.add("active");
+    next.style.animation = "pageIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards";
 
-  // DOM Elements
-  const stages = {
-    rating: document.getElementById("stage-rating"),
-    high: document.getElementById("stage-high-rating"),
-    low: document.getElementById("stage-low-rating"),
-    success: document.getElementById("stage-success"),
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 280);
+
+  currentPage = pageId;
+  updateProgress(pageId);
+  updateHeader(pageId);
+}
+
+/* ─── Update Progress Bar ───────────────── */
+function updateProgress(pageId) {
+  const wrap = document.getElementById("progress-wrap");
+  const fill = document.getElementById("progress-fill");
+  const left = document.getElementById("progress-label-left");
+  const right = document.getElementById("progress-label-right");
+
+  const map = {
+    choose: { show: false, pct: 0, step: "", label: "" },
+    food: {
+      show: true,
+      pct: 50,
+      step: "Step 1 of 2",
+      label: "Food & Dining",
+    },
+    management: {
+      show: true,
+      pct: 50,
+      step: "Step 1 of 2",
+      label: "Management",
+    },
+    hotel: {
+      show: true,
+      pct: 50,
+      step: "Step 1 of 2",
+      label: "Hotel Experience",
+    },
+    thankyou: {
+      show: true,
+      pct: 100,
+      step: "Completed!",
+      label: "✓ Submitted",
+    },
   };
 
-  const starButtons = document.querySelectorAll(".star-btn");
-  const ratingInput = document.getElementById("selected-rating");
-  const ratingLabel = document.getElementById("rating-text-feedback");
+  const info = map[pageId] || map.choose;
+  wrap.classList.toggle("visible", info.show);
+  fill.style.width = info.pct + "%";
+  left.textContent = info.step;
+  right.textContent = info.label;
+}
 
-  const backButtons = document.querySelectorAll(".btn-back");
-  const grievanceForm = document.getElementById("grievance-form");
-  const submitBtn = grievanceForm
-    ? grievanceForm.querySelector(".btn-submit")
-    : null;
-
-  // Rating descriptors
-  const ratingDescriptors = {
-    1: "Poor experience",
-    2: "Below expectations",
-    3: "Average stay",
-    4: "Wonderful stay!",
-    5: "Exceptional luxury!",
+/* ─── Update Header Subtitle ────────────── */
+function updateHeader(pageId) {
+  const sub = document.getElementById("header-subtitle");
+  const subs = {
+    choose: "We value your experience",
+    food: "Tell us about your dining experience",
+    management: "Help us improve our service",
+    hotel: "Rate your overall stay",
+    thankyou: "Review submitted successfully",
   };
+  sub.style.opacity = "0";
+  setTimeout(() => {
+    sub.textContent = subs[pageId] || subs.choose;
+    sub.style.opacity = "1";
+  }, 200);
+  sub.style.transition = "opacity 0.2s ease";
+}
 
-  // Bind Redirect Links from Config
-  const googleBtn = document.getElementById("google-review-btn");
-  const tripAdvisorBtn = document.getElementById("tripadvisor-review-btn");
-  if (googleBtn) googleBtn.href = CONFIG.googleReviewUrl;
-  if (tripAdvisorBtn) tripAdvisorBtn.href = CONFIG.tripAdvisorUrl;
+/* ─── Slider value display ──────────────── */
+function updateSlider(targetId, val) {
+  const el = document.getElementById(targetId);
+  if (el) el.textContent = val;
 
-  /**
-   * Transition between stages with a subtle delay for optimal user experience
-   */
-  function showStage(targetStageKey) {
-    // Hide all stages
-    Object.values(stages).forEach((stage) => {
-      if (stage) {
-        stage.classList.remove("active");
-      }
-    });
+  // Update track fill color
+  const slider = event.target;
+  const pct = ((val - slider.min) / (slider.max - slider.min)) * 100;
+  slider.style.background = `linear-gradient(90deg, rgba(10,132,255,0.8) ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
+}
 
-    // Show target stage
-    const targetStage = stages[targetStageKey];
-    if (targetStage) {
-      targetStage.classList.add("active");
+/* ─── Initialize sliders ────────────────── */
+function initSliders() {
+  document.querySelectorAll(".glass-range").forEach((slider) => {
+    const val = slider.value;
+    const min = slider.min || 0;
+    const max = slider.max || 10;
+    const pct = ((val - min) / (max - min)) * 100;
+    slider.style.background = `linear-gradient(90deg, rgba(10,132,255,0.8) ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
+  });
+}
+
+/* ─── Star Rating ───────────────────────── */
+function setStars(group, val) {
+  starRatings[group] = val;
+  const container = document.getElementById("stars-" + group);
+  if (!container) return;
+  container.querySelectorAll(".star").forEach((s) => {
+    const sv = parseInt(s.getAttribute("data-val"));
+    s.classList.toggle("active", sv <= val);
+  });
+}
+
+/* ─── Hover preview for stars ───────────── */
+document.addEventListener("mouseover", (e) => {
+  if (!e.target.classList.contains("star")) return;
+  const group = e.target.getAttribute("data-group");
+  const val = parseInt(e.target.getAttribute("data-val"));
+  const container = document.getElementById("stars-" + group);
+  if (!container) return;
+  container.querySelectorAll(".star").forEach((s) => {
+    s.style.color =
+      parseInt(s.getAttribute("data-val")) <= val ? "var(--gold)" : "";
+  });
+});
+
+document.addEventListener("mouseout", (e) => {
+  if (!e.target.classList.contains("star")) return;
+  const group = e.target.getAttribute("data-group");
+  const container = document.getElementById("stars-" + group);
+  if (!container) return;
+  container.querySelectorAll(".star").forEach((s) => {
+    const sv = parseInt(s.getAttribute("data-val"));
+    s.style.color = sv <= (starRatings[group] || 0) ? "var(--gold)" : "";
+  });
+});
+
+/* ─── Submit Review ─────────────────────── */
+function submitReview(type) {
+  const tags = buildSummaryTags(type);
+  document.getElementById("review-summary-tags").innerHTML = tags
+    .map((t) => `<span class="review-tag">${t}</span>`)
+    .join("");
+  showToast("✓ Review submitted — thank you!");
+  navigateTo("thankyou");
+}
+
+/* ─── Build summary tags ────────────────── */
+function buildSummaryTags(type) {
+  const tags = [];
+
+  if (type === "food") {
+    const meals = [
+      ...document.querySelectorAll('input[name="meals"]:checked'),
+    ].map((i) => i.value);
+    if (meals.length)
+      tags.push(...meals.map((m) => "🍽️ " + m[0].toUpperCase() + m.slice(1)));
+    const q = document.getElementById("food-quality");
+    if (q) tags.push("Quality: " + q.value + "/10");
+  }
+
+  if (type === "food-order") {
+    tags.push("Items Ordered: " + cart.length);
+    if (cart.length > 0) {
+      let itemsStr = cart.join(", ");
+      if (itemsStr.length > 40) itemsStr = itemsStr.substring(0, 40) + "...";
+      tags.push("Order: " + itemsStr);
     }
   }
 
-  /**
-   * Reset form values and active star ratings
-   */
-  function resetForm() {
-    currentRating = 0;
-    if (ratingInput) ratingInput.value = "0";
-    if (ratingLabel) ratingLabel.textContent = "Select a rating to continue";
-
-    starButtons.forEach((btn) => btn.classList.remove("active"));
-    if (grievanceForm) grievanceForm.reset();
-    if (submitBtn) submitBtn.classList.remove("loading");
+  if (type === "management") {
+    const helpful = document.querySelector(
+      'input[name="staff-helpful"]:checked',
+    );
+    if (helpful) tags.push("Staff: " + helpful.value);
+    const ci = document.getElementById("check-in-rating");
+    if (ci && ci.value) tags.push("Check-in: " + ci.value);
   }
 
-  // Bind Star Button Click Listeners
-  starButtons.forEach((button) => {
-    // Hover effects label changes
-    button.addEventListener("mouseenter", () => {
-      const val = parseInt(button.getAttribute("data-val"), 10);
-      if (ratingLabel) {
-        ratingLabel.textContent =
-          ratingDescriptors[val] || "Select a rating to continue";
-        ratingLabel.style.color = "var(--gold-accent)";
-      }
+  if (type === "hotel") {
+    Object.entries(starRatings).forEach(([k, v]) => {
+      if (v > 0)
+        tags.push(k[0].toUpperCase() + k.slice(1) + ": " + "★".repeat(v));
     });
+    const oe = document.getElementById("overall-experience");
+    if (oe) tags.push("Overall: " + oe.value + "/10");
+  }
 
-    button.addEventListener("mouseleave", () => {
-      if (ratingLabel) {
-        if (currentRating > 0) {
-          ratingLabel.textContent = ratingDescriptors[currentRating];
-        } else {
-          ratingLabel.textContent = "Select a rating to continue";
-        }
-        ratingLabel.style.color = "var(--text-muted)";
+  if (!tags.length) tags.push("Review submitted");
+  return tags;
+}
+
+/* ─── Toast ─────────────────────────────── */
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 3500);
+}
+
+/* ─── Close Portal ──────────────────────── */
+function closePortal() {
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: "REVIEW_PORTAL_CLOSE" }, "*");
+  } else {
+    showToast("Thank you for your feedback!");
+    navigateTo("choose");
+  }
+}
+
+/* ─── Menu System Logic ──────────────────── */
+let cart = [];
+let itemCounts = {};
+
+function filterMenu(category, btnElement, event) {
+  document.querySelectorAll(".filter-btn").forEach((btn) => {
+    btn.classList.remove("accent");
+    btn.classList.add("ghost");
+  });
+  btnElement.classList.remove("ghost");
+  btnElement.classList.add("accent");
+
+  if (event && event.clientX && typeof spawnFlash === "function") {
+    spawnFlash(btnElement, event);
+  } else if (event && event.target && typeof spawnRipple === "function") {
+    spawnRipple(event.target, event);
+  }
+
+  if (category === "all") {
+    document.getElementById("cat-south-indian").style.display = "block";
+    document.getElementById("cat-chinese").style.display = "block";
+  } else if (category === "south-indian") {
+    document.getElementById("cat-south-indian").style.display = "block";
+    document.getElementById("cat-chinese").style.display = "none";
+  } else if (category === "chinese") {
+    document.getElementById("cat-south-indian").style.display = "none";
+    document.getElementById("cat-chinese").style.display = "block";
+  }
+}
+
+function addToOrder(itemName, btnElement, event) {
+  cart.push(itemName);
+  itemCounts[itemName] = (itemCounts[itemName] || 0) + 1;
+  document.getElementById("cart-count").textContent = cart.length;
+  showToast("✓ Added " + itemName + " to order");
+
+  if (btnElement) {
+    const originalText =
+      btnElement.getAttribute("data-original-text") ||
+      btnElement.textContent.replace(/\s*\(\d+\)$/, "");
+    if (!btnElement.hasAttribute("data-original-text")) {
+      btnElement.setAttribute("data-original-text", originalText);
+    }
+    btnElement.textContent = originalText + " (" + itemCounts[itemName] + ")";
+  }
+
+  if (event && event.clientX && typeof spawnFlash === "function") {
+    spawnFlash(btnElement, event);
+  } else if (event && event.target && typeof spawnRipple === "function") {
+    spawnRipple(event.target, event);
+  }
+}
+
+/* ─── Ripple Effect Helper ──────────────── */
+function spawnRipple(el, e) {
+  const rect = el.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height) * 2;
+  const ripple = document.createElement("span");
+  ripple.className = "ripple-effect";
+  ripple.style.width = ripple.style.height = size + "px";
+  ripple.style.left = e.clientX - rect.left - size / 2 + "px";
+  ripple.style.top = e.clientY - rect.top - size / 2 + "px";
+  el.appendChild(ripple);
+  ripple.addEventListener("animationend", () => ripple.remove());
+}
+
+/* ─── Flash Burst Helper ────────────────── */
+function spawnFlash(el, e) {
+  const rect = el.getBoundingClientRect();
+  const x = (((e.clientX - rect.left) / rect.width) * 100).toFixed(1) + "%";
+  const y = (((e.clientY - rect.top) / rect.height) * 100).toFixed(1) + "%";
+  const flash = document.createElement("span");
+  flash.className = "btn-click-flash";
+  flash.style.setProperty("--click-x", x);
+  flash.style.setProperty("--click-y", y);
+  el.appendChild(flash);
+  flash.addEventListener("animationend", () => flash.remove());
+}
+
+/* ─── Init ──────────────────────────────── */
+document.addEventListener("DOMContentLoaded", () => {
+  initSliders();
+
+  // Keyboard support for stars
+  document.querySelectorAll(".star").forEach((star) => {
+    star.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setStars(
+          star.getAttribute("data-group"),
+          parseInt(star.getAttribute("data-val")),
+        );
       }
-    });
-
-    // Click handler
-    button.addEventListener("click", () => {
-      const val = parseInt(button.getAttribute("data-val"), 10);
-      currentRating = val;
-      if (ratingInput) ratingInput.value = val;
-
-      // Update Star Button Active Visual States
-      starButtons.forEach((btn) => {
-        const btnVal = parseInt(btn.getAttribute("data-val"), 10);
-        if (btnVal <= val) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-
-      // Move to appropriate stage after small delay for tactile feedback
-      setTimeout(() => {
-        if (val >= 4) {
-          showStage("high");
-        } else {
-          showStage("low");
-        }
-      }, 400);
     });
   });
 
-  // Bind Back Button Listeners
-  backButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      resetForm();
-      showStage("rating");
-    });
-  });
-
-  // Handle Grievance/Feedback Form Submission
-  if (grievanceForm) {
-    grievanceForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      if (submitBtn) {
-        submitBtn.classList.add("loading");
-        submitBtn.disabled = true;
-      }
-
-      // Gather input values
-      const payload = {
-        timestamp: new Date().toISOString(),
-        hotelName: "Aurelia Grand Resort & Spa",
-        rating: currentRating,
-        guestName:
-          document.getElementById("guest-name").value.trim() ||
-          "Anonymous Guest",
-        roomNumber: document.getElementById("guest-room").value.trim() || "N/A",
-        guestEmail:
-          document.getElementById("guest-email").value.trim() || "N/A",
-        feedback: document.getElementById("guest-feedback").value.trim(),
-      };
-
-      console.log("Submitting feedback payload to Webhook:", payload);
-
-      try {
-        // Only run real fetch request if a custom webhookUrl has been configured (not default template URL)
-        if (
-          CONFIG.webhookUrl &&
-          !CONFIG.webhookUrl.includes("example_webhook_url")
-        ) {
-          // Google Apps Script requires CORS 'no-cors' or handling text redirect properly
-          await fetch(CONFIG.webhookUrl, {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          });
-        } else {
-          // Simulate local network delay
-          await new Promise((resolve) => setTimeout(resolve, 1200));
-          console.warn(
-            "Using placeholder Webhook. Submission simulation successful.",
-          );
-        }
-
-        // Transition to success screen
-        showStage("success");
-      } catch (err) {
-        console.error("Grievance webhook submission failed:", err);
-        // Show offline success fallback so experience remains premium for customers
-        // while logged in console for diagnostics
-        setTimeout(() => {
-          showStage("success");
-        }, 1000);
-      } finally {
-        if (submitBtn) {
-          submitBtn.classList.remove("loading");
-          submitBtn.disabled = false;
-        }
-      }
-    });
-  }
-
-  /* ─── Ripple Effect Helper ──────────────── */
-  function spawnRipple(el, e) {
-    const rect = el.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height) * 2;
-    const ripple = document.createElement("span");
-    ripple.className = "ripple-effect";
-    ripple.style.width = ripple.style.height = size + "px";
-    ripple.style.left = e.clientX - rect.left - size / 2 + "px";
-    ripple.style.top = e.clientY - rect.top - size / 2 + "px";
-    el.appendChild(ripple);
-    ripple.addEventListener("animationend", () => ripple.remove());
-  }
-
-  /* ─── Flash Burst Helper ────────────────── */
-  function spawnFlash(el, e) {
-    const rect = el.getBoundingClientRect();
-    const x = (((e.clientX - rect.left) / rect.width) * 100).toFixed(1) + "%";
-    const y = (((e.clientY - rect.top) / rect.height) * 100).toFixed(1) + "%";
-    const flash = document.createElement("span");
-    flash.className = "btn-click-flash";
-    flash.style.setProperty("--click-x", x);
-    flash.style.setProperty("--click-y", y);
-    el.appendChild(flash);
-    flash.addEventListener("animationend", () => flash.remove());
-  }
-
-  /* Ripple on star buttons, action option buttons, back buttons */
+  /* Ripple on review-type buttons, option items, back button */
   document
-    .querySelectorAll(".star-btn, .btn-glass-secondary, .btn-back")
+    .querySelectorAll(".review-type-btn, .option-item, .back-btn")
     .forEach((el) => {
       el.addEventListener("click", (e) => spawnRipple(el, e));
     });
 
-  /* Flash burst on gold buttons */
-  document.querySelectorAll(".btn-gold, .btn-submit").forEach((btn) => {
+  /* Flash burst on primary buttons */
+  document.querySelectorAll(".btn-primary").forEach((btn) => {
     btn.addEventListener("click", (e) => spawnFlash(btn, e));
   });
 
-  /* Star button pop animation on click */
-  starButtons.forEach((star) => {
+  /* Star pop animation on click */
+  document.querySelectorAll(".star").forEach((star) => {
     star.addEventListener("click", () => {
       star.classList.remove("pop-animate");
       void star.offsetWidth; /* force reflow */
