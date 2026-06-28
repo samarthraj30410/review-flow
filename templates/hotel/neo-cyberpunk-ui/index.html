@@ -1560,15 +1560,15 @@
         >
           &#8249; Back
         </button>
-        <div class="glass-card">
+        <div class="cyber-card">
           <div class="card-header">
-            <p class="card-section-label">&#127869;&#65039; Food Review</p>
-            <h2 class="card-title">Rate Your Food</h2>
+            <div class="header-prefix mono">// MODULE: FOOD_REVIEW_ANALYSIS</div>
+            <h2 class="card-title">RATE YOUR FOOD</h2>
+            <div class="header-underline"></div>
           </div>
-          <p style="padding: 0 24px; opacity: 0.7; margin-bottom: 20px">
-            You ordered
-            <strong><span id="review-item-count">0</span></strong> item(s). Tell
-            us how the food was!
+          <p style="padding: 0 24px; opacity: 0.7; margin-bottom: 20px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--text-secondary)">
+            > ITEMS_ORDERED:
+            <strong style="color: var(--cyan)"><span id="review-item-count">0</span></strong> — AWAITING_REVIEW_INPUT...
           </p>
 
           <form id="food-review-form" class="form-body" novalidate>
@@ -1576,7 +1576,7 @@
             <div id="dynamic-food-reviews"></div>
 
             <div class="form-group">
-              <label class="form-label">Would you recommend our food?</label>
+              <label class="form-label">FOOD RECOMMENDATION PROTOCOL</label>
               <div
                 class="option-group"
                 role="radiogroup"
@@ -1584,48 +1584,49 @@
               >
                 <label class="option-item">
                   <input type="radio" name="food-recommend" value="yes" />
-                  <span class="option-label">&#128077; Yes, absolutely!</span>
+                  <span class="option-label">✅ AFFIRMATIVE — HIGHLY RECOMMEND</span>
                 </label>
                 <label class="option-item">
                   <input type="radio" name="food-recommend" value="maybe" />
-                  <span class="option-label">&#129300; Maybe, depends</span>
+                  <span class="option-label">🤔 CONDITIONAL — DEPENDS ON VARIABLES</span>
                 </label>
                 <label class="option-item">
                   <input type="radio" name="food-recommend" value="no" />
-                  <span class="option-label">&#128078; Not really</span>
+                  <span class="option-label">❌ NEGATIVE — NOT RECOMMENDING</span>
                 </label>
               </div>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="food-feedback"
-                >Detailed Feedback</label
+                >SYSTEM_INPUT // FOOD_FEEDBACK_LOG</label
               >
               <textarea
-                class="glass-textarea"
+                class="cyber-textarea"
                 id="food-feedback"
                 name="food-feedback"
-                placeholder="Tell us about the taste, presentation, or anything we can improve..."
+                placeholder=">> Transmit your food experience data..."
                 rows="4"
               ></textarea>
             </div>
           </form>
 
-          <div class="glass-divider"></div>
+          <div class="cyber-divider"></div>
           <div class="btn-row">
             <button
-              class="btn-primary accent"
+              class="btn-primary success"
               onclick="submitFoodReview()"
               type="button"
             >
-              Submit Food Review &#8250;
+              <span class="btn-label">UPLOAD FOOD REVIEW</span>
+              <span class="btn-arrow">▶▶</span>
             </button>
             <button
               class="btn-primary ghost"
               onclick="navigateTo('food')"
               type="button"
             >
-              Cancel
+              ABORT
             </button>
           </div>
         </div>
