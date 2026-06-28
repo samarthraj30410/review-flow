@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Hotel Guest Review — Claymorphism UI</title>
-  <link rel="stylesheet" href="claymorphism-ui/style.css" />
+  <link rel="stylesheet" href="style.css" />
   <!-- Google Fonts: Inter for a clean modern look often used with Claymorphism -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
@@ -98,7 +98,7 @@
       <div class="clay-card main-card">
         <div class="card-header">
           <p class="card-section-label clay-pill">🍽️ Food Menu</p>
-          <h2 class="card-title">Order Your Food</h2>
+          <h2 class="card-title">Review Your Food</h2>
         </div>
 
         <!-- Sorting and Filtering System -->
@@ -184,7 +184,7 @@
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "></div>
+                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
                 <div class="dish-info" style="flex-grow: 1">
                   <h4 style="
                         font-size: 16px;
@@ -200,15 +200,11 @@
                       ">
                     Soft, steamed rice cakes served with sambar and chutney.
                   </p>
-                  <button class="add-to-order-btn clay-btn-secondary" style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      " onclick="addToOrder('Idli', this, event)">
-                    Add to Order
-                  </button>
+                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
+                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Idli', -1, this)" disabled>&#8722;</button>
+                    <span class="qty-count" data-item="Idli" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
+                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Idli', 1, this)">+</button>
+                  </div>
                 </div>
               </li>
               <li class="dish-card clay-card" style="
@@ -224,7 +220,7 @@
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "></div>
+                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
                 <div class="dish-info" style="flex-grow: 1">
                   <h4 style="
                         font-size: 16px;
@@ -240,15 +236,11 @@
                       ">
                     Crispy savory crepe filled with spiced potatoes.
                   </p>
-                  <button class="add-to-order-btn clay-btn-secondary" style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      " onclick="addToOrder('Dosa', this, event)">
-                    Add to Order
-                  </button>
+                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
+                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Dosa', -1, this)" disabled>&#8722;</button>
+                    <span class="qty-count" data-item="Dosa" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
+                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Dosa', 1, this)">+</button>
+                  </div>
                 </div>
               </li>
               <li class="dish-card clay-card" style="
@@ -264,7 +256,7 @@
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "></div>
+                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
                 <div class="dish-info" style="flex-grow: 1">
                   <h4 style="
                         font-size: 16px;
@@ -280,15 +272,11 @@
                       ">
                     Crispy deep-fried lentil donuts.
                   </p>
-                  <button class="add-to-order-btn clay-btn-secondary" style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      " onclick="addToOrder('Wada', this, event)">
-                    Add to Order
-                  </button>
+                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
+                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Wada', -1, this)" disabled>&#8722;</button>
+                    <span class="qty-count" data-item="Wada" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
+                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Wada', 1, this)">+</button>
+                  </div>
                 </div>
               </li>
               <li class="dish-card clay-card" style="
@@ -304,7 +292,7 @@
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "></div>
+                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
                 <div class="dish-info" style="flex-grow: 1">
                   <h4 style="
                         font-size: 16px;
@@ -320,15 +308,11 @@
                       ">
                     Thick savory pancake topped with fresh vegetables.
                   </p>
-                  <button class="add-to-order-btn clay-btn-secondary" style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      " onclick="addToOrder('Uttapam', this, event)">
-                    Add to Order
-                  </button>
+                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
+                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Uttapam', -1, this)" disabled>&#8722;</button>
+                    <span class="qty-count" data-item="Uttapam" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
+                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Uttapam', 1, this)">+</button>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -360,7 +344,7 @@
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "></div>
+                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
                 <div class="dish-info" style="flex-grow: 1">
                   <h4 style="
                         font-size: 16px;
@@ -376,15 +360,11 @@
                       ">
                     Stir-fried noodles tossed with fresh vegetables.
                   </p>
-                  <button class="add-to-order-btn clay-btn-secondary" style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      " onclick="addToOrder('Veg Chowmein', this, event)">
-                    Add to Order
-                  </button>
+                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
+                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Veg Chowmein', -1, this)" disabled>&#8722;</button>
+                    <span class="qty-count" data-item="Veg Chowmein" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
+                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Veg Chowmein', 1, this)">+</button>
+                  </div>
                 </div>
               </li>
               <li class="dish-card clay-card" style="
@@ -400,7 +380,7 @@
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "></div>
+                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
                 <div class="dish-info" style="flex-grow: 1">
                   <h4 style="
                         font-size: 16px;
@@ -416,15 +396,11 @@
                       ">
                     Classic chowmein loaded with soft paneer cubes.
                   </p>
-                  <button class="add-to-order-btn clay-btn-secondary" style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      " onclick="addToOrder('Paneer Chowmein', this, event)">
-                    Add to Order
-                  </button>
+                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
+                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Paneer Chowmein', -1, this)" disabled>&#8722;</button>
+                    <span class="qty-count" data-item="Paneer Chowmein" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
+                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Paneer Chowmein', 1, this)">+</button>
+                  </div>
                 </div>
               </li>
               <li class="dish-card clay-card" style="
@@ -440,7 +416,7 @@
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "></div>
+                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
                 <div class="dish-info" style="flex-grow: 1">
                   <h4 style="
                         font-size: 16px;
@@ -456,15 +432,11 @@
                       ">
                     Flaky paratha wrapped around a spiced omelette.
                   </p>
-                  <button class="add-to-order-btn clay-btn-secondary" style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      " onclick="addToOrder('Egg Roll', this, event)">
-                    Add to Order
-                  </button>
+                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
+                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Egg Roll', -1, this)" disabled>&#8722;</button>
+                    <span class="qty-count" data-item="Egg Roll" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
+                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Egg Roll', 1, this)">+</button>
+                  </div>
                 </div>
               </li>
               <li class="dish-card clay-card" style="
@@ -480,7 +452,7 @@
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "></div>
+                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
                 <div class="dish-info" style="flex-grow: 1">
                   <h4 style="
                         font-size: 16px;
@@ -496,15 +468,11 @@
                       ">
                     Spicy paneer chunks wrapped in a crispy paratha.
                   </p>
-                  <button class="add-to-order-btn clay-btn-secondary" style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      " onclick="addToOrder('Paneer Roll', this, event)">
-                    Add to Order
-                  </button>
+                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
+                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Paneer Roll', -1, this)" disabled>&#8722;</button>
+                    <span class="qty-count" data-item="Paneer Roll" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
+                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Paneer Roll', 1, this)">+</button>
+                  </div>
                 </div>
               </li>
               <li class="dish-card clay-card" style="
@@ -520,7 +488,7 @@
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "></div>
+                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
                 <div class="dish-info" style="flex-grow: 1">
                   <h4 style="
                         font-size: 16px;
@@ -536,15 +504,11 @@
                       ">
                     Deep-fried vegetable balls in a spicy, dark soy sauce.
                   </p>
-                  <button class="add-to-order-btn clay-btn-secondary" style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      " onclick="addToOrder('Manchurian', this, event)">
-                    Add to Order
-                  </button>
+                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
+                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Manchurian', -1, this)" disabled>&#8722;</button>
+                    <span class="qty-count" data-item="Manchurian" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
+                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Manchurian', 1, this)">+</button>
+                  </div>
                 </div>
               </li>
               <li class="dish-card clay-card" style="
@@ -560,7 +524,7 @@
                       flex-shrink: 0;
                       background: #c0c0c0;
                       border-radius: var(--radius-md);
-                    "></div>
+                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
                 <div class="dish-info" style="flex-grow: 1">
                   <h4 style="
                         font-size: 16px;
@@ -576,15 +540,11 @@
                       ">
                     Spicy and tangy gravy with bell peppers and paneer.
                   </p>
-                  <button class="add-to-order-btn clay-btn-secondary" style="
-                        padding: 6px 12px;
-                        font-size: 12px;
-                        border-radius: var(--radius-pill);
-                        border: none;
-                        cursor: pointer;
-                      " onclick="addToOrder('Paneer Chilli Gravy', this, event)">
-                    Add to Order
-                  </button>
+                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
+                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Paneer Chilli Gravy', -1, this)" disabled>&#8722;</button>
+                    <span class="qty-count" data-item="Paneer Chilli Gravy" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
+                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Paneer Chilli Gravy', 1, this)">+</button>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -593,7 +553,7 @@
 
         <div class="clay-divider"></div>
         <div class="btn-row">
-          <button class="btn-primary clay-btn-primary" id="view-order-btn" onclick="submitReview('food-order')"
+          <button class="btn-primary clay-btn-primary" id="view-order-btn" onclick="navigateTo('food-review')"
             type="button">
             View Ordered (<span id="cart-count">0</span>) ›
           </button>
@@ -604,7 +564,68 @@
     <!-- ══════════════════════════════════════
          PAGE 2 — Management & Staff Review
     ══════════════════════════════════════ -->
-    <section class="page" id="page-management" aria-label="Management and staff review">
+
+
+
+    <!-- ══════════════════════════════════════
+         PAGE — Food Review (after ordering)
+    ══════════════════════════════════════ -->
+    <section class="page" id="page-food-review" aria-label="Food review">
+      <button class="back-btn clay-btn-secondary" onclick="navigateTo('food')" aria-label="Go back">
+        &#8249; Back
+      </button>
+      <div class="clay-card main-card">
+        <div class="card-header">
+          <p class="card-section-label clay-pill">&#127869;&#65039; Food Review</p>
+          <h2 class="card-title">Rate Your Food</h2>
+        </div>
+        <p style="padding: 0 8px; opacity: 0.7; margin-bottom: 20px;">
+          You ordered <strong><span id="review-item-count">0</span></strong> item(s). Tell us how the food was!
+        </p>
+
+        <form id="food-review-form" class="form-body" novalidate>
+          <!-- Dynamic Per-Dish Ratings -->
+          <div id="dynamic-food-reviews"></div>
+          
+          <div class="form-group">
+            <label class="form-label clay-pill">Would you recommend our food?</label>
+            <div class="option-group" role="radiogroup" aria-label="Would you recommend the food">
+              <label class="option-item clay-btn-secondary">
+                <input type="radio" name="food-recommend" value="yes" />
+                <span class="option-label">&#128077; Yes, absolutely!</span>
+              </label>
+              <label class="option-item clay-btn-secondary">
+                <input type="radio" name="food-recommend" value="maybe" />
+                <span class="option-label">&#129300; Maybe, depends</span>
+              </label>
+              <label class="option-item clay-btn-secondary">
+                <input type="radio" name="food-recommend" value="no" />
+                <span class="option-label">&#128078; Not really</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label clay-pill" for="food-feedback">Detailed Feedback</label>
+            <textarea class="clay-textarea" id="food-feedback" name="food-feedback"
+              placeholder="Tell us about the taste, presentation, or anything we can improve..."
+              rows="4"></textarea>
+          </div>
+        </form>
+
+        <div class="clay-divider"></div>
+        <div class="btn-row">
+          <button class="btn-primary clay-btn-primary" onclick="submitFoodReview()" type="button">
+            Submit Food Review &#8250;
+          </button>
+          <button class="btn-primary clay-btn-secondary ghost" onclick="navigateTo('food')" type="button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </section>
+
+<section class="page" id="page-management" aria-label="Management and staff review">
       <button class="back-btn clay-btn-secondary" onclick="navigateTo('choose')" aria-label="Go back">
         ‹ Back
       </button>

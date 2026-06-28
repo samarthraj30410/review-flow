@@ -603,7 +603,7 @@ body {
 }
 
 .star {
-  font-size: 28px;
+  font-size: 48px;
   color: var(--text-tertiary);
   cursor: pointer;
   transition: var(--transition-bounce);

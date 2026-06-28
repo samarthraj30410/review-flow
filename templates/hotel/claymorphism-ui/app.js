@@ -21,6 +21,7 @@ function navigateTo(pageId) {
   }, 280);
 
   currentPage = pageId;
+  if (pageId === 'food-review') { var rc = document.getElementById('review-item-count'); if (rc) rc.textContent = cart.length; } generatePerDishReviews();
   updateProgress(pageId);
   updateHeader(pageId);
 }
@@ -35,6 +36,7 @@ function updateProgress(pageId) {
   const map = {
     choose: { show: false, pct: 0, step: "", label: "" },
     food: { show: true, pct: 50, step: "Step 1 of 2", label: "Food & Dining" },
+    "food-review": { show: true, pct: 75, step: "Step 2 of 2", label: "Food Review" },
     management: {
       show: true,
       pct: 50,
@@ -68,6 +70,7 @@ function updateHeader(pageId) {
   const subs = {
     choose: "We value your experience",
     food: "Tell us about your dining experience",
+    "food-review": "Rate your food experience",
     management: "Help us improve our service",
     hotel: "Rate your overall stay",
     thankyou: "Review submitted successfully",
@@ -307,3 +310,132 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+/* === Quantity Controls (replaces addToOrder) === */
+function changeQty(itemName, delta, btnElement) {
+  var current = itemCounts[itemName] || 0;
+  var newVal = Math.max(0, current + delta);
+  itemCounts[itemName] = newVal;
+
+  // Update the qty-count display
+  document.querySelectorAll('.qty-count[data-item="' + itemName + '"]').forEach(function(el) {
+    el.textContent = newVal;
+    el.style.fontWeight = newVal > 0 ? '700' : '';
+  });
+
+  // Enable/disable minus button
+  var qtyControl = btnElement.closest('.qty-control');
+  if (qtyControl) {
+    var minusBtn = qtyControl.querySelector('.minus');
+    if (minusBtn) minusBtn.disabled = (newVal === 0);
+  }
+
+  // Rebuild cart array from itemCounts
+  cart = [];
+  for (var key in itemCounts) {
+    for (var j = 0; j < itemCounts[key]; j++) {
+      cart.push(key);
+    }
+  }
+
+  // Update cart count
+  var cartEl = document.getElementById('cart-count');
+  if (cartEl) cartEl.textContent = cart.length;
+
+  showToast(newVal > current ? '+ Added ' + itemName : '- Removed ' + itemName);
+}
+
+/* === Food Star Rating === */
+var foodStarRatings = {};
+
+function setFoodStars(itemName, val) {
+  foodStarRatings[itemName] = val;
+  var safeId = itemName.replace(/\s+/g, '-');
+  var container = document.getElementById('stars-' + safeId);
+  if (!container) return;
+  container.querySelectorAll('.star').forEach(function(s) {
+    var sv = parseInt(s.getAttribute('data-val'));
+    s.classList.toggle('active', sv <= val);
+  });
+}
+
+function generatePerDishReviews() {
+  var container = document.getElementById('dynamic-food-reviews');
+  if (!container) return;
+  container.innerHTML = '';
+  
+  var hasItems = false;
+  for (var key in itemCounts) {
+    if (itemCounts[key] > 0) {
+      hasItems = true;
+      var safeId = key.replace(/\s+/g, '-');
+      if (typeof foodStarRatings[key] === 'undefined') {
+        foodStarRatings[key] = 0;
+      }
+      var html = '<div class="form-group clay-card" style="padding: 24px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px;">';
+      
+      html += '<div style="flex-grow: 1;">';
+      html += '<label class="form-label clay-pill" style="font-size: 15px; margin-bottom: 12px; display: inline-block;">Rating for <b>' + key + '</b></label>';
+      html += '<div class="stars" id="stars-' + safeId + '" role="group">';
+      for (var i = 1; i <= 5; i++) {
+        var activeClass = i <= foodStarRatings[key] ? 'active' : '';
+        html += '<span class="star ' + activeClass + '" data-val="' + i + '" onclick="setFoodStars(\'' + key + '\', ' + i + ')">&#9733;</span>';
+      }
+      html += '</div>';
+      html += '</div>';
+      
+      // Dish Image Portal
+      html += '<div class="review-dish-img-box clay-inset" style="width: 100px; height: 100px; flex-shrink: 0; border-radius: 12px; overflow: hidden;">';
+      html += '  <img src="" alt="' + key + '" style="width: 100%; height: 100%; object-fit: cover; display: block;" />';
+      html += '</div>';
+
+      html += '</div>';
+      container.innerHTML += html;
+    }
+  }
+  
+  if (!hasItems) {
+    container.innerHTML = '<p style="opacity: 0.7;">No items selected.</p>';
+  }
+}
+
+/* === Submit Food Review === */
+function submitFoodReview() {
+  var tags = [];
+  var orderedItems = [];
+  for (var key in itemCounts) {
+    if (itemCounts[key] > 0) {
+      orderedItems.push(key + ' x' + itemCounts[key]);
+    }
+  }
+  if (orderedItems.length > 0) {
+    tags.push('Ordered: ' + orderedItems.join(', '));
+  }
+  
+  // Add per-dish ratings
+  for (var key in foodStarRatings) {
+    if (foodStarRatings[key] > 0 && itemCounts[key] > 0) {
+      tags.push(key + ': ' + String.fromCharCode(9733).repeat(foodStarRatings[key]));
+    }
+  }
+
+  var recommend = document.querySelector('input[name="food-recommend"]:checked');
+  if (recommend) {
+    tags.push('Recommend: ' + recommend.value);
+  }
+
+  var feedback = document.getElementById('food-feedback');
+  if (feedback && feedback.value.trim()) {
+    tags.push('Feedback: ' + feedback.value.trim().substring(0, 60));
+  }
+
+  if (!tags.length) tags.push('Food review submitted');
+
+  var summaryEl = document.getElementById('review-summary-tags');
+  if (summaryEl) {
+    summaryEl.innerHTML = tags.map(function(t) { return '<span class="review-tag">' + t + '</span>'; }).join('');
+  }
+
+  showToast('Review submitted - thank you!');
+  navigateTo('thankyou');
+}

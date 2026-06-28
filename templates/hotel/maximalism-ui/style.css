@@ -826,24 +826,26 @@ body::before {
 
 .stars {
   display: flex;
-  gap: 4px;
+  gap: 8px;
+  justify-content: center;
 }
 
 .star {
-  font-size: 26px;
+  font-size: 48px;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.2);
-  transition:
-    transform 0.15s,
-    color 0.15s;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s;
+  user-select: none;
 }
 
 .star.active {
   color: var(--neon-lime);
-  filter: drop-shadow(0 0 6px rgba(200, 255, 0, 0.5));
+  filter: drop-shadow(0 0 12px rgba(200, 255, 0, 0.8));
 }
+
 .star:hover {
-  transform: scale(1.25);
+  transform: scale(1.35) rotate(15deg);
+  filter: drop-shadow(0 0 16px rgba(200, 255, 0, 1));
 }
 
 /* Textarea & Select */

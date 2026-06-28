@@ -20,17 +20,17 @@
 
       <!-- Sorting and Filtering System -->
       <nav class="filter-system">
-        <button class="filter-btn" data-category="all">All</button>
-        <button class="filter-btn" data-category="south-indian">
+        <button class="filter-btn active" data-category="all" onclick="filterMenu('all', this)">All</button>
+        <button class="filter-btn" data-category="south-indian" onclick="filterMenu('south-indian', this)">
           South Indian
         </button>
-        <button class="filter-btn" data-category="chinese">Chinese</button>
+        <button class="filter-btn" data-category="chinese" onclick="filterMenu('chinese', this)">Chinese</button>
       </nav>
 
       <!-- Menu Categories -->
       <div class="menu-container">
         <!-- South Indian Category -->
-        <section class="menu-category" id="south-indian">
+        <section class="menu-category" id="cat-south-indian">
           <h2 class="category-title">South Indian</h2>
           <ul class="dish-list">
             <li class="dish-card">
@@ -38,7 +38,11 @@
               <div class="dish-info">
                 <h4>Idli</h4>
                 <p>Soft, steamed rice cakes served with sambar and chutney.</p>
-                <button class="add-to-order-btn">Add to Order</button>
+                <div class="qty-control">
+                  <button class="qty-btn minus" onclick="changeQty('Idli', -1, this)" disabled>−</button>
+                  <span class="qty-count" data-item="Idli">0</span>
+                  <button class="qty-btn plus" onclick="changeQty('Idli', 1, this)">+</button>
+                </div>
               </div>
             </li>
 
@@ -47,7 +51,11 @@
               <div class="dish-info">
                 <h4>Dosa</h4>
                 <p>Crispy savory crepe filled with spiced potatoes.</p>
-                <button class="add-to-order-btn">Add to Order</button>
+                <div class="qty-control">
+                  <button class="qty-btn minus" onclick="changeQty('Dosa', -1, this)" disabled>−</button>
+                  <span class="qty-count" data-item="Dosa">0</span>
+                  <button class="qty-btn plus" onclick="changeQty('Dosa', 1, this)">+</button>
+                </div>
               </div>
             </li>
 
@@ -56,104 +64,108 @@
               <div class="dish-info">
                 <h4>Wada</h4>
                 <p>Crispy deep-fried lentil donuts.</p>
-                <button class="add-to-order-btn">Add to Order</button>
+                <div class="qty-control">
+                  <button class="qty-btn minus" onclick="changeQty('Wada', -1, this)" disabled>−</button>
+                  <span class="qty-count" data-item="Wada">0</span>
+                  <button class="qty-btn plus" onclick="changeQty('Wada', 1, this)">+</button>
+                </div>
               </div>
             </li>
 
             <li class="dish-card">
-              <img
-                src="placeholder-uttapam.jpg"
-                alt="Uttapam"
-                class="dish-img"
-              />
+              <img src="placeholder-uttapam.jpg" alt="Uttapam" class="dish-img" />
               <div class="dish-info">
                 <h4>Uttapam</h4>
                 <p>Thick savory pancake topped with fresh vegetables.</p>
-                <button class="add-to-order-btn">Add to Order</button>
+                <div class="qty-control">
+                  <button class="qty-btn minus" onclick="changeQty('Uttapam', -1, this)" disabled>−</button>
+                  <span class="qty-count" data-item="Uttapam">0</span>
+                  <button class="qty-btn plus" onclick="changeQty('Uttapam', 1, this)">+</button>
+                </div>
               </div>
             </li>
           </ul>
         </section>
 
         <!-- Chinese Category -->
-        <section class="menu-category" id="chinese">
+        <section class="menu-category" id="cat-chinese">
           <h2 class="category-title">Chinese</h2>
           <ul class="dish-list">
             <li class="dish-card">
-              <img
-                src="placeholder-veg-chowmein.jpg"
-                alt="Veg Chowmein"
-                class="dish-img"
-              />
+              <img src="placeholder-veg-chowmein.jpg" alt="Veg Chowmein" class="dish-img" />
               <div class="dish-info">
                 <h4>Veg Chowmein</h4>
                 <p>Stir-fried noodles tossed with fresh vegetables.</p>
-                <button class="add-to-order-btn">Add to Order</button>
+                <div class="qty-control">
+                  <button class="qty-btn minus" onclick="changeQty('Veg Chowmein', -1, this)" disabled>−</button>
+                  <span class="qty-count" data-item="Veg Chowmein">0</span>
+                  <button class="qty-btn plus" onclick="changeQty('Veg Chowmein', 1, this)">+</button>
+                </div>
               </div>
             </li>
 
             <li class="dish-card">
-              <img
-                src="placeholder-paneer-chowmein.jpg"
-                alt="Paneer Chowmein"
-                class="dish-img"
-              />
+              <img src="placeholder-paneer-chowmein.jpg" alt="Paneer Chowmein" class="dish-img" />
               <div class="dish-info">
                 <h4>Paneer Chowmein</h4>
                 <p>Classic chowmein loaded with soft paneer cubes.</p>
-                <button class="add-to-order-btn">Add to Order</button>
+                <div class="qty-control">
+                  <button class="qty-btn minus" onclick="changeQty('Paneer Chowmein', -1, this)" disabled>−</button>
+                  <span class="qty-count" data-item="Paneer Chowmein">0</span>
+                  <button class="qty-btn plus" onclick="changeQty('Paneer Chowmein', 1, this)">+</button>
+                </div>
               </div>
             </li>
 
             <li class="dish-card">
-              <img
-                src="placeholder-egg-roll.jpg"
-                alt="Egg Roll"
-                class="dish-img"
-              />
+              <img src="placeholder-egg-roll.jpg" alt="Egg Roll" class="dish-img" />
               <div class="dish-info">
                 <h4>Egg Roll</h4>
                 <p>Flaky paratha wrapped around a spiced omelette.</p>
-                <button class="add-to-order-btn">Add to Order</button>
+                <div class="qty-control">
+                  <button class="qty-btn minus" onclick="changeQty('Egg Roll', -1, this)" disabled>−</button>
+                  <span class="qty-count" data-item="Egg Roll">0</span>
+                  <button class="qty-btn plus" onclick="changeQty('Egg Roll', 1, this)">+</button>
+                </div>
               </div>
             </li>
 
             <li class="dish-card">
-              <img
-                src="placeholder-paneer-roll.jpg"
-                alt="Paneer Roll"
-                class="dish-img"
-              />
+              <img src="placeholder-paneer-roll.jpg" alt="Paneer Roll" class="dish-img" />
               <div class="dish-info">
                 <h4>Paneer Roll</h4>
                 <p>Spicy paneer chunks wrapped in a crispy paratha.</p>
-                <button class="add-to-order-btn">Add to Order</button>
+                <div class="qty-control">
+                  <button class="qty-btn minus" onclick="changeQty('Paneer Roll', -1, this)" disabled>−</button>
+                  <span class="qty-count" data-item="Paneer Roll">0</span>
+                  <button class="qty-btn plus" onclick="changeQty('Paneer Roll', 1, this)">+</button>
+                </div>
               </div>
             </li>
 
             <li class="dish-card">
-              <img
-                src="placeholder-manchurian.jpg"
-                alt="Manchurian"
-                class="dish-img"
-              />
+              <img src="placeholder-manchurian.jpg" alt="Manchurian" class="dish-img" />
               <div class="dish-info">
                 <h4>Manchurian</h4>
                 <p>Deep-fried vegetable balls in a spicy, dark soy sauce.</p>
-                <button class="add-to-order-btn">Add to Order</button>
+                <div class="qty-control">
+                  <button class="qty-btn minus" onclick="changeQty('Manchurian', -1, this)" disabled>−</button>
+                  <span class="qty-count" data-item="Manchurian">0</span>
+                  <button class="qty-btn plus" onclick="changeQty('Manchurian', 1, this)">+</button>
+                </div>
               </div>
             </li>
 
             <li class="dish-card">
-              <img
-                src="placeholder-paneer-chilli-gravy.jpg"
-                alt="Paneer Chilli Gravy"
-                class="dish-img"
-              />
+              <img src="placeholder-paneer-chilli-gravy.jpg" alt="Paneer Chilli Gravy" class="dish-img" />
               <div class="dish-info">
                 <h4>Paneer Chilli Gravy</h4>
                 <p>Spicy and tangy gravy with bell peppers and paneer.</p>
-                <button class="add-to-order-btn">Add to Order</button>
+                <div class="qty-control">
+                  <button class="qty-btn minus" onclick="changeQty('Paneer Chilli Gravy', -1, this)" disabled>−</button>
+                  <span class="qty-count" data-item="Paneer Chilli Gravy">0</span>
+                  <button class="qty-btn plus" onclick="changeQty('Paneer Chilli Gravy', 1, this)">+</button>
+                </div>
               </div>
             </li>
           </ul>
@@ -163,8 +175,53 @@
 
     <!-- Floating Order Button for the Cart Panel -->
     <div class="cart-trigger-container">
-      <button id="view-order-btn">View Ordered</button>
+      <button id="view-order-btn" onclick="goToFoodReview()">
+        View Ordered (<span id="cart-count">0</span>)
+      </button>
     </div>
+
+    <!-- Food Review Page (shown after ordering) -->
+    <section class="page" id="page-food-review" style="display:none;">
+      <div class="review-card">
+        <button class="back-btn" onclick="goBackToMenu()">‹ Back to Menu</button>
+        <h2>Rate Your Food</h2>
+        <p class="review-subtitle">You ordered <span id="review-item-count">0</span> item(s). Tell us how the food was!</p>
+
+        <form id="food-review-form" novalidate>
+          <!-- Dynamic Per-Dish Ratings -->
+          <div id="dynamic-food-reviews"></div>
+
+          <!-- Recommendation -->
+          <div class="form-group">
+            <label class="form-label">Would you recommend our food?</label>
+            <div class="option-group" role="radiogroup" aria-label="Would you recommend">
+              <label class="option-item">
+                <input type="radio" name="food-recommend" value="yes" />
+                <span class="option-label">👍 Yes, absolutely!</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="food-recommend" value="maybe" />
+                <span class="option-label">🤔 Maybe, depends</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="food-recommend" value="no" />
+                <span class="option-label">👎 Not really</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Feedback -->
+          <div class="form-group">
+            <label class="form-label" for="food-feedback">Detailed Feedback</label>
+            <textarea id="food-feedback" name="food-feedback"
+              placeholder="Tell us about the taste, presentation, or anything we can improve…"
+              rows="4"></textarea>
+          </div>
+        </form>
+
+        <button class="submit-review-btn" onclick="submitFoodReview()">Submit Food Review ›</button>
+      </div>
+    </section>
 
     <!-- Antigravity will link its generated JS here -->
     <script src="app.js"></script>

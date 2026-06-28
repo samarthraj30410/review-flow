@@ -540,23 +540,27 @@ body {
 
 .stars {
   display: flex;
-  gap: 4px;
+  gap: 12px;
+  justify-content: center;
 }
 
 .star {
-  font-size: 28px;
+  font-size: 52px;
   cursor: pointer;
   color: #ccc;
-  -webkit-text-stroke: 1px #000;
-  transition: transform 0.1s;
+  -webkit-text-stroke: 2px #000;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
 }
 
 .star.active {
   color: var(--primary-color);
-  -webkit-text-stroke: 2px #000;
+  -webkit-text-stroke: 3px #000;
+  filter: drop-shadow(4px 4px 0px #000);
 }
 .star:hover {
-  transform: scale(1.2);
+  transform: scale(1.3) rotate(-10deg);
+  filter: drop-shadow(6px 6px 0px #000);
 }
 
 /* Textarea & Select */
