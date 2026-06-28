@@ -1,176 +1,217 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Review — Neo Cyberpunk</title>
+    <meta
+      name="description"
+      content="Share your hotel experience through a high-tech Neo Cyberpunk review interface."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="neo-cyberpuck-ui/style.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hotel Review — Neo Cyberpunk</title>
-  <meta name="description" content="Share your hotel experience through a high-tech Neo Cyberpunk review interface." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../../assets/logo.jpg"
+    />
+    <link
+      rel="icon"
+      type="image/jpeg"
+      sizes="96x96"
+      href="../../../assets/logo.jpg"
+    />
+    <link rel="shortcut icon" href="../../../assets/logo.jpg" />
+  </head>
 
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/logo.jpg" />
-  <link rel="icon" type="image/jpeg" sizes="96x96" href="../../../assets/logo.jpg" />
-  <link rel="shortcut icon" href="../../../assets/logo.jpg" />
-</head>
+  <body>
+    <!-- Scanline overlay -->
+    <div class="scanline-overlay" aria-hidden="true"></div>
 
-<body>
-  <!-- Scanline overlay -->
-  <div class="scanline-overlay" aria-hidden="true"></div>
+    <!-- Animated grid background -->
+    <div class="cyber-grid" aria-hidden="true"></div>
 
-  <!-- Animated grid background -->
-  <div class="cyber-grid" aria-hidden="true"></div>
+    <!-- Neon corner brackets -->
+    <div class="corner-bracket top-left" aria-hidden="true"></div>
+    <div class="corner-bracket top-right" aria-hidden="true"></div>
+    <div class="corner-bracket bottom-left" aria-hidden="true"></div>
+    <div class="corner-bracket bottom-right" aria-hidden="true"></div>
 
-  <!-- Neon corner brackets -->
-  <div class="corner-bracket top-left" aria-hidden="true"></div>
-  <div class="corner-bracket top-right" aria-hidden="true"></div>
-  <div class="corner-bracket bottom-left" aria-hidden="true"></div>
-  <div class="corner-bracket bottom-right" aria-hidden="true"></div>
-
-  <!-- Floating particles -->
-  <div class="particles" aria-hidden="true">
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-  </div>
-
-  <div class="app-container">
-    <!-- ══════════════════════════════════════
-         HEADER — always visible
-    ══════════════════════════════════════ -->
-    <header class="app-header">
-      <div class="cyber-badge">
-        <span class="blink-dot"></span>
-        <span class="badge-text">GUEST_REVIEW_PORTAL.EXE</span>
-        <span class="badge-id">SYS//NEXUS-7</span>
-      </div>
-      <div class="hotel-name-wrap">
-        <div class="glitch-line" aria-hidden="true"></div>
-        <h1 class="hotel-name glitch" id="hotel-name-display" data-text="NEXUS TOWER HOTEL">
-          NEXUS TOWER HOTEL
-        </h1>
-        <div class="glitch-line" aria-hidden="true"></div>
-      </div>
-      <p class="hotel-subtitle" id="header-subtitle">
-        INITIALIZING REVIEW SEQUENCE...
-      </p>
-    </header>
-
-    <!-- Progress Bar -->
-    <div class="progress-bar-wrap" id="progress-wrap">
-      <div class="progress-labels">
-        <span id="progress-label-left" class="mono">STEP_01_OF_02</span>
-        <span id="progress-label-right" class="mono">REVIEW</span>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="progress-fill" style="width: 50%">
-          <div class="progress-glow"></div>
-        </div>
-      </div>
+    <!-- Floating particles -->
+    <div class="particles" aria-hidden="true">
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
     </div>
 
-    <!-- ══════════════════════════════════════
-         PAGE 0 — Choose Review Type
+    <div class="app-container">
+      <!-- ══════════════════════════════════════
+         HEADER — always visible
     ══════════════════════════════════════ -->
-    <section class="page active" id="page-choose" aria-label="Choose review type">
-      <div class="cyber-card">
-        <div class="card-header">
-          <div class="header-prefix mono">// CLASSIFY_INPUT</div>
-          <h2 class="card-title">SELECT REVIEW MODULE</h2>
-          <div class="header-underline"></div>
+      <header class="app-header">
+        <div class="cyber-badge">
+          <span class="blink-dot"></span>
+          <span class="badge-text">GUEST_REVIEW_PORTAL.EXE</span>
+          <span class="badge-id">SYS//NEXUS-7</span>
         </div>
+        <div class="hotel-name-wrap">
+          <div class="glitch-line" aria-hidden="true"></div>
+          <h1
+            class="hotel-name glitch"
+            id="hotel-name-display"
+            data-text="NEXUS TOWER HOTEL"
+          >
+            NEXUS TOWER HOTEL
+          </h1>
+          <div class="glitch-line" aria-hidden="true"></div>
+        </div>
+        <p class="hotel-subtitle" id="header-subtitle">
+          INITIALIZING REVIEW SEQUENCE...
+        </p>
+      </header>
 
-        <nav class="review-type-grid" aria-label="Review categories">
-          <button class="review-type-btn" id="btn-food" onclick="navigateTo('food')"
-            aria-label="Review food and dining">
-            <div class="btn-icon food">
-              <span class="icon-emoji">🍽️</span>
-              <div class="icon-ring"></div>
-            </div>
-            <div class="btn-text">
-              <div class="btn-title">FOOD &amp; DINING</div>
-              <div class="btn-desc">Meals · Room Service · Bar</div>
-            </div>
-            <span class="btn-chevron" aria-hidden="true">▶</span>
-          </button>
-
-          <button class="review-type-btn" id="btn-mgmt" onclick="navigateTo('management')"
-            aria-label="Review management and staff">
-            <div class="btn-icon mgmt">
-              <span class="icon-emoji">🤝</span>
-              <div class="icon-ring"></div>
-            </div>
-            <div class="btn-text">
-              <div class="btn-title">MANAGEMENT &amp; STAFF</div>
-              <div class="btn-desc">Service · Helpfulness · Check-in</div>
-            </div>
-            <span class="btn-chevron" aria-hidden="true">▶</span>
-          </button>
-
-          <button class="review-type-btn" id="btn-hotel" onclick="navigateTo('hotel')"
-            aria-label="Review hotel experience">
-            <div class="btn-icon hotel">
-              <span class="icon-emoji">🏨</span>
-              <div class="icon-ring"></div>
-            </div>
-            <div class="btn-text">
-              <div class="btn-title">HOTEL EXPERIENCE</div>
-              <div class="btn-desc">Rooms · Cleanliness · Amenities</div>
-            </div>
-            <span class="btn-chevron" aria-hidden="true">▶</span>
-          </button>
-        </nav>
-
-        <div class="card-footer-strip mono">
-          <span>SECURE_CHANNEL_ACTIVE</span>
-          <span class="dot-sep">◆</span>
-          <span>ENCRYPTED_UPLOAD</span>
+      <!-- Progress Bar -->
+      <div class="progress-bar-wrap" id="progress-wrap">
+        <div class="progress-labels">
+          <span id="progress-label-left" class="mono">STEP_01_OF_02</span>
+          <span id="progress-label-right" class="mono">REVIEW</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill" style="width: 50%">
+            <div class="progress-glow"></div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
+         PAGE 0 — Choose Review Type
+    ══════════════════════════════════════ -->
+      <section
+        class="page active"
+        id="page-choose"
+        aria-label="Choose review type"
+      >
+        <div class="cyber-card">
+          <div class="card-header">
+            <div class="header-prefix mono">// CLASSIFY_INPUT</div>
+            <h2 class="card-title">SELECT REVIEW MODULE</h2>
+            <div class="header-underline"></div>
+          </div>
+
+          <nav class="review-type-grid" aria-label="Review categories">
+            <button
+              class="review-type-btn"
+              id="btn-food"
+              onclick="navigateTo('food')"
+              aria-label="Review food and dining"
+            >
+              <div class="btn-icon food">
+                <span class="icon-emoji">🍽️</span>
+                <div class="icon-ring"></div>
+              </div>
+              <div class="btn-text">
+                <div class="btn-title">FOOD &amp; DINING</div>
+                <div class="btn-desc">Meals · Room Service · Bar</div>
+              </div>
+              <span class="btn-chevron" aria-hidden="true">▶</span>
+            </button>
+
+            <button
+              class="review-type-btn"
+              id="btn-mgmt"
+              onclick="navigateTo('management')"
+              aria-label="Review management and staff"
+            >
+              <div class="btn-icon mgmt">
+                <span class="icon-emoji">🤝</span>
+                <div class="icon-ring"></div>
+              </div>
+              <div class="btn-text">
+                <div class="btn-title">MANAGEMENT &amp; STAFF</div>
+                <div class="btn-desc">Service · Helpfulness · Check-in</div>
+              </div>
+              <span class="btn-chevron" aria-hidden="true">▶</span>
+            </button>
+
+            <button
+              class="review-type-btn"
+              id="btn-hotel"
+              onclick="navigateTo('hotel')"
+              aria-label="Review hotel experience"
+            >
+              <div class="btn-icon hotel">
+                <span class="icon-emoji">🏨</span>
+                <div class="icon-ring"></div>
+              </div>
+              <div class="btn-text">
+                <div class="btn-title">HOTEL EXPERIENCE</div>
+                <div class="btn-desc">Rooms · Cleanliness · Amenities</div>
+              </div>
+              <span class="btn-chevron" aria-hidden="true">▶</span>
+            </button>
+          </nav>
+
+          <div class="card-footer-strip mono">
+            <span>SECURE_CHANNEL_ACTIVE</span>
+            <span class="dot-sep">◆</span>
+            <span>ENCRYPTED_UPLOAD</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
          PAGE 1 — Food Menu
     ══════════════════════════════════════ -->
-    <section class="page" id="page-food" aria-label="Food menu">
-      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
-        <span>◀</span> RETURN
-      </button>
-      <div class="cyber-card">
-        <div class="card-header">
-          <div class="header-prefix mono">// MODULE: FOOD_ORDER_SYSTEM</div>
-          <h2 class="card-title">REVIEW YOUR FOOD</h2>
-          <div class="header-underline"></div>
-        </div>
+      <section class="page" id="page-food" aria-label="Food menu">
+        <button
+          class="back-btn"
+          onclick="navigateTo('choose')"
+          aria-label="Go back"
+        >
+          <span>◀</span> RETURN
+        </button>
+        <div class="cyber-card">
+          <div class="card-header">
+            <div class="header-prefix mono">// MODULE: FOOD_ORDER_SYSTEM</div>
+            <h2 class="card-title">REVIEW YOUR FOOD</h2>
+            <div class="header-underline"></div>
+          </div>
 
-        <!-- Sorting and Filtering System -->
-        <style>
-          .filter-system::-webkit-scrollbar {
-            display: none;
-          }
+          <!-- Sorting and Filtering System -->
+          <style>
+            .filter-system::-webkit-scrollbar {
+              display: none;
+            }
 
-          .filter-system {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-          }
-        </style>
-        <nav class="filter-system" style="
+            .filter-system {
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            }
+          </style>
+          <nav
+            class="filter-system"
+            style="
               display: flex;
               gap: 8px;
               padding: 8px 24px;
               overflow-x: auto;
               margin-bottom: 24px;
               align-items: center;
-            ">
-          <button class="filter-btn btn-primary" style="
+            "
+          >
+            <button
+              class="filter-btn btn-primary"
+              style="
                 padding: 8px 16px;
                 border-radius: var(--radius-sm);
                 font-size: 13px;
@@ -178,10 +219,15 @@
                 white-space: nowrap;
                 flex: 0 0 auto;
                 width: auto;
-              " data-category="all" onclick="filterMenu('all', this, event)">
-            [ ALL ]
-          </button>
-          <button class="filter-btn btn-primary ghost" style="
+              "
+              data-category="all"
+              onclick="filterMenu('all', this, event)"
+            >
+              [ ALL ]
+            </button>
+            <button
+              class="filter-btn btn-primary ghost"
+              style="
                 padding: 8px 16px;
                 border-radius: var(--radius-sm);
                 font-size: 13px;
@@ -189,10 +235,15 @@
                 white-space: nowrap;
                 flex: 0 0 auto;
                 width: auto;
-              " data-category="south-indian" onclick="filterMenu('south-indian', this, event)">
-            [ SOUTH_INDIAN ]
-          </button>
-          <button class="filter-btn btn-primary ghost" style="
+              "
+              data-category="south-indian"
+              onclick="filterMenu('south-indian', this, event)"
+            >
+              [ SOUTH_INDIAN ]
+            </button>
+            <button
+              class="filter-btn btn-primary ghost"
+              style="
                 padding: 8px 16px;
                 border-radius: var(--radius-sm);
                 font-size: 13px;
@@ -200,33 +251,44 @@
                 white-space: nowrap;
                 flex: 0 0 auto;
                 width: auto;
-              " data-category="chinese" onclick="filterMenu('chinese', this, event)">
-            [ CHINESE ]
-          </button>
-        </nav>
+              "
+              data-category="chinese"
+              onclick="filterMenu('chinese', this, event)"
+            >
+              [ CHINESE ]
+            </button>
+          </nav>
 
-        <!-- Menu Categories -->
-        <div class="menu-container" style="padding: 0 24px">
-          <!-- South Indian Category -->
-          <section class="menu-category" id="cat-south-indian">
-            <h3 class="category-title" style="
+          <!-- Menu Categories -->
+          <div class="menu-container" style="padding: 0 24px">
+            <!-- South Indian Category -->
+            <section class="menu-category" id="cat-south-indian">
+              <h3
+                class="category-title"
+                style="
                   margin-bottom: 16px;
                   font-weight: 600;
                   font-size: 18px;
                   color: var(--text-primary);
                   text-transform: uppercase;
-                ">
-              // SOUTH_INDIAN
-            </h3>
-            <ul class="dish-list" style="
+                "
+              >
+                // SOUTH_INDIAN
+              </h3>
+              <ul
+                class="dish-list"
+                style="
                   list-style: none;
                   display: flex;
                   flex-direction: column;
                   gap: 16px;
                   margin-bottom: 24px;
                   padding: 0;
-                ">
-              <li class="dish-card" style="
+                "
+              >
+                <li
+                  class="dish-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -235,40 +297,119 @@
                     border: 1px solid var(--border-color);
                     border-radius: var(--radius-sm);
                     position: relative;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(0, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
                       border: 1px solid var(--cyan);
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
                         color: var(--cyan);
                         text-transform: uppercase;
-                      ">
-                    IDLI
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      IDLI
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      ">
-                    Soft, steamed rice cakes served with sambar and chutney.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Idli', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Idli" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Idli', 1, this)">+</button>
+                      "
+                    >
+                      Soft, steamed rice cakes served with sambar and chutney.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Idli', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Idli"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Idli', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card" style="
+                </li>
+                <li
+                  class="dish-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -277,40 +418,119 @@
                     border: 1px solid var(--border-color);
                     border-radius: var(--radius-sm);
                     position: relative;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(0, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
                       border: 1px solid var(--cyan);
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
                         color: var(--cyan);
                         text-transform: uppercase;
-                      ">
-                    DOSA
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      DOSA
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      ">
-                    Crispy savory crepe filled with spiced potatoes.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Dosa', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Dosa" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Dosa', 1, this)">+</button>
+                      "
+                    >
+                      Crispy savory crepe filled with spiced potatoes.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Dosa', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Dosa"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Dosa', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card" style="
+                </li>
+                <li
+                  class="dish-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -319,40 +539,119 @@
                     border: 1px solid var(--border-color);
                     border-radius: var(--radius-sm);
                     position: relative;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(0, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
                       border: 1px solid var(--cyan);
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
                         color: var(--cyan);
                         text-transform: uppercase;
-                      ">
-                    WADA
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      WADA
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      ">
-                    Crispy deep-fried lentil donuts.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Wada', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Wada" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Wada', 1, this)">+</button>
+                      "
+                    >
+                      Crispy deep-fried lentil donuts.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Wada', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Wada"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Wada', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card" style="
+                </li>
+                <li
+                  class="dish-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -361,62 +660,147 @@
                     border: 1px solid var(--border-color);
                     border-radius: var(--radius-sm);
                     position: relative;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(0, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
                       border: 1px solid var(--cyan);
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
                         color: var(--cyan);
                         text-transform: uppercase;
-                      ">
-                    UTTAPAM
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      UTTAPAM
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      ">
-                    Thick savory pancake topped with fresh vegetables.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Uttapam', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Uttapam" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Uttapam', 1, this)">+</button>
+                      "
+                    >
+                      Thick savory pancake topped with fresh vegetables.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Uttapam', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Uttapam"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Uttapam', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-            </ul>
-          </section>
+                </li>
+              </ul>
+            </section>
 
-          <!-- Chinese Category -->
-          <section class="menu-category" id="cat-chinese">
-            <h3 class="category-title" style="
+            <!-- Chinese Category -->
+            <section class="menu-category" id="cat-chinese">
+              <h3
+                class="category-title"
+                style="
                   margin-bottom: 16px;
                   font-weight: 600;
                   font-size: 18px;
                   color: var(--text-primary);
                   text-transform: uppercase;
-                ">
-              // CHINESE
-            </h3>
-            <ul class="dish-list" style="
+                "
+              >
+                // CHINESE
+              </h3>
+              <ul
+                class="dish-list"
+                style="
                   list-style: none;
                   display: flex;
                   flex-direction: column;
                   gap: 16px;
                   margin-bottom: 24px;
                   padding: 0;
-                ">
-              <li class="dish-card" style="
+                "
+              >
+                <li
+                  class="dish-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -425,40 +809,119 @@
                     border: 1px solid var(--border-color);
                     border-radius: var(--radius-sm);
                     position: relative;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(0, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
                       border: 1px solid var(--cyan);
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
                         color: var(--cyan);
                         text-transform: uppercase;
-                      ">
-                    VEG CHOWMEIN
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      VEG CHOWMEIN
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      ">
-                    Stir-fried noodles tossed with fresh vegetables.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Veg Chowmein', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Veg Chowmein" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Veg Chowmein', 1, this)">+</button>
+                      "
+                    >
+                      Stir-fried noodles tossed with fresh vegetables.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Veg Chowmein', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Veg Chowmein"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Veg Chowmein', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card" style="
+                </li>
+                <li
+                  class="dish-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -467,40 +930,119 @@
                     border: 1px solid var(--border-color);
                     border-radius: var(--radius-sm);
                     position: relative;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(0, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
                       border: 1px solid var(--cyan);
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
                         color: var(--cyan);
                         text-transform: uppercase;
-                      ">
-                    PANEER CHOWMEIN
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      PANEER CHOWMEIN
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      ">
-                    Classic chowmein loaded with soft paneer cubes.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Paneer Chowmein', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Paneer Chowmein" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Paneer Chowmein', 1, this)">+</button>
+                      "
+                    >
+                      Classic chowmein loaded with soft paneer cubes.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Chowmein', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Paneer Chowmein"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Chowmein', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card" style="
+                </li>
+                <li
+                  class="dish-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -509,40 +1051,119 @@
                     border: 1px solid var(--border-color);
                     border-radius: var(--radius-sm);
                     position: relative;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(0, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
                       border: 1px solid var(--cyan);
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
                         color: var(--cyan);
                         text-transform: uppercase;
-                      ">
-                    EGG ROLL
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      EGG ROLL
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      ">
-                    Flaky paratha wrapped around a spiced omelette.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Egg Roll', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Egg Roll" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Egg Roll', 1, this)">+</button>
+                      "
+                    >
+                      Flaky paratha wrapped around a spiced omelette.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Egg Roll', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Egg Roll"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Egg Roll', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card" style="
+                </li>
+                <li
+                  class="dish-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -551,40 +1172,119 @@
                     border: 1px solid var(--border-color);
                     border-radius: var(--radius-sm);
                     position: relative;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(0, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
                       border: 1px solid var(--cyan);
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
                         color: var(--cyan);
                         text-transform: uppercase;
-                      ">
-                    PANEER ROLL
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      PANEER ROLL
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      ">
-                    Spicy paneer chunks wrapped in a crispy paratha.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Paneer Roll', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Paneer Roll" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Paneer Roll', 1, this)">+</button>
+                      "
+                    >
+                      Spicy paneer chunks wrapped in a crispy paratha.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Roll', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Paneer Roll"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Roll', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card" style="
+                </li>
+                <li
+                  class="dish-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -593,40 +1293,119 @@
                     border: 1px solid var(--border-color);
                     border-radius: var(--radius-sm);
                     position: relative;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(0, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
                       border: 1px solid var(--cyan);
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
                         color: var(--cyan);
                         text-transform: uppercase;
-                      ">
-                    MANCHURIAN
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      MANCHURIAN
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      ">
-                    Deep-fried vegetable balls in a spicy, dark soy sauce.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Manchurian', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Manchurian" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Manchurian', 1, this)">+</button>
+                      "
+                    >
+                      Deep-fried vegetable balls in a spicy, dark soy sauce.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Manchurian', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Manchurian"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Manchurian', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card" style="
+                </li>
+                <li
+                  class="dish-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
@@ -635,740 +1414,1175 @@
                     border: 1px solid var(--border-color);
                     border-radius: var(--radius-sm);
                     position: relative;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: rgba(0, 255, 255, 0.1);
                       border-radius: var(--radius-sm);
                       border: 1px solid var(--cyan);
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-weight: 600;
                         color: var(--cyan);
                         text-transform: uppercase;
-                      ">
-                    PANEER CHILLI GRAVY
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      PANEER CHILLI GRAVY
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         color: var(--text-secondary);
-                      ">
-                    Spicy and tangy gravy with bell peppers and paneer.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Paneer Chilli Gravy', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Paneer Chilli Gravy" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Paneer Chilli Gravy', 1, this)">+</button>
+                      "
+                    >
+                      Spicy and tangy gravy with bell peppers and paneer.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Chilli Gravy', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Paneer Chilli Gravy"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Chilli Gravy', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-            </ul>
-          </section>
-        </div>
+                </li>
+              </ul>
+            </section>
+          </div>
 
-        <div class="cyber-divider"></div>
-        <div class="btn-row">
-          <button class="btn-primary accent" id="view-order-btn" onclick="navigateTo('food-review')" type="button">
-            <span class="btn-label">VIEW ORDERED (<span id="cart-count">0</span>)</span>
-            <span class="btn-arrow">▶▶</span>
-          </button>
+          <div class="cyber-divider"></div>
+          <div class="btn-row">
+            <button
+              class="btn-primary accent"
+              id="view-order-btn"
+              onclick="navigateTo('food-review')"
+              type="button"
+            >
+              <span class="btn-label"
+                >VIEW ORDERED (<span id="cart-count">0</span>)</span
+              >
+              <span class="btn-arrow">▶▶</span>
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
          PAGE 2 — Management & Staff Review
     ══════════════════════════════════════ -->
 
-
-
-    <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
          PAGE — Food Review (after ordering)
     ══════════════════════════════════════ -->
-    <section class="page" id="page-food-review" aria-label="Food review">
-      <button class="back-btn" onclick="navigateTo('food')" aria-label="Go back">
-        &#8249; Back
-      </button>
-      <div class="glass-card">
-        <div class="card-header">
-          <p class="card-section-label">&#127869;&#65039; Food Review</p>
-          <h2 class="card-title">Rate Your Food</h2>
-        </div>
-        <p style="padding: 0 24px; opacity: 0.7; margin-bottom: 20px;">
-          You ordered <strong><span id="review-item-count">0</span></strong> item(s). Tell us how the food was!
-        </p>
-
-        <form id="food-review-form" class="form-body" novalidate>
-          <!-- Dynamic Per-Dish Ratings -->
-          <div id="dynamic-food-reviews"></div>
-          
-          <div class="form-group">
-            <label class="form-label">Would you recommend our food?</label>
-            <div class="option-group" role="radiogroup" aria-label="Would you recommend the food">
-              <label class="option-item">
-                <input type="radio" name="food-recommend" value="yes" />
-                <span class="option-label">&#128077; Yes, absolutely!</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" name="food-recommend" value="maybe" />
-                <span class="option-label">&#129300; Maybe, depends</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" name="food-recommend" value="no" />
-                <span class="option-label">&#128078; Not really</span>
-              </label>
-            </div>
+      <section class="page" id="page-food-review" aria-label="Food review">
+        <button
+          class="back-btn"
+          onclick="navigateTo('food')"
+          aria-label="Go back"
+        >
+          &#8249; Back
+        </button>
+        <div class="glass-card">
+          <div class="card-header">
+            <p class="card-section-label">&#127869;&#65039; Food Review</p>
+            <h2 class="card-title">Rate Your Food</h2>
           </div>
+          <p style="padding: 0 24px; opacity: 0.7; margin-bottom: 20px">
+            You ordered
+            <strong><span id="review-item-count">0</span></strong> item(s). Tell
+            us how the food was!
+          </p>
 
-          <div class="form-group">
-            <label class="form-label" for="food-feedback">Detailed Feedback</label>
-            <textarea class="glass-textarea" id="food-feedback" name="food-feedback"
-              placeholder="Tell us about the taste, presentation, or anything we can improve..."
-              rows="4"></textarea>
-          </div>
-        </form>
+          <form id="food-review-form" class="form-body" novalidate>
+            <!-- Dynamic Per-Dish Ratings -->
+            <div id="dynamic-food-reviews"></div>
 
-        <div class="glass-divider"></div>
-        <div class="btn-row">
-          <button class="btn-primary accent" onclick="submitFoodReview()" type="button">
-            Submit Food Review &#8250;
-          </button>
-          <button class="btn-primary ghost" onclick="navigateTo('food')" type="button">
-            Cancel
-          </button>
-        </div>
-      </div>
-    </section>
-
-<section class="page" id="page-management" aria-label="Management and staff review">
-      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
-        <span>◀</span> RETURN
-      </button>
-      <div class="cyber-card">
-        <div class="card-header">
-          <div class="header-prefix mono">// MODULE: STAFF_ANALYTICS</div>
-          <h2 class="card-title">MANAGEMENT &amp; STAFF REVIEW</h2>
-          <div class="header-underline"></div>
-        </div>
-
-        <form id="management-form" class="form-body" novalidate>
-          <!-- Staff helpful -->
-          <div class="form-group">
-            <label class="form-label">STAFF PERFORMANCE RATING</label>
-            <div class="option-group" role="radiogroup" aria-label="Staff helpfulness">
-              <label class="option-item">
-                <input type="radio" id="staff-yes" name="staff-helpful" value="yes" />
-                <span class="option-label">👍 HIGHLY EFFICIENT</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" id="staff-average" name="staff-helpful" value="average" />
-                <span class="option-label">😐 AVERAGE OUTPUT</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" id="staff-no" name="staff-helpful" value="no" />
-                <span class="option-label">👎 NEEDS OPTIMIZATION</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Check-in rating -->
-          <div class="form-group">
-            <label class="form-label" for="check-in-rating">CHECK-IN PROCESS ANALYSIS</label>
-            <select class="cyber-select" id="check-in-rating" name="check-in-rating">
-              <option value="">— SELECT STATUS —</option>
-              <option value="excellent">
-                ⭐ EXCELLENT — Instant &amp; seamless
-              </option>
-              <option value="good">✅ GOOD — Minor latency</option>
-              <option value="average">😐 AVERAGE — Suboptimal flow</option>
-              <option value="poor">⚠️ POOR — System failure</option>
-            </select>
-          </div>
-
-          <!-- Response time slider -->
-          <div class="form-group">
-            <label class="form-label" for="response-time">STAFF RESPONSE TIME METRIC</label>
-            <div class="slider-wrap">
-              <div class="slider-row">
-                <input type="range" class="cyber-range" id="response-time" name="response-time" min="1" max="10"
-                  value="7" oninput="updateSlider('response-time-val', this.value)" />
-                <span class="slider-val" id="response-time-val">7</span>
-              </div>
-              <div class="slider-labels mono">
-                <span>01 — CRITICAL</span><span>10 — INSTANT</span>
+            <div class="form-group">
+              <label class="form-label">Would you recommend our food?</label>
+              <div
+                class="option-group"
+                role="radiogroup"
+                aria-label="Would you recommend the food"
+              >
+                <label class="option-item">
+                  <input type="radio" name="food-recommend" value="yes" />
+                  <span class="option-label">&#128077; Yes, absolutely!</span>
+                </label>
+                <label class="option-item">
+                  <input type="radio" name="food-recommend" value="maybe" />
+                  <span class="option-label">&#129300; Maybe, depends</span>
+                </label>
+                <label class="option-item">
+                  <input type="radio" name="food-recommend" value="no" />
+                  <span class="option-label">&#128078; Not really</span>
+                </label>
               </div>
             </div>
-          </div>
 
-          <!-- Comments -->
-          <div class="form-group">
-            <label class="form-label" for="management-feedback">SYSTEM_INPUT // MANAGEMENT_LOG</label>
-            <textarea class="cyber-textarea" id="management-feedback" name="management-feedback"
-              placeholder=">> Log management interaction data..." rows="4"></textarea>
-          </div>
-        </form>
+            <div class="form-group">
+              <label class="form-label" for="food-feedback"
+                >Detailed Feedback</label
+              >
+              <textarea
+                class="glass-textarea"
+                id="food-feedback"
+                name="food-feedback"
+                placeholder="Tell us about the taste, presentation, or anything we can improve..."
+                rows="4"
+              ></textarea>
+            </div>
+          </form>
 
-        <div class="cyber-divider"></div>
-        <div class="btn-row">
-          <button class="btn-primary accent" id="submit-mgmt" onclick="submitReview('management')" type="button">
-            <span class="btn-label">UPLOAD STAFF REVIEW</span>
-            <span class="btn-arrow">▶▶</span>
-          </button>
-          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
-            ABORT
-          </button>
+          <div class="glass-divider"></div>
+          <div class="btn-row">
+            <button
+              class="btn-primary accent"
+              onclick="submitFoodReview()"
+              type="button"
+            >
+              Submit Food Review &#8250;
+            </button>
+            <button
+              class="btn-primary ghost"
+              onclick="navigateTo('food')"
+              type="button"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ══════════════════════════════════════
+      <section
+        class="page"
+        id="page-management"
+        aria-label="Management and staff review"
+      >
+        <button
+          class="back-btn"
+          onclick="navigateTo('choose')"
+          aria-label="Go back"
+        >
+          <span>◀</span> RETURN
+        </button>
+        <div class="cyber-card">
+          <div class="card-header">
+            <div class="header-prefix mono">// MODULE: STAFF_ANALYTICS</div>
+            <h2 class="card-title">MANAGEMENT &amp; STAFF REVIEW</h2>
+            <div class="header-underline"></div>
+          </div>
+
+          <form id="management-form" class="form-body" novalidate>
+            <!-- Staff helpful -->
+            <div class="form-group">
+              <label class="form-label">STAFF PERFORMANCE RATING</label>
+              <div
+                class="option-group"
+                role="radiogroup"
+                aria-label="Staff helpfulness"
+              >
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="staff-yes"
+                    name="staff-helpful"
+                    value="yes"
+                  />
+                  <span class="option-label">👍 HIGHLY EFFICIENT</span>
+                </label>
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="staff-average"
+                    name="staff-helpful"
+                    value="average"
+                  />
+                  <span class="option-label">😐 AVERAGE OUTPUT</span>
+                </label>
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="staff-no"
+                    name="staff-helpful"
+                    value="no"
+                  />
+                  <span class="option-label">👎 NEEDS OPTIMIZATION</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Check-in rating -->
+            <div class="form-group">
+              <label class="form-label" for="check-in-rating"
+                >CHECK-IN PROCESS ANALYSIS</label
+              >
+              <select
+                class="cyber-select"
+                id="check-in-rating"
+                name="check-in-rating"
+              >
+                <option value="">— SELECT STATUS —</option>
+                <option value="excellent">
+                  ⭐ EXCELLENT — Instant &amp; seamless
+                </option>
+                <option value="good">✅ GOOD — Minor latency</option>
+                <option value="average">😐 AVERAGE — Suboptimal flow</option>
+                <option value="poor">⚠️ POOR — System failure</option>
+              </select>
+            </div>
+
+            <!-- Response time slider -->
+            <div class="form-group">
+              <label class="form-label" for="response-time"
+                >STAFF RESPONSE TIME METRIC</label
+              >
+              <div class="slider-wrap">
+                <div class="slider-row">
+                  <input
+                    type="range"
+                    class="cyber-range"
+                    id="response-time"
+                    name="response-time"
+                    min="1"
+                    max="10"
+                    value="7"
+                    oninput="updateSlider('response-time-val', this.value)"
+                  />
+                  <span class="slider-val" id="response-time-val">7</span>
+                </div>
+                <div class="slider-labels mono">
+                  <span>01 — CRITICAL</span><span>10 — INSTANT</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="form-group">
+              <label class="form-label" for="management-feedback"
+                >SYSTEM_INPUT // MANAGEMENT_LOG</label
+              >
+              <textarea
+                class="cyber-textarea"
+                id="management-feedback"
+                name="management-feedback"
+                placeholder=">> Log management interaction data..."
+                rows="4"
+              ></textarea>
+            </div>
+          </form>
+
+          <div class="cyber-divider"></div>
+          <div class="btn-row">
+            <button
+              class="btn-primary accent"
+              id="submit-mgmt"
+              onclick="submitReview('management')"
+              type="button"
+            >
+              <span class="btn-label">UPLOAD STAFF REVIEW</span>
+              <span class="btn-arrow">▶▶</span>
+            </button>
+            <button
+              class="btn-primary ghost"
+              onclick="navigateTo('choose')"
+              type="button"
+            >
+              ABORT
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
          PAGE 3 — Hotel Experience Review
     ══════════════════════════════════════ -->
-    <section class="page" id="page-hotel" aria-label="Hotel experience review">
-      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
-        <span>◀</span> RETURN
-      </button>
-      <div class="cyber-card">
-        <div class="card-header">
-          <div class="header-prefix mono">// MODULE: FACILITY_SCAN</div>
-          <h2 class="card-title">HOTEL EXPERIENCE REVIEW</h2>
-          <div class="header-underline"></div>
+      <section
+        class="page"
+        id="page-hotel"
+        aria-label="Hotel experience review"
+      >
+        <button
+          class="back-btn"
+          onclick="navigateTo('choose')"
+          aria-label="Go back"
+        >
+          <span>◀</span> RETURN
+        </button>
+        <div class="cyber-card">
+          <div class="card-header">
+            <div class="header-prefix mono">// MODULE: FACILITY_SCAN</div>
+            <h2 class="card-title">HOTEL EXPERIENCE REVIEW</h2>
+            <div class="header-underline"></div>
+          </div>
+
+          <form id="hotel-form" class="form-body" novalidate>
+            <!-- Star ratings -->
+            <div class="form-group">
+              <label class="form-label">FACILITY PERFORMANCE MATRIX</label>
+              <div
+                class="star-group"
+                role="group"
+                aria-label="Hotel star ratings"
+              >
+                <div class="star-row">
+                  <span class="star-row-label">🛏️ ROOM CLEANLINESS</span>
+                  <div
+                    class="stars"
+                    id="stars-cleanliness"
+                    role="group"
+                    aria-label="Room cleanliness rating"
+                  >
+                    <span
+                      class="star"
+                      data-group="cleanliness"
+                      data-val="1"
+                      onclick="setStars('cleanliness', 1)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="1 star"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="cleanliness"
+                      data-val="2"
+                      onclick="setStars('cleanliness', 2)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="2 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="cleanliness"
+                      data-val="3"
+                      onclick="setStars('cleanliness', 3)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="3 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="cleanliness"
+                      data-val="4"
+                      onclick="setStars('cleanliness', 4)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="4 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="cleanliness"
+                      data-val="5"
+                      onclick="setStars('cleanliness', 5)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="5 stars"
+                      >★</span
+                    >
+                  </div>
+                </div>
+
+                <div class="star-row">
+                  <span class="star-row-label">💤 ROOM COMFORT</span>
+                  <div
+                    class="stars"
+                    id="stars-comfort"
+                    role="group"
+                    aria-label="Room comfort rating"
+                  >
+                    <span
+                      class="star"
+                      data-group="comfort"
+                      data-val="1"
+                      onclick="setStars('comfort', 1)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="1 star"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="comfort"
+                      data-val="2"
+                      onclick="setStars('comfort', 2)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="2 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="comfort"
+                      data-val="3"
+                      onclick="setStars('comfort', 3)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="3 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="comfort"
+                      data-val="4"
+                      onclick="setStars('comfort', 4)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="4 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="comfort"
+                      data-val="5"
+                      onclick="setStars('comfort', 5)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="5 stars"
+                      >★</span
+                    >
+                  </div>
+                </div>
+
+                <div class="star-row">
+                  <span class="star-row-label">🏊 AMENITIES</span>
+                  <div
+                    class="stars"
+                    id="stars-amenities"
+                    role="group"
+                    aria-label="Amenities rating"
+                  >
+                    <span
+                      class="star"
+                      data-group="amenities"
+                      data-val="1"
+                      onclick="setStars('amenities', 1)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="1 star"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="amenities"
+                      data-val="2"
+                      onclick="setStars('amenities', 2)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="2 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="amenities"
+                      data-val="3"
+                      onclick="setStars('amenities', 3)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="3 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="amenities"
+                      data-val="4"
+                      onclick="setStars('amenities', 4)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="4 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="amenities"
+                      data-val="5"
+                      onclick="setStars('amenities', 5)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="5 stars"
+                      >★</span
+                    >
+                  </div>
+                </div>
+
+                <div class="star-row">
+                  <span class="star-row-label">📶 WIFI &amp; CONNECTIVITY</span>
+                  <div
+                    class="stars"
+                    id="stars-wifi"
+                    role="group"
+                    aria-label="WiFi rating"
+                  >
+                    <span
+                      class="star"
+                      data-group="wifi"
+                      data-val="1"
+                      onclick="setStars('wifi', 1)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="1 star"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="wifi"
+                      data-val="2"
+                      onclick="setStars('wifi', 2)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="2 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="wifi"
+                      data-val="3"
+                      onclick="setStars('wifi', 3)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="3 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="wifi"
+                      data-val="4"
+                      onclick="setStars('wifi', 4)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="4 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="wifi"
+                      data-val="5"
+                      onclick="setStars('wifi', 5)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="5 stars"
+                      >★</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Overall slider -->
+            <div class="form-group">
+              <label class="form-label" for="overall-experience"
+                >OVERALL EXPERIENCE SCORE</label
+              >
+              <div class="slider-wrap">
+                <div class="slider-row">
+                  <input
+                    type="range"
+                    class="cyber-range"
+                    id="overall-experience"
+                    name="overall-experience"
+                    min="1"
+                    max="10"
+                    value="8"
+                    oninput="updateSlider('overall-exp-val', this.value)"
+                  />
+                  <span class="slider-val" id="overall-exp-val">8</span>
+                </div>
+                <div class="slider-labels mono">
+                  <span>01 — CRITICAL</span><span>10 — PERFECT</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Would recommend -->
+            <div class="form-group">
+              <label class="form-label">RECOMMENDATION PROTOCOL</label>
+              <div
+                class="option-group"
+                role="radiogroup"
+                aria-label="Would you recommend"
+              >
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="recommend-yes"
+                    name="recommend"
+                    value="yes"
+                  />
+                  <span class="option-label"
+                    >✅ AFFIRMATIVE — WILL RECOMMEND</span
+                  >
+                </label>
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="recommend-maybe"
+                    name="recommend"
+                    value="maybe"
+                  />
+                  <span class="option-label"
+                    >🤔 CONDITIONAL — DEPENDS ON VARIABLES</span
+                  >
+                </label>
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="recommend-no"
+                    name="recommend"
+                    value="no"
+                  />
+                  <span class="option-label"
+                    >❌ NEGATIVE — NOT RECOMMENDING</span
+                  >
+                </label>
+              </div>
+            </div>
+
+            <!-- Detailed feedback -->
+            <div class="form-group">
+              <label class="form-label" for="hotel-feedback"
+                >SYSTEM_INPUT // DETAILED_FEEDBACK_LOG</label
+              >
+              <textarea
+                class="cyber-textarea"
+                id="hotel-feedback"
+                name="hotel-feedback"
+                placeholder=">> Transmit your full experience data..."
+                rows="4"
+              ></textarea>
+            </div>
+          </form>
+
+          <div class="cyber-divider"></div>
+          <div class="btn-row">
+            <button
+              class="btn-primary success"
+              id="submit-hotel"
+              onclick="submitReview('hotel')"
+              type="button"
+            >
+              <span class="btn-label">UPLOAD HOTEL REVIEW</span>
+              <span class="btn-arrow">▶▶</span>
+            </button>
+            <button
+              class="btn-primary ghost"
+              onclick="navigateTo('choose')"
+              type="button"
+            >
+              ABORT
+            </button>
+          </div>
         </div>
+      </section>
 
-        <form id="hotel-form" class="form-body" novalidate>
-          <!-- Star ratings -->
-          <div class="form-group">
-            <label class="form-label">FACILITY PERFORMANCE MATRIX</label>
-            <div class="star-group" role="group" aria-label="Hotel star ratings">
-              <div class="star-row">
-                <span class="star-row-label">🛏️ ROOM CLEANLINESS</span>
-                <div class="stars" id="stars-cleanliness" role="group" aria-label="Room cleanliness rating">
-                  <span class="star" data-group="cleanliness" data-val="1" onclick="setStars('cleanliness', 1)"
-                    tabindex="0" role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="cleanliness" data-val="2" onclick="setStars('cleanliness', 2)"
-                    tabindex="0" role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="cleanliness" data-val="3" onclick="setStars('cleanliness', 3)"
-                    tabindex="0" role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="cleanliness" data-val="4" onclick="setStars('cleanliness', 4)"
-                    tabindex="0" role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="cleanliness" data-val="5" onclick="setStars('cleanliness', 5)"
-                    tabindex="0" role="button" aria-label="5 stars">★</span>
-                </div>
-              </div>
-
-              <div class="star-row">
-                <span class="star-row-label">💤 ROOM COMFORT</span>
-                <div class="stars" id="stars-comfort" role="group" aria-label="Room comfort rating">
-                  <span class="star" data-group="comfort" data-val="1" onclick="setStars('comfort', 1)" tabindex="0"
-                    role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="comfort" data-val="2" onclick="setStars('comfort', 2)" tabindex="0"
-                    role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="comfort" data-val="3" onclick="setStars('comfort', 3)" tabindex="0"
-                    role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="comfort" data-val="4" onclick="setStars('comfort', 4)" tabindex="0"
-                    role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="comfort" data-val="5" onclick="setStars('comfort', 5)" tabindex="0"
-                    role="button" aria-label="5 stars">★</span>
-                </div>
-              </div>
-
-              <div class="star-row">
-                <span class="star-row-label">🏊 AMENITIES</span>
-                <div class="stars" id="stars-amenities" role="group" aria-label="Amenities rating">
-                  <span class="star" data-group="amenities" data-val="1" onclick="setStars('amenities', 1)" tabindex="0"
-                    role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="amenities" data-val="2" onclick="setStars('amenities', 2)" tabindex="0"
-                    role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="amenities" data-val="3" onclick="setStars('amenities', 3)" tabindex="0"
-                    role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="amenities" data-val="4" onclick="setStars('amenities', 4)" tabindex="0"
-                    role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="amenities" data-val="5" onclick="setStars('amenities', 5)" tabindex="0"
-                    role="button" aria-label="5 stars">★</span>
-                </div>
-              </div>
-
-              <div class="star-row">
-                <span class="star-row-label">📶 WIFI &amp; CONNECTIVITY</span>
-                <div class="stars" id="stars-wifi" role="group" aria-label="WiFi rating">
-                  <span class="star" data-group="wifi" data-val="1" onclick="setStars('wifi', 1)" tabindex="0"
-                    role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="wifi" data-val="2" onclick="setStars('wifi', 2)" tabindex="0"
-                    role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="wifi" data-val="3" onclick="setStars('wifi', 3)" tabindex="0"
-                    role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="wifi" data-val="4" onclick="setStars('wifi', 4)" tabindex="0"
-                    role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="wifi" data-val="5" onclick="setStars('wifi', 5)" tabindex="0"
-                    role="button" aria-label="5 stars">★</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Overall slider -->
-          <div class="form-group">
-            <label class="form-label" for="overall-experience">OVERALL EXPERIENCE SCORE</label>
-            <div class="slider-wrap">
-              <div class="slider-row">
-                <input type="range" class="cyber-range" id="overall-experience" name="overall-experience" min="1"
-                  max="10" value="8" oninput="updateSlider('overall-exp-val', this.value)" />
-                <span class="slider-val" id="overall-exp-val">8</span>
-              </div>
-              <div class="slider-labels mono">
-                <span>01 — CRITICAL</span><span>10 — PERFECT</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Would recommend -->
-          <div class="form-group">
-            <label class="form-label">RECOMMENDATION PROTOCOL</label>
-            <div class="option-group" role="radiogroup" aria-label="Would you recommend">
-              <label class="option-item">
-                <input type="radio" id="recommend-yes" name="recommend" value="yes" />
-                <span class="option-label">✅ AFFIRMATIVE — WILL RECOMMEND</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" id="recommend-maybe" name="recommend" value="maybe" />
-                <span class="option-label">🤔 CONDITIONAL — DEPENDS ON VARIABLES</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" id="recommend-no" name="recommend" value="no" />
-                <span class="option-label">❌ NEGATIVE — NOT RECOMMENDING</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Detailed feedback -->
-          <div class="form-group">
-            <label class="form-label" for="hotel-feedback">SYSTEM_INPUT // DETAILED_FEEDBACK_LOG</label>
-            <textarea class="cyber-textarea" id="hotel-feedback" name="hotel-feedback"
-              placeholder=">> Transmit your full experience data..." rows="4"></textarea>
-          </div>
-        </form>
-
-        <div class="cyber-divider"></div>
-        <div class="btn-row">
-          <button class="btn-primary success" id="submit-hotel" onclick="submitReview('hotel')" type="button">
-            <span class="btn-label">UPLOAD HOTEL REVIEW</span>
-            <span class="btn-arrow">▶▶</span>
-          </button>
-          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
-            ABORT
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
          PAGE 4 — Thank You
     ══════════════════════════════════════ -->
-    <section class="page" id="page-thankyou" aria-label="Thank you page">
-      <div class="cyber-card">
-        <div class="thankyou-body">
-          <div class="thankyou-icon" aria-hidden="true">
-            <div class="check-ring"></div>
-            <span class="check-symbol">✓</span>
+      <section class="page" id="page-thankyou" aria-label="Thank you page">
+        <div class="cyber-card">
+          <div class="thankyou-body">
+            <div class="thankyou-icon" aria-hidden="true">
+              <div class="check-ring"></div>
+              <span class="check-symbol">✓</span>
+            </div>
+            <div class="mono success-code">[ STATUS: 200 OK ]</div>
+            <h2 class="thankyou-title">DATA TRANSMITTED</h2>
+            <p class="thankyou-subtitle">
+              Your review has been securely uploaded to our system. All data is
+              encrypted and processed in real-time.
+            </p>
+            <div class="review-tags" id="review-summary-tags">
+              <!-- dynamically populated -->
+            </div>
           </div>
-          <div class="mono success-code">[ STATUS: 200 OK ]</div>
-          <h2 class="thankyou-title">DATA TRANSMITTED</h2>
-          <p class="thankyou-subtitle">
-            Your review has been securely uploaded to our system. All data is
-            encrypted and processed in real-time.
-          </p>
-          <div class="review-tags" id="review-summary-tags">
-            <!-- dynamically populated -->
+          <div class="cyber-divider"></div>
+          <div class="btn-row">
+            <button
+              class="btn-primary accent"
+              onclick="navigateTo('choose')"
+              type="button"
+            >
+              <span class="btn-label">SUBMIT ANOTHER REVIEW</span>
+              <span class="btn-arrow">▶▶</span>
+            </button>
+            <button
+              class="btn-primary ghost"
+              onclick="closePortal()"
+              type="button"
+            >
+              DISCONNECT
+            </button>
           </div>
         </div>
-        <div class="cyber-divider"></div>
-        <div class="btn-row">
-          <button class="btn-primary accent" onclick="navigateTo('choose')" type="button">
-            <span class="btn-label">SUBMIT ANOTHER REVIEW</span>
-            <span class="btn-arrow">▶▶</span>
-          </button>
-          <button class="btn-primary ghost" onclick="closePortal()" type="button">
-            DISCONNECT
-          </button>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <footer class="app-footer mono">
-      POWERED_BY // REVIEWFLO · NEXUS_SECURE_PROTOCOL · v2.0.77
-    </footer>
-  </div>
+      <footer class="app-footer mono">
+        POWERED_BY // REVIEWFLO · NEXUS_SECURE_PROTOCOL · v2.0.77
+      </footer>
+    </div>
 
-  <!-- Toast notification -->
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <!-- Toast notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <!-- JavaScript -->
-  <script src="app.js"></script>
+    <!-- JavaScript -->
+    <script src="neo-cyberpunk-ui/app.js"></script>
 
-  <!-- Inline page-nav script (same as Liquid Glass) -->
-  <script>
-    /* ─── State ─────────────────────────────── */
-    const starRatings = { cleanliness: 0, comfort: 0, amenities: 0, wifi: 0 };
-    let currentPage = "choose";
+    <!-- Inline page-nav script (same as Liquid Glass) -->
+    <script>
+      /* ─── State ─────────────────────────────── */
+      const starRatings = { cleanliness: 0, comfort: 0, amenities: 0, wifi: 0 };
+      let currentPage = "choose";
 
-    /* ─── Page Navigation ───────────────────── */
-    function navigateTo(pageId) {
-      const current = document.querySelector(".page.active");
-      const next = document.getElementById("page-" + pageId);
-      if (!next || current === next) return;
+      /* ─── Page Navigation ───────────────────── */
+      function navigateTo(pageId) {
+        const current = document.querySelector(".page.active");
+        const next = document.getElementById("page-" + pageId);
+        if (!next || current === next) return;
 
-      current.style.animation =
-        "pageOut 0.3s cubic-bezier(0.16,1,0.3,1) forwards";
-      setTimeout(() => {
-        current.classList.remove("active");
-        current.style.animation = "";
-        next.classList.add("active");
-        next.style.animation =
-          "pageIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards";
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 280);
+        current.style.animation =
+          "pageOut 0.3s cubic-bezier(0.16,1,0.3,1) forwards";
+        setTimeout(() => {
+          current.classList.remove("active");
+          current.style.animation = "";
+          next.classList.add("active");
+          next.style.animation =
+            "pageIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 280);
 
-      currentPage = pageId;
-      if (pageId === 'food-review') { var rc = document.getElementById('review-item-count'); if (rc) rc.textContent = cart.length; }
-      updateProgress(pageId);
-      updateHeader(pageId);
-    }
+        currentPage = pageId;
+        if (pageId === "food-review") {
+          var rc = document.getElementById("review-item-count");
+          if (rc) rc.textContent = cart.length;
+        }
+        updateProgress(pageId);
+        updateHeader(pageId);
+      }
 
-    /* ─── Update Progress Bar ───────────────── */
-    function updateProgress(pageId) {
-      const wrap = document.getElementById("progress-wrap");
-      const fill = document.getElementById("progress-fill");
-      const left = document.getElementById("progress-label-left");
-      const right = document.getElementById("progress-label-right");
+      /* ─── Update Progress Bar ───────────────── */
+      function updateProgress(pageId) {
+        const wrap = document.getElementById("progress-wrap");
+        const fill = document.getElementById("progress-fill");
+        const left = document.getElementById("progress-label-left");
+        const right = document.getElementById("progress-label-right");
 
-      const map = {
-        choose: { show: false, pct: 0, step: "", label: "" },
-        food: {
-          show: true,
-          pct: 50,
-          step: "STEP_01_OF_02",
-          label: "FOOD_MODULE",
-        },
-        "food-review": { show: true, pct: 75, step: "Step 2 of 2", label: "Food Review" },
-        management: {
-          show: true,
-          pct: 50,
-          step: "STEP_01_OF_02",
-          label: "STAFF_MODULE",
-        },
-        hotel: {
-          show: true,
-          pct: 50,
-          step: "STEP_01_OF_02",
-          label: "HOTEL_MODULE",
-        },
-        thankyou: {
-          show: true,
-          pct: 100,
-          step: "UPLOAD_COMPLETE",
-          label: "✓ TRANSMITTED",
-        },
-      };
+        const map = {
+          choose: { show: false, pct: 0, step: "", label: "" },
+          food: {
+            show: true,
+            pct: 50,
+            step: "STEP_01_OF_02",
+            label: "FOOD_MODULE",
+          },
+          "food-review": {
+            show: true,
+            pct: 75,
+            step: "Step 2 of 2",
+            label: "Food Review",
+          },
+          management: {
+            show: true,
+            pct: 50,
+            step: "STEP_01_OF_02",
+            label: "STAFF_MODULE",
+          },
+          hotel: {
+            show: true,
+            pct: 50,
+            step: "STEP_01_OF_02",
+            label: "HOTEL_MODULE",
+          },
+          thankyou: {
+            show: true,
+            pct: 100,
+            step: "UPLOAD_COMPLETE",
+            label: "✓ TRANSMITTED",
+          },
+        };
 
-      const info = map[pageId] || map.choose;
-      wrap.classList.toggle("visible", info.show);
-      fill.style.width = info.pct + "%";
-      left.textContent = info.step;
-      right.textContent = info.label;
-    }
+        const info = map[pageId] || map.choose;
+        wrap.classList.toggle("visible", info.show);
+        fill.style.width = info.pct + "%";
+        left.textContent = info.step;
+        right.textContent = info.label;
+      }
 
-    /* ─── Update Header Subtitle ────────────── */
-    function updateHeader(pageId) {
-      const sub = document.getElementById("header-subtitle");
-      const subs = {
-        choose: "INITIALIZING REVIEW SEQUENCE...",
-        food: "FOOD_MODULE: AWAITING INPUT DATA",
-        management: "STAFF_MODULE: ANALYZING PERFORMANCE",
-        hotel: "FACILITY_SCAN: RUNNING DIAGNOSTIC",
-        thankyou: "UPLOAD_COMPLETE: DATA LOGGED SUCCESSFULLY",
-      };
-      sub.style.opacity = "0";
-      setTimeout(() => {
-        sub.textContent = subs[pageId] || subs.choose;
-        sub.style.opacity = "1";
-      }, 200);
-      sub.style.transition = "opacity 0.2s ease";
-    }
+      /* ─── Update Header Subtitle ────────────── */
+      function updateHeader(pageId) {
+        const sub = document.getElementById("header-subtitle");
+        const subs = {
+          choose: "INITIALIZING REVIEW SEQUENCE...",
+          food: "FOOD_MODULE: AWAITING INPUT DATA",
+          management: "STAFF_MODULE: ANALYZING PERFORMANCE",
+          hotel: "FACILITY_SCAN: RUNNING DIAGNOSTIC",
+          thankyou: "UPLOAD_COMPLETE: DATA LOGGED SUCCESSFULLY",
+        };
+        sub.style.opacity = "0";
+        setTimeout(() => {
+          sub.textContent = subs[pageId] || subs.choose;
+          sub.style.opacity = "1";
+        }, 200);
+        sub.style.transition = "opacity 0.2s ease";
+      }
 
-    /* ─── Slider value display ──────────────── */
-    function updateSlider(targetId, val) {
-      const el = document.getElementById(targetId);
-      if (el) el.textContent = val;
-      const slider = event.target;
-      const pct = ((val - slider.min) / (slider.max - slider.min)) * 100;
-      slider.style.background = `linear-gradient(90deg, var(--cyan) ${pct}%, rgba(0,255,255,0.08) ${pct}%)`;
-    }
-
-    /* ─── Initialize sliders ────────────────── */
-    function initSliders() {
-      document.querySelectorAll(".cyber-range").forEach((slider) => {
-        const val = slider.value;
-        const min = slider.min || 0;
-        const max = slider.max || 10;
-        const pct = ((val - min) / (max - min)) * 100;
+      /* ─── Slider value display ──────────────── */
+      function updateSlider(targetId, val) {
+        const el = document.getElementById(targetId);
+        if (el) el.textContent = val;
+        const slider = event.target;
+        const pct = ((val - slider.min) / (slider.max - slider.min)) * 100;
         slider.style.background = `linear-gradient(90deg, var(--cyan) ${pct}%, rgba(0,255,255,0.08) ${pct}%)`;
-      });
-    }
-
-    /* ─── Star Rating ───────────────────────── */
-    function setStars(group, val) {
-      starRatings[group] = val;
-      const container = document.getElementById("stars-" + group);
-      if (!container) return;
-      container.querySelectorAll(".star").forEach((s) => {
-        const sv = parseInt(s.getAttribute("data-val"));
-        s.classList.toggle("active", sv <= val);
-      });
-    }
-
-    /* ─── Hover preview for stars ───────────── */
-    document.addEventListener("mouseover", (e) => {
-      if (!e.target.classList.contains("star")) return;
-      const group = e.target.getAttribute("data-group");
-      const val = parseInt(e.target.getAttribute("data-val"));
-      const container = document.getElementById("stars-" + group);
-      if (!container) return;
-      container.querySelectorAll(".star").forEach((s) => {
-        s.style.color =
-          parseInt(s.getAttribute("data-val")) <= val ? "var(--cyan)" : "";
-      });
-    });
-
-    document.addEventListener("mouseout", (e) => {
-      if (!e.target.classList.contains("star")) return;
-      const group = e.target.getAttribute("data-group");
-      const container = document.getElementById("stars-" + group);
-      if (!container) return;
-      container.querySelectorAll(".star").forEach((s) => {
-        const sv = parseInt(s.getAttribute("data-val"));
-        s.style.color = sv <= (starRatings[group] || 0) ? "var(--cyan)" : "";
-      });
-    });
-
-    /* ─── Submit Review ─────────────────────── */
-    function submitReview(type) {
-      const tags = buildSummaryTags(type);
-      document.getElementById("review-summary-tags").innerHTML = tags
-        .map((t) => `<span class="review-tag">${t}</span>`)
-        .join("");
-      showToast("✓ REVIEW DATA UPLOADED SUCCESSFULLY");
-      navigateTo("thankyou");
-    }
-
-    /* ─── Build summary tags ────────────────── */
-    function buildSummaryTags(type) {
-      const tags = [];
-
-      if (type === "food") {
-        const meals = [
-          ...document.querySelectorAll('input[name="meals"]:checked'),
-        ].map((i) => i.value);
-        if (meals.length)
-          tags.push(...meals.map((m) => "🍽️ " + m.toUpperCase()));
-        const q = document.getElementById("food-quality");
-        if (q) tags.push("QUALITY: " + q.value + "/10");
       }
 
-      if (type === "food-order") {
-        tags.push("ITEMS ORDERED: " + cart.length);
-        if (cart.length > 0) {
-          let itemsStr = cart.join(", ");
-          if (itemsStr.length > 40)
-            itemsStr = itemsStr.substring(0, 40) + "...";
-          tags.push("ORDER: " + itemsStr);
-        }
-      }
-
-      if (type === "management") {
-        const helpful = document.querySelector(
-          'input[name="staff-helpful"]:checked',
-        );
-        if (helpful) tags.push("STAFF: " + helpful.value.toUpperCase());
-        const ci = document.getElementById("check-in-rating");
-        if (ci && ci.value) tags.push("CHECK-IN: " + ci.value.toUpperCase());
-      }
-
-      if (type === "hotel") {
-        Object.entries(starRatings).forEach(([k, v]) => {
-          if (v > 0) tags.push(k.toUpperCase() + ": " + "★".repeat(v));
+      /* ─── Initialize sliders ────────────────── */
+      function initSliders() {
+        document.querySelectorAll(".cyber-range").forEach((slider) => {
+          const val = slider.value;
+          const min = slider.min || 0;
+          const max = slider.max || 10;
+          const pct = ((val - min) / (max - min)) * 100;
+          slider.style.background = `linear-gradient(90deg, var(--cyan) ${pct}%, rgba(0,255,255,0.08) ${pct}%)`;
         });
-        const oe = document.getElementById("overall-experience");
-        if (oe) tags.push("OVERALL: " + oe.value + "/10");
       }
 
-      if (!tags.length) tags.push("REVIEW_SUBMITTED");
-      return tags;
-    }
-
-    /* ─── Toast ─────────────────────────────── */
-    function showToast(msg) {
-      const t = document.getElementById("toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      setTimeout(() => t.classList.remove("show"), 3500);
-    }
-
-    /* ─── Close Portal ──────────────────────── */
-    function closePortal() {
-      if (window.parent && window.parent !== window) {
-        window.parent.postMessage({ type: "REVIEW_PORTAL_CLOSE" }, "*");
-      } else {
-        showToast("CONNECTION TERMINATED. THANK YOU.");
-        navigateTo("choose");
+      /* ─── Star Rating ───────────────────────── */
+      function setStars(group, val) {
+        starRatings[group] = val;
+        const container = document.getElementById("stars-" + group);
+        if (!container) return;
+        container.querySelectorAll(".star").forEach((s) => {
+          const sv = parseInt(s.getAttribute("data-val"));
+          s.classList.toggle("active", sv <= val);
+        });
       }
-    }
 
-    /* ─── Menu System Logic ──────────────────── */
-    let cart = [];
-    let itemCounts = {};
-
-    function filterMenu(category, btnElement, event) {
-      document.querySelectorAll(".filter-btn").forEach((btn) => {
-        btn.classList.remove("accent");
-        btn.classList.add("ghost");
+      /* ─── Hover preview for stars ───────────── */
+      document.addEventListener("mouseover", (e) => {
+        if (!e.target.classList.contains("star")) return;
+        const group = e.target.getAttribute("data-group");
+        const val = parseInt(e.target.getAttribute("data-val"));
+        const container = document.getElementById("stars-" + group);
+        if (!container) return;
+        container.querySelectorAll(".star").forEach((s) => {
+          s.style.color =
+            parseInt(s.getAttribute("data-val")) <= val ? "var(--cyan)" : "";
+        });
       });
-      btnElement.classList.remove("ghost");
-      btnElement.classList.add("accent");
 
-      if (category === "all") {
-        document.getElementById("cat-south-indian").style.display = "block";
-        document.getElementById("cat-chinese").style.display = "block";
-      } else if (category === "south-indian") {
-        document.getElementById("cat-south-indian").style.display = "block";
-        document.getElementById("cat-chinese").style.display = "none";
-      } else if (category === "chinese") {
-        document.getElementById("cat-south-indian").style.display = "none";
-        document.getElementById("cat-chinese").style.display = "block";
+      document.addEventListener("mouseout", (e) => {
+        if (!e.target.classList.contains("star")) return;
+        const group = e.target.getAttribute("data-group");
+        const container = document.getElementById("stars-" + group);
+        if (!container) return;
+        container.querySelectorAll(".star").forEach((s) => {
+          const sv = parseInt(s.getAttribute("data-val"));
+          s.style.color = sv <= (starRatings[group] || 0) ? "var(--cyan)" : "";
+        });
+      });
+
+      /* ─── Submit Review ─────────────────────── */
+      function submitReview(type) {
+        const tags = buildSummaryTags(type);
+        document.getElementById("review-summary-tags").innerHTML = tags
+          .map((t) => `<span class="review-tag">${t}</span>`)
+          .join("");
+        showToast("✓ REVIEW DATA UPLOADED SUCCESSFULLY");
+        navigateTo("thankyou");
       }
-    }
 
-    function addToOrder(itemName, btnElement, event) {
-      cart.push(itemName);
-      itemCounts[itemName] = (itemCounts[itemName] || 0) + 1;
-      document.getElementById("cart-count").textContent = cart.length;
-      showToast("✓ ADDED " + itemName.toUpperCase() + " TO ORDER");
+      /* ─── Build summary tags ────────────────── */
+      function buildSummaryTags(type) {
+        const tags = [];
 
-      if (btnElement) {
-        const originalText =
-          btnElement.getAttribute("data-original-text") ||
-          btnElement.textContent.replace(/\s*\(\d+\)$/, "");
-        if (!btnElement.hasAttribute("data-original-text")) {
-          btnElement.setAttribute("data-original-text", originalText);
+        if (type === "food") {
+          const meals = [
+            ...document.querySelectorAll('input[name="meals"]:checked'),
+          ].map((i) => i.value);
+          if (meals.length)
+            tags.push(...meals.map((m) => "🍽️ " + m.toUpperCase()));
+          const q = document.getElementById("food-quality");
+          if (q) tags.push("QUALITY: " + q.value + "/10");
         }
-        btnElement.textContent =
-          originalText + " (" + itemCounts[itemName] + ")";
-      }
-    }
 
-    /* ─── Init ──────────────────────────────── */
-    document.addEventListener("DOMContentLoaded", () => {
-      initSliders();
-      document.querySelectorAll(".star").forEach((star) => {
-        star.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            setStars(
-              star.getAttribute("data-group"),
-              parseInt(star.getAttribute("data-val")),
-            );
+        if (type === "food-order") {
+          tags.push("ITEMS ORDERED: " + cart.length);
+          if (cart.length > 0) {
+            let itemsStr = cart.join(", ");
+            if (itemsStr.length > 40)
+              itemsStr = itemsStr.substring(0, 40) + "...";
+            tags.push("ORDER: " + itemsStr);
           }
+        }
+
+        if (type === "management") {
+          const helpful = document.querySelector(
+            'input[name="staff-helpful"]:checked',
+          );
+          if (helpful) tags.push("STAFF: " + helpful.value.toUpperCase());
+          const ci = document.getElementById("check-in-rating");
+          if (ci && ci.value) tags.push("CHECK-IN: " + ci.value.toUpperCase());
+        }
+
+        if (type === "hotel") {
+          Object.entries(starRatings).forEach(([k, v]) => {
+            if (v > 0) tags.push(k.toUpperCase() + ": " + "★".repeat(v));
+          });
+          const oe = document.getElementById("overall-experience");
+          if (oe) tags.push("OVERALL: " + oe.value + "/10");
+        }
+
+        if (!tags.length) tags.push("REVIEW_SUBMITTED");
+        return tags;
+      }
+
+      /* ─── Toast ─────────────────────────────── */
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 3500);
+      }
+
+      /* ─── Close Portal ──────────────────────── */
+      function closePortal() {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: "REVIEW_PORTAL_CLOSE" }, "*");
+        } else {
+          showToast("CONNECTION TERMINATED. THANK YOU.");
+          navigateTo("choose");
+        }
+      }
+
+      /* ─── Menu System Logic ──────────────────── */
+      let cart = [];
+      let itemCounts = {};
+
+      function filterMenu(category, btnElement, event) {
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.classList.remove("accent");
+          btn.classList.add("ghost");
+        });
+        btnElement.classList.remove("ghost");
+        btnElement.classList.add("accent");
+
+        if (category === "all") {
+          document.getElementById("cat-south-indian").style.display = "block";
+          document.getElementById("cat-chinese").style.display = "block";
+        } else if (category === "south-indian") {
+          document.getElementById("cat-south-indian").style.display = "block";
+          document.getElementById("cat-chinese").style.display = "none";
+        } else if (category === "chinese") {
+          document.getElementById("cat-south-indian").style.display = "none";
+          document.getElementById("cat-chinese").style.display = "block";
+        }
+      }
+
+      function addToOrder(itemName, btnElement, event) {
+        cart.push(itemName);
+        itemCounts[itemName] = (itemCounts[itemName] || 0) + 1;
+        document.getElementById("cart-count").textContent = cart.length;
+        showToast("✓ ADDED " + itemName.toUpperCase() + " TO ORDER");
+
+        if (btnElement) {
+          const originalText =
+            btnElement.getAttribute("data-original-text") ||
+            btnElement.textContent.replace(/\s*\(\d+\)$/, "");
+          if (!btnElement.hasAttribute("data-original-text")) {
+            btnElement.setAttribute("data-original-text", originalText);
+          }
+          btnElement.textContent =
+            originalText + " (" + itemCounts[itemName] + ")";
+        }
+      }
+
+      /* ─── Init ──────────────────────────────── */
+      document.addEventListener("DOMContentLoaded", () => {
+        initSliders();
+        document.querySelectorAll(".star").forEach((star) => {
+          star.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setStars(
+                star.getAttribute("data-group"),
+                parseInt(star.getAttribute("data-val")),
+              );
+            }
+          });
         });
       });
-    });
-  
-    /* === Quantity Controls (replaces addToOrder) === */
-    function changeQty(itemName, delta, btnElement) {
-      var current = itemCounts[itemName] || 0;
-      var newVal = Math.max(0, current + delta);
-      itemCounts[itemName] = newVal;
 
-      document.querySelectorAll('.qty-count[data-item="' + itemName + '"]').forEach(function(el) {
-        el.textContent = newVal;
-        el.style.fontWeight = newVal > 0 ? '700' : '';
-      });
+      /* === Quantity Controls (replaces addToOrder) === */
+      function changeQty(itemName, delta, btnElement) {
+        var current = itemCounts[itemName] || 0;
+        var newVal = Math.max(0, current + delta);
+        itemCounts[itemName] = newVal;
 
-      var qtyControl = btnElement.closest('.qty-control');
-      if (qtyControl) {
-        var minusBtn = qtyControl.querySelector('.minus');
-        if (minusBtn) minusBtn.disabled = (newVal === 0);
-      }
+        document
+          .querySelectorAll('.qty-count[data-item="' + itemName + '"]')
+          .forEach(function (el) {
+            el.textContent = newVal;
+            el.style.fontWeight = newVal > 0 ? "700" : "";
+          });
 
-      cart = [];
-      for (var key in itemCounts) {
-        for (var j = 0; j < itemCounts[key]; j++) {
-          cart.push(key);
+        var qtyControl = btnElement.closest(".qty-control");
+        if (qtyControl) {
+          var minusBtn = qtyControl.querySelector(".minus");
+          if (minusBtn) minusBtn.disabled = newVal === 0;
         }
-      }
 
-      var cartEl = document.getElementById('cart-count');
-      if (cartEl) cartEl.textContent = cart.length;
-
-      showToast(newVal > current ? '+ Added ' + itemName : '- Removed ' + itemName);
-    }
-
-    /* === Food Star Rating === */
-    var foodStarRating = 0;
-
-    function setFoodStars(val) {
-      foodStarRating = val;
-      var container = document.getElementById('stars-food-quality');
-      if (!container) return;
-      container.querySelectorAll('.star').forEach(function(s) {
-        var sv = parseInt(s.getAttribute('data-val'));
-        s.classList.toggle('active', sv <= val);
-      });
-    }
-
-    /* === Submit Food Review === */
-    function submitFoodReview() {
-      var tags = [];
-      var orderedItems = [];
-      for (var key in itemCounts) {
-        if (itemCounts[key] > 0) {
-          orderedItems.push(key + ' x' + itemCounts[key]);
+        cart = [];
+        for (var key in itemCounts) {
+          for (var j = 0; j < itemCounts[key]; j++) {
+            cart.push(key);
+          }
         }
-      }
-      if (orderedItems.length > 0) {
-        tags.push('Ordered: ' + orderedItems.join(', '));
-      }
-      tags.push('Items: ' + cart.length);
 
-      if (foodStarRating > 0) {
-        tags.push('Food Quality: ' + String.fromCharCode(9733).repeat(foodStarRating));
-      }
+        var cartEl = document.getElementById("cart-count");
+        if (cartEl) cartEl.textContent = cart.length;
 
-      var recommend = document.querySelector('input[name="food-recommend"]:checked');
-      if (recommend) {
-        tags.push('Recommend: ' + recommend.value);
+        showToast(
+          newVal > current ? "+ Added " + itemName : "- Removed " + itemName,
+        );
       }
 
-      var feedback = document.getElementById('food-feedback');
-      if (feedback && feedback.value.trim()) {
-        tags.push('Feedback: ' + feedback.value.trim().substring(0, 60));
+      /* === Food Star Rating === */
+      var foodStarRating = 0;
+
+      function setFoodStars(val) {
+        foodStarRating = val;
+        var container = document.getElementById("stars-food-quality");
+        if (!container) return;
+        container.querySelectorAll(".star").forEach(function (s) {
+          var sv = parseInt(s.getAttribute("data-val"));
+          s.classList.toggle("active", sv <= val);
+        });
       }
 
-      if (!tags.length) tags.push('Food review submitted');
+      /* === Submit Food Review === */
+      function submitFoodReview() {
+        var tags = [];
+        var orderedItems = [];
+        for (var key in itemCounts) {
+          if (itemCounts[key] > 0) {
+            orderedItems.push(key + " x" + itemCounts[key]);
+          }
+        }
+        if (orderedItems.length > 0) {
+          tags.push("Ordered: " + orderedItems.join(", "));
+        }
+        tags.push("Items: " + cart.length);
 
-      var summaryEl = document.getElementById('review-summary-tags');
-      if (summaryEl) {
-        summaryEl.innerHTML = tags.map(function(t) { return '<span class="review-tag">' + t + '</span>'; }).join('');
+        if (foodStarRating > 0) {
+          tags.push(
+            "Food Quality: " + String.fromCharCode(9733).repeat(foodStarRating),
+          );
+        }
+
+        var recommend = document.querySelector(
+          'input[name="food-recommend"]:checked',
+        );
+        if (recommend) {
+          tags.push("Recommend: " + recommend.value);
+        }
+
+        var feedback = document.getElementById("food-feedback");
+        if (feedback && feedback.value.trim()) {
+          tags.push("Feedback: " + feedback.value.trim().substring(0, 60));
+        }
+
+        if (!tags.length) tags.push("Food review submitted");
+
+        var summaryEl = document.getElementById("review-summary-tags");
+        if (summaryEl) {
+          summaryEl.innerHTML = tags
+            .map(function (t) {
+              return '<span class="review-tag">' + t + "</span>";
+            })
+            .join("");
+        }
+
+        showToast("Review submitted - thank you!");
+        navigateTo("thankyou");
       }
-
-      showToast('Review submitted - thank you!');
-      navigateTo('thankyou');
-    }
-</script>
-</body>
-
+    </script>
+  </body>
 </html>

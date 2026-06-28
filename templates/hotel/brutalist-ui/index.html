@@ -1,140 +1,184 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Review — Brutalist UI</title>
+    <meta
+      name="description"
+      content="Share your hotel experience with a bold brutalist interface."
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hotel Review — Brutalist UI</title>
-  <meta name="description" content="Share your hotel experience with a bold brutalist interface." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Archivo+Black&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Archivo+Black&display=swap"
-    rel="stylesheet" />
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../../assets/logo.jpg"
+    />
+    <link
+      rel="icon"
+      type="image/jpeg"
+      sizes="96x96"
+      href="../../../assets/logo.jpg"
+    />
+    <link rel="shortcut icon" href="../../../assets/logo.jpg" />
 
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/logo.jpg" />
-  <link rel="icon" type="image/jpeg" sizes="96x96" href="../../../assets/logo.jpg" />
-  <link rel="shortcut icon" href="../../../assets/logo.jpg" />
+    <link rel="stylesheet" href="brutalist-ui/style.css" />
+  </head>
 
-  <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-  <!-- Animated background orbs (Reused classes, styled differently in CSS) -->
-  <div class="bg-orbs" aria-hidden="true">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-  </div>
-
-  <div class="app-container">
-    <!-- ══════════════════════════════════════
-         HEADER — always visible
-    ══════════════════════════════════════ -->
-    <header class="app-header">
-      <div class="hotel-badge">
-        <span class="dot"></span>
-        Guest Review Portal
-      </div>
-      <h1 class="hotel-name" id="hotel-name-display">
-        The Concrete Block Hotel
-      </h1>
-      <p class="hotel-subtitle" id="header-subtitle">
-        We value your experience
-      </p>
-    </header>
-
-    <!-- Progress Bar -->
-    <div class="progress-bar-wrap" id="progress-wrap">
-      <div class="progress-labels">
-        <span id="progress-label-left">Step 1 of 2</span>
-        <span id="progress-label-right">Review</span>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="progress-fill" style="width: 50%"></div>
-      </div>
+  <body>
+    <!-- Animated background orbs (Reused classes, styled differently in CSS) -->
+    <div class="bg-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
     </div>
 
-    <!-- ══════════════════════════════════════
+    <div class="app-container">
+      <!-- ══════════════════════════════════════
+         HEADER — always visible
+    ══════════════════════════════════════ -->
+      <header class="app-header">
+        <div class="hotel-badge">
+          <span class="dot"></span>
+          Guest Review Portal
+        </div>
+        <h1 class="hotel-name" id="hotel-name-display">
+          The Concrete Block Hotel
+        </h1>
+        <p class="hotel-subtitle" id="header-subtitle">
+          We value your experience
+        </p>
+      </header>
+
+      <!-- Progress Bar -->
+      <div class="progress-bar-wrap" id="progress-wrap">
+        <div class="progress-labels">
+          <span id="progress-label-left">Step 1 of 2</span>
+          <span id="progress-label-right">Review</span>
+        </div>
+        <div class="progress-track">
+          <div
+            class="progress-fill"
+            id="progress-fill"
+            style="width: 50%"
+          ></div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
          PAGE 0 — Choose Review Type
     ══════════════════════════════════════ -->
-    <section class="page active" id="page-choose" aria-label="Choose review type">
-      <div class="glass-card">
-        <div class="card-header">
-          <p class="card-section-label">Share Your Experience</p>
-          <h2 class="card-title">What would you like to review?</h2>
+      <section
+        class="page active"
+        id="page-choose"
+        aria-label="Choose review type"
+      >
+        <div class="glass-card">
+          <div class="card-header">
+            <p class="card-section-label">Share Your Experience</p>
+            <h2 class="card-title">What would you like to review?</h2>
+          </div>
+
+          <nav class="review-type-grid" aria-label="Review categories">
+            <button
+              class="review-type-btn"
+              id="btn-food"
+              onclick="navigateTo('food')"
+              aria-label="Review food and dining"
+            >
+              <div class="btn-icon food">🍽️</div>
+              <div class="btn-text">
+                <div class="btn-title">Food & Dining</div>
+                <div class="btn-desc">Meals, room service & bar</div>
+              </div>
+              <span class="btn-chevron" aria-hidden="true">›</span>
+            </button>
+
+            <button
+              class="review-type-btn"
+              id="btn-mgmt"
+              onclick="navigateTo('management')"
+              aria-label="Review management and staff"
+            >
+              <div class="btn-icon mgmt">🤝</div>
+              <div class="btn-text">
+                <div class="btn-title">Management & Staff</div>
+                <div class="btn-desc">Service, helpfulness & check-in</div>
+              </div>
+              <span class="btn-chevron" aria-hidden="true">›</span>
+            </button>
+
+            <button
+              class="review-type-btn"
+              id="btn-hotel"
+              onclick="navigateTo('hotel')"
+              aria-label="Review hotel experience"
+            >
+              <div class="btn-icon hotel">🏨</div>
+              <div class="btn-text">
+                <div class="btn-title">Hotel Experience</div>
+                <div class="btn-desc">Rooms, cleanliness & amenities</div>
+              </div>
+              <span class="btn-chevron" aria-hidden="true">›</span>
+            </button>
+          </nav>
         </div>
+      </section>
 
-        <nav class="review-type-grid" aria-label="Review categories">
-          <button class="review-type-btn" id="btn-food" onclick="navigateTo('food')"
-            aria-label="Review food and dining">
-            <div class="btn-icon food">🍽️</div>
-            <div class="btn-text">
-              <div class="btn-title">Food & Dining</div>
-              <div class="btn-desc">Meals, room service & bar</div>
-            </div>
-            <span class="btn-chevron" aria-hidden="true">›</span>
-          </button>
-
-          <button class="review-type-btn" id="btn-mgmt" onclick="navigateTo('management')"
-            aria-label="Review management and staff">
-            <div class="btn-icon mgmt">🤝</div>
-            <div class="btn-text">
-              <div class="btn-title">Management & Staff</div>
-              <div class="btn-desc">Service, helpfulness & check-in</div>
-            </div>
-            <span class="btn-chevron" aria-hidden="true">›</span>
-          </button>
-
-          <button class="review-type-btn" id="btn-hotel" onclick="navigateTo('hotel')"
-            aria-label="Review hotel experience">
-            <div class="btn-icon hotel">🏨</div>
-            <div class="btn-text">
-              <div class="btn-title">Hotel Experience</div>
-              <div class="btn-desc">Rooms, cleanliness & amenities</div>
-            </div>
-            <span class="btn-chevron" aria-hidden="true">›</span>
-          </button>
-        </nav>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
          PAGE 1 — Food & Dining Menu
     ══════════════════════════════════════ -->
-    <section class="page" id="page-food" aria-label="Food and dining menu">
-      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
-        ‹ Back
-      </button>
-      <div class="glass-card">
-        <div class="card-header">
-          <p class="card-section-label">🍽️ Food Menu</p>
-          <h2 class="card-title">Review Your Food</h2>
-        </div>
+      <section class="page" id="page-food" aria-label="Food and dining menu">
+        <button
+          class="back-btn"
+          onclick="navigateTo('choose')"
+          aria-label="Go back"
+        >
+          ‹ Back
+        </button>
+        <div class="glass-card">
+          <div class="card-header">
+            <p class="card-section-label">🍽️ Food Menu</p>
+            <h2 class="card-title">Review Your Food</h2>
+          </div>
 
-        <!-- Sorting and Filtering System -->
-        <style>
-          .filter-system::-webkit-scrollbar {
-            display: none;
-          }
+          <!-- Sorting and Filtering System -->
+          <style>
+            .filter-system::-webkit-scrollbar {
+              display: none;
+            }
 
-          .filter-system {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-          }
-        </style>
-        <nav class="filter-system" style="
+            .filter-system {
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            }
+          </style>
+          <nav
+            class="filter-system"
+            style="
               display: flex;
               gap: 8px;
               padding: 8px;
               overflow-x: auto;
-              margin-bottom: 24px; margin-left: 24px; margin-right: 24px;
+              margin-bottom: 24px;
+              margin-left: 24px;
+              margin-right: 24px;
               border: 2px solid #000;
               background: #fff;
               align-items: center;
-            ">
-          <button class="filter-btn btn-primary" style="
+            "
+          >
+            <button
+              class="filter-btn btn-primary"
+              style="
                 padding: 8px 16px;
                 font-size: 13px;
                 border: 2px solid #000;
@@ -143,10 +187,15 @@
                 font-family: &quot;Space Mono&quot;, monospace;
                 flex: 0 0 auto;
                 width: auto;
-              " data-category="all" onclick="filterMenu('all', this, event)">
-            All
-          </button>
-          <button class="filter-btn btn-primary ghost" style="
+              "
+              data-category="all"
+              onclick="filterMenu('all', this, event)"
+            >
+              All
+            </button>
+            <button
+              class="filter-btn btn-primary ghost"
+              style="
                 padding: 8px 16px;
                 font-size: 13px;
                 border: 2px solid transparent;
@@ -157,751 +206,1903 @@
                 font-family: &quot;Space Mono&quot;, monospace;
                 flex: 0 0 auto;
                 width: auto;
-              " data-category="south-indian" onclick="filterMenu('south-indian', this, event)">
-            South Indian
-          </button>
-          <button class="filter-btn btn-primary ghost" style="
-                padding: 8px 16px;
-                font-size: 13px;
-                border: 2px solid transparent;
-                background: transparent;
-                color: inherit;
-                cursor: pointer;
-                white-space: nowrap;
-                font-family: &quot;Space Mono&quot;, monospace;
-                flex: 0 0 auto;
-                width: auto;
-              " data-category="chinese" onclick="filterMenu('chinese', this, event)">
-            Chinese
-          </button>
-        </nav>
-
-        <!-- Menu Categories -->
-        <div class="menu-container">
-          <!-- South Indian Category -->
-          <section class="menu-category" id="cat-south-indian">
-            <h3 class="category-title" style="
-                  margin-bottom: 16px; margin-left: 24px; display: inline-block;
-                  background: #000;
-                  color: #fff;
-                  padding: 4px 12px;
-                  font-family: &quot;Archivo Black&quot;, sans-serif;
-                ">
+              "
+              data-category="south-indian"
+              onclick="filterMenu('south-indian', this, event)"
+            >
               South Indian
-            </h3>
-            <ul class="dish-list" style="
-                  list-style: none;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 16px;
-                  margin-bottom: 24px; margin-left: 24px; margin-right: 24px;
-                  padding: 0 24px;">
-              <li class="dish-card glass-card" style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                  ">
-                <div class="dish-img" style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: #ccc;
-                      border: 2px solid #000;
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        font-family: &quot;Archivo Black&quot;, sans-serif;
-                      ">
-                    Idli
-                  </h4>
-                  <p style="
-                        font-size: 13px;
-                        margin-bottom: 12px;
-                        font-family: &quot;Space Mono&quot;, monospace;
-                      ">
-                    Soft, steamed rice cakes served with sambar and chutney.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Idli', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Idli" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Idli', 1, this)">+</button>
-                  </div>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                  ">
-                <div class="dish-img" style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: #ccc;
-                      border: 2px solid #000;
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        font-family: &quot;Archivo Black&quot;, sans-serif;
-                      ">
-                    Dosa
-                  </h4>
-                  <p style="
-                        font-size: 13px;
-                        margin-bottom: 12px;
-                        font-family: &quot;Space Mono&quot;, monospace;
-                      ">
-                    Crispy savory crepe filled with spiced potatoes.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Dosa', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Dosa" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Dosa', 1, this)">+</button>
-                  </div>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                  ">
-                <div class="dish-img" style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: #ccc;
-                      border: 2px solid #000;
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        font-family: &quot;Archivo Black&quot;, sans-serif;
-                      ">
-                    Wada
-                  </h4>
-                  <p style="
-                        font-size: 13px;
-                        margin-bottom: 12px;
-                        font-family: &quot;Space Mono&quot;, monospace;
-                      ">
-                    Crispy deep-fried lentil donuts.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Wada', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Wada" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Wada', 1, this)">+</button>
-                  </div>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                  ">
-                <div class="dish-img" style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: #ccc;
-                      border: 2px solid #000;
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        font-family: &quot;Archivo Black&quot;, sans-serif;
-                      ">
-                    Uttapam
-                  </h4>
-                  <p style="
-                        font-size: 13px;
-                        margin-bottom: 12px;
-                        font-family: &quot;Space Mono&quot;, monospace;
-                      ">
-                    Thick savory pancake topped with fresh vegetables.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Uttapam', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Uttapam" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Uttapam', 1, this)">+</button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </section>
+            </button>
+            <button
+              class="filter-btn btn-primary ghost"
+              style="
+                padding: 8px 16px;
+                font-size: 13px;
+                border: 2px solid transparent;
+                background: transparent;
+                color: inherit;
+                cursor: pointer;
+                white-space: nowrap;
+                font-family: &quot;Space Mono&quot;, monospace;
+                flex: 0 0 auto;
+                width: auto;
+              "
+              data-category="chinese"
+              onclick="filterMenu('chinese', this, event)"
+            >
+              Chinese
+            </button>
+          </nav>
 
-          <!-- Chinese Category -->
-          <section class="menu-category" id="cat-chinese">
-            <h3 class="category-title" style="
-                  margin-bottom: 16px; margin-left: 24px; display: inline-block;
+          <!-- Menu Categories -->
+          <div class="menu-container">
+            <!-- South Indian Category -->
+            <section class="menu-category" id="cat-south-indian">
+              <h3
+                class="category-title"
+                style="
+                  margin-bottom: 16px;
+                  margin-left: 24px;
+                  display: inline-block;
                   background: #000;
                   color: #fff;
                   padding: 4px 12px;
                   font-family: &quot;Archivo Black&quot;, sans-serif;
-                ">
-              Chinese
-            </h3>
-            <ul class="dish-list" style="
+                "
+              >
+                South Indian
+              </h3>
+              <ul
+                class="dish-list"
+                style="
                   list-style: none;
                   display: flex;
                   flex-direction: column;
                   gap: 16px;
-                  margin-bottom: 24px; margin-left: 24px; margin-right: 24px;
-                  padding: 0 24px;">
-              <li class="dish-card glass-card" style="
+                  margin-bottom: 24px;
+                  margin-left: 24px;
+                  margin-right: 24px;
+                  padding: 0 24px;
+                "
+              >
+                <li
+                  class="dish-card glass-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
                     align-items: center;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: #ccc;
                       border: 2px solid #000;
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-family: &quot;Archivo Black&quot;, sans-serif;
-                      ">
-                    Veg Chowmein
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      Idli
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         font-family: &quot;Space Mono&quot;, monospace;
-                      ">
-                    Stir-fried noodles tossed with fresh vegetables.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Veg Chowmein', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Veg Chowmein" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Veg Chowmein', 1, this)">+</button>
+                      "
+                    >
+                      Soft, steamed rice cakes served with sambar and chutney.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Idli', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Idli"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Idli', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="
+                </li>
+                <li
+                  class="dish-card glass-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
                     align-items: center;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: #ccc;
                       border: 2px solid #000;
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-family: &quot;Archivo Black&quot;, sans-serif;
-                      ">
-                    Paneer Chowmein
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      Dosa
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         font-family: &quot;Space Mono&quot;, monospace;
-                      ">
-                    Classic chowmein loaded with soft paneer cubes.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Paneer Chowmein', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Paneer Chowmein" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Paneer Chowmein', 1, this)">+</button>
+                      "
+                    >
+                      Crispy savory crepe filled with spiced potatoes.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Dosa', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Dosa"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Dosa', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="
+                </li>
+                <li
+                  class="dish-card glass-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
                     align-items: center;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: #ccc;
                       border: 2px solid #000;
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-family: &quot;Archivo Black&quot;, sans-serif;
-                      ">
-                    Egg Roll
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      Wada
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         font-family: &quot;Space Mono&quot;, monospace;
-                      ">
-                    Flaky paratha wrapped around a spiced omelette.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Egg Roll', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Egg Roll" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Egg Roll', 1, this)">+</button>
+                      "
+                    >
+                      Crispy deep-fried lentil donuts.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Wada', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Wada"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Wada', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="
+                </li>
+                <li
+                  class="dish-card glass-card"
+                  style="
                     padding: 16px;
                     display: flex;
                     gap: 16px;
                     align-items: center;
-                  ">
-                <div class="dish-img" style="
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
                       width: 80px;
                       height: 80px;
                       flex-shrink: 0;
                       background: #ccc;
                       border: 2px solid #000;
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
                         font-size: 16px;
                         margin-bottom: 4px;
                         font-family: &quot;Archivo Black&quot;, sans-serif;
-                      ">
-                    Paneer Roll
-                  </h4>
-                  <p style="
+                      "
+                    >
+                      Uttapam
+                    </h4>
+                    <p
+                      style="
                         font-size: 13px;
                         margin-bottom: 12px;
                         font-family: &quot;Space Mono&quot;, monospace;
-                      ">
-                    Spicy paneer chunks wrapped in a crispy paratha.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Paneer Roll', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Paneer Roll" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Paneer Roll', 1, this)">+</button>
+                      "
+                    >
+                      Thick savory pancake topped with fresh vegetables.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Uttapam', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Uttapam"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Uttapam', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                  ">
-                <div class="dish-img" style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: #ccc;
-                      border: 2px solid #000;
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        font-family: &quot;Archivo Black&quot;, sans-serif;
-                      ">
-                    Manchurian
-                  </h4>
-                  <p style="
-                        font-size: 13px;
-                        margin-bottom: 12px;
-                        font-family: &quot;Space Mono&quot;, monospace;
-                      ">
-                    Deep-fried vegetable balls in a spicy, dark soy sauce.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Manchurian', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Manchurian" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Manchurian', 1, this)">+</button>
-                  </div>
-                </div>
-              </li>
-              <li class="dish-card glass-card" style="
-                    padding: 16px;
-                    display: flex;
-                    gap: 16px;
-                    align-items: center;
-                  ">
-                <div class="dish-img" style="
-                      width: 80px;
-                      height: 80px;
-                      flex-shrink: 0;
-                      background: #ccc;
-                      border: 2px solid #000;
-                    "><img src="" alt="Dish" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" /></div>
-                <div class="dish-info" style="flex-grow: 1">
-                  <h4 style="
-                        font-size: 16px;
-                        margin-bottom: 4px;
-                        font-family: &quot;Archivo Black&quot;, sans-serif;
-                      ">
-                    Paneer Chilli Gravy
-                  </h4>
-                  <p style="
-                        font-size: 13px;
-                        margin-bottom: 12px;
-                        font-family: &quot;Space Mono&quot;, monospace;
-                      ">
-                    Spicy and tangy gravy with bell peppers and paneer.
-                  </p>
-                  <div class="qty-control" style="display:inline-flex;align-items:center;gap:8px;border-radius:50px;padding:4px 6px;">
-                    <button class="qty-btn minus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);color:#fff;" onclick="changeQty('Paneer Chilli Gravy', -1, this)" disabled>&#8722;</button>
-                    <span class="qty-count" data-item="Paneer Chilli Gravy" style="min-width:24px;text-align:center;font-size:15px;font-weight:600;">0</span>
-                    <button class="qty-btn plus" style="width:30px;height:30px;border-radius:50%;border:none;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#6366f1;color:#fff;" onclick="changeQty('Paneer Chilli Gravy', 1, this)">+</button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </section>
-        </div>
+                </li>
+              </ul>
+            </section>
 
-        <div class="glass-divider"></div>
-        <div class="btn-row">
-          <button class="btn-primary accent" id="view-order-btn" onclick="navigateTo('food-review')" type="button">
-            View Ordered (<span id="cart-count">0</span>) ›
-          </button>
-        </div>
-      </div>
-    </section>
+            <!-- Chinese Category -->
+            <section class="menu-category" id="cat-chinese">
+              <h3
+                class="category-title"
+                style="
+                  margin-bottom: 16px;
+                  margin-left: 24px;
+                  display: inline-block;
+                  background: #000;
+                  color: #fff;
+                  padding: 4px 12px;
+                  font-family: &quot;Archivo Black&quot;, sans-serif;
+                "
+              >
+                Chinese
+              </h3>
+              <ul
+                class="dish-list"
+                style="
+                  list-style: none;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 16px;
+                  margin-bottom: 24px;
+                  margin-left: 24px;
+                  margin-right: 24px;
+                  padding: 0 24px;
+                "
+              >
+                <li
+                  class="dish-card glass-card"
+                  style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: #ccc;
+                      border: 2px solid #000;
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        font-family: &quot;Archivo Black&quot;, sans-serif;
+                      "
+                    >
+                      Veg Chowmein
+                    </h4>
+                    <p
+                      style="
+                        font-size: 13px;
+                        margin-bottom: 12px;
+                        font-family: &quot;Space Mono&quot;, monospace;
+                      "
+                    >
+                      Stir-fried noodles tossed with fresh vegetables.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Veg Chowmein', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Veg Chowmein"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Veg Chowmein', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="dish-card glass-card"
+                  style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: #ccc;
+                      border: 2px solid #000;
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        font-family: &quot;Archivo Black&quot;, sans-serif;
+                      "
+                    >
+                      Paneer Chowmein
+                    </h4>
+                    <p
+                      style="
+                        font-size: 13px;
+                        margin-bottom: 12px;
+                        font-family: &quot;Space Mono&quot;, monospace;
+                      "
+                    >
+                      Classic chowmein loaded with soft paneer cubes.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Chowmein', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Paneer Chowmein"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Chowmein', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="dish-card glass-card"
+                  style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: #ccc;
+                      border: 2px solid #000;
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        font-family: &quot;Archivo Black&quot;, sans-serif;
+                      "
+                    >
+                      Egg Roll
+                    </h4>
+                    <p
+                      style="
+                        font-size: 13px;
+                        margin-bottom: 12px;
+                        font-family: &quot;Space Mono&quot;, monospace;
+                      "
+                    >
+                      Flaky paratha wrapped around a spiced omelette.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Egg Roll', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Egg Roll"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Egg Roll', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="dish-card glass-card"
+                  style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: #ccc;
+                      border: 2px solid #000;
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        font-family: &quot;Archivo Black&quot;, sans-serif;
+                      "
+                    >
+                      Paneer Roll
+                    </h4>
+                    <p
+                      style="
+                        font-size: 13px;
+                        margin-bottom: 12px;
+                        font-family: &quot;Space Mono&quot;, monospace;
+                      "
+                    >
+                      Spicy paneer chunks wrapped in a crispy paratha.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Roll', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Paneer Roll"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Roll', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="dish-card glass-card"
+                  style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: #ccc;
+                      border: 2px solid #000;
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        font-family: &quot;Archivo Black&quot;, sans-serif;
+                      "
+                    >
+                      Manchurian
+                    </h4>
+                    <p
+                      style="
+                        font-size: 13px;
+                        margin-bottom: 12px;
+                        font-family: &quot;Space Mono&quot;, monospace;
+                      "
+                    >
+                      Deep-fried vegetable balls in a spicy, dark soy sauce.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Manchurian', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Manchurian"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Manchurian', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="dish-card glass-card"
+                  style="
+                    padding: 16px;
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                  "
+                >
+                  <div
+                    class="dish-img"
+                    style="
+                      width: 80px;
+                      height: 80px;
+                      flex-shrink: 0;
+                      background: #ccc;
+                      border: 2px solid #000;
+                    "
+                  >
+                    <img
+                      src=""
+                      alt="Dish"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: inherit;
+                      "
+                    />
+                  </div>
+                  <div class="dish-info" style="flex-grow: 1">
+                    <h4
+                      style="
+                        font-size: 16px;
+                        margin-bottom: 4px;
+                        font-family: &quot;Archivo Black&quot;, sans-serif;
+                      "
+                    >
+                      Paneer Chilli Gravy
+                    </h4>
+                    <p
+                      style="
+                        font-size: 13px;
+                        margin-bottom: 12px;
+                        font-family: &quot;Space Mono&quot;, monospace;
+                      "
+                    >
+                      Spicy and tangy gravy with bell peppers and paneer.
+                    </p>
+                    <div
+                      class="qty-control"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 50px;
+                        padding: 4px 6px;
+                      "
+                    >
+                      <button
+                        class="qty-btn minus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: rgba(0, 0, 0, 0.4);
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Chilli Gravy', -1, this)"
+                        disabled
+                      >
+                        &#8722;
+                      </button>
+                      <span
+                        class="qty-count"
+                        data-item="Paneer Chilli Gravy"
+                        style="
+                          min-width: 24px;
+                          text-align: center;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                        >0</span
+                      >
+                      <button
+                        class="qty-btn plus"
+                        style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          border: none;
+                          font-size: 16px;
+                          font-weight: 700;
+                          cursor: pointer;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background: #6366f1;
+                          color: #fff;
+                        "
+                        onclick="changeQty('Paneer Chilli Gravy', 1, this)"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </section>
+          </div>
 
-    <!-- ══════════════════════════════════════
+          <div class="glass-divider"></div>
+          <div class="btn-row">
+            <button
+              class="btn-primary accent"
+              id="view-order-btn"
+              onclick="navigateTo('food-review')"
+              type="button"
+            >
+              View Ordered (<span id="cart-count">0</span>) ›
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
          PAGE 2 — Management & Staff Review
     ══════════════════════════════════════ -->
 
-
-
-    <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
          PAGE — Food Review (after ordering)
     ══════════════════════════════════════ -->
-    <section class="page" id="page-food-review" aria-label="Food review">
-      <button class="back-btn" onclick="navigateTo('food')" aria-label="Go back">
-        &#8249; Back
-      </button>
-      <div class="glass-card">
-        <div class="card-header">
-          <p class="card-section-label">&#127869;&#65039; Food Review</p>
-          <h2 class="card-title">Rate Your Food</h2>
-        </div>
-        <p style="padding: 0 24px; opacity: 0.7; margin-bottom: 20px;">
-          You ordered <strong><span id="review-item-count">0</span></strong> item(s). Tell us how the food was!
-        </p>
-
-        <form id="food-review-form" class="form-body" novalidate>
-          <!-- Dynamic Per-Dish Ratings -->
-          <div id="dynamic-food-reviews"></div>
-          
-          <div class="form-group">
-            <label class="form-label">Would you recommend our food?</label>
-            <div class="option-group" role="radiogroup" aria-label="Would you recommend the food">
-              <label class="option-item">
-                <input type="radio" name="food-recommend" value="yes" />
-                <span class="option-label">&#128077; Yes, absolutely!</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" name="food-recommend" value="maybe" />
-                <span class="option-label">&#129300; Maybe, depends</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" name="food-recommend" value="no" />
-                <span class="option-label">&#128078; Not really</span>
-              </label>
-            </div>
+      <section class="page" id="page-food-review" aria-label="Food review">
+        <button
+          class="back-btn"
+          onclick="navigateTo('food')"
+          aria-label="Go back"
+        >
+          &#8249; Back
+        </button>
+        <div class="glass-card">
+          <div class="card-header">
+            <p class="card-section-label">&#127869;&#65039; Food Review</p>
+            <h2 class="card-title">Rate Your Food</h2>
           </div>
+          <p style="padding: 0 24px; opacity: 0.7; margin-bottom: 20px">
+            You ordered
+            <strong><span id="review-item-count">0</span></strong> item(s). Tell
+            us how the food was!
+          </p>
 
-          <div class="form-group">
-            <label class="form-label" for="food-feedback">Detailed Feedback</label>
-            <textarea class="glass-textarea" id="food-feedback" name="food-feedback"
-              placeholder="Tell us about the taste, presentation, or anything we can improve..."
-              rows="4"></textarea>
-          </div>
-        </form>
+          <form id="food-review-form" class="form-body" novalidate>
+            <!-- Dynamic Per-Dish Ratings -->
+            <div id="dynamic-food-reviews"></div>
 
-        <div class="glass-divider"></div>
-        <div class="btn-row">
-          <button class="btn-primary accent" onclick="submitFoodReview()" type="button">
-            Submit Food Review &#8250;
-          </button>
-          <button class="btn-primary ghost" onclick="navigateTo('food')" type="button">
-            Cancel
-          </button>
-        </div>
-      </div>
-    </section>
-
-<section class="page" id="page-management" aria-label="Management and staff review">
-      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
-        ‹ Back
-      </button>
-      <div class="glass-card">
-        <div class="card-header">
-          <p class="card-section-label">🤝 Management & Staff</p>
-          <h2 class="card-title">Management & Staff Review</h2>
-        </div>
-
-        <form id="management-form" class="form-body" novalidate>
-          <!-- Staff helpful -->
-          <div class="form-group">
-            <label class="form-label">Was the staff welcoming and helpful?</label>
-            <div class="option-group" role="radiogroup" aria-label="Staff helpfulness">
-              <label class="option-item">
-                <input type="radio" id="staff-yes" name="staff-helpful" value="yes" />
-                <span class="option-label">👍 Yes, very helpful</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" id="staff-average" name="staff-helpful" value="average" />
-                <span class="option-label">😐 It was average</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" id="staff-no" name="staff-helpful" value="no" />
-                <span class="option-label">👎 Needs improvement</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Check-in rating -->
-          <div class="form-group">
-            <label class="form-label" for="check-in-rating">How smooth was your check-in process?</label>
-            <select class="glass-select" id="check-in-rating" name="check-in-rating">
-              <option value="">— Select an option —</option>
-              <option value="excellent">
-                ⭐ Excellent — Fast & seamless
-              </option>
-              <option value="good">✅ Good — Minor hiccups</option>
-              <option value="average">😐 Average — Could be better</option>
-              <option value="poor">⚠️ Poor — Needs improvement</option>
-            </select>
-          </div>
-
-          <!-- Response time slider -->
-          <div class="form-group">
-            <label class="form-label" for="response-time">Staff Response Time Rating</label>
-            <div class="slider-wrap">
-              <div class="slider-row">
-                <input type="range" class="glass-range" id="response-time" name="response-time" min="1" max="10"
-                  value="7" oninput="updateSlider('response-time-val', this.value)" />
-                <span class="slider-val" id="response-time-val">7</span>
-              </div>
-              <div class="slider-labels">
-                <span>1 — Very slow</span><span>10 — Instant</span>
+            <div class="form-group">
+              <label class="form-label">Would you recommend our food?</label>
+              <div
+                class="option-group"
+                role="radiogroup"
+                aria-label="Would you recommend the food"
+              >
+                <label class="option-item">
+                  <input type="radio" name="food-recommend" value="yes" />
+                  <span class="option-label">&#128077; Yes, absolutely!</span>
+                </label>
+                <label class="option-item">
+                  <input type="radio" name="food-recommend" value="maybe" />
+                  <span class="option-label">&#129300; Maybe, depends</span>
+                </label>
+                <label class="option-item">
+                  <input type="radio" name="food-recommend" value="no" />
+                  <span class="option-label">&#128078; Not really</span>
+                </label>
               </div>
             </div>
-          </div>
 
-          <!-- Comments -->
-          <div class="form-group">
-            <label class="form-label" for="management-feedback">Additional Comments for Management</label>
-            <textarea class="glass-textarea" id="management-feedback" name="management-feedback"
-              placeholder="Mention any specific staff members, memorable interactions, or areas for improvement…"
-              rows="4"></textarea>
-          </div>
-        </form>
+            <div class="form-group">
+              <label class="form-label" for="food-feedback"
+                >Detailed Feedback</label
+              >
+              <textarea
+                class="glass-textarea"
+                id="food-feedback"
+                name="food-feedback"
+                placeholder="Tell us about the taste, presentation, or anything we can improve..."
+                rows="4"
+              ></textarea>
+            </div>
+          </form>
 
-        <div class="glass-divider"></div>
-        <div class="btn-row">
-          <button class="btn-primary accent" id="submit-mgmt" onclick="submitReview('management')" type="button">
-            Submit Staff Review ›
-          </button>
-          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
-            Cancel
-          </button>
+          <div class="glass-divider"></div>
+          <div class="btn-row">
+            <button
+              class="btn-primary accent"
+              onclick="submitFoodReview()"
+              type="button"
+            >
+              Submit Food Review &#8250;
+            </button>
+            <button
+              class="btn-primary ghost"
+              onclick="navigateTo('food')"
+              type="button"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ══════════════════════════════════════
+      <section
+        class="page"
+        id="page-management"
+        aria-label="Management and staff review"
+      >
+        <button
+          class="back-btn"
+          onclick="navigateTo('choose')"
+          aria-label="Go back"
+        >
+          ‹ Back
+        </button>
+        <div class="glass-card">
+          <div class="card-header">
+            <p class="card-section-label">🤝 Management & Staff</p>
+            <h2 class="card-title">Management & Staff Review</h2>
+          </div>
+
+          <form id="management-form" class="form-body" novalidate>
+            <!-- Staff helpful -->
+            <div class="form-group">
+              <label class="form-label"
+                >Was the staff welcoming and helpful?</label
+              >
+              <div
+                class="option-group"
+                role="radiogroup"
+                aria-label="Staff helpfulness"
+              >
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="staff-yes"
+                    name="staff-helpful"
+                    value="yes"
+                  />
+                  <span class="option-label">👍 Yes, very helpful</span>
+                </label>
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="staff-average"
+                    name="staff-helpful"
+                    value="average"
+                  />
+                  <span class="option-label">😐 It was average</span>
+                </label>
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="staff-no"
+                    name="staff-helpful"
+                    value="no"
+                  />
+                  <span class="option-label">👎 Needs improvement</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Check-in rating -->
+            <div class="form-group">
+              <label class="form-label" for="check-in-rating"
+                >How smooth was your check-in process?</label
+              >
+              <select
+                class="glass-select"
+                id="check-in-rating"
+                name="check-in-rating"
+              >
+                <option value="">— Select an option —</option>
+                <option value="excellent">
+                  ⭐ Excellent — Fast & seamless
+                </option>
+                <option value="good">✅ Good — Minor hiccups</option>
+                <option value="average">😐 Average — Could be better</option>
+                <option value="poor">⚠️ Poor — Needs improvement</option>
+              </select>
+            </div>
+
+            <!-- Response time slider -->
+            <div class="form-group">
+              <label class="form-label" for="response-time"
+                >Staff Response Time Rating</label
+              >
+              <div class="slider-wrap">
+                <div class="slider-row">
+                  <input
+                    type="range"
+                    class="glass-range"
+                    id="response-time"
+                    name="response-time"
+                    min="1"
+                    max="10"
+                    value="7"
+                    oninput="updateSlider('response-time-val', this.value)"
+                  />
+                  <span class="slider-val" id="response-time-val">7</span>
+                </div>
+                <div class="slider-labels">
+                  <span>1 — Very slow</span><span>10 — Instant</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="form-group">
+              <label class="form-label" for="management-feedback"
+                >Additional Comments for Management</label
+              >
+              <textarea
+                class="glass-textarea"
+                id="management-feedback"
+                name="management-feedback"
+                placeholder="Mention any specific staff members, memorable interactions, or areas for improvement…"
+                rows="4"
+              ></textarea>
+            </div>
+          </form>
+
+          <div class="glass-divider"></div>
+          <div class="btn-row">
+            <button
+              class="btn-primary accent"
+              id="submit-mgmt"
+              onclick="submitReview('management')"
+              type="button"
+            >
+              Submit Staff Review ›
+            </button>
+            <button
+              class="btn-primary ghost"
+              onclick="navigateTo('choose')"
+              type="button"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
          PAGE 3 — Hotel Experience Review
     ══════════════════════════════════════ -->
-    <section class="page" id="page-hotel" aria-label="Hotel experience review">
-      <button class="back-btn" onclick="navigateTo('choose')" aria-label="Go back">
-        ‹ Back
-      </button>
-      <div class="glass-card">
-        <div class="card-header">
-          <p class="card-section-label">🏨 Hotel Experience</p>
-          <h2 class="card-title">Hotel Experience Review</h2>
+      <section
+        class="page"
+        id="page-hotel"
+        aria-label="Hotel experience review"
+      >
+        <button
+          class="back-btn"
+          onclick="navigateTo('choose')"
+          aria-label="Go back"
+        >
+          ‹ Back
+        </button>
+        <div class="glass-card">
+          <div class="card-header">
+            <p class="card-section-label">🏨 Hotel Experience</p>
+            <h2 class="card-title">Hotel Experience Review</h2>
+          </div>
+
+          <form id="hotel-form" class="form-body" novalidate>
+            <!-- Star ratings -->
+            <div class="form-group">
+              <label class="form-label">Rate your stay (tap to rate)</label>
+              <div
+                class="star-group"
+                role="group"
+                aria-label="Hotel star ratings"
+              >
+                <div class="star-row">
+                  <span class="star-row-label">🛏️ Room Cleanliness</span>
+                  <div
+                    class="stars"
+                    id="stars-cleanliness"
+                    role="group"
+                    aria-label="Room cleanliness rating"
+                  >
+                    <span
+                      class="star"
+                      data-group="cleanliness"
+                      data-val="1"
+                      onclick="setStars('cleanliness', 1)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="1 star"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="cleanliness"
+                      data-val="2"
+                      onclick="setStars('cleanliness', 2)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="2 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="cleanliness"
+                      data-val="3"
+                      onclick="setStars('cleanliness', 3)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="3 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="cleanliness"
+                      data-val="4"
+                      onclick="setStars('cleanliness', 4)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="4 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="cleanliness"
+                      data-val="5"
+                      onclick="setStars('cleanliness', 5)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="5 stars"
+                      >★</span
+                    >
+                  </div>
+                </div>
+
+                <div class="star-row">
+                  <span class="star-row-label">💤 Room Comfort</span>
+                  <div
+                    class="stars"
+                    id="stars-comfort"
+                    role="group"
+                    aria-label="Room comfort rating"
+                  >
+                    <span
+                      class="star"
+                      data-group="comfort"
+                      data-val="1"
+                      onclick="setStars('comfort', 1)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="1 star"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="comfort"
+                      data-val="2"
+                      onclick="setStars('comfort', 2)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="2 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="comfort"
+                      data-val="3"
+                      onclick="setStars('comfort', 3)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="3 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="comfort"
+                      data-val="4"
+                      onclick="setStars('comfort', 4)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="4 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="comfort"
+                      data-val="5"
+                      onclick="setStars('comfort', 5)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="5 stars"
+                      >★</span
+                    >
+                  </div>
+                </div>
+
+                <div class="star-row">
+                  <span class="star-row-label">🏊 Amenities</span>
+                  <div
+                    class="stars"
+                    id="stars-amenities"
+                    role="group"
+                    aria-label="Amenities rating"
+                  >
+                    <span
+                      class="star"
+                      data-group="amenities"
+                      data-val="1"
+                      onclick="setStars('amenities', 1)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="1 star"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="amenities"
+                      data-val="2"
+                      onclick="setStars('amenities', 2)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="2 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="amenities"
+                      data-val="3"
+                      onclick="setStars('amenities', 3)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="3 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="amenities"
+                      data-val="4"
+                      onclick="setStars('amenities', 4)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="4 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="amenities"
+                      data-val="5"
+                      onclick="setStars('amenities', 5)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="5 stars"
+                      >★</span
+                    >
+                  </div>
+                </div>
+
+                <div class="star-row">
+                  <span class="star-row-label">📶 WiFi & Connectivity</span>
+                  <div
+                    class="stars"
+                    id="stars-wifi"
+                    role="group"
+                    aria-label="WiFi rating"
+                  >
+                    <span
+                      class="star"
+                      data-group="wifi"
+                      data-val="1"
+                      onclick="setStars('wifi', 1)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="1 star"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="wifi"
+                      data-val="2"
+                      onclick="setStars('wifi', 2)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="2 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="wifi"
+                      data-val="3"
+                      onclick="setStars('wifi', 3)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="3 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="wifi"
+                      data-val="4"
+                      onclick="setStars('wifi', 4)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="4 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      data-group="wifi"
+                      data-val="5"
+                      onclick="setStars('wifi', 5)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="5 stars"
+                      >★</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Overall slider -->
+            <div class="form-group">
+              <label class="form-label" for="overall-experience"
+                >Overall Experience Score</label
+              >
+              <div class="slider-wrap">
+                <div class="slider-row">
+                  <input
+                    type="range"
+                    class="glass-range"
+                    id="overall-experience"
+                    name="overall-experience"
+                    min="1"
+                    max="10"
+                    value="8"
+                    oninput="updateSlider('overall-exp-val', this.value)"
+                  />
+                  <span class="slider-val" id="overall-exp-val">8</span>
+                </div>
+                <div class="slider-labels">
+                  <span>1 — Terrible</span><span>10 — Perfect</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Would recommend -->
+            <div class="form-group">
+              <label class="form-label"
+                >Would you recommend us to others?</label
+              >
+              <div
+                class="option-group"
+                role="radiogroup"
+                aria-label="Would you recommend"
+              >
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="recommend-yes"
+                    name="recommend"
+                    value="yes"
+                  />
+                  <span class="option-label">✅ Absolutely, yes!</span>
+                </label>
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="recommend-maybe"
+                    name="recommend"
+                    value="maybe"
+                  />
+                  <span class="option-label">🤔 Maybe, depends</span>
+                </label>
+                <label class="option-item">
+                  <input
+                    type="radio"
+                    id="recommend-no"
+                    name="recommend"
+                    value="no"
+                  />
+                  <span class="option-label">❌ No, not really</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Detailed feedback -->
+            <div class="form-group">
+              <label class="form-label" for="hotel-feedback"
+                >Detailed Feedback</label
+              >
+              <textarea
+                class="glass-textarea"
+                id="hotel-feedback"
+                name="hotel-feedback"
+                placeholder="Tell us about your room, what made your stay memorable, or anything we can do to improve…"
+                rows="4"
+              ></textarea>
+            </div>
+          </form>
+
+          <div class="glass-divider"></div>
+          <div class="btn-row">
+            <button
+              class="btn-primary success"
+              id="submit-hotel"
+              onclick="submitReview('hotel')"
+              type="button"
+            >
+              Submit Hotel Review ›
+            </button>
+            <button
+              class="btn-primary ghost"
+              onclick="navigateTo('choose')"
+              type="button"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
+      </section>
 
-        <form id="hotel-form" class="form-body" novalidate>
-          <!-- Star ratings -->
-          <div class="form-group">
-            <label class="form-label">Rate your stay (tap to rate)</label>
-            <div class="star-group" role="group" aria-label="Hotel star ratings">
-              <div class="star-row">
-                <span class="star-row-label">🛏️ Room Cleanliness</span>
-                <div class="stars" id="stars-cleanliness" role="group" aria-label="Room cleanliness rating">
-                  <span class="star" data-group="cleanliness" data-val="1" onclick="setStars('cleanliness', 1)"
-                    tabindex="0" role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="cleanliness" data-val="2" onclick="setStars('cleanliness', 2)"
-                    tabindex="0" role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="cleanliness" data-val="3" onclick="setStars('cleanliness', 3)"
-                    tabindex="0" role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="cleanliness" data-val="4" onclick="setStars('cleanliness', 4)"
-                    tabindex="0" role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="cleanliness" data-val="5" onclick="setStars('cleanliness', 5)"
-                    tabindex="0" role="button" aria-label="5 stars">★</span>
-                </div>
-              </div>
-
-              <div class="star-row">
-                <span class="star-row-label">💤 Room Comfort</span>
-                <div class="stars" id="stars-comfort" role="group" aria-label="Room comfort rating">
-                  <span class="star" data-group="comfort" data-val="1" onclick="setStars('comfort', 1)" tabindex="0"
-                    role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="comfort" data-val="2" onclick="setStars('comfort', 2)" tabindex="0"
-                    role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="comfort" data-val="3" onclick="setStars('comfort', 3)" tabindex="0"
-                    role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="comfort" data-val="4" onclick="setStars('comfort', 4)" tabindex="0"
-                    role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="comfort" data-val="5" onclick="setStars('comfort', 5)" tabindex="0"
-                    role="button" aria-label="5 stars">★</span>
-                </div>
-              </div>
-
-              <div class="star-row">
-                <span class="star-row-label">🏊 Amenities</span>
-                <div class="stars" id="stars-amenities" role="group" aria-label="Amenities rating">
-                  <span class="star" data-group="amenities" data-val="1" onclick="setStars('amenities', 1)" tabindex="0"
-                    role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="amenities" data-val="2" onclick="setStars('amenities', 2)" tabindex="0"
-                    role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="amenities" data-val="3" onclick="setStars('amenities', 3)" tabindex="0"
-                    role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="amenities" data-val="4" onclick="setStars('amenities', 4)" tabindex="0"
-                    role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="amenities" data-val="5" onclick="setStars('amenities', 5)" tabindex="0"
-                    role="button" aria-label="5 stars">★</span>
-                </div>
-              </div>
-
-              <div class="star-row">
-                <span class="star-row-label">📶 WiFi & Connectivity</span>
-                <div class="stars" id="stars-wifi" role="group" aria-label="WiFi rating">
-                  <span class="star" data-group="wifi" data-val="1" onclick="setStars('wifi', 1)" tabindex="0"
-                    role="button" aria-label="1 star">★</span>
-                  <span class="star" data-group="wifi" data-val="2" onclick="setStars('wifi', 2)" tabindex="0"
-                    role="button" aria-label="2 stars">★</span>
-                  <span class="star" data-group="wifi" data-val="3" onclick="setStars('wifi', 3)" tabindex="0"
-                    role="button" aria-label="3 stars">★</span>
-                  <span class="star" data-group="wifi" data-val="4" onclick="setStars('wifi', 4)" tabindex="0"
-                    role="button" aria-label="4 stars">★</span>
-                  <span class="star" data-group="wifi" data-val="5" onclick="setStars('wifi', 5)" tabindex="0"
-                    role="button" aria-label="5 stars">★</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Overall slider -->
-          <div class="form-group">
-            <label class="form-label" for="overall-experience">Overall Experience Score</label>
-            <div class="slider-wrap">
-              <div class="slider-row">
-                <input type="range" class="glass-range" id="overall-experience" name="overall-experience" min="1"
-                  max="10" value="8" oninput="updateSlider('overall-exp-val', this.value)" />
-                <span class="slider-val" id="overall-exp-val">8</span>
-              </div>
-              <div class="slider-labels">
-                <span>1 — Terrible</span><span>10 — Perfect</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Would recommend -->
-          <div class="form-group">
-            <label class="form-label">Would you recommend us to others?</label>
-            <div class="option-group" role="radiogroup" aria-label="Would you recommend">
-              <label class="option-item">
-                <input type="radio" id="recommend-yes" name="recommend" value="yes" />
-                <span class="option-label">✅ Absolutely, yes!</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" id="recommend-maybe" name="recommend" value="maybe" />
-                <span class="option-label">🤔 Maybe, depends</span>
-              </label>
-              <label class="option-item">
-                <input type="radio" id="recommend-no" name="recommend" value="no" />
-                <span class="option-label">❌ No, not really</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Detailed feedback -->
-          <div class="form-group">
-            <label class="form-label" for="hotel-feedback">Detailed Feedback</label>
-            <textarea class="glass-textarea" id="hotel-feedback" name="hotel-feedback"
-              placeholder="Tell us about your room, what made your stay memorable, or anything we can do to improve…"
-              rows="4"></textarea>
-          </div>
-        </form>
-
-        <div class="glass-divider"></div>
-        <div class="btn-row">
-          <button class="btn-primary success" id="submit-hotel" onclick="submitReview('hotel')" type="button">
-            Submit Hotel Review ›
-          </button>
-          <button class="btn-primary ghost" onclick="navigateTo('choose')" type="button">
-            Cancel
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
          PAGE 4 — Thank You
     ══════════════════════════════════════ -->
-    <section class="page" id="page-thankyou" aria-label="Thank you page">
-      <div class="glass-card">
-        <div class="thankyou-body">
-          <div class="thankyou-icon" aria-hidden="true">✓</div>
-          <h2 class="thankyou-title">Thank You!</h2>
-          <p class="thankyou-subtitle">
-            We sincerely appreciate you taking the time to share your
-            feedback. Your thoughts help us deliver an even better experience
-            for every guest.
-          </p>
-          <div class="review-tags" id="review-summary-tags">
-            <!-- dynamically populated -->
+      <section class="page" id="page-thankyou" aria-label="Thank you page">
+        <div class="glass-card">
+          <div class="thankyou-body">
+            <div class="thankyou-icon" aria-hidden="true">✓</div>
+            <h2 class="thankyou-title">Thank You!</h2>
+            <p class="thankyou-subtitle">
+              We sincerely appreciate you taking the time to share your
+              feedback. Your thoughts help us deliver an even better experience
+              for every guest.
+            </p>
+            <div class="review-tags" id="review-summary-tags">
+              <!-- dynamically populated -->
+            </div>
+          </div>
+          <div class="glass-divider"></div>
+          <div class="btn-row">
+            <button
+              class="btn-primary accent"
+              onclick="navigateTo('choose')"
+              type="button"
+            >
+              Leave Another Review
+            </button>
+            <button
+              class="btn-primary ghost"
+              onclick="closePortal()"
+              type="button"
+            >
+              Close Portal
+            </button>
           </div>
         </div>
-        <div class="glass-divider"></div>
-        <div class="btn-row">
-          <button class="btn-primary accent" onclick="navigateTo('choose')" type="button">
-            Leave Another Review
-          </button>
-          <button class="btn-primary ghost" onclick="closePortal()" type="button">
-            Close Portal
-          </button>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <footer class="app-footer">
-      Powered by ReviewFlo · Brutalist Architecture
-    </footer>
-  </div>
+      <footer class="app-footer">
+        Powered by ReviewFlo · Brutalist Architecture
+      </footer>
+    </div>
 
-  <!-- Toast notification -->
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <!-- Toast notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <!-- External Script -->
-  <script src="app.js"></script>
-</body>
-
+    <!-- External Script -->
+    <script src="brutalist-ui/app.js"></script>
+  </body>
 </html>
