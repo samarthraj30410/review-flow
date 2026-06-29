@@ -1562,13 +1562,28 @@
         </button>
         <div class="cyber-card">
           <div class="card-header">
-            <div class="header-prefix mono">// MODULE: FOOD_REVIEW_ANALYSIS</div>
+            <div class="header-prefix mono">
+              // MODULE: FOOD_REVIEW_ANALYSIS
+            </div>
             <h2 class="card-title">RATE YOUR FOOD</h2>
             <div class="header-underline"></div>
           </div>
-          <p style="padding: 0 24px; opacity: 0.7; margin-bottom: 20px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--text-secondary)">
+          <p
+            style="
+              padding: 0 24px;
+              opacity: 0.7;
+              margin-bottom: 20px;
+              font-family: var(--font-mono);
+              font-size: 12px;
+              letter-spacing: 0.04em;
+              color: var(--text-secondary);
+            "
+          >
             > ITEMS_ORDERED:
-            <strong style="color: var(--cyan)"><span id="review-item-count">0</span></strong> — AWAITING_REVIEW_INPUT...
+            <strong style="color: var(--cyan)"
+              ><span id="review-item-count">0</span></strong
+            >
+            — AWAITING_REVIEW_INPUT...
           </p>
 
           <form id="food-review-form" class="form-body" novalidate>
@@ -1584,15 +1599,21 @@
               >
                 <label class="option-item">
                   <input type="radio" name="food-recommend" value="yes" />
-                  <span class="option-label">✅ AFFIRMATIVE — HIGHLY RECOMMEND</span>
+                  <span class="option-label"
+                    >✅ AFFIRMATIVE — HIGHLY RECOMMEND</span
+                  >
                 </label>
                 <label class="option-item">
                   <input type="radio" name="food-recommend" value="maybe" />
-                  <span class="option-label">🤔 CONDITIONAL — DEPENDS ON VARIABLES</span>
+                  <span class="option-label"
+                    >🤔 CONDITIONAL — DEPENDS ON VARIABLES</span
+                  >
                 </label>
                 <label class="option-item">
                   <input type="radio" name="food-recommend" value="no" />
-                  <span class="option-label">❌ NEGATIVE — NOT RECOMMENDING</span>
+                  <span class="option-label"
+                    >❌ NEGATIVE — NOT RECOMMENDING</span
+                  >
                 </label>
               </div>
             </div>
@@ -2234,6 +2255,7 @@
         if (pageId === "food-review") {
           var rc = document.getElementById("review-item-count");
           if (rc) rc.textContent = cart.length;
+          generatePerDishReviews();
         }
         updateProgress(pageId);
         updateHeader(pageId);
