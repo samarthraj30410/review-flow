@@ -18,6 +18,9 @@ function navigateTo(pageId) {
   }, 280);
 
   currentPage = pageId;
+  if (pageId === "choose" && typeof resetState === "function") {
+    resetState();
+  }
   if (pageId === 'food-review') { var rc = document.getElementById('review-item-count'); if (rc) rc.textContent = cart.length; } generatePerDishReviews();
   updateProgress(pageId);
   updateHeader(pageId);
@@ -210,8 +213,48 @@ function closePortal() {
     window.parent.postMessage({ type: "REVIEW_PORTAL_CLOSE" }, "*");
   } else {
     showToast("Thank you for your feedback!");
+    if (typeof resetState === "function") resetState();
     navigateTo("choose");
   }
+}
+
+/* === Reset State === */
+function resetState() {
+  cart = [];
+  itemCounts = {};
+  if (typeof foodStarRatings !== 'undefined') {
+    for (var k in foodStarRatings) foodStarRatings[k] = 0;
+  }
+  for (var k in starRatings) starRatings[k] = 0;
+
+  var cc = document.getElementById("cart-count");
+  if (cc) cc.textContent = "0";
+
+  document.querySelectorAll(".qty-count").forEach(function(el) {
+    el.textContent = "0";
+    el.style.fontWeight = "";
+  });
+  document.querySelectorAll(".qty-control .minus").forEach(function(btn) {
+    btn.disabled = true;
+  });
+
+  document.querySelectorAll(".star").forEach(function(s) {
+    s.classList.remove("active");
+    s.style.color = "";
+  });
+
+  var dyn = document.getElementById("dynamic-food-reviews");
+  if (dyn) dyn.innerHTML = "";
+
+  var oe = document.getElementById("overall-experience");
+  if (oe) oe.value = 5;
+  var of = document.getElementById("overall-feedback");
+  if (of) of.value = "";
+  var mf = document.getElementById("management-feedback");
+  if (mf) mf.value = "";
+  var dff = document.getElementById("detailed-food-feedback");
+  if (dff) dff.value = "";
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
 }
 
 /* ─── Ripple Effect Helper ──────────────── */
@@ -396,8 +439,8 @@ function generatePerDishReviews() {
       if (typeof foodStarRatings[key] === 'undefined') {
         foodStarRatings[key] = 0;
       }
-      allHtml += '<div class="review-dish-container" style="margin-bottom: 24px;">';
-      allHtml += '<div class="star-row-label" style="display: block; margin-bottom: 12px; font-size: 15px; font-weight: 600; color: var(--text-1);">Rating for ' + key + '</div>';
+      allHtml += '<div class="review-dish-container" style="margin-bottom: 24px; display: flex; flex-direction: column; align-items: center; gap: 12px;">';
+      allHtml += '<div class="star-row-label" style="margin-bottom: 0; font-size: 15px; font-weight: 600; color: var(--text-1); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-pill); padding: 8px 24px;">Rating for <b>' + key + '</b></div>';
       allHtml += '<div class="star-row" style="margin-bottom: 0; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-lg); padding: 16px 24px; justify-content: center;">';
       allHtml += '<div class="stars" id="stars-' + safeId + '" role="group" style="justify-content: center; width: 100%;">';
       for (var i = 1; i <= 5; i++) {

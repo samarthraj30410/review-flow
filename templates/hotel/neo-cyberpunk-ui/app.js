@@ -316,8 +316,8 @@ function generatePerDishReviews() {
         foodStarRatings[key] = 0;
       }
       
-      allHtml += '<div class="review-dish-container" style="margin-bottom: 24px;">';
-      allHtml += '<div class="star-row-label" style="display: block; margin-bottom: 12px; font-size: 15px; color: var(--cyan); text-transform: uppercase;">Rating for <b>' + key + '</b></div>';
+      allHtml += '<div class="review-dish-container" style="margin-bottom: 24px; display: flex; flex-direction: column; align-items: center; gap: 12px;">';
+      allHtml += '<div class="star-row-label" style="margin-bottom: 0; font-size: 15px; color: var(--cyan); text-transform: uppercase; border-left: 3px solid var(--cyan); background: rgba(0, 245, 255, 0.05); padding: 8px 16px;">Rating for <b>' + key + '</b></div>';
       allHtml += '<div class="star-row" style="margin-bottom: 0; justify-content: center;">';
       allHtml += '<div class="stars" id="stars-' + safeId + '" data-rating="' + (foodStarRatings[key] || 0) + '" role="group" style="justify-content: center; width: 100%;">';
       for (var i = 1; i <= 5; i++) {

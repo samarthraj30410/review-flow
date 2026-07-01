@@ -473,8 +473,8 @@ function generatePerDishReviews() {
       if (typeof foodStarRatings[key] === 'undefined') {
         foodStarRatings[key] = 0;
       }
-      var html = '<div class="review-dish-container" style="margin-bottom: 24px;">';
-      html += '<label class="review-dish-label" style="display: block; margin-bottom: 12px; font-weight: 800; font-size: 1.1em; letter-spacing: 1px;">Rating for <b style="background: #000; color: var(--primary-color); padding: 2px 6px;">' + key + '</b></label>';
+      var html = '<div class="review-dish-container" style="margin-bottom: 24px; display: flex; flex-direction: column; align-items: center; gap: 12px;">';
+      html += '<div class="review-dish-label" style="margin-bottom: 0; font-weight: 800; font-size: 1.1em; letter-spacing: 1px; background: var(--surface-1); border: 3px solid #000; border-radius: 8px; padding: 8px 16px; box-shadow: 4px 4px 0px rgba(0,0,0,1);">Rating for <b style="background: #000; color: var(--primary-color); padding: 2px 6px;">' + key + '</b></div>';
       html += '<div class="review-dish-item" style="background: var(--surface-1); border: 4px solid #000; border-radius: 16px; padding: 16px 20px; display: flex; justify-content: center; align-items: center; box-shadow: 6px 6px 0px rgba(0,0,0,1);">';
       html += '<div class="stars" id="stars-' + safeId + '" role="group">';
       for (var i = 1; i <= 5; i++) {
