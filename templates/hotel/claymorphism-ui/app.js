@@ -384,10 +384,6 @@ function generatePerDishReviews() {
       html += '</div>';
       html += '</div>';
       
-      // Dish Image Portal
-      html += '<div class="review-dish-img-box clay-inset">';
-      html += '  <img src="" alt="' + key + '" style="width: 100%; height: 100%; object-fit: cover; display: block;" />';
-      html += '</div>';
 
       html += '</div>';
       container.innerHTML += html;
