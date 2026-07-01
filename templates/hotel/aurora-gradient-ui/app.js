@@ -396,13 +396,15 @@ function generatePerDishReviews() {
       if (typeof foodStarRatings[key] === 'undefined') {
         foodStarRatings[key] = 0;
       }
-      allHtml += '<div class="star-row" style="margin-bottom: 16px;">';
-      allHtml += '<div class="star-row-label" style="font-size: 15px; font-weight: 600; color: var(--text-1);">Rating for ' + key + '</div>';
-      allHtml += '<div class="stars" id="stars-' + safeId + '" role="group" style="justify-content: flex-end;">';
+      allHtml += '<div class="review-dish-container" style="margin-bottom: 24px;">';
+      allHtml += '<div class="star-row-label" style="display: block; margin-bottom: 12px; font-size: 15px; font-weight: 600; color: var(--text-1);">Rating for ' + key + '</div>';
+      allHtml += '<div class="star-row" style="margin-bottom: 0; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-lg); padding: 16px 24px; justify-content: center;">';
+      allHtml += '<div class="stars" id="stars-' + safeId + '" role="group" style="justify-content: center; width: 100%;">';
       for (var i = 1; i <= 5; i++) {
         var activeClass = i <= foodStarRatings[key] ? 'active' : '';
         allHtml += '<span class="star ' + activeClass + '" data-val="' + i + '" onclick="setFoodStars(\'' + key + '\', ' + i + ')">&#9733;</span>';
       }
+      allHtml += '</div>';
       allHtml += '</div>';
       allHtml += '</div>';
     }

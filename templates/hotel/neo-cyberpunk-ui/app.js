@@ -316,14 +316,15 @@ function generatePerDishReviews() {
         foodStarRatings[key] = 0;
       }
       
-      allHtml += '<div class="star-row" style="margin-bottom: 16px;">';
-      allHtml += '<div class="star-row-label" style="font-size: 15px; color: var(--cyan);">Rating for ' + key + '</div>';
-      allHtml += '<div class="stars" id="stars-' + safeId + '" data-rating="' + (foodStarRatings[key] || 0) + '" role="group" style="justify-content: flex-end;">';
-      
+      allHtml += '<div class="review-dish-container" style="margin-bottom: 24px;">';
+      allHtml += '<div class="star-row-label" style="display: block; margin-bottom: 12px; font-size: 15px; color: var(--cyan); text-transform: uppercase;">Rating for <b>' + key + '</b></div>';
+      allHtml += '<div class="star-row" style="margin-bottom: 0; justify-content: center;">';
+      allHtml += '<div class="stars" id="stars-' + safeId + '" data-rating="' + (foodStarRatings[key] || 0) + '" role="group" style="justify-content: center; width: 100%;">';
       for (var i = 1; i <= 5; i++) {
         var activeClass = i <= foodStarRatings[key] ? 'active' : '';
         allHtml += '<span class="star ' + activeClass + '" data-val="' + i + '" data-group="' + safeId + '" onclick="setFoodStars(\'' + key + '\', ' + i + ')">&#9733;</span>';
       }
+      allHtml += '</div>';
       allHtml += '</div>';
       allHtml += '</div>';
     }

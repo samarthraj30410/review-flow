@@ -372,15 +372,15 @@ function generatePerDishReviews() {
       if (typeof foodStarRatings[key] === 'undefined') {
         foodStarRatings[key] = 0;
       }
-      var html = '<div class="form-group clay-card review-dish-card">';
-      
-      html += '<div class="review-dish-item clay-card" style="margin-bottom: 16px; border-radius: var(--radius-pill); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; width: 100%;">';
-      html += '<label class="review-dish-label" style="margin-bottom: 0;">Rating for <b>' + key + '</b></label>';
+      var html = '<div class="form-group review-dish-container" style="margin-bottom: 24px;">';
+      html += '<label class="review-dish-label" style="display: block; margin-bottom: 12px; font-weight: 600;">Rating for <b>' + key + '</b></label>';
+      html += '<div class="review-dish-item clay-card" style="border-radius: var(--radius-pill); padding: 12px 24px; display: flex; justify-content: center; align-items: center; width: 100%;">';
       html += '<div class="stars" id="stars-' + safeId + '">';
       for (var i = 1; i <= 5; i++) {
         var activeClass = i <= foodStarRatings[key] ? 'active' : '';
         html += '<span class="star ' + activeClass + '" data-val="' + i + '" onclick="setFoodStars(\'' + key + '\', ' + i + ')">&#9733;</span>';
       }
+      html += '</div>';
       html += '</div>';
       html += '</div>';
       container.innerHTML += html;

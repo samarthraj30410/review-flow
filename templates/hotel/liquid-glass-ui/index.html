@@ -2530,12 +2530,14 @@
               foodStarRatings[key] = 0;
             }
             var html =
-              '<div class="review-dish-item glass-panel" style="margin-bottom: 16px; padding: 16px 24px; border-radius: var(--radius-lg); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center;">';
+              '<div class="review-dish-container" style="margin-bottom: 24px;">';
 
             html +=
-              '<label class="review-dish-label" style="margin-bottom: 0;">Rating for <b>' +
+              '<label class="review-dish-label" style="display: block; margin-bottom: 12px; font-weight: 600;">Rating for <b>' +
               key +
               "</b></label>";
+            html +=
+              '<div class="review-dish-item glass-panel" style="padding: 16px 24px; border-radius: var(--radius-lg); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: center; align-items: center;">';
             html +=
               '<div class="stars" id="stars-' + safeId + '" role="group">';
             for (var i = 1; i <= 5; i++) {
@@ -2551,6 +2553,7 @@
                 i +
                 ')">&#9733;</span>';
             }
+            html += "</div>";
             html += "</div>";
             html += "</div>";
             container.innerHTML += html;

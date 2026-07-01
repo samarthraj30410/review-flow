@@ -463,16 +463,16 @@ function generatePerDishReviews() {
       if (typeof foodStarRatings[key] === 'undefined') {
         foodStarRatings[key] = 0;
       }
-      var html = '<div class="review-dish-item" style="margin-bottom: 20px; border: 3px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); padding: 16px; display: flex; justify-content: space-between; align-items: center; background: #fff;">';
-      html += '<label class="review-dish-label" style="margin-bottom: 0;">Rating for <b>' + key + '</b></label>';
+      var html = '<div class="review-dish-container" style="margin-bottom: 24px;">';
+      html += '<label class="review-dish-label" style="display: block; margin-bottom: 12px; font-weight: bold; font-size: 1.1em; text-transform: uppercase;">Rating for <b style="background: #000; color: #fff; padding: 2px 6px;">' + key + '</b></label>';
+      html += '<div class="review-dish-item" style="border: 3px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); padding: 16px; display: flex; justify-content: center; align-items: center; background: #fff;">';
       html += '<div class="stars" id="stars-' + safeId + '" role="group">';
       for (var i = 1; i <= 5; i++) {
         var activeClass = i <= foodStarRatings[key] ? 'active' : '';
         html += '<span class="star ' + activeClass + '" data-val="' + i + '" onclick="setFoodStars(\'' + key + '\', ' + i + ')">&#9733;</span>';
       }
       html += '</div>';
-      
-
+      html += '</div>';
       html += '</div>';
       container.innerHTML += html;
     }
