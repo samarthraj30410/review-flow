@@ -289,11 +289,12 @@ function changeQty(itemName, delta, btnElement) {
 /* === Food Star Rating === */
 var foodStarRatings = {};
 
-function setFoodStars(itemName, val) {
+window.setFoodStars = function(itemName, val) {
   foodStarRatings[itemName] = val;
   var safeId = itemName.replace(/\s+/g, '-');
-  var container = document.getElementById('stars-' + safeId);
+  var container = document.getElementById("stars-" + safeId);
   if (!container) return;
+  container.setAttribute("data-rating", val);
   container.querySelectorAll('.star').forEach(function(s) {
     var sv = parseInt(s.getAttribute('data-val'));
     s.classList.toggle('active', sv <= val);
@@ -318,11 +319,11 @@ function generatePerDishReviews() {
       allHtml += '<div class="star-row" style="margin-bottom: 0;">';
       allHtml += '<div style="flex-grow: 1;">';
       allHtml += '<div class="star-row-label" style="margin-bottom: 12px; font-size: 15px; color: var(--cyan);">Rating for ' + key + '</div>';
-      allHtml += '<div class="stars" id="stars-' + safeId + '" role="group" style="justify-content: flex-start;">';
+      allHtml += '<div class="stars" id="stars-' + safeId + '" data-rating="' + (foodStarRatings[key] || 0) + '" role="group" style="justify-content: flex-start;">';
       
       for (var i = 1; i <= 5; i++) {
         var activeClass = i <= foodStarRatings[key] ? 'active' : '';
-        allHtml += '<span class="star ' + activeClass + '" data-val="' + i + '" onclick="setFoodStars(\'' + key + '\', ' + i + ')">&#9733;</span>';
+        allHtml += '<span class="star ' + activeClass + '" data-val="' + i + '" data-group="' + safeId + '" onclick="setFoodStars(\'' + key + '\', ' + i + ')">&#9733;</span>';
       }
       allHtml += '</div>';
       allHtml += '</div>';

@@ -606,17 +606,7 @@ body {
 .stars {
   display: flex;
   justify-content: space-between;
-  background: var(--clay-bg);
   padding: 14px 22px;
-  border-radius: var(--radius-pill);
-  box-shadow: var(--clay-in);
-  transition: box-shadow 0.3s ease;
-}
-
-.stars:hover {
-  box-shadow:
-    var(--clay-in),
-    0 0 0 2px rgba(99, 102, 241, 0.08);
 }
 
 .star {

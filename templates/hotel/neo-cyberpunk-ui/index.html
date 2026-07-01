@@ -2352,6 +2352,7 @@
         starRatings[group] = val;
         const container = document.getElementById("stars-" + group);
         if (!container) return;
+        container.setAttribute("data-rating", val);
         container.querySelectorAll(".star").forEach((s) => {
           const sv = parseInt(s.getAttribute("data-val"));
           s.classList.toggle("active", sv <= val);
@@ -2362,23 +2363,28 @@
       document.addEventListener("mouseover", (e) => {
         if (!e.target.classList.contains("star")) return;
         const group = e.target.getAttribute("data-group");
+        if (!group) return;
         const val = parseInt(e.target.getAttribute("data-val"));
         const container = document.getElementById("stars-" + group);
         if (!container) return;
         container.querySelectorAll(".star").forEach((s) => {
-          s.style.color =
-            parseInt(s.getAttribute("data-val")) <= val ? "var(--cyan)" : "";
+          const sv = parseInt(s.getAttribute("data-val"));
+          s.classList.toggle("active", sv <= val);
+          s.style.color = "";
         });
       });
 
       document.addEventListener("mouseout", (e) => {
         if (!e.target.classList.contains("star")) return;
         const group = e.target.getAttribute("data-group");
+        if (!group) return;
         const container = document.getElementById("stars-" + group);
         if (!container) return;
+        const currentRating = parseInt(container.getAttribute("data-rating") || "0");
         container.querySelectorAll(".star").forEach((s) => {
           const sv = parseInt(s.getAttribute("data-val"));
-          s.style.color = sv <= (starRatings[group] || 0) ? "var(--cyan)" : "";
+          s.classList.toggle("active", sv <= currentRating);
+          s.style.color = "";
         });
       });
 
