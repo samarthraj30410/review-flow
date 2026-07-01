@@ -1089,17 +1089,17 @@ body {
 .star-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   --rating-glow: var(--cyan);
   --rating-bg: rgba(0, 245, 255, 0.05);
-  --star-size: 42px;
+  --star-size: 44px;
 }
 
 .star-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
+  padding: 16px 20px;
   background: var(--rating-bg);
   border: 1px solid var(--border-dim);
   border-left: 3px solid var(--rating-glow);
@@ -1130,7 +1130,7 @@ body {
   left: -100%;
   width: 60%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.04), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.06), rgba(255, 0, 204, 0.04), transparent);
   transition: left 0.6s ease;
   pointer-events: none;
 }
@@ -1144,68 +1144,81 @@ body {
 }
 
 .star-row:hover {
-  background: rgba(0, 245, 255, 0.08);
+  background: rgba(0, 245, 255, 0.1);
   border-color: var(--rating-glow);
   border-left-color: var(--magenta);
   box-shadow:
-    0 0 20px rgba(0, 245, 255, 0.12) inset,
-    0 0 30px rgba(0, 245, 255, 0.06);
+    0 0 24px rgba(0, 245, 255, 0.15) inset,
+    0 0 40px rgba(0, 245, 255, 0.08),
+    0 0 2px var(--cyan);
   transform: translateX(4px);
 }
 
 .star-row-label {
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--text-primary);
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.15);
+  text-shadow: 0 0 8px rgba(0, 245, 255, 0.2);
   position: relative;
   z-index: 1;
 }
 
 .stars {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   justify-content: center;
   position: relative;
   z-index: 1;
 }
 
 .star {
-  font-size: var(--star-size, 42px);
+  font-size: var(--star-size, 44px);
   cursor: pointer;
-  color: rgba(0, 245, 255, 0.12);
+  color: rgba(0, 245, 255, 0.1);
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   user-select: none;
-  -webkit-text-stroke: 1px rgba(0, 245, 255, 0.25);
+  -webkit-text-stroke: 1.5px rgba(0, 245, 255, 0.2);
   position: relative;
+  filter: drop-shadow(0 0 2px rgba(0, 245, 255, 0.1));
 }
 
 .star:hover {
-  transform: scale(1.35) rotate(12deg);
-  color: rgba(0, 245, 255, 0.6);
-  -webkit-text-stroke: 1px var(--cyan);
-  filter: drop-shadow(0 0 8px var(--cyan-glow));
+  transform: scale(1.4) rotate(15deg);
+  color: rgba(0, 245, 255, 0.7);
+  -webkit-text-stroke: 1.5px var(--cyan);
+  filter:
+    drop-shadow(0 0 12px var(--cyan-glow))
+    drop-shadow(0 0 24px rgba(255, 0, 204, 0.15));
+  text-shadow: 0 0 20px var(--cyan);
 }
 
 .star.active {
   color: var(--cyan);
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9);
   text-shadow:
-    0 0 8px var(--cyan),
-    0 0 16px var(--cyan-glow),
-    0 0 32px var(--cyan);
+    0 0 10px var(--cyan),
+    0 0 20px var(--cyan-glow),
+    0 0 40px var(--cyan),
+    0 0 60px rgba(255, 0, 204, 0.2);
+  filter:
+    drop-shadow(0 0 6px var(--cyan-glow))
+    drop-shadow(0 0 12px rgba(0, 245, 255, 0.3));
   animation: starPulse 2s infinite alternate;
 }
 
 .star:active {
-  transform: scale(1.6) rotate(-15deg);
+  transform: scale(1.7) rotate(-20deg);
   text-shadow:
-    0 0 20px #fff,
-    0 0 40px var(--cyan),
-    0 0 60px var(--cyan-glow);
-  transition-duration: 0.1s;
+    0 0 24px #fff,
+    0 0 48px var(--cyan),
+    0 0 72px var(--magenta),
+    0 0 96px var(--cyan-glow);
+  filter:
+    drop-shadow(0 0 16px var(--cyan))
+    drop-shadow(0 0 32px var(--magenta-glow));
+  transition-duration: 0.08s;
 }
 
 @keyframes starPulse {
@@ -1213,28 +1226,39 @@ body {
     text-shadow: 0 0 8px var(--cyan), 0 0 16px var(--cyan-glow);
     filter: drop-shadow(0 0 4px var(--cyan-glow));
   }
+  50% {
+    text-shadow: 0 0 14px var(--cyan), 0 0 28px var(--cyan-glow), 0 0 42px var(--cyan);
+    filter: drop-shadow(0 0 10px var(--cyan-glow)) drop-shadow(0 0 20px rgba(255, 0, 204, 0.1));
+  }
   100% {
-    text-shadow: 0 0 12px var(--cyan), 0 0 24px var(--cyan-glow), 0 0 36px var(--cyan);
-    filter: drop-shadow(0 0 8px var(--cyan-glow));
+    text-shadow: 0 0 10px var(--cyan), 0 0 22px var(--cyan-glow), 0 0 36px var(--cyan);
+    filter: drop-shadow(0 0 6px var(--cyan-glow));
   }
 }
 
 .star.pop-animate {
-  animation: starPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: starPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 @keyframes starPop {
   0% {
-    transform: scale(1.5);
+    transform: scale(1.6) rotate(-10deg);
+    filter: drop-shadow(0 0 20px var(--cyan)) drop-shadow(0 0 40px var(--magenta-glow));
   }
-  40% {
-    transform: scale(0.85) rotate(5deg);
+  25% {
+    transform: scale(0.8) rotate(8deg) skewX(2deg);
+    filter: drop-shadow(0 0 8px var(--cyan));
   }
-  70% {
-    transform: scale(1.12) rotate(-2deg);
+  50% {
+    transform: scale(1.2) rotate(-4deg) skewX(-1deg);
+    filter: drop-shadow(0 0 14px var(--cyan)) drop-shadow(0 0 28px var(--magenta-glow));
+  }
+  75% {
+    transform: scale(0.95) rotate(2deg);
   }
   100% {
-    transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg) skewX(0deg);
+    filter: drop-shadow(0 0 6px var(--cyan-glow));
   }
 }
 

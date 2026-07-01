@@ -39,7 +39,6 @@
         </a>
         <ul class="nav-links">
           <li><a href="#features" class="nav-link">Features</a></li>
-          <li><a href="#demo" class="nav-link">Live Demo</a></li>
           <li><a href="#workflow" class="nav-link">How it Works</a></li>
           <li><a href="#templates" class="nav-link">Templates</a></li>
           <li><a href="#customers" class="nav-link">Customers</a></li>
@@ -145,8 +144,7 @@
           zero ongoing server costs.
         </p>
         <div class="hero-ctas">
-          <a href="#demo" class="btn btn-primary">Try Live Demo</a>
-          <a href="#templates" class="btn btn-secondary">Explore Templates</a>
+          <a href="#templates" class="btn btn-primary">Explore Templates</a>
         </div>
       </section>
 
@@ -242,170 +240,6 @@
               Every review system is custom stylized to match the brand logo,
               colors, and styling of the physical storefront.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Interactive Live Demo -->
-      <section class="container" id="demo">
-        <div class="demo-layout">
-          <div class="demo-title-area">
-            <div class="hero-tag" style="margin-bottom: 16px">
-              <span
-                style="
-                  background-color: var(--accent);
-                  box-shadow: 0 0 8px var(--accent);
-                "
-              ></span>
-              Interactive Simulation
-            </div>
-            <h2>See It In Real-Time</h2>
-            <p>
-              Submit a test review inside the mobile-optimized widget mockup.
-              Watch it update instantly inside the simulated Google Sheet
-              representation on the right.
-            </p>
-            <div
-              style="
-                background-color: rgba(255, 255, 255, 0.02);
-                border: 1px solid var(--border-subtle);
-                padding: 18px;
-                border-radius: 8px;
-                font-size: 0.85rem;
-                color: var(--text-secondary);
-              "
-            >
-              <strong>Real-World Usage:</strong> At your shop, customers scan a
-              customized QR code at checkout, instantly loading this review form
-              on their phones.
-            </div>
-          </div>
-
-          <div class="grid" style="gap: 24px">
-            <!-- Widget UI -->
-            <div class="widget-mockup">
-              <div class="widget-header">
-                <h4>Artisanal Coffee Co.</h4>
-                <p>Let us know how we did today</p>
-              </div>
-              <form id="demo-review-form">
-                <div class="rating-select">
-                  <button type="button" class="star-btn" data-val="1">★</button>
-                  <button type="button" class="star-btn" data-val="2">★</button>
-                  <button type="button" class="star-btn" data-val="3">★</button>
-                  <button type="button" class="star-btn" data-val="4">★</button>
-                  <button type="button" class="star-btn" data-val="5">★</button>
-                </div>
-                <input type="hidden" id="demo-rating" value="0" />
-
-                <div class="form-group">
-                  <label for="demo-name">Your Name</label>
-                  <input
-                    type="text"
-                    id="demo-name"
-                    class="form-input"
-                    placeholder="e.g. Jane Doe"
-                    required
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="demo-comment">Your Feedback</label>
-                  <textarea
-                    id="demo-comment"
-                    rows="3"
-                    class="form-textarea"
-                    placeholder="What did you love about your visit?"
-                    required
-                  ></textarea>
-                </div>
-
-                <button type="submit">Submit Feedback</button>
-              </form>
-            </div>
-
-            <!-- Google Sheets Table -->
-            <div class="sheets-mockup">
-              <div class="sheets-bar">
-                <div class="sheets-indicator">
-                  <span class="indicator-dot red"></span>
-                  <span class="indicator-dot yellow"></span>
-                  <span class="indicator-dot green"></span>
-                </div>
-                <div class="sheets-title">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                    ></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
-                  </svg>
-                  Artisanal_Coffee_Reviews.xlsx
-                </div>
-              </div>
-              <div class="sheets-table-wrapper">
-                <table class="sheets-table" id="demo-sheets-table">
-                  <thead>
-                    <tr>
-                      <th>Timestamp</th>
-                      <th>Customer Name</th>
-                      <th>Rating</th>
-                      <th>Comments</th>
-                      <th>Action Link</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>2026-06-18 10:14:22</td>
-                      <td>Alexander K.</td>
-                      <td class="star-rating">★★★★★ (5)</td>
-                      <td>
-                        Absolutely loved the cold brew and the sourdough toast.
-                        Fast Wi-Fi!
-                      </td>
-                      <td style="color: var(--success); font-weight: 500">
-                        ✓ Logged
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2026-06-18 11:32:05</td>
-                      <td>Sarah Miller</td>
-                      <td class="star-rating">★★★★☆ (4)</td>
-                      <td>
-                        Excellent cappuccino. The pastries were a bit sold out
-                        though.
-                      </td>
-                      <td style="color: var(--success); font-weight: 500">
-                        ✓ Logged
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2026-06-18 14:05:40</td>
-                      <td>David Chen</td>
-                      <td class="star-rating">★★★★★ (5)</td>
-                      <td>
-                        Friendly barista and wonderful minimal interior design.
-                        Recommended.
-                      </td>
-                      <td style="color: var(--success); font-weight: 500">
-                        ✓ Logged
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -827,7 +661,7 @@
               </div>
               <div class="info-text">
                 <h5>Email</h5>
-                <p>hello@reviewflo.co</p>
+                <p>samarth.raj30410@gmail.com</p>
               </div>
             </div>
 
@@ -850,7 +684,7 @@
               </div>
               <div class="info-text">
                 <h5>Phone/Messaging</h5>
-                <p>+1 (555) 019-2834</p>
+                <p>+91 9693674923</p>
               </div>
             </div>
           </div>
@@ -916,7 +750,6 @@
         </div>
         <ul class="footer-links">
           <li><a href="#features">Features</a></li>
-          <li><a href="#demo">Live Demo</a></li>
           <li><a href="#workflow">Workflow</a></li>
           <li><a href="#templates">Templates</a></li>
           <li><a href="#customers">Customers</a></li>

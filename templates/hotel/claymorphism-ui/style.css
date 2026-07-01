@@ -226,10 +226,10 @@ body {
 }
 
 .clay-pill {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--text-secondary);
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: 32px;
   background: var(--clay-card-bg);
   box-shadow: var(--clay-out-sm);
@@ -831,4 +831,60 @@ body {
   margin-top: 24px;
   text-align: center;
   align-self: center;
+}
+
+/* ─── Dish Card Spacing ─────────────────── */
+.dish-list {
+  gap: 20px !important;
+}
+
+.dish-card {
+  padding: 14px !important;
+}
+
+/* ─── Food Review Dish Cards ────────────── */
+.review-dish-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.review-dish-card .review-dish-label {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: inline-block;
+  color: var(--text-primary);
+}
+
+.review-dish-img-box {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ─── @media: Dish image above stars ────── */
+@media (max-width: 600px) {
+  .review-dish-card {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .review-dish-img-box {
+    width: 100% !important;
+    height: 140px !important;
+    border-radius: var(--radius-md);
+    margin-bottom: 8px;
+  }
+
+  .review-dish-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }

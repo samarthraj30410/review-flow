@@ -346,6 +346,20 @@ function generatePerDishReviews() {
 
 /* === Submit Food Review === */
 function submitFoodReview() {
+  // Validate: all ordered items must have a star rating
+  var unrated = [];
+  for (var key in itemCounts) {
+    if (itemCounts[key] > 0) {
+      if (!foodStarRatings[key] || foodStarRatings[key] === 0) {
+        unrated.push(key);
+      }
+    }
+  }
+  if (unrated.length > 0) {
+    showToast('⚠ RATE_REQUIRED: ' + unrated.join(', '));
+    return;
+  }
+
   var tags = [];
   var orderedItems = [];
   for (var key in itemCounts) {
@@ -381,6 +395,6 @@ function submitFoodReview() {
     summaryEl.innerHTML = tags.map(function(t) { return '<span class="review-tag">' + t + '</span>'; }).join('');
   }
 
-  showToast('Review submitted - thank you!');
+  showToast('✓ TRANSMISSION_COMPLETE');
   navigateTo('thankyou');
 }
