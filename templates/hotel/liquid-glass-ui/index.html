@@ -2530,11 +2530,10 @@
               foodStarRatings[key] = 0;
             }
             var html =
-              '<div class="form-group" style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px;">';
+              '<div class="review-dish-item glass-panel" style="margin-bottom: 16px; padding: 16px 24px; border-radius: var(--radius-lg); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center;">';
 
-            html += '<div style="flex-grow: 1;">';
             html +=
-              '<label class="form-label" style="font-size: 15px;">Rating for <b>' +
+              '<label class="review-dish-label" style="margin-bottom: 0;">Rating for <b>' +
               key +
               "</b></label>";
             html +=
@@ -2553,10 +2552,6 @@
                 ')">&#9733;</span>';
             }
             html += "</div>";
-            html += "</div>";
-
-
-
             html += "</div>";
             container.innerHTML += html;
           }

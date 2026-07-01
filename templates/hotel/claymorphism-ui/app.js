@@ -374,17 +374,14 @@ function generatePerDishReviews() {
       }
       var html = '<div class="form-group clay-card review-dish-card">';
       
-      html += '<div style="flex-grow: 1;">';
-      html += '<label class="review-dish-label">Rating for <b>' + key + '</b></label>';
-      html += '<div class="stars" id="stars-' + safeId + '" role="group">';
+      html += '<div class="review-dish-item clay-card" style="margin-bottom: 16px; border-radius: var(--radius-pill); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; width: 100%;">';
+      html += '<label class="review-dish-label" style="margin-bottom: 0;">Rating for <b>' + key + '</b></label>';
+      html += '<div class="stars" id="stars-' + sanitizeId(key) + '">';
       for (var i = 1; i <= 5; i++) {
         var activeClass = i <= foodStarRatings[key] ? 'active' : '';
         html += '<span class="star ' + activeClass + '" data-val="' + i + '" onclick="setFoodStars(\'' + key + '\', ' + i + ')">&#9733;</span>';
       }
       html += '</div>';
-      html += '</div>';
-      
-
       html += '</div>';
       container.innerHTML += html;
     }

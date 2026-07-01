@@ -396,19 +396,14 @@ function generatePerDishReviews() {
       if (typeof foodStarRatings[key] === 'undefined') {
         foodStarRatings[key] = 0;
       }
-      allHtml += '<div class="star-row" style="margin-bottom: 0;">';
-      
-      allHtml += '<div style="flex-grow: 1;">';
-      allHtml += '<div class="star-row-label" style="margin-bottom: 12px; font-size: 15px; font-weight: 600; color: var(--text-1);">Rating for ' + key + '</div>';
-      allHtml += '<div class="stars" id="stars-' + safeId + '" role="group" style="justify-content: flex-start;">';
+      allHtml += '<div class="star-row" style="margin-bottom: 16px;">';
+      allHtml += '<div class="star-row-label" style="font-size: 15px; font-weight: 600; color: var(--text-1);">Rating for ' + key + '</div>';
+      allHtml += '<div class="stars" id="stars-' + safeId + '" role="group" style="justify-content: flex-end;">';
       for (var i = 1; i <= 5; i++) {
         var activeClass = i <= foodStarRatings[key] ? 'active' : '';
         allHtml += '<span class="star ' + activeClass + '" data-val="' + i + '" onclick="setFoodStars(\'' + key + '\', ' + i + ')">&#9733;</span>';
       }
       allHtml += '</div>';
-      allHtml += '</div>';
-      
-
       allHtml += '</div>';
     }
   }
