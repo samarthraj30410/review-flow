@@ -25,6 +25,9 @@ function navigateTo(pageId) {
   }, 280);
 
   currentPage = pageId;
+  if (pageId === "choose" && typeof resetState === "function") {
+    resetState();
+  }
   if (pageId === 'food-review') { var rc = document.getElementById('review-item-count'); if (rc) rc.textContent = cart.length; } generatePerDishReviews();
   updateProgress(pageId);
   updateHeader(pageId);
@@ -222,8 +225,47 @@ function closePortal() {
     window.parent.postMessage({ type: "REVIEW_PORTAL_CLOSE" }, "*");
   } else {
     showToast("Thank you for your feedback!");
-    navigateTo("choose");
+    resetState();
+    navigateTo('choose');
   }
+}
+
+/* === Reset State === */
+function resetState() {
+  cart = [];
+  itemCounts = {};
+  foodStarRatings = {};
+  for (var k in starRatings) starRatings[k] = 0;
+
+  var cc = document.getElementById("cart-count");
+  if (cc) cc.textContent = "0";
+
+  document.querySelectorAll(".qty-count").forEach(function(el) {
+    el.textContent = "0";
+    el.style.fontWeight = "";
+  });
+  document.querySelectorAll(".qty-control .minus").forEach(function(btn) {
+    btn.disabled = true;
+  });
+
+  document.querySelectorAll(".star").forEach(function(s) {
+    s.classList.remove("active");
+    s.style.color = "";
+  });
+
+  var oe = document.getElementById("overall-experience");
+  if (oe) oe.value = 5;
+  var of = document.getElementById("overall-feedback");
+  if (of) of.value = "";
+  var mf = document.getElementById("management-feedback");
+  if (mf) mf.value = "";
+  
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+  var dff = document.getElementById("detailed-food-feedback");
+  if (dff) dff.value = "";
+  
+  var dyn = document.getElementById("dynamic-food-reviews");
+  if (dyn) dyn.innerHTML = "";
 }
 
 /* ─── Menu System Logic ──────────────────── */
@@ -433,7 +475,7 @@ function generatePerDishReviews() {
       }
       var html = '<div class="review-dish-item" style="margin-bottom: 20px; background: var(--surface-1); border: 4px solid #000; border-radius: 16px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 6px 6px 0px rgba(0,0,0,1);">';
       html += '<label class="review-dish-label" style="margin-bottom: 0;">Rating for <b>' + key + '</b></label>';
-      html += '<div class="stars" id="stars-' + sanitizeId(key) + '" role="group">';
+      html += '<div class="stars" id="stars-' + safeId + '" role="group">';
       for (var i = 1; i <= 5; i++) {
         var activeClass = i <= foodStarRatings[key] ? 'active' : '';
         html += '<span class="star ' + activeClass + '" data-val="' + i + '" onclick="setFoodStars(\'' + key + '\', ' + i + ')">&#9733;</span>';
