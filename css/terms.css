@@ -2,15 +2,28 @@
 
 /* Legal & Policy Pages Layout */
 .legal-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 140px 24px 80px;
+  padding: 140px 40px 80px;
 }
 
 .legal-header {
   margin-bottom: 40px;
   border-bottom: 1px solid var(--border-subtle);
   padding-bottom: 24px;
+  position: relative;
+}
+
+/* Blue accent underline on header */
+.legal-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: var(--accent-gradient);
+  border-radius: 2px;
 }
 
 .legal-header h1 {
@@ -40,6 +53,19 @@
   margin-top: 36px;
   margin-bottom: 16px;
   font-family: var(--font-heading);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Blue dot before legal h2 */
+.legal-content h2::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  flex-shrink: 0;
 }
 
 .legal-content h3 {
@@ -68,6 +94,10 @@
   font-size: 0.98rem;
 }
 
+.legal-content li::marker {
+  color: var(--accent);
+}
+
 .legal-content strong {
   color: var(--text-primary);
 }
@@ -90,12 +120,32 @@
   margin-bottom: 32px;
   transition: var(--transition);
   box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Blue accent stripe (left side) */
+.legal-section-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .legal-section-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent-border-hover);
   background-color: var(--bg-card-hover);
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--shadow-accent-hover);
+  transform: translateX(2px);
+}
+
+.legal-section-card:hover::before {
+  opacity: 1;
 }
 
 /* Key Highlights Grid */
@@ -125,15 +175,15 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--hero-title-gradient);
+  background: var(--accent-gradient);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .highlight-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent-border-hover);
   background-color: var(--bg-card-hover);
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--shadow-accent-hover);
   transform: translateY(-4px);
 }
 
@@ -145,17 +195,21 @@
   width: 52px;
   height: 52px;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+  background: var(--accent-glow);
+  border: 1px solid rgba(59, 130, 246, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 16px;
   color: var(--accent);
-  transition: transform 0.3s ease;
+  transition: var(--transition);
 }
 
 .highlight-card:hover .highlight-icon {
   transform: scale(1.1);
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
 }
 
 .highlight-card h3 {
@@ -183,9 +237,17 @@
   color: var(--text-primary);
 }
 
-/* Media Queries for Terms Page responsiveness */
+/* ===== Media Queries ===== */
+@media (max-width: 1024px) {
+  .legal-container {
+    max-width: 860px;
+    padding: 130px 32px 70px;
+  }
+}
+
 @media (max-width: 768px) {
   .legal-container {
+    max-width: 100%;
     padding: 100px 20px 60px;
   }
 
@@ -198,9 +260,17 @@
     font-size: 2rem;
   }
 
+  .legal-header::after {
+    width: 60px;
+  }
+
   .legal-section-card {
     padding: 24px;
     margin-bottom: 24px;
+  }
+
+  .legal-content h2 {
+    font-size: 1.3rem;
   }
 
   .terms-highlights {
@@ -218,8 +288,30 @@
     padding: 100px 16px 40px;
   }
 
+  .legal-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .legal-section-card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .legal-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .legal-content p,
+  .legal-content li {
+    font-size: 0.92rem;
+  }
+
   .terms-highlights {
     grid-template-columns: 1fr;
     gap: 14px;
+  }
+
+  .highlight-card {
+    padding: 20px 16px;
   }
 }

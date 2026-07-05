@@ -124,81 +124,280 @@
 
     <!-- Main Content -->
     <main class="about-container">
-      <div class="about-header">
-        <h1>Our Story</h1>
+      <div class="about-header reveal">
+        <h1>About ReviewFlo</h1>
         <p class="about-subtitle">
           Building serverless feedback pipelines that keep local storefronts
           growing without overhead costs.
         </p>
       </div>
 
-      <div class="about-content">
-        <div class="about-story-section">
-          <h2>Who We Are</h2>
+      <!-- Section 1: Our Mission -->
+      <section class="about-section" id="our-mission">
+        <div class="section-label">
+          <span class="section-number">01</span>
+          <span class="section-line"></span>
+        </div>
+        <div class="about-story-section reveal delay-1">
+          <h2>Our Mission</h2>
           <p>
-            At <strong>ReviewFlo</strong>, we design modern, minimalist review
-            collection tools specifically for local storefronts, cafés, salons,
-            clinics, and gyms. We believe that small businesses shouldn't have
-            to pay high recurring monthly fees to maintain a private database
-            and collect feedback.
+            At <strong>ReviewFlo</strong>, our mission is simple: to configure,
+            brand, and launch high-performance static websites that log customer
+            feedback directly to secure, private spreadsheets — all at
+            <strong>zero recurring cost</strong>.
           </p>
           <p>
-            Our mission is simple: to configure, brand, and launch
-            high-performance static websites that log customer feedback directly
-            to secure, private spreadsheets.
+            We believe small businesses shouldn't have to pay high recurring
+            monthly fees to maintain a private database and collect feedback.
+            That's why we design modern, minimalist review collection tools
+            specifically for local storefronts, cafés, salons, clinics, and
+            gyms.
+          </p>
+          <div class="mission-values">
+            <div class="mission-value-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Zero Maintenance
+            </div>
+            <div class="mission-value-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Privacy First
+            </div>
+            <div class="mission-value-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              No Database Fees
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Our Story -->
+      <section class="about-section" id="our-story">
+        <div class="section-label">
+          <span class="section-number">02</span>
+          <span class="section-line"></span>
+        </div>
+        <div class="about-story-section reveal delay-1">
+          <h2>Our Story</h2>
+          <p>
+            ReviewFlo was born from a simple frustration: small business owners
+            were spending $50–$100 every month just to keep a feedback system
+            online. Traditional solutions relied on complex databases and active
+            host instances — an unnecessary burden for a local café or salon.
+          </p>
+          <p>
+            We asked ourselves: <em>"What if feedback collection could be
+            completely free to run?"</em> By leveraging serverless edge
+            technologies — Vercel CDN, Cloudflare Workers, and Google Sheets
+            API — we built a pipeline that routes review payloads
+            instantaneously and safely, without server databases.
+          </p>
+          <p>
+            Today, ReviewFlo operates entirely on free-tier hosting, providing
+            local storefronts with a zero-maintenance model that costs
+            <strong>nothing</strong> to keep online. No servers, no databases,
+            no bills.
           </p>
         </div>
+      </section>
 
-        <div class="about-story-section">
-          <h2>Why Serverless?</h2>
-          <p>
-            Traditional feedback systems rely on complex databases and active
-            host instances, costing business owners up to $50–$100 every single
-            month just for server uptime. By utilizing serverless edge
-            technologies (Vercel CDN, Cloudflare Workers, and Google Sheets
-            API), we route review payloads instantaneously and safely without
-            server databases.
-          </p>
-          <p>
-            This design operates entirely on third-party free hosting tiers,
-            providing local storefronts with a zero-maintenance model that costs
-            nothing to keep online.
-          </p>
+      <!-- Section 3: Our Team -->
+      <section class="about-section" id="our-team">
+        <div class="section-label">
+          <span class="section-number">03</span>
+          <span class="section-line"></span>
+        </div>
+        <div class="about-team-header">
+          <h2>Our Team</h2>
+          <p class="team-subtitle">The people behind ReviewFlo</p>
         </div>
 
-        <div class="about-header" style="margin-top: 60px; margin-bottom: 20px">
+        <div class="team-grid">
+          <!-- Team Member 1: Samarth Raj -->
+          <div class="team-card reveal-scale delay-1" id="team-samarth">
+            <a href="#" class="team-photo-link" aria-label="Samarth Raj photo">
+              <div class="team-photo">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+            </a>
+            <div class="team-info">
+              <h3>Samarth Raj</h3>
+              <p class="team-role">Founder of ReviewFlo</p>
+              <div class="team-badges">
+                <span class="team-badge">UI/UX Designer</span>
+                <span class="team-badge">Front-End Developer</span>
+              </div>
+            </div>
+            <div class="team-socials">
+              <a href="#" class="social-btn" aria-label="Samarth Raj GitHub" title="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="Samarth Raj Instagram" title="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="Samarth Raj Gmail" title="Gmail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Team Member 2: Happy Gupta -->
+          <div class="team-card reveal-scale delay-2" id="team-happy">
+            <a href="#" class="team-photo-link" aria-label="Happy Gupta photo">
+              <div class="team-photo">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+            </a>
+            <div class="team-info">
+              <h3>Happy Gupta</h3>
+              <p class="team-role">Co-Founder of ReviewFlo</p>
+              <div class="team-badges">
+                <span class="team-badge">Lead Developer</span>
+                <span class="team-badge">Backend Developer</span>
+              </div>
+            </div>
+            <div class="team-socials">
+              <a href="#" class="social-btn" aria-label="Happy Gupta GitHub" title="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="Happy Gupta Instagram" title="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </a>
+              <a href="#" class="social-btn" aria-label="Happy Gupta Gmail" title="Gmail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Core Values -->
+      <section class="about-section" id="core-values">
+        <div class="section-label">
+          <span class="section-number">04</span>
+          <span class="section-line"></span>
+        </div>
+        <div class="about-team-header" style="margin-bottom: 32px">
           <h2>Our Core Values</h2>
+          <p class="team-subtitle">The principles that drive everything we build</p>
         </div>
 
         <div class="about-section-grid">
-          <div class="about-card">
-            <h3>Performance</h3>
+          <!-- 1. Performance -->
+          <div class="about-card reveal-scale delay-1">
+            <div class="card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            <h3>Blazing Performance</h3>
             <p>
-              Sub-second page load speeds built via static delivery systems,
-              ensuring your customers never walk away from leaving a review due
-              to slow performance.
+              Sub-second page loads powered by static CDN delivery. Your customers
+              get an instant, frictionless experience — no spinners, no waiting,
+              no abandoned reviews.
             </p>
           </div>
 
-          <div class="about-card">
-            <h3>Privacy-First</h3>
+          <!-- 2. Privacy-First -->
+          <div class="about-card reveal-scale delay-2">
+            <div class="card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>Privacy-First Design</h3>
             <p>
-              Customer submissions bypass centralized third-party servers and
-              stream directly to your business spreadsheet, guaranteeing
-              ownership and user privacy.
+              Every customer submission flows directly to your private spreadsheet —
+              no third-party databases, no data brokers, no tracking pixels.
+              You own 100% of your data, always.
             </p>
           </div>
 
-          <div class="about-card">
-            <h3>No Overhead</h3>
+          <!-- 3. Zero Overhead -->
+          <div class="about-card reveal-scale delay-3">
+            <div class="card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <h3>Zero Overhead Costs</h3>
             <p>
-              By designing on globally cached edge templates, we eliminate
-              monthly database fees completely, transferring full code ownership
-              directly to you.
+              No monthly server bills, no database hosting fees, no hidden charges.
+              Our edge-deployed architecture runs on free-tier infrastructure,
+              saving you $50–$100+ every month compared to traditional solutions.
+            </p>
+          </div>
+
+          <!-- 4. Simplicity -->
+          <div class="about-card reveal-scale delay-4">
+            <div class="card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+              </svg>
+            </div>
+            <h3>Radical Simplicity</h3>
+            <p>
+              No admin dashboards to learn, no plugins to install, no CMS to maintain.
+              We hand you a clean, branded static site and a spreadsheet — that's it.
+              If you can read a spreadsheet, you can run ReviewFlo.
+            </p>
+          </div>
+
+          <!-- 5. Full Ownership -->
+          <div class="about-card reveal-scale delay-5">
+            <div class="card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <h3>Full Code Ownership</h3>
+            <p>
+              Every line of code we write is yours. No vendor lock-in, no proprietary
+              platforms, no subscription traps. Fork it, modify it, host it wherever
+              you want — we transfer complete ownership on delivery.
+            </p>
+          </div>
+
+          <!-- 6. Reliability -->
+          <div class="about-card reveal-scale delay-6">
+            <div class="card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3>Always-On Reliability</h3>
+            <p>
+              Static sites don't crash. Deployed across global CDN edge nodes,
+              your feedback page stays online 24/7 with 99.99% uptime — even
+              during traffic surges or server outages that would take down
+              traditional systems.
             </p>
           </div>
         </div>
-      </div>
+      </section>
     </main>
 
     <!-- Footer -->
@@ -216,7 +415,7 @@
           <li><a href="index.html#customers">Customers</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="manifesto.html">Manifesto</a></li>
-          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
@@ -227,5 +426,6 @@
     </footer>
 
     <script src="js/about.js"></script>
+    <script src="js/side-pages.js"></script>
   </body>
 </html>

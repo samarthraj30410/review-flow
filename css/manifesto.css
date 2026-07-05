@@ -2,9 +2,9 @@
 
 /* Manifesto Page Layout */
 .manifesto-container {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 140px 24px 80px;
+  padding: 140px 40px 80px;
 }
 
 .manifesto-header {
@@ -13,9 +13,9 @@
 }
 
 .manifesto-header h1 {
-  font-size: 3rem;
-  line-height: 1.2;
-  margin-bottom: 16px;
+  font-size: 3.2rem;
+  line-height: 1.15;
+  margin-bottom: 18px;
   background: var(--hero-title-gradient);
   -webkit-background-clip: text;
   background-clip: text;
@@ -24,9 +24,10 @@
 
 .manifesto-subtitle {
   color: var(--text-secondary);
-  font-size: 1.15rem;
-  max-width: 600px;
+  font-size: 1.2rem;
+  max-width: 700px;
   margin: 0 auto;
+  line-height: 1.7;
 }
 
 .manifesto-content {
@@ -38,38 +39,121 @@
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  padding: 40px;
+  padding: 44px;
   margin-bottom: 48px;
   box-shadow: var(--shadow-md);
   transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Blue accent stripe on top of each card */
+.manifesto-story-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .manifesto-story-section:hover {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent-border-hover);
   background-color: var(--bg-card-hover);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--shadow-accent-hover);
+}
+
+.manifesto-story-section:hover::before {
+  opacity: 1;
 }
 
 .manifesto-story-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 16px;
+  font-size: 1.85rem;
+  margin-bottom: 18px;
   color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Blue dot before h2 */
+.manifesto-story-section h2::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--accent-glow);
 }
 
 .manifesto-story-section p {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.05rem;
   margin-bottom: 16px;
+  line-height: 1.75;
 }
 
 .manifesto-story-section p:last-child {
   margin-bottom: 0;
 }
 
-/* Media Queries for Manifesto Page responsiveness */
+/* Blue glow on hover for cards with glow-tilt */
+.glow-tilt {
+  --glow-x: 50%;
+  --glow-y: 50%;
+}
+
+.glow-tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--glow-x) var(--glow-y),
+    rgba(59, 130, 246, 0.06),
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.glow-tilt:hover::after {
+  opacity: 1;
+}
+
+html[data-theme="light"] .glow-tilt::after {
+  background: radial-gradient(
+    400px circle at var(--glow-x) var(--glow-y),
+    rgba(37, 99, 235, 0.04),
+    transparent 60%
+  );
+}
+
+/* ===== Media Queries ===== */
+@media (max-width: 1024px) {
+  .manifesto-container {
+    max-width: 960px;
+    padding: 130px 32px 70px;
+  }
+
+  .manifesto-header h1 {
+    font-size: 2.8rem;
+  }
+
+  .manifesto-story-section {
+    padding: 36px;
+  }
+}
+
 @media (max-width: 768px) {
   .manifesto-container {
+    max-width: 100%;
     padding: 100px 20px 60px;
   }
 
@@ -83,6 +167,7 @@
 
   .manifesto-subtitle {
     font-size: 1rem;
+    max-width: 100%;
   }
 
   .manifesto-story-section {
@@ -93,10 +178,37 @@
   .manifesto-story-section h2 {
     font-size: 1.5rem;
   }
+
+  .manifesto-story-section p {
+    font-size: 0.95rem;
+  }
 }
 
 @media (max-width: 480px) {
   .manifesto-container {
     padding: 100px 16px 40px;
+  }
+
+  .manifesto-header h1 {
+    font-size: 1.85rem;
+  }
+
+  .manifesto-story-section {
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .manifesto-story-section h2 {
+    font-size: 1.3rem;
+    gap: 8px;
+  }
+
+  .manifesto-story-section h2::before {
+    width: 6px;
+    height: 6px;
+  }
+
+  .manifesto-story-section p {
+    font-size: 0.9rem;
   }
 }
