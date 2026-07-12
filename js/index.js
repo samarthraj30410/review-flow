@@ -277,6 +277,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const svgStarFilled = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
       const svgStarHalf = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><defs><clipPath id="half-clip"><rect x="0" y="0" width="12" height="24"/></clipPath></defs><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" clip-path="url(#half-clip)"/><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
       const svgStarEmpty = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+
+      const fullStars = Math.floor(customer.rating);
+      const halfStar = customer.rating % 1 >= 0.5;
+
       const starsStr =
         svgStarFilled.repeat(fullStars) +
         (halfStar ? svgStarHalf : "") +
@@ -347,6 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCustomers();
 
   // --- 8. Mobile Menu Toggle ---
+
   const menuToggle = document.getElementById("mobile-menu-toggle");
   const mobileNavLinks = document.querySelector(".nav-links");
 
@@ -354,25 +359,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const hamburgerIcon = menuToggle.querySelector(".hamburger-icon");
     const closeIcon = menuToggle.querySelector(".close-icon");
 
-    menuToggle.addEventListener("click", () => {
-      const isActive = mobileNavLinks.classList.toggle("active");
+    const setMenuState = (isActive) => {
+      mobileNavLinks.classList.toggle("active", isActive);
+      hamburgerIcon.style.display = isActive ? "none" : "block";
+      closeIcon.style.display = isActive ? "block" : "none";
+    };
 
-      if (isActive) {
-        hamburgerIcon.style.display = "none";
-        closeIcon.style.display = "block";
-      } else {
-        hamburgerIcon.style.display = "block";
-        closeIcon.style.display = "none";
+    menuToggle.addEventListener("click", () => {
+      const isActive = !mobileNavLinks.classList.contains("active");
+      setMenuState(isActive);
+    });
+
+    // Close menu when a nav link (or the mobile CTA) is clicked
+    mobileNavLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenuState(false));
+    });
+
+    // Close menu when clicking outside of it
+    document.addEventListener("click", (e) => {
+      const isClickInsideMenu = mobileNavLinks.contains(e.target);
+      const isClickOnToggle = menuToggle.contains(e.target);
+      if (
+        mobileNavLinks.classList.contains("active") &&
+        !isClickInsideMenu &&
+        !isClickOnToggle
+      ) {
+        setMenuState(false);
       }
     });
 
-    // Close mobile menu when clicking a link
-    mobileNavLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileNavLinks.classList.remove("active");
-        hamburgerIcon.style.display = "block";
-        closeIcon.style.display = "none";
-      });
+    // Close menu on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && mobileNavLinks.classList.contains("active")) {
+        setMenuState(false);
+      }
     });
   }
 });
