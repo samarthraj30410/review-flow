@@ -1,4 +1,4 @@
-/* ─── State ─────────────────────────────── */
+﻿/* ─── State ─────────────────────────────── */
 const starRatings = { cleanliness: 0, comfort: 0, amenities: 0, wifi: 0 };
 let currentPage = "choose";
 
@@ -56,7 +56,7 @@ function updateProgress(pageId) {
       show: true,
       pct: 100,
       step: "Completed!",
-      label: "✓ Submitted",
+      label: "[OK] Submitted",
     },
   };
 
@@ -159,7 +159,7 @@ function submitReview(type) {
       .map((t) => `<span class="review-tag">${t}</span>`)
       .join("");
   }
-  showToast("✓ Review submitted — thank you!");
+  showToast("[OK] Review submitted — thank you!");
   navigateTo("thankyou");
 }
 
@@ -198,7 +198,7 @@ function buildSummaryTags(type) {
   if (type === "hotel") {
     Object.entries(starRatings).forEach(([k, v]) => {
       if (v > 0)
-        tags.push(k[0].toUpperCase() + k.slice(1) + ": " + "★".repeat(v));
+        tags.push(k[0].toUpperCase() + k.slice(1) + ": " + "*".repeat(v));
     });
     const oe = document.getElementById("overall-experience");
     if (oe) tags.push("Overall: " + oe.value + "/10");
@@ -307,7 +307,7 @@ function addToOrder(itemName, btnElement, event) {
   cart.push(itemName);
   itemCounts[itemName] = (itemCounts[itemName] || 0) + 1;
   document.getElementById("cart-count").textContent = cart.length;
-  showToast("✓ Added " + itemName + " to order");
+  showToast("[OK] Added " + itemName + " to order");
 
   if (btnElement) {
     const originalText =

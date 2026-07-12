@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Nexus Tower Hotel — Neo Cyberpunk Guest Review System
  *
  * Configuration & Event Handlers
@@ -350,7 +350,7 @@ function submitFoodReview() {
     }
   }
   if (unrated.length > 0) {
-    showToast('⚠ RATE_REQUIRED: ' + unrated.join(', '));
+    showToast('[!] RATE_REQUIRED: ' + unrated.join(', '));
     return;
   }
 
@@ -389,6 +389,6 @@ function submitFoodReview() {
     summaryEl.innerHTML = tags.map(function(t) { return '<span class="review-tag">' + t + '</span>'; }).join('');
   }
 
-  showToast('✓ TRANSMISSION_COMPLETE');
+  showToast('[OK] TRANSMISSION_COMPLETE');
   navigateTo('thankyou');
 }
