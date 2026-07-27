@@ -277,6 +277,7 @@ a {
 .main-nav.scrolled {
   background: transparent;
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   padding: 12px 48px;
 }
