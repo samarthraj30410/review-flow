@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="The Puffy Cloud Cafe — A cozy corner for premium specialty coffee, delectable pastries, and warm ambience. Visit us today.">
+    <title>The Puffy Cloud Cafe — Premium Coffee & Cozy Vibes</title>
+    <link rel="stylesheet" href="/website-pages/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+
+    <!-- Cursor Glow (CPU-based, no particles) -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- ══════════════════════════════════════
+         NAVIGATION
+    ══════════════════════════════════════ -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-logo">
+            <div class="nav-pill">
+                <div class="nav-logo-icon">☁️</div>
+                <span class="nav-logo-text">Puffy Cloud</span>
+            </div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-pill"><a href="#home">Home</a></li>
+            <li class="nav-pill"><a href="#about">About</a></li>
+            <li class="nav-pill"><a href="#menu">Menu</a></li>
+            <li class="nav-pill"><a href="#gallery">Gallery</a></li>
+            <li class="nav-pill"><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact" class="nav-cta">Visit Us</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- ══════════════════════════════════════
+         SECTION 1 — HERO (Dark, with Laptop)
+    ══════════════════════════════════════ -->
+    <section class="hero-section" id="home">
+        <!-- Background orbs -->
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="badge-dot"></div>
+                <span>Now Open — Serving Daily</span>
+            </div>
+
+            <h1 class="hero-title">
+                Experience the<br>
+                <span class="accent-text">Heart of Our Cafe</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Step into a cozy atmosphere where every cup tells a story.
+                Join us for unique brews and delightful treats that make every visit special.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="btn-clay-primary"
+                    onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+                    Explore Menu ☕
+                </button>
+                <button class="btn-clay-secondary"
+                    onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+                    Our Story →
+                </button>
+            </div>
+        </div>
+
+        <!-- Laptop Mockup -->
+        <div class="laptop-mockup-wrapper">
+            <div class="laptop-mockup">
+                <!-- Floating badges -->
+                <div class="laptop-float-badge badge-rating reveal-right">
+                    <div class="badge-icon">⭐</div>
+                    <div class="badge-text">
+                        <span class="badge-label">Rating</span>
+                        <span class="badge-value">4.9 / 5.0</span>
+                    </div>
+                </div>
+                <div class="laptop-float-badge badge-open reveal-left">
+                    <div class="badge-icon">🕐</div>
+                    <div class="badge-text">
+                        <span class="badge-label">Open Now</span>
+                        <span class="badge-value">7AM – 11PM</span>
+                    </div>
+                </div>
+
+                <div class="laptop-screen">
+                    <div class="laptop-screen-inner">
+                        <img src="images/cafe-hero.png"
+                            alt="The Puffy Cloud Cafe Interior — cozy ambience with warm lighting" loading="eager">
+                        <div class="laptop-screen-overlay"></div>
+                    </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="laptop-hinge"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PARTNERS MARQUEE
+    ══════════════════════════════════════ -->
+    <div class="partners-strip" aria-label="Trusted by cafes worldwide">
+        <div class="partners-inner" id="partnersMarquee">
+            <span>CafeBabel</span>
+            <span>Coffee#1</span>
+            <span>Jacobs</span>
+            <span>The Coffee House</span>
+            <span>Bean Bros</span>
+            <span>Roast Republic</span>
+            <span>Cloud Brew Co</span>
+            <span>Velvet Sip</span>
+            <!-- Duplicated for seamless loop -->
+            <span>CafeBabel</span>
+            <span>Coffee#1</span>
+            <span>Jacobs</span>
+            <span>The Coffee House</span>
+            <span>Bean Bros</span>
+            <span>Roast Republic</span>
+            <span>Cloud Brew Co</span>
+            <span>Velvet Sip</span>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SECTION 2 — ABOUT
+    ══════════════════════════════════════ -->
+    <section class="about-section" id="about">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-text reveal-left">
+                    <div class="section-label">
+                        <span class="label-dot"></span>
+                        About Us
+                    </div>
+                    <h2>
+                        A cozy corner—<br>
+                        for <span class="accent-text">good coffee</span>
+                    </h2>
+                    <p>
+                        Every cup we brew is a quiet invitation to slow down and find comfort.
+                        At The Puffy Cloud Cafe, we source premium beans from the finest farms,
+                        roast them to perfection, and serve them in a space designed for warmth
+                        and connection.
+                    </p>
+
+                    <div class="about-features">
+                        <div class="about-feature-item">
+                            <div class="about-feature-icon">🫘</div>
+                            <div class="about-feature-content">
+                                <h4>Premium Beans</h4>
+                                <p>Sourced from the finest farms, roasted to perfection.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature-item delay-1">
+                            <div class="about-feature-icon">🛋️</div>
+                            <div class="about-feature-content">
+                                <h4>Nice Ambience</h4>
+                                <p>A cozy space for work, relaxation, or catching up with friends.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature-item delay-2">
+                            <div class="about-feature-icon">💜</div>
+                            <div class="about-feature-content">
+                                <h4>Made with Love</h4>
+                                <p>Every drink crafted by passionate baristas who care.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-image-wrap reveal-right">
+                    <div class="about-image-main">
+                        <img src="images/cafe-exterior.png" alt="The Puffy Cloud Cafe exterior at twilight"
+                            loading="lazy">
+                    </div>
+                    <div class="about-image-float reveal-scale delay-3">
+                        <img src="images/coffee-latte.png" alt="Beautiful latte art" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         STATS BAR
+    ══════════════════════════════════════ -->
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item reveal delay-1">
+                <div class="stat-number" data-count="48">0</div>
+                <div class="stat-label">Locations</div>
+            </div>
+            <div class="stat-item reveal delay-2">
+                <div class="stat-number" data-count="120">0</div>
+                <div class="stat-label">Employees</div>
+            </div>
+            <div class="stat-item reveal delay-3">
+                <div class="stat-number" data-count="10">0</div>
+                <div class="stat-label">Years in Business</div>
+            </div>
+            <div class="stat-item reveal delay-4">
+                <div class="stat-number" data-count="50000">0</div>
+                <div class="stat-label">Cups Served Daily</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SECTION 3 — CATEGORY / SERVE
+    ══════════════════════════════════════ -->
+    <section class="serve-section" id="menu">
+        <div class="section-container">
+            <div class="serve-header reveal">
+                <div class="section-label">
+                    <span class="label-dot"></span>
+                    Category
+                </div>
+                <h2>
+                    Ready to serve you<br>
+                    <span class="accent-text">something good.</span>
+                </h2>
+                <p>Explore our carefully curated menu of specialty coffee, handcrafted treats, and hearty meals.</p>
+            </div>
+
+            <div class="category-grid">
+                <div class="category-card reveal-scale delay-1">
+                    <div class="category-img">
+                        <img src="images/coffee-latte.png" alt="Coffee — specialty brews and lattes" loading="lazy">
+                        <span class="category-number">/01</span>
+                    </div>
+                    <div class="category-info">
+                        <h3>Coffee</h3>
+                        <a href="#" class="category-link">view more →</a>
+                    </div>
+                </div>
+
+                <div class="category-card reveal-scale delay-2">
+                    <div class="category-img">
+                        <img src="images/cold-brew.png" alt="Non-Coffee — cold brews and refreshments" loading="lazy">
+                        <span class="category-number">/02</span>
+                    </div>
+                    <div class="category-info">
+                        <h3>Non Coffee</h3>
+                        <a href="#" class="category-link">view more →</a>
+                    </div>
+                </div>
+
+                <div class="category-card reveal-scale delay-3">
+                    <div class="category-img">
+                        <img src="images/pastries.png" alt="Cakes — freshly baked pastries and cakes" loading="lazy">
+                        <span class="category-number">/03</span>
+                    </div>
+                    <div class="category-info">
+                        <h3>Cakes</h3>
+                        <a href="#" class="category-link">view more →</a>
+                    </div>
+                </div>
+
+                <div class="category-card reveal-scale delay-4">
+                    <div class="category-img">
+                        <img src="images/sandwich.png" alt="Meals — gourmet sandwiches and salads" loading="lazy">
+                        <span class="category-number">/04</span>
+                    </div>
+                    <div class="category-info">
+                        <h3>Meals</h3>
+                        <a href="#" class="category-link">view more →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 4 — BESTSELLERS / PRODUCTS
+    ══════════════════════════════════════ -->
+    <section class="products-section">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+
+        <div class="products-header reveal">
+            <div class="section-label">
+                <span class="label-dot" style="background: var(--accent-tertiary);"></span>
+                Our Bestsellers
+            </div>
+            <h2>Explore Recent Products</h2>
+            <p>Showcasing the latest additions and favorites from our collection.</p>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card reveal delay-1">
+                <div class="product-img">
+                    <img src="images/espresso-cup.png" alt="Classic Espresso — rich and bold" loading="lazy">
+                    <span class="product-tag">Popular</span>
+                </div>
+                <div class="product-info">
+                    <h3>Classic Espresso</h3>
+                    <p>Rich, bold shot of pure espresso with a golden crema.</p>
+                    <div class="product-footer">
+                        <span class="product-price">$4.50</span>
+                        <button class="product-add-btn" aria-label="Add to order">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal delay-2">
+                <div class="product-img">
+                    <img src="images/coffee-latte.png" alt="Lavender Latte — artisan specialty" loading="lazy">
+                    <span class="product-tag">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Lavender Latte</h3>
+                    <p>Silky smooth latte infused with organic lavender essence.</p>
+                    <div class="product-footer">
+                        <span class="product-price">$6.00</span>
+                        <button class="product-add-btn" aria-label="Add to order">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal delay-3">
+                <div class="product-img">
+                    <img src="images/cold-brew.png" alt="Midnight Cold Brew — refreshing iced coffee" loading="lazy">
+                    <span class="product-tag">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Midnight Cold Brew</h3>
+                    <p>Slow-steeped 16 hours for an ultra-smooth, refreshing finish.</p>
+                    <div class="product-footer">
+                        <span class="product-price">$5.50</span>
+                        <button class="product-add-btn" aria-label="Add to order">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 5 — WHY DIFFERENT (Features)
+    ══════════════════════════════════════ -->
+    <section class="features-section">
+        <div class="section-container">
+            <div class="features-header reveal">
+                <div class="section-label">
+                    <span class="label-dot"></span>
+                    Why We Are Different
+                </div>
+                <h2>There's Some Reason Why You<br>Must Try Our Beans</h2>
+                <p>We go beyond just coffee — every detail is crafted for an exceptional experience.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card reveal delay-1">
+                    <div class="feature-icon">🔥</div>
+                    <h3>Roasted to Perfection</h3>
+                    <p>Expertly roasted to highlight each bean's unique profile, delivering a consistently great cup.
+                    </p>
+                </div>
+
+                <div class="feature-card reveal delay-2">
+                    <div class="feature-icon">👨‍🍳</div>
+                    <h3>Artisan Roasting</h3>
+                    <p>Our artisan roasters perfect each batch, unlocking the beans' unique potential.</p>
+                </div>
+
+                <div class="feature-card reveal delay-3">
+                    <div class="feature-icon">🌱</div>
+                    <h3>From Farm to Cup</h3>
+                    <p>Sourced from the finest farms through ethical and sustainable practices.</p>
+                </div>
+
+                <div class="feature-card reveal delay-4">
+                    <div class="feature-icon">✨</div>
+                    <h3>Quality Commitment</h3>
+                    <p>We preserve the beans' natural flavors through meticulous processing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 6 — GALLERY
+    ══════════════════════════════════════ -->
+    <section class="gallery-section" id="gallery">
+        <div class="section-container">
+            <div class="gallery-header reveal">
+                <div class="section-label">
+                    <span class="label-dot"></span>
+                    Gallery
+                </div>
+                <h2>Our Cozy Moments</h2>
+                <p>Every cup tells a story. Here's a look at the cozy spaces and brews we take pride in.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item reveal-scale delay-1">
+                    <img src="images/cafe-ambience.png" alt="Cozy reading corner inside the cafe" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span>Our Cozy Reading Nook</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale delay-2">
+                    <img src="images/coffee-latte.png" alt="Handcrafted latte art" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span>Latte Art Perfection</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale delay-3">
+                    <img src="images/pastries.png" alt="Freshly baked pastry selection" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span>Fresh Baked Daily</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale delay-4">
+                    <img src="images/cafe-hero.png" alt="Warm cafe interior with barista" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span>The Heart of Our Cafe</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale delay-5">
+                    <img src="images/espresso-cup.png" alt="Perfect espresso shot" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span>The Perfect Shot</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 7 — TESTIMONIALS
+    ══════════════════════════════════════ -->
+    <section class="testimonials-section" id="reviews">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="testimonials-header reveal">
+            <div class="section-label">
+                <span class="label-dot" style="background: var(--accent-tertiary);"></span>
+                What Our Clients Think
+            </div>
+            <h2>Loved by Coffee Lovers</h2>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal delay-1">
+                <div class="testimonial-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <blockquote>
+                    "I absolutely love this coffee house! The atmosphere is cozy and inviting,
+                    and the coffee is some of the best I've ever had. The staff is always friendly
+                    and welcoming."
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">E</div>
+                    <div>
+                        <div class="testimonial-name">Emma Garcia</div>
+                        <div class="testimonial-role">Regular Customer</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal delay-2">
+                <div class="testimonial-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <blockquote>
+                    "I'm so glad I discovered this coffee house! The quality of the drinks is
+                    outstanding, and the selection of baked goods is impressive. It's my go-to
+                    spot for remote work."
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">O</div>
+                    <div>
+                        <div class="testimonial-name">Oliver Martinez</div>
+                        <div class="testimonial-role">Freelance Designer</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal delay-3">
+                <div class="testimonial-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <blockquote>
+                    "I can't say enough good things about this coffee house! The decor is
+                    absolutely stunning, with a relaxing atmosphere, and the coffee is consistently
+                    a delight."
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">M</div>
+                    <div>
+                        <div class="testimonial-name">Mason Wilson</div>
+                        <div class="testimonial-role">Food Blogger</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 8 — CTA BANNER
+    ══════════════════════════════════════ -->
+    <section class="cta-section" id="contact">
+        <div class="cta-card reveal-scale">
+            <h2>Find Out Our<br>Exclusive Membership</h2>
+            <p>
+                Join our exclusive club and enjoy special discounts, early access to new menu items,
+                and members-only events like coffee tastings and cupcake decorating classes.
+            </p>
+            <button class="cta-btn">Join Now ☁️</button>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="nav-logo">
+                    <div class="nav-logo-icon">☁️</div>
+                    <span class="nav-logo-text">Puffy Cloud</span>
+                </div>
+                <p>
+                    The Puffy Cloud Cafe — where every cup is a premium experience.
+                    Come, savor the difference. A cozy, welcoming space for work,
+                    relaxation, or catching up with friends.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="#">Coffee</a></li>
+                    <li><a href="#">Non Coffee</a></li>
+                    <li><a href="#">Pastries</a></li>
+                    <li><a href="#">Meals</a></li>
+                    <li><a href="#">Seasonal Specials</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 The Puffy Cloud Cafe. All rights reserved.</p>
+            <p>Made from heart, served with soul. 💜</p>
+        </div>
+    </footer>
+
+    <script src="/website-pages/script.js"></script>
+</body>
+
+</html>
