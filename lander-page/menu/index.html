@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Browse The Puffy Cloud Cafe menu — specialty coffee, artisan lattes, handcrafted pastries, gourmet sandwiches, and seasonal specials.">
+    <title>Our Menu — The Puffy Cloud Cafe</title>
+    <link rel="stylesheet" href="/lander-page/style.css">
+    <link rel="stylesheet" href="/lander-page/menu/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- ══════════════════════════════════════
+         NAVIGATION
+    ══════════════════════════════════════ -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-logo">
+            <div class="nav-pill">
+                <div class="nav-logo-icon">☁️</div>
+                <a href="/lander-page/index.html" class="nav-logo-text">Puffy Cloud</a>
+            </div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-pill"><a href="/lander-page/index.html">Home</a></li>
+            <li class="nav-pill"><a href="/lander-page/about/">About</a></li>
+            <li class="nav-pill"><a href="/lander-page/menu/">Menu</a></li>
+            <li class="nav-pill"><a href="/lander-page/contact/">Contact</a></li>
+            <li><a href="/lander-page/contact/" class="nav-cta">Visit Us</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- ══════════════════════════════════════
+         PAGE HERO — Menu
+    ══════════════════════════════════════ -->
+    <section class="page-hero" id="pageHero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="page-hero-content">
+            <div class="hero-badge">
+                <div class="badge-dot"></div>
+                <span>Updated Daily</span>
+            </div>
+            <h1 class="hero-title">
+                Our <span class="accent-text">Menu</span>
+            </h1>
+            <p class="hero-subtitle">
+                From signature espressos to seasonal delights — explore our carefully curated collection of drinks, treats, and meals.
+            </p>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         CATEGORY FILTER TABS
+    ══════════════════════════════════════ -->
+    <section class="menu-filter-section">
+        <div class="filter-bar" id="filterBar">
+            <button class="filter-tab active" data-category="all">All</button>
+            <button class="filter-tab" data-category="coffee">☕ Coffee</button>
+            <button class="filter-tab" data-category="non-coffee">🧊 Non-Coffee</button>
+            <button class="filter-tab" data-category="pastries">🍰 Pastries</button>
+            <button class="filter-tab" data-category="meals">🥪 Meals</button>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         MENU ITEMS — Coffee
+    ══════════════════════════════════════ -->
+    <section class="menu-category-section" data-section="coffee" id="coffeeSection">
+        <div class="section-container">
+            <div class="menu-category-header reveal">
+                <div class="section-label">
+                    <span class="label-dot"></span>
+                    Coffee
+                </div>
+                <h2>Signature <span class="accent-text">Coffee</span></h2>
+                <p>Bold, smooth, and always freshly brewed — our coffee selection is the heart of the menu.</p>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item-card reveal delay-1" data-category="coffee">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/espresso-cup.png" alt="Classic Espresso" loading="lazy">
+                        <span class="menu-item-badge">Popular</span>
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Classic Espresso</h3>
+                            <span class="menu-item-price">$4.50</span>
+                        </div>
+                        <p>Rich, bold shot of pure espresso with a golden crema. Served as a single or double.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Hot</span>
+                            <span class="item-tag">Bold</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card reveal delay-2" data-category="coffee">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/coffee-latte.png" alt="Lavender Latte" loading="lazy">
+                        <span class="menu-item-badge new">New</span>
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Lavender Latte</h3>
+                            <span class="menu-item-price">$6.00</span>
+                        </div>
+                        <p>Silky smooth latte infused with organic lavender essence and steamed oat milk.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Hot</span>
+                            <span class="item-tag">Floral</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card reveal delay-3" data-category="coffee">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/espresso-cup.png" alt="Cappuccino" loading="lazy">
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Cloud Cappuccino</h3>
+                            <span class="menu-item-price">$5.50</span>
+                        </div>
+                        <p>Equal parts espresso, steamed milk, and velvety foam — our signature version with a hint of vanilla.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Hot</span>
+                            <span class="item-tag">Creamy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card reveal delay-4" data-category="coffee">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/coffee-latte.png" alt="Caramel Macchiato" loading="lazy">
+                        <span class="menu-item-badge bestseller">Bestseller</span>
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Caramel Macchiato</h3>
+                            <span class="menu-item-price">$5.75</span>
+                        </div>
+                        <p>Espresso layered with vanilla syrup, steamed milk, and house-made caramel drizzle.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Hot / Iced</span>
+                            <span class="item-tag">Sweet</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card reveal delay-5" data-category="coffee">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/espresso-cup.png" alt="Mocha" loading="lazy">
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Velvet Mocha</h3>
+                            <span class="menu-item-price">$6.25</span>
+                        </div>
+                        <p>Rich espresso with Belgian dark chocolate, steamed milk, and topped with whipped cream.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Hot</span>
+                            <span class="item-tag">Chocolatey</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card reveal delay-6" data-category="coffee">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/coffee-latte.png" alt="Flat White" loading="lazy">
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Flat White</h3>
+                            <span class="menu-item-price">$5.25</span>
+                        </div>
+                        <p>Double ristretto with micro-foamed milk for a perfectly balanced, velvety coffee.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Hot</span>
+                            <span class="item-tag">Smooth</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         MENU ITEMS — Non-Coffee
+    ══════════════════════════════════════ -->
+    <section class="menu-category-section menu-dark" data-section="non-coffee" id="nonCoffeeSection">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+
+        <div class="section-container">
+            <div class="menu-category-header reveal">
+                <div class="section-label dark-label">
+                    <span class="label-dot" style="background: var(--accent-tertiary);"></span>
+                    Non-Coffee
+                </div>
+                <h2>Refreshing <span class="accent-text">Alternatives</span></h2>
+                <p>Not a coffee person? We've got you covered with teas, smoothies, and iced refreshers.</p>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item-card dark-card reveal delay-1" data-category="non-coffee">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/cold-brew.png" alt="Midnight Cold Brew" loading="lazy">
+                        <span class="menu-item-badge bestseller">Bestseller</span>
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Midnight Cold Brew</h3>
+                            <span class="menu-item-price">$5.50</span>
+                        </div>
+                        <p>Slow-steeped 16 hours for an ultra-smooth, refreshing finish with hints of chocolate.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Iced</span>
+                            <span class="item-tag">Smooth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card dark-card reveal delay-2" data-category="non-coffee">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/cold-brew.png" alt="Matcha Cloud Latte" loading="lazy">
+                        <span class="menu-item-badge new">New</span>
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Matcha Cloud Latte</h3>
+                            <span class="menu-item-price">$6.50</span>
+                        </div>
+                        <p>Ceremonial-grade matcha whisked with oat milk and topped with our cloud foam.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Hot / Iced</span>
+                            <span class="item-tag">Earthy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card dark-card reveal delay-3" data-category="non-coffee">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/cold-brew.png" alt="Berry Bliss Smoothie" loading="lazy">
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Berry Bliss Smoothie</h3>
+                            <span class="menu-item-price">$7.00</span>
+                        </div>
+                        <p>A blend of mixed berries, banana, Greek yogurt, and a drizzle of local honey.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Cold</span>
+                            <span class="item-tag">Fruity</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card dark-card reveal delay-4" data-category="non-coffee">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/cold-brew.png" alt="Chamomile Honey Tea" loading="lazy">
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Chamomile Honey Tea</h3>
+                            <span class="menu-item-price">$4.25</span>
+                        </div>
+                        <p>Soothing chamomile blossoms steeped with raw honey and a lemon twist.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Hot</span>
+                            <span class="item-tag">Calming</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         MENU ITEMS — Pastries
+    ══════════════════════════════════════ -->
+    <section class="menu-category-section" data-section="pastries" id="pastriesSection">
+        <div class="section-container">
+            <div class="menu-category-header reveal">
+                <div class="section-label">
+                    <span class="label-dot"></span>
+                    Pastries & Sweets
+                </div>
+                <h2>Freshly Baked <span class="accent-text">Daily</span></h2>
+                <p>Handcrafted pastries, cakes, and treats — the perfect companion for your coffee.</p>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item-card reveal delay-1" data-category="pastries">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/pastries.png" alt="Butter Croissant" loading="lazy">
+                        <span class="menu-item-badge">Classic</span>
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Butter Croissant</h3>
+                            <span class="menu-item-price">$3.75</span>
+                        </div>
+                        <p>Flaky, golden layers of French butter pastry. Baked fresh every morning.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Fresh</span>
+                            <span class="item-tag">Buttery</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card reveal delay-2" data-category="pastries">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/pastries.png" alt="Blueberry Muffin" loading="lazy">
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Blueberry Muffin</h3>
+                            <span class="menu-item-price">$4.25</span>
+                        </div>
+                        <p>Loaded with fresh blueberries and a crumble topping. Light, fluffy, and irresistible.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Fresh</span>
+                            <span class="item-tag">Fruity</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card reveal delay-3" data-category="pastries">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/pastries.png" alt="Chocolate Fondant" loading="lazy">
+                        <span class="menu-item-badge">Popular</span>
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Chocolate Fondant</h3>
+                            <span class="menu-item-price">$7.50</span>
+                        </div>
+                        <p>Warm, gooey center of Belgian dark chocolate wrapped in a perfectly baked shell.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Warm</span>
+                            <span class="item-tag">Indulgent</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card reveal delay-4" data-category="pastries">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/pastries.png" alt="Cinnamon Roll" loading="lazy">
+                        <span class="menu-item-badge new">New</span>
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Cloud Cinnamon Roll</h3>
+                            <span class="menu-item-price">$5.00</span>
+                        </div>
+                        <p>Soft, pillowy dough swirled with cinnamon and topped with vanilla cream cheese glaze.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Warm</span>
+                            <span class="item-tag">Sweet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         MENU ITEMS — Meals
+    ══════════════════════════════════════ -->
+    <section class="menu-category-section menu-dark" data-section="meals" id="mealsSection">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="section-container">
+            <div class="menu-category-header reveal">
+                <div class="section-label dark-label">
+                    <span class="label-dot" style="background: var(--accent-tertiary);"></span>
+                    Meals & Savory
+                </div>
+                <h2>Hearty <span class="accent-text">Bites</span></h2>
+                <p>From gourmet sandwiches to nourishing bowls — fuel your day the delicious way.</p>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item-card dark-card reveal delay-1" data-category="meals">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/sandwich.png" alt="Club Sandwich" loading="lazy">
+                        <span class="menu-item-badge bestseller">Bestseller</span>
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Cloud Club Sandwich</h3>
+                            <span class="menu-item-price">$12.50</span>
+                        </div>
+                        <p>Triple-decker with smoked turkey, avocado, crispy bacon, and herbed aioli on sourdough.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Hearty</span>
+                            <span class="item-tag">Savory</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card dark-card reveal delay-2" data-category="meals">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/sandwich.png" alt="Mediterranean Bowl" loading="lazy">
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Mediterranean Bowl</h3>
+                            <span class="menu-item-price">$11.00</span>
+                        </div>
+                        <p>Quinoa, roasted veggies, hummus, feta cheese, and a lemon-tahini dressing.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Healthy</span>
+                            <span class="item-tag">Vegetarian</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card dark-card reveal delay-3" data-category="meals">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/sandwich.png" alt="Avocado Toast" loading="lazy">
+                        <span class="menu-item-badge">Popular</span>
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Avocado Toast Deluxe</h3>
+                            <span class="menu-item-price">$10.50</span>
+                        </div>
+                        <p>Sourdough topped with smashed avocado, poached eggs, cherry tomatoes, and microgreens.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Brunch</span>
+                            <span class="item-tag">Fresh</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card dark-card reveal delay-4" data-category="meals">
+                    <div class="menu-item-img">
+                        <img src="/lander-page/images/sandwich.png" alt="Grilled Panini" loading="lazy">
+                    </div>
+                    <div class="menu-item-details">
+                        <div class="menu-item-header">
+                            <h3>Caprese Panini</h3>
+                            <span class="menu-item-price">$9.75</span>
+                        </div>
+                        <p>Fresh mozzarella, tomato, basil, and balsamic reduction on crispy ciabatta bread.</p>
+                        <div class="menu-item-tags">
+                            <span class="item-tag">Hot</span>
+                            <span class="item-tag">Italian</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SPECIAL NOTE
+    ══════════════════════════════════════ -->
+    <section class="menu-note-section">
+        <div class="section-container">
+            <div class="menu-note-card reveal-scale">
+                <div class="menu-note-icon">📋</div>
+                <h3>Dietary Note</h3>
+                <p>
+                    We're happy to accommodate dietary needs. Most of our drinks can be made with
+                    oat, almond, soy, or coconut milk. Gluten-free options are available for many pastries.
+                    Please ask your barista for details.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         CTA BANNER
+    ══════════════════════════════════════ -->
+    <section class="cta-section">
+        <div class="cta-card reveal-scale">
+            <h2>Ready to Order?<br>Visit Us Today</h2>
+            <p>
+                Drop by any of our locations and experience these flavors firsthand.
+                Your favorite cup is waiting.
+            </p>
+            <a href="/lander-page/contact/" class="cta-btn">Find a Location ☁️</a>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="nav-logo">
+                    <div class="nav-logo-icon">☁️</div>
+                    <span class="nav-logo-text">Puffy Cloud</span>
+                </div>
+                <p>
+                    The Puffy Cloud Cafe — where every cup is a premium experience.
+                    Come, savor the difference. A cozy, welcoming space for work,
+                    relaxation, or catching up with friends.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="#coffeeSection">Coffee</a></li>
+                    <li><a href="#nonCoffeeSection">Non Coffee</a></li>
+                    <li><a href="#pastriesSection">Pastries</a></li>
+                    <li><a href="#mealsSection">Meals</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/lander-page/about/">About Us</a></li>
+                    <li><a href="/lander-page/about/#timeline">Our Story</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="/lander-page/contact/">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 The Puffy Cloud Cafe. All rights reserved.</p>
+            <p>Made from heart, served with soul. 💜</p>
+        </div>
+    </footer>
+
+    <script src="/lander-page/menu/menu.js"></script>
+</body>
+
+</html>

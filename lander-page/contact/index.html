@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Get in touch with The Puffy Cloud Cafe — find our locations, hours, and send us a message. We'd love to hear from you.">
+    <title>Contact Us — The Puffy Cloud Cafe</title>
+    <link rel="stylesheet" href="/lander-page/style.css">
+    <link rel="stylesheet" href="/lander-page/contact/contact.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- ══════════════════════════════════════
+         NAVIGATION
+    ══════════════════════════════════════ -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-logo">
+            <div class="nav-pill">
+                <div class="nav-logo-icon">☁️</div>
+                <a href="/lander-page/index.html" class="nav-logo-text">Puffy Cloud</a>
+            </div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-pill"><a href="/lander-page/index.html">Home</a></li>
+            <li class="nav-pill"><a href="/lander-page/about/">About</a></li>
+            <li class="nav-pill"><a href="/lander-page/menu/">Menu</a></li>
+            <li class="nav-pill"><a href="/lander-page/contact/">Contact</a></li>
+            <li><a href="/lander-page/contact/" class="nav-cta">Visit Us</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- ══════════════════════════════════════
+         PAGE HERO — Contact
+    ══════════════════════════════════════ -->
+    <section class="page-hero" id="pageHero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="page-hero-content">
+            <div class="hero-badge">
+                <div class="badge-dot"></div>
+                <span>We'd Love To Hear From You</span>
+            </div>
+            <h1 class="hero-title">
+                Get In <span class="accent-text">Touch</span>
+            </h1>
+            <p class="hero-subtitle">
+                Have a question, feedback, or just want to say hello? Reach out — our team is always happy to connect.
+            </p>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         CONTACT INFO CARDS
+    ══════════════════════════════════════ -->
+    <section class="contact-info-section" id="contactInfo">
+        <div class="section-container">
+            <div class="contact-info-grid">
+                <div class="contact-info-card reveal delay-1">
+                    <div class="contact-info-icon">📍</div>
+                    <h3>Visit Us</h3>
+                    <p>123 Cloud Avenue<br>Downtown District<br>San Francisco, CA 94102</p>
+                    <a href="#" class="contact-info-link">Get Directions →</a>
+                </div>
+
+                <div class="contact-info-card reveal delay-2">
+                    <div class="contact-info-icon">📞</div>
+                    <h3>Call Us</h3>
+                    <p>Main: (415) 555-PUFFY<br>Catering: (415) 555-0199</p>
+                    <a href="tel:+14155557833" class="contact-info-link">Call Now →</a>
+                </div>
+
+                <div class="contact-info-card reveal delay-3">
+                    <div class="contact-info-icon">✉️</div>
+                    <h3>Email Us</h3>
+                    <p>General: hello@puffycloud.cafe<br>Press: press@puffycloud.cafe</p>
+                    <a href="mailto:hello@puffycloud.cafe" class="contact-info-link">Send Email →</a>
+                </div>
+
+                <div class="contact-info-card reveal delay-4">
+                    <div class="contact-info-icon">🕐</div>
+                    <h3>Opening Hours</h3>
+                    <p>Mon – Fri: 7:00 AM – 10:00 PM<br>Sat – Sun: 8:00 AM – 11:00 PM</p>
+                    <span class="contact-open-badge">Open Now</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         CONTACT FORM + MAP SECTION
+    ══════════════════════════════════════ -->
+    <section class="contact-form-section" id="contactForm">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+
+        <div class="section-container">
+            <div class="contact-grid">
+                <!-- Form Side -->
+                <div class="contact-form-wrap reveal-left">
+                    <div class="section-label"
+                        style="background: rgba(124, 77, 255, 0.15); box-shadow: var(--clay-dark-out-sm); color: var(--accent-tertiary);">
+                        <span class="label-dot" style="background: var(--accent-tertiary);"></span>
+                        Send A Message
+                    </div>
+                    <h2>Drop Us a Line</h2>
+                    <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+
+                    <form class="contact-form" id="contactFormEl">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" placeholder="Your first name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Your last name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>Choose a topic</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="catering">Catering & Events</option>
+                                <option value="careers">Careers</option>
+                                <option value="press">Press & Media</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us what's on your mind..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="form-submit-btn" id="submitBtn">
+                            <span class="btn-text">Send Message ☁️</span>
+                            <span class="btn-loading" style="display: none;">Sending...</span>
+                        </button>
+                    </form>
+
+                    <!-- Success message (hidden by default) -->
+                    <div class="form-success" id="formSuccess" style="display: none;">
+                        <div class="success-icon">✅</div>
+                        <h3>Message Sent!</h3>
+                        <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                    </div>
+                </div>
+
+                <!-- Map / Location Side -->
+                <div class="contact-map-wrap reveal-right">
+                    <div class="contact-map-card">
+                        <div class="map-placeholder">
+                            <div class="map-pin">📍</div>
+                            <div class="map-grid-bg"></div>
+                            <div class="map-label">
+                                <strong>The Puffy Cloud Cafe</strong>
+                                <span>123 Cloud Avenue, SF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-social-card">
+                        <h3>Follow Us</h3>
+                        <p>Stay updated with our latest brews, events, and behind-the-scenes moments.</p>
+                        <div class="contact-social-links">
+                            <a href="#" class="social-link-card" aria-label="Instagram">
+                                <span class="social-icon">📷</span>
+                                <span class="social-name">Instagram</span>
+                                <span class="social-handle">@puffycloudcafe</span>
+                            </a>
+                            <a href="#" class="social-link-card" aria-label="Twitter">
+                                <span class="social-icon">🐦</span>
+                                <span class="social-name">Twitter</span>
+                                <span class="social-handle">@puffycloud</span>
+                            </a>
+                            <a href="#" class="social-link-card" aria-label="Facebook">
+                                <span class="social-icon">📘</span>
+                                <span class="social-name">Facebook</span>
+                                <span class="social-handle">PuffyCloudCafe</span>
+                            </a>
+                            <a href="#" class="social-link-card" aria-label="YouTube">
+                                <span class="social-icon">▶️</span>
+                                <span class="social-name">YouTube</span>
+                                <span class="social-handle">Puffy Cloud</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         LOCATIONS SECTION
+    ══════════════════════════════════════ -->
+    <section class="locations-section" id="locations">
+        <div class="section-container">
+            <div class="locations-header reveal">
+                <div class="section-label">
+                    <span class="label-dot"></span>
+                    Our Locations
+                </div>
+                <h2>Find Us <span class="accent-text">Near You</span></h2>
+                <p>We're in neighborhoods across the city — there's always a Puffy Cloud nearby.</p>
+            </div>
+
+            <div class="locations-grid">
+                <div class="location-card reveal delay-1">
+                    <div class="location-img">
+                        <img src="/lander-page/images/cafe-hero.png" alt="Downtown Location" loading="lazy">
+                        <span class="location-badge">Flagship</span>
+                    </div>
+                    <div class="location-details">
+                        <h3>Downtown</h3>
+                        <p>123 Cloud Avenue, SF 94102</p>
+                        <div class="location-hours">
+                            <span>🕐 7AM – 10PM</span>
+                            <span class="location-open">Open</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="location-card reveal delay-2">
+                    <div class="location-img">
+                        <img src="/lander-page/images/cafe-ambience.png" alt="Mission District Location"
+                            loading="lazy">
+                    </div>
+                    <div class="location-details">
+                        <h3>Mission District</h3>
+                        <p>456 Valencia St, SF 94110</p>
+                        <div class="location-hours">
+                            <span>🕐 7AM – 9PM</span>
+                            <span class="location-open">Open</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="location-card reveal delay-3">
+                    <div class="location-img">
+                        <img src="/lander-page/images/cafe-exterior.png" alt="Marina Location" loading="lazy">
+                    </div>
+                    <div class="location-details">
+                        <h3>Marina</h3>
+                        <p>789 Chestnut St, SF 94123</p>
+                        <div class="location-hours">
+                            <span>🕐 8AM – 10PM</span>
+                            <span class="location-open">Open</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         FAQ SECTION
+    ══════════════════════════════════════ -->
+    <section class="faq-section" id="faq">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="section-container">
+            <div class="faq-header reveal">
+                <div class="section-label"
+                    style="background: rgba(124, 77, 255, 0.15); box-shadow: var(--clay-dark-out-sm); color: var(--accent-tertiary);">
+                    <span class="label-dot" style="background: var(--accent-tertiary);"></span>
+                    FAQ
+                </div>
+                <h2>Common Questions</h2>
+                <p>Quick answers to the things people ask us most.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item reveal delay-1">
+                    <button class="faq-question" id="faq-q1">
+                        <span>Do you offer dairy-free milk alternatives?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-a1">
+                        <p>Absolutely! We offer oat, almond, soy, and coconut milk at no extra charge. Just let your
+                            barista know your preference.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal delay-2">
+                    <button class="faq-question" id="faq-q2">
+                        <span>Can I book the cafe for private events?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-a2">
+                        <p>Yes! Our Downtown and Mission District locations are available for private events. Contact
+                            our catering team at (415) 555-0199 for details and pricing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal delay-3">
+                    <button class="faq-question" id="faq-q3">
+                        <span>Do you have Wi-Fi and laptop-friendly spaces?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-a3">
+                        <p>All our locations have free, high-speed Wi-Fi. Our Downtown flagship has a dedicated
+                            co-working area with power outlets at every table.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal delay-4">
+                    <button class="faq-question" id="faq-q4">
+                        <span>Are you hiring?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-a4">
+                        <p>We're always looking for passionate people! Send your resume to careers@puffycloud.cafe or
+                            ask about openings at any of our locations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal delay-5">
+                    <button class="faq-question" id="faq-q5">
+                        <span>Do you sell coffee beans for home brewing?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-a5">
+                        <p>Yes! We sell our signature roasts in 250g and 500g bags at all locations. We also offer a
+                            monthly subscription for fresh beans delivered to your door.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="nav-logo">
+                    <div class="nav-logo-icon">☁️</div>
+                    <span class="nav-logo-text">Puffy Cloud</span>
+                </div>
+                <p>
+                    The Puffy Cloud Cafe — where every cup is a premium experience.
+                    Come, savor the difference. A cozy, welcoming space for work,
+                    relaxation, or catching up with friends.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="/lander-page/menu/">Coffee</a></li>
+                    <li><a href="/lander-page/menu/">Non Coffee</a></li>
+                    <li><a href="/lander-page/menu/">Pastries</a></li>
+                    <li><a href="/lander-page/menu/">Meals</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/lander-page/about/">About Us</a></li>
+                    <li><a href="/lander-page/about/#timeline">Our Story</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="/lander-page/contact/">Contact Us</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 The Puffy Cloud Cafe. All rights reserved.</p>
+            <p>Made from heart, served with soul. 💜</p>
+        </div>
+    </footer>
+
+    <script src="/lander-page/contact/contact.js"></script>
+</body>
+
+</html>
