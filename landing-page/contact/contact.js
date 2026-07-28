@@ -3,13 +3,117 @@
    Contact-specific JS (shared utilities loaded via shared.js)
 ════════════════════════════════════════════════════════ */
 
-document.addEventListener('DOMContentLoaded', () => {
+function runInitContact() {
   initShared();
   initFAQAccordion();
   initFAQSearch();
   initContactForm();
   initContactInteractions();
-});
+  initOpenNowBadge();
+  initMapInteraction();
+  initHeroCTAScroll();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', runInitContact);
+} else {
+  runInitContact();
+}
+
+/* ─── Hero CTA Smooth Scroll ────────────── */
+function initHeroCTAScroll() {
+  const heroCTAs = document.querySelectorAll('.hero-cta-btn');
+  heroCTAs.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const href = btn.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      e.preventDefault();
+      const navHeight = document.getElementById('mainNav')?.offsetHeight || 70;
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+      });
+    });
+  });
+}
+
+/* ─── Dynamic Open Now Badge ─────────────── */
+function initOpenNowBadge() {
+  const badge = document.querySelector('.contact-open-badge');
+  if (!badge) return;
+
+  function updateBadge() {
+    const now = new Date();
+    const day = now.getDay(); // 0 = Sunday
+    const hour = now.getHours();
+
+    let isOpen = false;
+
+    if (day >= 1 && day <= 5) {
+      // Mon-Fri: 7AM - 10PM
+      isOpen = hour >= 7 && hour < 22;
+    } else {
+      // Sat-Sun: 8AM - 11PM
+      isOpen = hour >= 8 && hour < 23;
+    }
+
+    if (isOpen) {
+      badge.textContent = 'Open Now';
+      badge.classList.remove('closed');
+    } else {
+      badge.textContent = 'Currently Closed';
+      badge.classList.add('closed');
+    }
+  }
+
+  updateBadge();
+  // Update every minute
+  setInterval(updateBadge, 60000);
+}
+
+/* ─── Map Card Interaction ───────────────── */
+function initMapInteraction() {
+  const mapPlaceholder = document.querySelector('.map-placeholder');
+  if (!mapPlaceholder || isTouchDevice()) return;
+
+  if (prefersReducedMotion()) return;
+
+  mapPlaceholder.addEventListener('mousemove', (e) => {
+    const rect = mapPlaceholder.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    const pin = mapPlaceholder.querySelector('.map-pin');
+    if (pin) {
+      pin.style.transform = `translate(${(x - 0.5) * 15}px, ${(y - 0.5) * 15}px) scale(1.05)`;
+    }
+
+    const gridBg = mapPlaceholder.querySelector('.map-grid-bg');
+    if (gridBg) {
+      gridBg.style.backgroundPosition = `${x * 10}px ${y * 10}px`;
+    }
+  });
+
+  mapPlaceholder.addEventListener('mouseleave', () => {
+    const pin = mapPlaceholder.querySelector('.map-pin');
+    if (pin) {
+      pin.style.transition = 'transform 0.5s ease';
+      pin.style.transform = '';
+      setTimeout(() => { pin.style.transition = ''; }, 500);
+    }
+
+    const gridBg = mapPlaceholder.querySelector('.map-grid-bg');
+    if (gridBg) {
+      gridBg.style.backgroundPosition = '';
+    }
+  });
+}
 
 /* ─── Contact Interactions ───────────────── */
 function initContactInteractions() {
@@ -110,23 +214,28 @@ function initFAQSearch() {
   const searchInput = searchWrap.querySelector('.faq-search-input');
   const faqItems = faqList.querySelectorAll('.faq-item');
 
+  // Debounce for smoother typing
+  let debounceTimer;
   searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase().trim();
-    let matchCount = 0;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      const query = searchInput.value.toLowerCase().trim();
+      let matchCount = 0;
 
-    faqItems.forEach(item => {
-      const questionText = item.querySelector('.faq-question span')?.textContent?.toLowerCase() || '';
-      const answerText = item.querySelector('.faq-answer p')?.textContent?.toLowerCase() || '';
+      faqItems.forEach(item => {
+        const questionText = item.querySelector('.faq-question span')?.textContent?.toLowerCase() || '';
+        const answerText = item.querySelector('.faq-answer p')?.textContent?.toLowerCase() || '';
 
-      if (query === '' || questionText.includes(query) || answerText.includes(query)) {
-        item.classList.remove('faq-hidden');
-        matchCount++;
-      } else {
-        item.classList.add('faq-hidden');
-      }
-    });
+        if (query === '' || questionText.includes(query) || answerText.includes(query)) {
+          item.classList.remove('faq-hidden');
+          matchCount++;
+        } else {
+          item.classList.add('faq-hidden');
+        }
+      });
 
-    noResults.style.display = (matchCount === 0 && query !== '') ? 'block' : 'none';
+      noResults.style.display = (matchCount === 0 && query !== '') ? 'block' : 'none';
+    }, 150);
   });
 }
 

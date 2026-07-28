@@ -28,5 +28,8 @@
 /templates/hotel/liquid-glass-ui                /templates/hotel/liquid-glass-ui/       301!
 /templates/hotel/maximalism-ui                  /templates/hotel/maximalism-ui/         301!
 
-/landing-page/index.html                       /landing-page                              301!
-/landing-page/                                 /landing-page                              301!
+/landing-page/index.html                       /landing-page                            301!
+/landing-page/                                 /landing-page                            301!
+/landing-page#home                             /landing-page                            301!
+/landing-page#gallery                          /landing-page                            301!
+/landing-page#reviews                          /landing-page                            301!

@@ -381,19 +381,46 @@ a {
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+  position: relative;
+  z-index: 1001;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .mobile-menu-btn span {
   width: 24px;
-  height: 2px;
+  height: 2.5px;
   background: var(--text-light);
-  border-radius: 2px;
-  transition: var(--transition-smooth);
+  border-radius: 4px;
+  transition: transform 0.35s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+              opacity 0.25s ease,
+              width 0.25s ease;
+  transform-origin: center;
+}
+
+/* ── Mobile Nav Overlay (backdrop dim) ── */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 998;
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+
+.mobile-nav-overlay.active {
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
 }
 
 /* ── Hero Content ── */
@@ -2219,37 +2246,52 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(26, 16, 50, 0.98);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: rgba(26, 16, 50, 0.97);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 24px;
+    gap: 8px;
     z-index: 999;
     padding: 80px 40px;
   }
 
   .nav-links.open {
     display: flex;
+    animation: mobileNavIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes mobileNavIn {
+    from {
+      opacity: 0;
+      backdrop-filter: blur(0);
+    }
+    to {
+      opacity: 1;
+      backdrop-filter: blur(30px);
+    }
   }
 
   .nav-links li {
     width: 100%;
     text-align: center;
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
 
   .nav-links a {
     font-size: 22px;
     font-weight: 600;
     display: block;
-    padding: 12px 0;
+    padding: 14px 0;
     color: var(--text-light-secondary);
+    transition: color 0.3s ease, transform 0.3s ease;
   }
 
   .nav-links a:hover,
   .nav-links a:active {
     color: var(--text-light);
+    transform: scale(1.05);
   }
 
   .nav-links a::after {
@@ -2257,8 +2299,8 @@ a {
   }
 
   .nav-cta {
-    margin-top: 12px;
-    padding: 14px 32px !important;
+    margin-top: 16px;
+    padding: 16px 40px !important;
     font-size: 16px !important;
     display: inline-block;
     text-align: center;
@@ -2269,17 +2311,24 @@ a {
     z-index: 1001;
   }
 
+  .mobile-menu-btn.open {
+    background: rgba(124, 77, 255, 0.12);
+  }
+
   .mobile-menu-btn.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(6px, 6px);
+    width: 26px;
   }
 
   .mobile-menu-btn.open span:nth-child(2) {
     opacity: 0;
-    transform: translateX(-10px);
+    transform: scaleX(0);
+    width: 0;
   }
 
   .mobile-menu-btn.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(6px, -6px);
+    width: 26px;
   }
 
   /* ── Hero ── */

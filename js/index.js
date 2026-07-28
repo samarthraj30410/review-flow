@@ -182,8 +182,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const hamburgerIcon = menuToggle.querySelector(".hamburger-icon");
     const closeIcon = menuToggle.querySelector(".close-icon");
 
+    // Create backdrop overlay
+    const backdrop = document.createElement("div");
+    backdrop.className = "mobile-nav-backdrop";
+    document.body.appendChild(backdrop);
+
+    // Set initial aria state
+    menuToggle.setAttribute("aria-expanded", "false");
+
     const setMenuState = (isActive) => {
       mobileNavLinks.classList.toggle("active", isActive);
+      menuToggle.classList.toggle("active", isActive);
+      menuToggle.setAttribute("aria-expanded", String(isActive));
+      backdrop.classList.toggle("active", isActive);
+      document.body.style.overflow = isActive ? "hidden" : "";
+
       hamburgerIcon.style.display = isActive ? "none" : "block";
       closeIcon.style.display = isActive ? "block" : "none";
     };
@@ -192,6 +205,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const isActive = !mobileNavLinks.classList.contains("active");
       setMenuState(isActive);
     });
+
+    // Close menu on backdrop click
+    backdrop.addEventListener("click", () => setMenuState(false));
 
     // Close menu when a nav link (or the mobile CTA) is clicked
     mobileNavLinks.querySelectorAll("a").forEach((link) => {
@@ -214,6 +230,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Close menu on Escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && mobileNavLinks.classList.contains("active")) {
+        setMenuState(false);
+        menuToggle.focus(); // Return focus for accessibility
+      }
+    });
+
+    // Close on resize above mobile breakpoint
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768 && mobileNavLinks.classList.contains("active")) {
         setMenuState(false);
       }
     });

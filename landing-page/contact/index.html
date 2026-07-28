@@ -61,6 +61,10 @@
             <p class="hero-subtitle">
                 Have a question, feedback, or just want to say hello? Reach out — our team is always happy to connect.
             </p>
+            <div class="hero-buttons">
+                <a href="#contactMap" class="btn-clay-primary hero-cta-btn">Find Us 📍</a>
+                <a href="#locations" class="btn-clay-secondary">Our Locations →</a>
+            </div>
         </div>
     </section>
 
@@ -102,77 +106,16 @@
     </section>
 
     <!-- ══════════════════════════════════════
-         CONTACT FORM + MAP SECTION
+         LOCATION MAP + SOCIAL CONNECT SECTION
     ══════════════════════════════════════ -->
-    <section class="contact-form-section" id="contactForm">
+    <section class="contact-form-section" id="contactMap">
         <div class="hero-orb hero-orb-1"></div>
         <div class="hero-orb hero-orb-2"></div>
 
         <div class="section-container">
             <div class="contact-grid">
-                <!-- Form Side -->
-                <div class="contact-form-wrap reveal-left">
-                    <div class="section-label"
-                        style="background: rgba(124, 77, 255, 0.15); box-shadow: var(--clay-dark-out-sm); color: var(--accent-tertiary);">
-                        <span class="label-dot" style="background: var(--accent-tertiary);"></span>
-                        Send A Message
-                    </div>
-                    <h2>Drop Us a Line</h2>
-                    <p>Fill out the form below and we'll get back to you within 24 hours.</p>
-
-                    <form class="contact-form" id="contactFormEl">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName">First Name</label>
-                                <input type="text" id="firstName" name="firstName" placeholder="Your first name"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" placeholder="Your last name" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <select id="subject" name="subject" required>
-                                <option value="" disabled selected>Choose a topic</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="feedback">Feedback</option>
-                                <option value="catering">Catering & Events</option>
-                                <option value="careers">Careers</option>
-                                <option value="press">Press & Media</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Tell us what's on your mind..."
-                                required></textarea>
-                        </div>
-
-                        <button type="submit" class="form-submit-btn" id="submitBtn">
-                            <span class="btn-text">Send Message ☁️</span>
-                            <span class="btn-loading" style="display: none;">Sending...</span>
-                        </button>
-                    </form>
-
-                    <!-- Success message (hidden by default) -->
-                    <div class="form-success" id="formSuccess" style="display: none;">
-                        <div class="success-icon">✅</div>
-                        <h3>Message Sent!</h3>
-                        <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
-                    </div>
-                </div>
-
                 <!-- Map / Location Side -->
-                <div class="contact-map-wrap reveal-right">
+                <div class="contact-map-wrap reveal-left">
                     <div class="contact-map-card">
                         <div class="map-placeholder">
                             <div class="map-pin">📍</div>
@@ -183,10 +126,18 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <!-- Social Side Card -->
+                <div class="contact-social-wrap reveal-right">
                     <div class="contact-social-card">
-                        <h3>Follow Us</h3>
-                        <p>Stay updated with our latest brews, events, and behind-the-scenes moments.</p>
+                        <div class="section-label"
+                            style="background: rgba(124, 77, 255, 0.15); box-shadow: var(--clay-dark-out-sm); color: var(--accent-tertiary); margin-bottom: 16px;">
+                            <span class="label-dot" style="background: var(--accent-tertiary);"></span>
+                            Connect With Us
+                        </div>
+                        <h3>Follow Us & Stay Connected</h3>
+                        <p>Stay updated with our latest brews, seasonal specials, events, and behind-the-scenes moments.</p>
                         <div class="contact-social-links">
                             <a href="#" class="social-link-card" aria-label="Instagram">
                                 <span class="social-icon">📷</span>
@@ -414,6 +365,7 @@
         </div>
     </footer>
 
+    <script src="/landing-page/shared.js"></script>
     <script src="/landing-page/contact/contact.js"></script>
 </body>
 
