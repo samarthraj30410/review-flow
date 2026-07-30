@@ -74,9 +74,7 @@ function initHomeInteractions() {
   );
 
   // Desktop-only hover interactions
-  if (!touch && !mobile) {
-    // Smooth tilt on product cards
-    document.querySelectorAll('.product-card').forEach(card => {
+  document.querySelectorAll('.product-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -97,49 +95,6 @@ function initHomeInteractions() {
         card.style.transition = 'transform 0.15s ease';
       });
     });
-
-    // Magnetic button effect
-    document.querySelectorAll('.btn-clay-primary, .btn-clay-secondary, .cta-btn, .nav-cta').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-      });
-
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
-      });
-    });
-
-    // Gallery hover parallax
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('mousemove', (e) => {
-        const rect = item.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width;
-        const y = (e.clientY - rect.top) / rect.height;
-        const img = item.querySelector('img');
-        if (img) {
-          img.style.transform = `scale(1.1) translate(${(x - 0.5) * -10}px, ${(y - 0.5) * -10}px)`;
-        }
-      });
-
-      item.addEventListener('mouseleave', () => {
-        const img = item.querySelector('img');
-        if (img) {
-          img.style.transition = 'transform 0.5s ease';
-          img.style.transform = '';
-        }
-      });
-
-      item.addEventListener('mouseenter', () => {
-        const img = item.querySelector('img');
-        if (img) {
-          img.style.transition = 'transform 0.15s ease';
-        }
-      });
-    });
-  }
 
   // Parallax (desktop only)
   if (!mobile) {
@@ -375,7 +330,17 @@ function initGalleryLightbox() {
 
   // Click handlers
   galleryItems.forEach((item, i) => {
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.setAttribute('aria-label', 'Open image ' + (i + 1) + ' in lightbox');
+
     item.addEventListener('click', () => openLightbox(i));
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(i);
+      }
+    });
   });
 
   closeBtn.addEventListener('click', closeLightbox);

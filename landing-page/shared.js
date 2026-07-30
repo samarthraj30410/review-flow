@@ -236,8 +236,6 @@ function initScrollReveal() {
 
   revealElements.forEach(el => observer.observe(el));
 
-  // Scroll listener fallback for safety
-  window.addEventListener('scroll', checkInView, { passive: true });
 }
 
 /* ─── Cursor Glow (CPU-based, desktop only) ─ */
