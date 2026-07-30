@@ -1261,7 +1261,7 @@ section {
 
 .reveal.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(5);
 }
 
 /* Lucky Customers Section */
