@@ -1,0 +1,24 @@
+{
+  "name": "review-flow",
+  "version": "1.0.0",
+  "description": "ReviewFlo is a landing page built for custom, serverless customer review and feedback systems...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sitemap": "node scripts/generate-sitemap.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samarthraj30410/review-flow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samarthraj30410/review-flow/issues"
+  },
+  "homepage": "https://github.com/samarthraj30410/review-flow#readme",
+  "devDependencies": {
+    "sitemap": "^9.0.1"
+  }
+}
