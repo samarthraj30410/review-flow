@@ -1,0 +1,203 @@
+@import "../css/common.css";
+
+/* ===== 404 Page Layout ===== */
+.error-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 160px 32px 100px;
+  text-align: center;
+}
+
+.error-code {
+  font-family: var(--font-heading);
+  font-size: clamp(6rem, 18vw, 11rem);
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 8px;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.03em;
+}
+
+.error-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px;
+}
+
+.error-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto 8px;
+}
+
+.error-path {
+  display: inline-block;
+  margin: 12px 0 36px;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  background: var(--bg-secondary-btn);
+  border: 1px solid var(--border-subtle);
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.error-ctas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+/* Buttons (matches index.css / terms.css button pattern) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border: 1px solid var(--text-primary);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: var(--bg-secondary-btn);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-secondary:hover {
+  background-color: var(--border-subtle);
+  border-color: var(--text-secondary);
+  transform: translateY(-2px);
+}
+
+/* Quick-links card (reuses .glow-tilt mouse-follow glow from side-pages.js) */
+.error-links-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 32px;
+  text-align: left;
+}
+
+.error-links-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--glow-x) var(--glow-y),
+    rgba(59, 130, 246, 0.06),
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.error-links-card:hover::after {
+  opacity: 1;
+}
+
+html[data-theme="light"] .error-links-card::after {
+  background: radial-gradient(
+    400px circle at var(--glow-x) var(--glow-y),
+    rgba(37, 99, 235, 0.04),
+    transparent 60%
+  );
+}
+
+.error-links-title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: 0 0 20px;
+}
+
+.error-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.error-links-grid a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.error-links-grid a:hover {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+.error-links-grid svg {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+@media (max-width: 640px) {
+  .error-container {
+    padding: 130px 24px 70px;
+  }
+
+  .error-links-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .error-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .error-code,
+  .btn,
+  .error-links-grid a,
+  .error-links-card::after {
+    transition: none !important;
+  }
+}
