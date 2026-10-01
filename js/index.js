@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
+  let lastTriggerBtn = null;
+
   if (modal && closeBtn) {
     previewButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -90,7 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (deviceBtn) deviceBtn.style.backgroundColor = data.btnColor;
 
           // Open Modal
+          lastTriggerBtn = btn;
           modal.classList.add("active");
+          document.body.style.overflow = "hidden";
         }
       });
     });
@@ -100,11 +104,23 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.addEventListener("click", (e) => {
       if (e.target === modal) closeModal();
     });
+
+    // Close modal on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("active")) {
+        closeModal();
+      }
+    });
   }
 
   function closeModal() {
     if (modal) {
       modal.classList.remove("active");
+      document.body.style.overflow = "";
+      if (lastTriggerBtn) {
+        lastTriggerBtn.focus();
+        lastTriggerBtn = null;
+      }
     }
   }
 
@@ -132,24 +148,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav-links a");
 
   if (sections.length > 0 && navLinks.length > 0) {
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop - 150) {
-          current = section.getAttribute("id");
-        }
-      });
+    let navScrollTicking = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (navScrollTicking) return;
+        navScrollTicking = true;
+        requestAnimationFrame(() => {
+          let current = "";
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            if (window.scrollY >= sectionTop - 150) {
+              current = section.getAttribute("id");
+            }
+          });
 
-      navLinks.forEach((link) => {
-        link.classList.remove("active");
-        const href = link.getAttribute("href");
-        if (href && href.startsWith("#") && href.slice(1) === current) {
-          link.classList.add("active");
-        }
-      });
-    });
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            const href = link.getAttribute("href");
+            if (href && href.startsWith("#") && href.slice(1) === current) {
+              link.classList.add("active");
+            }
+          });
+          navScrollTicking = false;
+        });
+      },
+      { passive: true },
+    );
   }
 
   // --- 6. Main Contact Form Simulation ---

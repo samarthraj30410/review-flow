@@ -140,7 +140,6 @@ function initHomeInteractions() {
       });
     });
   }
-
   // Parallax (desktop only)
   if (!mobile) {
     let heroTicking = false;
@@ -375,7 +374,17 @@ function initGalleryLightbox() {
 
   // Click handlers
   galleryItems.forEach((item, i) => {
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.setAttribute('aria-label', 'Open image ' + (i + 1) + ' in lightbox');
+
     item.addEventListener('click', () => openLightbox(i));
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(i);
+      }
+    });
   });
 
   closeBtn.addEventListener('click', closeLightbox);
